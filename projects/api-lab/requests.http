@@ -1,0 +1,33 @@
+### Health
+GET http://127.0.0.1:18427/health
+
+### Structured JSON for assertions and captures
+GET http://127.0.0.1:18427/items/42
+
+### Echo
+POST http://127.0.0.1:18427/qa-roundtrip
+Content-Type: application/json
+
+{"id":42,"message":"demo"}
+
+### Five seconds to press Cancel
+GET http://127.0.0.1:18427/qa-slow?delay_ms=5000
+
+### Error
+GET http://127.0.0.1:18427/error
+
+### Redirect
+GET http://127.0.0.1:18427/redirect
+
+### Response budget
+GET http://127.0.0.1:18427/large?bytes=100000
+
+### Set a harmless demonstration cookie
+GET http://127.0.0.1:18427/cookies/set
+
+### Observe cookie presence, then repeat after Clear cookies
+GET http://127.0.0.1:18427/cookies/show
+
+### Nonsecret environment/header check
+GET http://127.0.0.1:18427/headers
+X-Demo: local

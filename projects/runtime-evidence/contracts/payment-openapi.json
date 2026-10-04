@@ -1,0 +1,15 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Local payment evidence demo", "version": "demo-1"},
+  "paths": {
+    "/payments/{id}": {
+      "get": {
+        "parameters": [{"name":"id","in":"path","required":true,"schema":{"type":"string"}}],
+        "responses": {"200": {"description":"Payment","content":{"application/json":{"schema":{
+          "type":"object","required":["id","status","version"],
+          "properties":{"id":{"type":"string"},"status":{"type":"string"},"version":{"type":"string"}}
+        }}}}}
+      }
+    }
+  }
+}

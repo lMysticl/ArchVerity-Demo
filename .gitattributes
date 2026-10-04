@@ -1,0 +1,5 @@
+# Preserve fixture bytes; accept CRLF as line endings in whitespace checks.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.sh text eol=lf
+gradlew text eol=lf
+*.bats text eol=lf

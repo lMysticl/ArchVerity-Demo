@@ -1,0 +1,8 @@
+---
+- name: Verify payment service
+  hosts: payments
+  tasks:
+    - name: Check endpoint
+      ansible.builtin.uri:
+        url: http://localhost:8080/actuator/health
+        status_code: 200

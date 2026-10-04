@@ -1,0 +1,14 @@
+schemaVersion: 1
+project:
+  id: archverity-first-result
+  displayName: ArchVerity First Result
+analysis:
+  profiles: [default]
+  includeModules: ["*"]
+services:
+  order-service:
+    modules: [order-app, archverity-first-result.order-app.main]
+    aliases: [orders]
+  payment-service:
+    modules: [payment-app, archverity-first-result.payment-app.main]
+    aliases: [payments, payments.example.test]

@@ -1,0 +1,4 @@
+
+plain line
+[1;31mERROR[0m Payment failed https://example.com/docs
+[38;2;42;161;152mINFO[0m at sample.payment.PaymentController.run(PaymentController.java:9)

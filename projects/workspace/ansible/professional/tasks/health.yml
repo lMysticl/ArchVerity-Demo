@@ -1,0 +1,6 @@
+---
+- name: Check API health endpoint
+  ansible.builtin.uri:
+    url: "http://{{ inventory_hostname }}:{{ api_port }}/actuator/health"
+    status_code: 200
+  register: health_response

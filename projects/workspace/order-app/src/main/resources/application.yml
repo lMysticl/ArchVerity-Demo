@@ -1,0 +1,6 @@
+archflow:
+  amqp:
+    cluster: demo-broker
+spring:
+  rabbitmq:
+    virtual-host: /archverity-demo

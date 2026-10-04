@@ -1,0 +1,9 @@
+{
+  "apiVersion": "backstage.io/v1alpha1",
+  "kind": "Component",
+  "metadata": {
+    "name": "qa-catalog-service",
+    "annotations": {"archflow.io/service-aliases": "qa-catalog"}
+  },
+  "spec": {"type": "service", "lifecycle": "experimental", "owner": "team-qa"}
+}

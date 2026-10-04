@@ -1,0 +1,9 @@
+{
+  "asyncapi": "2.6.0",
+  "info": {"title": "QA event bus", "version": "1.0.0"},
+  "channels": {
+    "qa.events": {
+      "subscribe": {"operationId": "publishQaEvent", "message": {"payload": {"type": "object", "properties": {"id": {"type": "string"}}}}}
+    }
+  }
+}

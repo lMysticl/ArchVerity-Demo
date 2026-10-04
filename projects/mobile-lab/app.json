@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "ArchVerity Demo",
+    "slug": "archverity-demo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "android": {"package": "com.archverity.demo"},
+    "ios": {"bundleIdentifier": "com.archverity.demo"}
+  }
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+package archverity.demo;
+
+import "google/protobuf/empty.proto";
+
+service Echo {
+  rpc Health(google.protobuf.Empty) returns (EchoReply);
+  rpc Say(EchoRequest) returns (EchoReply);
+  rpc Watch(EchoRequest) returns (stream EchoReply);
+  rpc Fail(EchoRequest) returns (EchoReply);
+  // Negative inputs for the client's explicitly unsupported transports.
+  rpc Upload(stream EchoRequest) returns (EchoReply);
+  rpc Chat(stream EchoRequest) returns (stream EchoReply);
+}
+
+message EchoRequest {
+  string text = 1;
+  int32 count = 2;
+  int32 delay_ms = 3;
+}
+message EchoReply {
+  string text = 1;
+  int32 sequence = 2;
+}

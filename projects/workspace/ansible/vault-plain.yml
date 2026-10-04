@@ -1,0 +1,4 @@
+---
+# Synthetic data only. Encrypt this file in a disposable prepared copy.
+qa_fixture: true
+service_name: payments

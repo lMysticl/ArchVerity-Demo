@@ -1,0 +1,4 @@
+[
+  {"name":"Intentional assertion failure","url":"http://127.0.0.1:18427/items/42","after":"assert json /id == 99"},
+  {"name":"Must not execute","url":"http://127.0.0.1:18427/health","after":"assert status == 200"}
+]

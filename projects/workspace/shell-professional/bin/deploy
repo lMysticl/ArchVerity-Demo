@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly APP_ENV="${APP_ENV:-prod}"
+SCRIPT_DIR="${BASH_SOURCE[0]%/*}"
+# Dynamic path is relative to this script; Bats exercises the real source.
+# shellcheck disable=SC1091
+source "${SCRIPT_DIR}/../lib/common.sh"
+
+deploy_service() {
+  local service="${1:?service is required}"
+  common_log "deploying ${service} to ${APP_ENV}"
+  cat <<'JSON'
+{"status":"scheduled"}
+JSON
+}
+
+deploy_service "$@"

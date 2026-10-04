@@ -1,0 +1,6 @@
+.idea/
+.gradle/
+build/
+work/
+reports/
+__pycache__/

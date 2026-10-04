@@ -1,0 +1,5 @@
+*.sh text eol=lf
+*.bats text eol=lf
+*.zsh text eol=lf
+shell-professional/bin/deploy text eol=lf
+gradlew text eol=lf

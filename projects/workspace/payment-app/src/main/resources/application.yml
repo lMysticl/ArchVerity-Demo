@@ -1,0 +1,8 @@
+server:
+  port: 8085
+spring:
+  config:
+    import: optional:classpath:application-demo.properties
+  profiles:
+    group:
+      local: [dev, demo]

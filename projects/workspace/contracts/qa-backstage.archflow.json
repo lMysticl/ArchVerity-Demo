@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-09-24T04:37:56Z",
+  "id": "backstage-qa-backstage",
+  "schemaVersion": 1,
+  "services": [
+    {
+      "aliases": [
+        "qa-catalog",
+        "qa-catalog-service"
+      ],
+      "amqpConsumers": [],
+      "amqpProducers": [],
+      "catalogKind": "Component",
+      "consumesApis": [],
+      "dependsOn": [],
+      "httpEndpoints": [],
+      "id": "qa-catalog-service",
+      "kafkaConsumers": [],
+      "kafkaProducers": [],
+      "kind": "internal",
+      "lifecycle": "experimental",
+      "owner": "team-qa",
+      "providesApis": [],
+      "repository": null,
+      "system": null,
+      "type": "service"
+    }
+  ],
+  "source": {
+    "path": "qa-backstage.json",
+    "type": "backstage"
+  }
+}

@@ -1,0 +1,1 @@
+{"info":{"name":"ArchVerity QA","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"Postman QA","request":{"method":"POST","url":{"raw":"http://127.0.0.1:18427/qa-postman"},"header":[{"key":"X-QA-Trace","value":"postman"}],"body":{"mode":"raw","raw":"{\"qa\":true}"}}}]}

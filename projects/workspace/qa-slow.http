@@ -1,0 +1,3 @@
+### Cancel this request in API Client before the five-second response
+GET http://127.0.0.1:18427/qa-slow?delay_ms=5000
+Accept: application/json

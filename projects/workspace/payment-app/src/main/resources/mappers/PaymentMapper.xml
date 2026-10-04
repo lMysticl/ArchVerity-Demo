@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="sample.payment.PaymentMapper">
+    <sql id="paymentColumns">id, amount, status</sql>
+    <select id="findById">
+        select <include refid="paymentColumns"/> from payments where id = #{id}
+    </select>
+</mapper>

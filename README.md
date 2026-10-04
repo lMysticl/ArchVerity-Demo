@@ -1,0 +1,76 @@
+# ArchVerity Demo
+
+Open demonstration and regression projects for the ArchVerity IntelliJ plugin.
+All service identities, source code and data are synthetic. You can inspect
+architecture without running business services, and exercise network features
+against local servers. [English project overview](docs/OVERVIEW_EN.md).
+
+Публичный набор проектов для показа и повторяемого тестирования функций
+ArchVerity. Начните с небольшого HTTP-примера, затем используйте полный workspace
+и лаборатории. Плагин устанавливается отдельно из
+[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34234-archverity).
+
+| Проект | Зачем открыть | Что подготовлено |
+| --- | --- | --- |
+| [first-result](projects/first-result/README.md) | Первый результат за несколько действий | Компилируемые Spring MVC + OpenFeign, намеренный POST/PUT mismatch, исправление до совпадающего метода |
+| [workspace](docs/ARCHITECTURE_WALKTHROUGH_RU.md) | Основная демонстрация и регрессия | Java/Kotlin, HTTP/Kafka/AMQP, вложенные DTO, Spring, MyBatis, Ansible, Shell/Bats, ANSI, иконки, публичные сертификаты, 19 изолированных мутаций |
+| [api-lab](projects/api-lab/README.md) | Проверка API Client | HTTP/WebSocket/gRPC loopback, descriptor с imports, сценарии, отрицательные входы, deadline и cancel |
+| [mobile-lab](projects/mobile-lab/README.md) | React Native / Expo и команды устройств | Настоящее приложение, lockfile, Metro, bundle; native проекты создаются через Expo prebuild |
+| [runtime-evidence](projects/runtime-evidence/README.md) | Импорт runtime и verification evidence | Запускаемый Spring Boot Actuator, реальные bean dependencies, локальные PASS/FAIL отчёты в Pact/Drift форматах |
+
+## Быстрый показ
+
+Нужны Git, Python 3.10+, JDK 21 и IDEA, поддерживаемая **установленной версией**
+ArchVerity. Для полного набора используйте ArchVerity 3.0.2 или более новую
+совместимую сборку. Trial/Pro необходим для платных операций, экспорта и MCP;
+этот репозиторий не выдаёт и не подменяет лицензию. Первый Gradle/npm install
+требует сети; основные архитектурные примеры не требуют Kafka/RabbitMQ/БД.
+
+```powershell
+git clone https://github.com/lMysticl/ArchVerity-Demo.git
+cd ArchVerity-Demo
+python -B -X utf8 suite-support/check_suite.py
+```
+
+Для короткого показа откройте `projects/first-result` **как Gradle-проект** в
+IDEA, выберите JDK 21 как Gradle JVM, дождитесь индексации и нажмите
+ArchVerity → Analyze. Откройте finding: клиент отправляет POST, провайдер
+принимает PUT. Навигация должна открыть обе стороны. Исправьте метод клиента
+на PUT, повторите Analyze и проверьте, что именно method-mismatch исчез.
+
+Для Impact нужна отдельная чистая Git-копия **проекта**, а не просто подкаталог
+этого репозитория. Из корня набора:
+
+```powershell
+python -B -X utf8 suite-support/prepare_project.py --project workspace --output D:\CodexData\Temp\archverity-demo-workspace
+```
+
+Откройте созданную папку в IDEA, выполните Analyze на чистом HEAD. Затем из
+терминала этой папки:
+
+```powershell
+python -B -X utf8 qa-support/apply_impact.py --project . --scenario combined-breaking
+```
+
+Скрипт требует полный сохранённый снимок этого HEAD, меняет только заданные
+файлы и сохраняет исходную копию набора. Анализ HEAD → WORKTREE должен показать
+последствия POST→PUT, обязательного поля запроса и удалённого поля ответа.
+Следуйте [полной инструкции](docs/ARCHITECTURE_WALKTHROUGH_RU.md) для Evidence,
+двусторонней навигации, downstream review, baseline и экспорта.
+
+## Полная проверка
+
+- [Каталог функций](docs/FEATURE_CATALOG.md): функция → вход → действие → ожидаемое наблюдение → среда.
+- [Матрица зарегистрированных действий IDEA](projects/workspace/QA_MATRIX_RU.md): 87 entry points — 15 экранов, 6 действий, 22 команды процессов, 7 команд отладчика, 6 экспортов, 4 MCP, 5 настроек и 22 editor extension.
+- [Средовые сценарии](docs/ENVIRONMENT_CHECKS_RU.md): все мобильные команды, SSH debugger, MCP, Split Mode, лицензии и headless CI.
+- [Запись результатов](docs/RUN_RECORD.md): отдельно фиксируйте подготовку, фактическую проверку и блокирующую предпосылку.
+- [Проверенный прогон](docs/VERIFICATION_RU.md): версия среды и реально выполненные проверки этого набора.
+
+Подготовка входов проверяется `suite-support/check_suite.py`. Maintainer может
+добавить `--plugin-source <корень исходников плагина> --require-source`: тогда
+появление зарегистрированной функции без сценария завершит проверку ошибкой.
+Матрица относится к данным и зарегистрированным действиям; полная работоспособность
+IDEA, мобильного устройства, remote и лицензии подтверждается их отдельным прогоном.
+
+Проекты и инструкции сохраняются в Git. Кеши, отчёты, private keys, локальные
+настройки и сгенерированные native каталоги исключены. [Лицензия и происхождение](NOTICE.md).

@@ -1,0 +1,7 @@
+# Loopback-only request; start qa-support/local_api.py first.
+### Payment QA
+POST http://127.0.0.1:18427/qa-roundtrip
+Content-Type: application/json
+X-QA-Trace: sample-workspace
+
+{"amount":42}

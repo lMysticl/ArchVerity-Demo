@@ -1,0 +1,12 @@
+---
+- name: Render API configuration
+  ansible.builtin.template:
+    src: application.yml.j2
+    dest: /etc/spotten/application.yml
+    mode: "0640"
+  notify: Restart API
+
+- name: Ensure API service is running
+  ansible.builtin.service:
+    name: "{{ api_service_name }}"
+    state: started

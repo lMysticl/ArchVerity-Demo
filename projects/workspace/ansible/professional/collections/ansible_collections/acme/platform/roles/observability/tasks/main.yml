@@ -1,0 +1,4 @@
+---
+- name: Emit deployment marker
+  ansible.builtin.debug:
+    msg: "release={{ release_version }} zone={{ node_zone }}"

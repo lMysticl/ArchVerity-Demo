@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-09-24T04:36:49Z",
+  "id": "asyncapi-qa-event-bus",
+  "schemaVersion": 1,
+  "services": [
+    {
+      "aliases": [
+        "QA event bus",
+        "qa-event-bus"
+      ],
+      "amqpConsumers": [],
+      "amqpProducers": [],
+      "httpEndpoints": [],
+      "id": "qa-event-bus",
+      "kafkaConsumers": [],
+      "kafkaProducers": [
+        {
+          "channel": "qa.events",
+          "id": "publishQaEvent",
+          "payloadSchema": "sha256:e36382ec6abef464816fd2d62cfb88a3995907a5e91763b95fe4cbed24380252",
+          "payloadSchemaRef": null,
+          "topic": "qa.events"
+        }
+      ],
+      "kind": "external"
+    }
+  ],
+  "source": {
+    "path": "qa-asyncapi.json",
+    "title": "QA event bus",
+    "type": "asyncapi",
+    "version": "2.6.0"
+  }
+}

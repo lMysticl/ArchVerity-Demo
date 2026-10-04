@@ -1,0 +1,63 @@
+name: Demo checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  inputs-and-labs:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Validate public input and documentation contract
+        run: python -B -X utf8 suite-support/check_suite.py
+      - name: Workspace coverage negative controls
+        run: python -B -X utf8 -m unittest discover -s projects/workspace/qa-support -p test_verify_coverage.py -v
+      - name: Install pinned protocol dependencies
+        run: python -m pip install -r projects/api-lab/requirements.txt
+      - name: Real TCP protocol tests
+        run: python -B -X utf8 -m unittest discover -s projects/api-lab -p test_protocols.py -v
+      - name: Compile all Java and Kotlin projects (Linux)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          for project in first-result workspace runtime-evidence; do
+            (cd "projects/$project" && ./gradlew classes --console=plain --warning-mode all --no-daemon)
+          done
+      - name: Compile all Java and Kotlin projects (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          foreach ($demoProject in @('first-result', 'workspace', 'runtime-evidence')) {
+            Push-Location "projects/$demoProject"
+            try {
+              & .\gradlew.bat classes --console=plain --warning-mode all --no-daemon
+              if ($LASTEXITCODE -ne 0) { throw "Compilation failed: $demoProject" }
+            } finally { Pop-Location }
+          }
+      - name: Real Spring Boot runtime and verification producers
+        run: python -B -X utf8 suite-support/smoke_runtime.py --output "${{ runner.temp }}/archverity-demo-runtime"
+      - name: Install the mobile lockfile
+        working-directory: projects/mobile-lab
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Mobile script
+        working-directory: projects/mobile-lab
+        run: npm run qa:verify
+      - name: Actual React Native JavaScript bundle
+        working-directory: projects/mobile-lab
+        run: npm run bundle:android
+      - name: Real Metro and Expo process lifecycle
+        run: node suite-support/smoke_mobile.cjs

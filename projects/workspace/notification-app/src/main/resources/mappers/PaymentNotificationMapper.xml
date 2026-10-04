@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="sample.notification.PaymentNotificationMapper">
+    <sql id="notificationColumns">payment_id, status</sql>
+    <select id="findStatus">
+        select <include refid="notificationColumns"/> from payment_notifications where payment_id = #{paymentId}
+    </select>
+</mapper>

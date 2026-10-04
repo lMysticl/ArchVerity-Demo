@@ -1,0 +1,29 @@
+{
+  "name": "archverity-mobile-demo",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "engines": {"node": ">=20.19.4"},
+  "scripts": {
+    "start": "expo start --localhost",
+    "metro": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "prebuild": "expo prebuild --no-install",
+    "qa:verify": "node scripts/qa-verify.cjs",
+    "bundle:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output work/index.android.bundle"
+  },
+  "dependencies": {
+    "expo": "54.0.37",
+    "react": "19.1.0",
+    "react-native": "0.81.5"
+  },
+  "overrides": {"metro": "0.83.3", "metro-config": "0.83.3"},
+  "devDependencies": {
+    "@react-native-community/cli": "20.0.2",
+    "@react-native-community/cli-platform-android": "20.0.2",
+    "@react-native-community/cli-platform-ios": "20.0.2",
+    "@react-native/metro-config": "0.81.5",
+    "babel-preset-expo": "54.0.12"
+  }
+}

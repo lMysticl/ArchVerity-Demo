@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-09-24T04:36:49Z",
+  "id": "openapi-qa-loopback",
+  "schemaVersion": 1,
+  "services": [
+    {
+      "aliases": [
+        "qa-loopback"
+      ],
+      "amqpConsumers": [],
+      "amqpProducers": [],
+      "httpEndpoints": [
+        {
+          "deprecated": false,
+          "id": "get:/qa-openapi",
+          "method": "GET",
+          "parameters": [],
+          "path": "/qa-openapi",
+          "requestSchema": null,
+          "requestSchemaRef": null,
+          "responseSchema": null,
+          "responseSchemaRef": null,
+          "summary": "OpenAPI QA",
+          "tags": []
+        }
+      ],
+      "id": "qa-loopback",
+      "kafkaConsumers": [],
+      "kafkaProducers": [],
+      "kind": "external"
+    }
+  ],
+  "source": {
+    "path": "qa-openapi.json",
+    "title": null,
+    "type": "openapi",
+    "version": "3.1.0"
+  }
+}

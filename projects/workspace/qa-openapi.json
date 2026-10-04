@@ -1,0 +1,1 @@
+{"openapi":"3.1.0","servers":[{"url":"http://127.0.0.1:18427"}],"paths":{"/qa-openapi":{"get":{"summary":"OpenAPI QA"}}}}

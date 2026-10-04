@@ -1,0 +1,16 @@
+---
+- name: Deploy API service
+  hosts: web
+  become: true
+  vars_files:
+    - ../vars/release.yml
+  roles:
+    - api
+  collections:
+    - acme.platform
+  tasks:
+    - name: Include health checks
+      ansible.builtin.include_tasks: ../tasks/health.yml
+    - name: Reuse collection role
+      ansible.builtin.include_role:
+        name: acme.platform.observability

@@ -1,0 +1,28 @@
+schemaVersion: 1
+project:
+  id: sample-commerce
+  displayName: Sample Commerce
+analysis:
+  profiles: [default, dev, demo]
+  includeModules: ["*"]
+services:
+  order-service:
+    modules: [order-app, archflow-sample.order-app.main]
+    aliases: [orders]
+    owner: team-orders
+    repository: acme/order-service
+  payment-service:
+    modules: [payment-app, archflow-sample.payment-app.main]
+    aliases: [payments]
+    owner: team-payments
+    repository: acme/payment-service
+  notification-service:
+    modules: [notification-app, archflow-sample.notification-app.main]
+    aliases: [notifications]
+    owner: team-notifications
+    repository: acme/notification-service
+  analytics-service:
+    modules: [mybatis-console-fixture, archflow-sample.mybatis-console-fixture.main]
+    aliases: [analytics]
+kafka:
+  defaultCluster: core

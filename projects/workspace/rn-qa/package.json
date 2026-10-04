@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "qa:verify": "node scripts/qa-verify.js"
+  },
+  "dependencies": {
+    "react-native": "0.0.0"
+  },
+  "private": true,
+  "name": "archverity-rn-qa",
+  "version": "0.0.0"
+}

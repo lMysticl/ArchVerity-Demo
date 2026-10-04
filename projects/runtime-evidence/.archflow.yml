@@ -1,0 +1,32 @@
+schemaVersion: 1
+project:
+  id: runtime-evidence-demo
+  displayName: Runtime Evidence Demo
+analysis:
+  profiles: [default]
+  includeModules: ["*"]
+services:
+  payment-service:
+    modules: [archverity-runtime-evidence, archverity-runtime-evidence.main]
+    owner: demo-payments
+    repository: lMysticl/ArchVerity-Demo
+kafka:
+  defaultCluster: demo-no-broker
+runtimeBeans:
+  source: reports/beans.json
+  metadata: reports/beans-metadata.json
+  serviceId: payment-service
+  actuatorContextId: application
+  environment: demo
+  maxAgeSeconds: 300
+verification:
+  demo-payments:
+    path: reports/payment.verification.archflow.json
+    specPath: contracts/payment-openapi.json
+    environment: demo
+    serviceVersions:
+      payment-service: demo-1
+    verifiers:
+      pact: local-demo-http-1
+      drift: local-demo-http-1
+    maxAgeHours: 24

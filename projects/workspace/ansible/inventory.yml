@@ -1,0 +1,7 @@
+all:
+  children:
+    payments:
+      hosts:
+        payment-1:
+      vars:
+        http_port: 8080

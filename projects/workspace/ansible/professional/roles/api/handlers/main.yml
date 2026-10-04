@@ -1,0 +1,5 @@
+---
+- name: Restart API
+  ansible.builtin.service:
+    name: "{{ api_service_name }}"
+    state: restarted
