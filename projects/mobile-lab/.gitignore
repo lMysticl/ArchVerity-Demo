@@ -1,0 +1,15 @@
+node_modules/
+.expo/
+build/
+work/
+android/
+ios/
+.idea/
+*.log
+.env
+.env.*
+*.keystore
+*.jks
+*.pfx
+*.key
+local.properties

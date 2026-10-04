@@ -29,6 +29,18 @@ community CLI are included specifically for this action. The terminal equivalent
 for the Android sample is `npm run qa:verify` followed by `npm run bundle:android`.
 No Android SDK/device is needed for this JavaScript bundle.
 
+To keep a device session in its own Git checkout, run this from the suite root
+before installing dependencies:
+
+```powershell
+python -B -X utf8 suite-support/prepare_project.py --project mobile-lab --output D:\CodexData\Temp\archverity-demo-mobile
+cd D:\CodexData\Temp\archverity-demo-mobile
+npm ci --ignore-scripts
+```
+
+The project's own `.gitignore` excludes dependencies, generated native projects,
+device configuration and signing files in both the suite and the standalone copy.
+
 Generate native projects before native commands, on the host used for that run:
 
 ```powershell
