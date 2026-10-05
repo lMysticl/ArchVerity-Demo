@@ -24,16 +24,21 @@ class PublicMediaBoundaryTest(unittest.TestCase):
             check_media("docs/media/unreviewed.mp4", self.data, changed)
 
     def test_changed_recording_bytes_are_rejected(self):
-        modified = self.data[:-1] + bytes([self.data[-1] ^ 1])
-        with self.assertRaisesRegex(ValueError, "Unreviewed media bytes"):
-            check_media(self.relative, modified, self.manifest)
+        for relative in MEDIA_PATHS:
+            with self.subTest(path=relative):
+                data = (ROOT / relative).read_bytes()
+                modified = data[:-1] + bytes([data[-1] ^ 1])
+                with self.assertRaisesRegex(ValueError, "Unreviewed media bytes"):
+                    check_media(relative, modified, self.manifest)
 
     def test_even_reviewed_bytes_cannot_bypass_the_public_size_limit(self):
         large = b"x" * 2_000_001
-        changed = copy.deepcopy(self.manifest)
-        changed["files"][self.relative] = {"bytes": len(large), "sha256": hashlib.sha256(large).hexdigest()}
-        with self.assertRaisesRegex(ValueError, "large staged artifact"):
-            check_media(self.relative, large, changed)
+        for relative in MEDIA_PATHS:
+            with self.subTest(path=relative):
+                changed = copy.deepcopy(self.manifest)
+                changed["files"][relative] = {"bytes": len(large), "sha256": hashlib.sha256(large).hexdigest()}
+                with self.assertRaisesRegex(ValueError, "large staged artifact"):
+                    check_media(relative, large, changed)
 
 
 if __name__ == "__main__":

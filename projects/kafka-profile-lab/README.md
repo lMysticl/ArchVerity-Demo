@@ -1,5 +1,12 @@
 # Kafka profiles and evidence lab
 
+[Практическая статья и native видео в ArchVerity 3.0.4](../../docs/KAFKA_PROFILES_ARTICLE_RU.md)
+проводят через один связанный сценарий: `blue/green` → общий scope → required
+`tenant` → исправление → контроль `east/west` → восстановление.
+[Шесть полных exports](../../docs/evidence/kafka-3.0.4/README.md) проверяются из
+корня demo командой `python -B -X utf8 suite-support/inspect_kafka_story.py`.
+Независимые 12 recipes ниже сохраняют собственные ожидания и controls.
+
 Producer включает Spring profile `blue`, consumer — `green`. Обе стороны
 используют `orders.events` и одинаковый недоступный bootstrap `127.0.0.1:1`;
 только producer зависит от внешнего `KAFKA_VALUE_SERIALIZER`. Topic name и

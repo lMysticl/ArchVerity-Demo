@@ -6,11 +6,20 @@ architecture without running business services, and exercise network features
 against local servers. [English project overview](docs/OVERVIEW_EN.md).
 
 Публичный набор проектов для показа и повторяемого тестирования функций
-ArchVerity. Начните с небольшого HTTP-примера, затем используйте полный workspace
-и лаборатории. Плагин устанавливается отдельно из
+ArchVerity. Основная демонстрация показывает Kafka profiles и границы
+совместимости; небольшой HTTP-пример помогает быстро познакомиться с плагином.
+Плагин устанавливается отдельно из
 [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34234-archverity).
 
-**[Практическая статья для Java/Spring-разработчиков](docs/FIRST_RESULT_ARTICLE_RU.md)**
+**[Kafka: profiles и границы совместимости](docs/KAFKA_PROFILES_ARTICLE_RU.md)** —
+практическая статья для Java/Spring-разработчиков и
+[видео настоящей IDEA с русскими пояснениями](docs/media/kafka-profiles-3.0.4.mp4).
+Две repository identities, `blue/green`, неизвестный wire binding, доказанное
+расхождение `tenant`, исправление и контроль разных clusters связаны в один путь.
+[Шесть полных exports](docs/evidence/kafka-3.0.4/README.md) можно проверить командой
+`python -B -X utf8 suite-support/inspect_kafka_story.py`.
+
+**[Короткий HTTP-разбор](docs/FIRST_RESULT_ARTICLE_RU.md)**
 разбирает пример, который компилируется при несовпадающих HTTP-методах:
 finding, исходники обеих сторон, исправление и повторная проверка в 3.0.4.
 В статье есть [70-секундная запись работы в IDEA](docs/media/first-result-3.0.4.mp4)

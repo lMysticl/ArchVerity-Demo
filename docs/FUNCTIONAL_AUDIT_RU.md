@@ -18,6 +18,16 @@ ArchVerity 3.0.4](FIRST_RESULT_ARTICLE_RU.md#демонстрация-за-70-с
 исходный файл восстановлен. В статье сохранена реальная запись на 70 секунд.
 Этот дополнительный прогон не закрывает полные playbook остальных функций.
 
+06.10.2026 дополнительно выполнен [связанный Kafka-сценарий в той же installed
+3.0.4](KAFKA_PROFILES_ARTICLE_RU.md): `blue/green` provenance, неизвестные scopes,
+общий logical scope с `005/010 UNKNOWN`, точный JSON binding с
+`005 PROVEN_MISMATCH`, исправление producer до нуля findings, отдельные
+`east/west` без ложного cross-cluster контракта и восстановление исходной модели.
+Сохранены [шесть полных native exports](evidence/kafka-3.0.4/README.md), запись
+IDEA и checker всей последовательности с отрицательными controls. Оба Gradle
+модуля компилируются до конфликта, при конфликте и после исправления. Broker,
+доставка сообщений и остальные полные consumer playbooks этим не проверялись.
+
 ## Что исправлено
 
 - Impact при отсутствии contract delta показывал пустой Selected contract, unresolved source и
@@ -51,7 +61,7 @@ ArchVerity 3.0.4](FIRST_RESULT_ARTICLE_RU.md#демонстрация-за-70-с
 | Source correctness suite | 981 tests; 0 failures/errors/skips. Performance suite не запускалась в этой задаче. |
 | Critical coverage, source audit, buildPlugin | Все требуемые gates прошли; локальный ZIP unsigned, не uploaded и не installed. |
 | Python Tools | 144 tests passed, включая Windows process ownership и canonical import/CI contracts. |
-| Public support tests | 21 tests исходного аудита; последующий прогон включает 27 tests: дополнительно standalone cross-project links и negative controls для reviewed media. |
+| Public support tests | 21 tests исходного аудита; HTTP-прогон расширил набор до 27. Прогон 06.10 включает 32 tests: дополнительно весь native Kafka story и controls против false proof; reviewed media controls проверяют обе записи и оба poster. |
 | Kafka source consumer | 12 clean cases → loader → Java PSI → graph/rules → full JSON; updated public checker принял все 12 actual exports. Каждому сопоставлены input, IDE test project, context fingerprint и export. Licensed UI и Kafka broker не запускались. |
 | Workspace coverage и preflight | 4 negative-control tests; 19 exact mutation anchors, manifests, local HTTP 200/400/404/413, crypto/icon/Node inputs. |
 | API laboratory | 18 real TCP HTTP/WebSocket/gRPC tests: ordered messages, imports, cookies, DSL data, error, timeout, cancel и limits. |

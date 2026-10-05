@@ -1,0 +1,597 @@
+{
+  "classification": "EVIDENCE_ONLY",
+  "recordedAt": "2026-10-06",
+  "ideaVersion": "2026.1.4",
+  "pluginVersion": "3.0.4",
+  "installedPluginJarSha256": "3d27986a12a5927e019aded9d7a4dcf41a0063e418644371bfece832a669a85f",
+  "projectId": "kafka-profile-lab",
+  "preparedGitBaseline": "b3589937c120c6fc7f7ad55aaddb4ee6c21a8410",
+  "projectPath": "E:\\CodexData\\Temp\\ArchVerity-kafka-demo-20261006\\kafka-profiles-recording",
+  "ideaPid": 225312,
+  "ideaHwnd": 230952330,
+  "windowViewport": [
+    140,
+    100,
+    1540,
+    1050
+  ],
+  "video": {
+    "path": "kafka-profiles-3.0.4.mp4",
+    "sha256": "6ffc84eda913ff5b33211ad6bb39a5423d98d84808f1048aea3ce294350c76d1",
+    "bytes": 1665937,
+    "durationSeconds": 146,
+    "width": 1384,
+    "height": 1040,
+    "codec": "H.264",
+    "fps": 10,
+    "audio": false,
+    "decodedFrames": 1460,
+    "decodeExitCode": 0,
+    "editing": "Cuts from genuine IDEA window captures; Russian captions outside the native client area; preparation pauses removed"
+  },
+  "poster": {
+    "path": "kafka-profiles-3.0.4.png",
+    "sha256": "563bcad619858e621f908da3233c183acf0fb6ee19ea8631df0a0d8eefff9dd2",
+    "bytes": 456216,
+    "videoTimeSeconds": 82
+  },
+  "visualInspection": {
+    "captionStatesInspected": 17,
+    "nativeText": "Profile includes, source bindings, required tenant, UNKNOWN/PROVEN_MISMATCH and zero-finding result are legible at original resolution"
+  },
+  "timeline": [
+    {
+      "start": 0,
+      "end": 8,
+      "nativeClip": "05-architecture",
+      "nativeOffset": 0,
+      "rawSha256": "48ee5268b7cc04004011adde2464b5e15f639a69350bf6ae813632fe9b1977e1",
+      "caption": "ArchVerity 3.0.4 · Kafka: profiles и границы совместимости\nДва сервиса, два repository identities. Одинаковый topic ещё не связывает scopes."
+    },
+    {
+      "start": 8,
+      "end": 14,
+      "nativeClip": "17-blue-include",
+      "nativeOffset": 1,
+      "rawSha256": "9c4aea88e9f052111fa4f04d4121f2fac81aee9b04688de2b9f9604f77d29754",
+      "caption": "Producer выбирает blue через spring.profiles.include.\nЭто source configuration; effective deployment здесь не наблюдаем."
+    },
+    {
+      "start": 14,
+      "end": 20,
+      "nativeClip": "18-green-include",
+      "nativeOffset": 1,
+      "rawSha256": "800be77d186d21131f8c34948ab356efb31de02cde9e8bf95cdc6c9dfc5a8ee2",
+      "caption": "Consumer выбирает green. Java-классы обеих сторон называются Event.\nИмена классов и успешная компиляция не доказывают общий wire contract."
+    },
+    {
+      "start": 20,
+      "end": 26,
+      "nativeClip": "19-spring-keys",
+      "nativeOffset": 1,
+      "rawSha256": "6cb16b0dff44a648990abb3f09949500c015eab7929a7a911239b8b2c89e0006",
+      "caption": "Spring configuration показывает исходные keys, profiles и usages.\nblue/green дают provenance: откуда анализ взял topic и serializer."
+    },
+    {
+      "start": 26,
+      "end": 36,
+      "nativeClip": "03-blue-config",
+      "nativeOffset": 0,
+      "rawSha256": "5112fe576400e9070a986ea11863e15bc22e1dd441293275a1b1f37953c795e7",
+      "caption": "topics.orders → topic.alias → orders.events.\nProducer serializer задан внешним KAFKA_VALUE_SERIALIZER: значение неизвестно."
+    },
+    {
+      "start": 36,
+      "end": 45,
+      "nativeClip": "04-scope-unknown",
+      "nativeOffset": 1,
+      "rawSha256": "c98ee067057b294fbf0af84447f7741b044e95aa6353ac0de7c95e06a324349d",
+      "caption": "AFG-KAFKA-009: UNKNOWN — общий Kafka cluster scope не установлен.\nСовпадение topic или bootstrap address не доказывает общий кластер."
+    },
+    {
+      "start": 45,
+      "end": 54,
+      "nativeClip": "06-shared-config",
+      "nativeOffset": 1,
+      "rawSha256": "e73f06fc114bfdfedfb9a385b493afc49ec34a97f80e7f5f6da1077350a86182",
+      "caption": "Объявляем kafka.defaultCluster: declared-demo в .archflow.yml.\nЭто явная предпосылка статической модели, а не измеренный broker cluster ID."
+    },
+    {
+      "start": 54,
+      "end": 66,
+      "nativeClip": "07-shared-unknown",
+      "nativeOffset": 0,
+      "rawSha256": "6788148367f91606bec0ea2e5d11fa50716c4cc6ec75d1a89e8c839ce918af58",
+      "caption": "В общем scope найдено расхождение tenant, но AFG-KAFKA-005 остаётся UNKNOWN.\nAFG-KAFKA-010: для producer ещё нет независимого статического wire binding."
+    },
+    {
+      "start": 66,
+      "end": 76,
+      "nativeClip": "08-exact-factory",
+      "nativeOffset": 1,
+      "rawSha256": "c1b985e9c9e96810c031636f1d0bdea2704a9684ff8d4fcb48e1ff66e9e4148e",
+      "caption": "Устанавливаем JsonSerializer в profile и точный constructor binding фабрики.\nDefaultKafkaProducerFactory: StringSerializer + JsonSerializer."
+    },
+    {
+      "start": 76,
+      "end": 88,
+      "nativeClip": "20-proven-scan",
+      "nativeOffset": 0,
+      "rawSha256": "d7ad8abc39cb897e9066f3ac26831cf3bdfdc38498da12159165779e60ee52a6",
+      "caption": "Повторяем Analyze: AFG-KAFKA-005 → PROVEN_MISMATCH.\nConsumer требует tenant; producer его не объявляет. Оба модуля компилируются."
+    },
+    {
+      "start": 88,
+      "end": 97,
+      "nativeClip": "10-consumer-schema",
+      "nativeOffset": 1,
+      "rawSha256": "88bf41eb0a806d181a873238f7fd0ea9bd23de32617dbe90c0b2dc15eb47bd6a",
+      "caption": "Исходник получателя: demo.consumer.Event требует id и tenant.\nFinding ведёт к Listener.java; сравниваем контракты обеих сторон."
+    },
+    {
+      "start": 97,
+      "end": 105,
+      "nativeClip": "11-repair",
+      "nativeOffset": 0,
+      "rawSha256": "707f0a89a2511f0a42041bdad701818b11ac9dbcd81ce2b67f58d2341e1ae2ad",
+      "caption": "Исправляем demo.producer.Event: добавляем required tenant и сохраняем файл.\nБизнес-решение здесь — передавать нужное consumer поле."
+    },
+    {
+      "start": 105,
+      "end": 115,
+      "nativeClip": "21-clean-scan",
+      "nativeOffset": 0,
+      "rawSha256": "6d9bc023a98a2e17991b1a1ca25561a9357c5c4874c46d532e32511a4d714187",
+      "caption": "Повторяем Analyze после сохранения: Findings (0), diagnostics отсутствуют.\nСтатические shapes согласованы; это ещё не проверка доставки сообщений."
+    },
+    {
+      "start": 115,
+      "end": 121,
+      "nativeClip": "13-east-profile",
+      "nativeOffset": 1,
+      "rawSha256": "cffbebe59615cffa1fcf0a5dacca8030bd1b14c5a9bb92a1a69e71778305b95f",
+      "caption": "Отрицательный контроль: возвращаем разные DTO, общий defaultCluster убираем.\nProducer получает явный scope east; точный JSON binding сохраняем."
+    },
+    {
+      "start": 121,
+      "end": 127,
+      "nativeClip": "14-west-profile",
+      "nativeOffset": 1,
+      "rawSha256": "24c1563d3f3627752000ba027136f071adac7a8abc994a455dfab1cf461bf889",
+      "caption": "Consumer получает scope west при том же orders.events.\nРазные кластеры требуют отдельных topic identities."
+    },
+    {
+      "start": 127,
+      "end": 137,
+      "nativeClip": "15-separate-scopes",
+      "nativeOffset": 1,
+      "rawSha256": "9919987c64125327078aeba4f69276adff1ad3f363adb37b72d791a481645242",
+      "caption": "Architecture снова показывает два topic scopes: east и west.\nНет ложного cross-cluster AFG-KAFKA-005; две scope observations допустимы."
+    },
+    {
+      "start": 137,
+      "end": 146,
+      "nativeClip": "16-recovery",
+      "nativeOffset": 0,
+      "rawSha256": "9deacf8aa4a8950b6151aada459c3f24c0f20aeaa91890ff185a3f2e3100bec5",
+      "caption": "Исходные файлы восстановлены: UNKNOWN вернулся.\nШесть полных exports проверяют весь путь. Kafka broker здесь не запускался."
+    }
+  ],
+  "sourceStates": [
+    {
+      "state": "unknown",
+      "files": [
+        {
+          "path": ".archflow.yml",
+          "sha256": "7ee4eb20cd835ecfc86380d423ba7296c44c3a8cbfe9477e21651dc88a38c3e9"
+        },
+        {
+          "path": "producer/src/main/resources/application-blue.yml",
+          "sha256": "aab2216a28daa011347477fbbc62d0aca99f51387a86e65fde4070d508e8393f"
+        },
+        {
+          "path": "consumer/src/main/resources/application-green.yml",
+          "sha256": "ebd3f1f764a915f8bd12e30382c825d16cdb1a0f25e8b6d8b629a12d98ef24d4"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/KafkaBindings.java",
+          "sha256": "fe45cc1a3a13fcca5fa303cef44012c5ac3ef40bffde351c35d167c0ac9c2801"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/Event.java",
+          "sha256": "ee7bd1065255f6f71c3efd1723bab76be3371335d7ff69f32a3b7d088a10a003"
+        }
+      ]
+    },
+    {
+      "state": "shared",
+      "files": [
+        {
+          "path": ".archflow.yml",
+          "sha256": "6af48efe61449ae06c589a9a19b5f74eb3a54ab4397cf60985f44f3886ee19e4"
+        },
+        {
+          "path": "producer/src/main/resources/application-blue.yml",
+          "sha256": "aab2216a28daa011347477fbbc62d0aca99f51387a86e65fde4070d508e8393f"
+        },
+        {
+          "path": "consumer/src/main/resources/application-green.yml",
+          "sha256": "ebd3f1f764a915f8bd12e30382c825d16cdb1a0f25e8b6d8b629a12d98ef24d4"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/KafkaBindings.java",
+          "sha256": "fe45cc1a3a13fcca5fa303cef44012c5ac3ef40bffde351c35d167c0ac9c2801"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/Event.java",
+          "sha256": "ee7bd1065255f6f71c3efd1723bab76be3371335d7ff69f32a3b7d088a10a003"
+        }
+      ]
+    },
+    {
+      "state": "drift",
+      "files": [
+        {
+          "path": ".archflow.yml",
+          "sha256": "6af48efe61449ae06c589a9a19b5f74eb3a54ab4397cf60985f44f3886ee19e4"
+        },
+        {
+          "path": "producer/src/main/resources/application-blue.yml",
+          "sha256": "da01597734ba311a7d60b22d3f8ebc0f37c1bbf1bf549d061cd1c955025716b1"
+        },
+        {
+          "path": "consumer/src/main/resources/application-green.yml",
+          "sha256": "ebd3f1f764a915f8bd12e30382c825d16cdb1a0f25e8b6d8b629a12d98ef24d4"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/KafkaBindings.java",
+          "sha256": "891b5b18217568b4914021cf2d4038779210425963f1ec4cd4752e55a97b8589"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/Event.java",
+          "sha256": "ee7bd1065255f6f71c3efd1723bab76be3371335d7ff69f32a3b7d088a10a003"
+        }
+      ]
+    },
+    {
+      "state": "repaired",
+      "files": [
+        {
+          "path": ".archflow.yml",
+          "sha256": "6af48efe61449ae06c589a9a19b5f74eb3a54ab4397cf60985f44f3886ee19e4"
+        },
+        {
+          "path": "producer/src/main/resources/application-blue.yml",
+          "sha256": "da01597734ba311a7d60b22d3f8ebc0f37c1bbf1bf549d061cd1c955025716b1"
+        },
+        {
+          "path": "consumer/src/main/resources/application-green.yml",
+          "sha256": "ebd3f1f764a915f8bd12e30382c825d16cdb1a0f25e8b6d8b629a12d98ef24d4"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/KafkaBindings.java",
+          "sha256": "891b5b18217568b4914021cf2d4038779210425963f1ec4cd4752e55a97b8589"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/Event.java",
+          "sha256": "9fa11eba864e2a3cd1089756f9ca9d28b4bf8af750fe23decb74798ad2337b28"
+        }
+      ]
+    },
+    {
+      "state": "separate",
+      "files": [
+        {
+          "path": ".archflow.yml",
+          "sha256": "7ee4eb20cd835ecfc86380d423ba7296c44c3a8cbfe9477e21651dc88a38c3e9"
+        },
+        {
+          "path": "producer/src/main/resources/application-blue.yml",
+          "sha256": "1fcb4960ff5b39d4c85d140233489f2a960bf63ccfb294cef626c5dad4b2bff8"
+        },
+        {
+          "path": "consumer/src/main/resources/application-green.yml",
+          "sha256": "e4951ddd1823ae3897cf1967a1e3732e204cf50716ddf8fe327f047852619b6e"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/KafkaBindings.java",
+          "sha256": "891b5b18217568b4914021cf2d4038779210425963f1ec4cd4752e55a97b8589"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/Event.java",
+          "sha256": "ee7bd1065255f6f71c3efd1723bab76be3371335d7ff69f32a3b7d088a10a003"
+        }
+      ]
+    },
+    {
+      "state": "recheck-recovery",
+      "files": [
+        {
+          "path": ".archflow.yml",
+          "sha256": "7ee4eb20cd835ecfc86380d423ba7296c44c3a8cbfe9477e21651dc88a38c3e9"
+        },
+        {
+          "path": "producer/src/main/resources/application-blue.yml",
+          "sha256": "aab2216a28daa011347477fbbc62d0aca99f51387a86e65fde4070d508e8393f"
+        },
+        {
+          "path": "consumer/src/main/resources/application-green.yml",
+          "sha256": "ebd3f1f764a915f8bd12e30382c825d16cdb1a0f25e8b6d8b629a12d98ef24d4"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/KafkaBindings.java",
+          "sha256": "fe45cc1a3a13fcca5fa303cef44012c5ac3ef40bffde351c35d167c0ac9c2801"
+        },
+        {
+          "path": "producer/src/main/java/demo/producer/Event.java",
+          "sha256": "ee7bd1065255f6f71c3efd1723bab76be3371335d7ff69f32a3b7d088a10a003"
+        }
+      ]
+    }
+  ],
+  "fullNativeExports": [
+    {
+      "case": "K01",
+      "path": "../evidence/kafka-3.0.4/k01-unknown.json",
+      "sha256": "39521ebe6d57635a439671be0e728e91552f3e33bd1860052bf999e528c540a6",
+      "runStatus": "COMPLETE",
+      "partial": false,
+      "scopeFingerprint": "3332e778ae7c187bf4a8f131",
+      "analysisContext": {
+        "selectedProfiles": [
+          "default"
+        ],
+        "propertySources": [
+          "consumer/src/main/resources/application-green.yml",
+          "consumer/src/main/resources/application.yml",
+          "producer/src/main/resources/application-blue.yml",
+          "producer/src/main/resources/application.yml"
+        ],
+        "externalOverrideKeys": [],
+        "unsupportedFeatures": [],
+        "fingerprint": "11c4887f666120ce9eefa040"
+      },
+      "topicCount": 2,
+      "findings": [
+        {
+          "id": "AFG-KAFKA-001:2ea274532ead9483af49be0c",
+          "ruleId": "AFG-KAFKA-001",
+          "disposition": "OBSERVATION"
+        },
+        {
+          "id": "AFG-KAFKA-002:a93dad223d7d211844dd56fd",
+          "ruleId": "AFG-KAFKA-002",
+          "disposition": "OBSERVATION"
+        },
+        {
+          "id": "AFG-KAFKA-009:2ea274532ead9483af49be0c",
+          "ruleId": "AFG-KAFKA-009",
+          "disposition": "UNKNOWN"
+        },
+        {
+          "id": "AFG-KAFKA-009:a93dad223d7d211844dd56fd",
+          "ruleId": "AFG-KAFKA-009",
+          "disposition": "UNKNOWN"
+        },
+        {
+          "id": "AFG-KAFKA-010:d87234d9fee26cdb4e27d13c",
+          "ruleId": "AFG-KAFKA-010",
+          "disposition": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "case": "K02",
+      "path": "../evidence/kafka-3.0.4/k02-shared-unknown.json",
+      "sha256": "bee87cd858a9c30fe7512bce428d8257d8472b50d430295e6853b31a2dd60f3d",
+      "runStatus": "COMPLETE",
+      "partial": false,
+      "scopeFingerprint": "b41b689bd867d7fe9e2afe5a",
+      "analysisContext": {
+        "selectedProfiles": [
+          "default"
+        ],
+        "propertySources": [
+          "consumer/src/main/resources/application-green.yml",
+          "consumer/src/main/resources/application.yml",
+          "producer/src/main/resources/application-blue.yml",
+          "producer/src/main/resources/application.yml"
+        ],
+        "externalOverrideKeys": [],
+        "unsupportedFeatures": [],
+        "fingerprint": "a7027d5ed987525c5c8083a4"
+      },
+      "topicCount": 1,
+      "findings": [
+        {
+          "id": "AFG-KAFKA-005:13b99ae501f6453c2ce45d19",
+          "ruleId": "AFG-KAFKA-005",
+          "disposition": "UNKNOWN"
+        },
+        {
+          "id": "AFG-KAFKA-010:d87234d9fee26cdb4e27d13c",
+          "ruleId": "AFG-KAFKA-010",
+          "disposition": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "case": "K11",
+      "path": "../evidence/kafka-3.0.4/k11-proven-drift.json",
+      "sha256": "4d1d769014a8cdea90e31379cbf4bdeab9ea5f3590f3322c0703457b91030230",
+      "runStatus": "COMPLETE",
+      "partial": false,
+      "scopeFingerprint": "8058140ec7f8c59e5ea3730e",
+      "analysisContext": {
+        "selectedProfiles": [
+          "default"
+        ],
+        "propertySources": [
+          "consumer/src/main/resources/application-green.yml",
+          "consumer/src/main/resources/application.yml",
+          "producer/src/main/resources/application-blue.yml",
+          "producer/src/main/resources/application.yml"
+        ],
+        "externalOverrideKeys": [],
+        "unsupportedFeatures": [],
+        "fingerprint": "66f121186adcd7d9e8e272eb"
+      },
+      "topicCount": 1,
+      "findings": [
+        {
+          "id": "AFG-KAFKA-005:13b99ae501f6453c2ce45d19",
+          "ruleId": "AFG-KAFKA-005",
+          "disposition": "PROVEN_MISMATCH"
+        }
+      ]
+    },
+    {
+      "case": "K12",
+      "path": "../evidence/kafka-3.0.4/k12-repaired.json",
+      "sha256": "7150de714db59e86527d235e7ce928783d037f4cc94f26eb90f5ef97437a076c",
+      "runStatus": "COMPLETE",
+      "partial": false,
+      "scopeFingerprint": "8058140ec7f8c59e5ea3730e",
+      "analysisContext": {
+        "selectedProfiles": [
+          "default"
+        ],
+        "propertySources": [
+          "consumer/src/main/resources/application-green.yml",
+          "consumer/src/main/resources/application.yml",
+          "producer/src/main/resources/application-blue.yml",
+          "producer/src/main/resources/application.yml"
+        ],
+        "externalOverrideKeys": [],
+        "unsupportedFeatures": [],
+        "fingerprint": "66f121186adcd7d9e8e272eb"
+      },
+      "topicCount": 1,
+      "findings": []
+    },
+    {
+      "case": "K03",
+      "path": "../evidence/kafka-3.0.4/k03-separate.json",
+      "sha256": "df8382e7b487ac69ac64119bdd6dd272147bc294e529844df82e632dde4568a2",
+      "runStatus": "COMPLETE",
+      "partial": false,
+      "scopeFingerprint": "52689ca82e67704255b16c76",
+      "analysisContext": {
+        "selectedProfiles": [
+          "default"
+        ],
+        "propertySources": [
+          "consumer/src/main/resources/application-green.yml",
+          "consumer/src/main/resources/application.yml",
+          "producer/src/main/resources/application-blue.yml",
+          "producer/src/main/resources/application.yml"
+        ],
+        "externalOverrideKeys": [],
+        "unsupportedFeatures": [],
+        "fingerprint": "81de1c6985ae900e5838b2cb"
+      },
+      "topicCount": 2,
+      "findings": [
+        {
+          "id": "AFG-KAFKA-001:845db5f8eb62fc2acde89d00",
+          "ruleId": "AFG-KAFKA-001",
+          "disposition": "OBSERVATION"
+        },
+        {
+          "id": "AFG-KAFKA-002:80f8093b4c96b5b64cef2247",
+          "ruleId": "AFG-KAFKA-002",
+          "disposition": "OBSERVATION"
+        }
+      ]
+    },
+    {
+      "case": "K01-recovery",
+      "path": "../evidence/kafka-3.0.4/k01-recovery.json",
+      "sha256": "f88b1a63ed81e1630c9c8e12700f8d5fc4451dacacbb1447a0b2637737cb1948",
+      "runStatus": "COMPLETE",
+      "partial": false,
+      "scopeFingerprint": "3332e778ae7c187bf4a8f131",
+      "analysisContext": {
+        "selectedProfiles": [
+          "default"
+        ],
+        "propertySources": [
+          "consumer/src/main/resources/application-green.yml",
+          "consumer/src/main/resources/application.yml",
+          "producer/src/main/resources/application-blue.yml",
+          "producer/src/main/resources/application.yml"
+        ],
+        "externalOverrideKeys": [],
+        "unsupportedFeatures": [],
+        "fingerprint": "11c4887f666120ce9eefa040"
+      },
+      "topicCount": 2,
+      "findings": [
+        {
+          "id": "AFG-KAFKA-001:2ea274532ead9483af49be0c",
+          "ruleId": "AFG-KAFKA-001",
+          "disposition": "OBSERVATION"
+        },
+        {
+          "id": "AFG-KAFKA-002:a93dad223d7d211844dd56fd",
+          "ruleId": "AFG-KAFKA-002",
+          "disposition": "OBSERVATION"
+        },
+        {
+          "id": "AFG-KAFKA-009:2ea274532ead9483af49be0c",
+          "ruleId": "AFG-KAFKA-009",
+          "disposition": "UNKNOWN"
+        },
+        {
+          "id": "AFG-KAFKA-009:a93dad223d7d211844dd56fd",
+          "ruleId": "AFG-KAFKA-009",
+          "disposition": "UNKNOWN"
+        },
+        {
+          "id": "AFG-KAFKA-010:d87234d9fee26cdb4e27d13c",
+          "ruleId": "AFG-KAFKA-010",
+          "disposition": "UNKNOWN"
+        }
+      ]
+    }
+  ],
+  "compilation": [
+    {
+      "state": "initial",
+      "command": "./gradlew.bat :producer:classes :consumer:classes --offline --console=plain",
+      "jdk": "21.0.12.1",
+      "logSha256": "7806cd5f6ddab305a9742a6218df61b9ab22e7f5e261cb9462497ed43d082dd6",
+      "result": "BUILD SUCCESSFUL in 19s"
+    },
+    {
+      "state": "drift",
+      "command": "./gradlew.bat :producer:classes :consumer:classes --offline --console=plain",
+      "jdk": "21.0.12.1",
+      "logSha256": "9fd0e56f7b7eec01bb6bd001cd7738a9fd6bb930eb283b6b48bc89298288ce28",
+      "result": "BUILD SUCCESSFUL in 964ms"
+    },
+    {
+      "state": "repaired",
+      "command": "./gradlew.bat :producer:classes :consumer:classes --offline --console=plain",
+      "jdk": "21.0.12.1",
+      "logSha256": "ec932c1589641ad926a699ccca3904b741d0984130d4ed34fd121ff5e0001f75",
+      "result": "BUILD SUCCESSFUL in 958ms"
+    }
+  ],
+  "recovery": {
+    "gitWorkingTree": "clean",
+    "matchesBaselineSource": true,
+    "matchesInitialExport": [
+      "nodes",
+      "edges",
+      "findings",
+      "dtoShapes",
+      "analysisContext",
+      "scopeFingerprint",
+      "coverage",
+      "diagnostics"
+    ],
+    "videoEnding": "Shows the recovered UNKNOWN state after subsequent incremental analysis; the retained recovery JSON is a full COMPLETE export"
+  },
+  "boundary": "Static installed-plugin evidence. No Kafka broker, effective deployment, bytes/headers, Schema Registry policy, delivery, deserialization or business processing is claimed."
+}

@@ -7,6 +7,7 @@
 | Задача | Руководство |
 | --- | --- |
 | Провести демонстрацию с нуля | [Запуск всех лабораторий](DEMO_RUNBOOK_RU.md) |
+| Проследить Kafka profiles, UNKNOWN → доказанное расхождение → исправление и разные cluster scopes | [Kafka: статья, видео и шесть native exports](KAFKA_PROFILES_ARTICLE_RU.md) |
 | Разобрать компилируемый POST/PUT пример и проверить исправление в 3.0.4 | [Практическая статья для Java/Spring-разработчиков](FIRST_RESULT_ARTICLE_RU.md) |
 | Изучить каждую функцию | [Все 62 функции](ALL_FUNCTIONS_RU.md) |
 | Проверить конкретную кнопку, команду, настройку или editor extension | [Все 87 точек входа](ENTRY_POINTS_RU.md) |

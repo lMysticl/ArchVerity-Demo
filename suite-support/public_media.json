@@ -1,17 +1,29 @@
 {
   "classification": "PRODUCT_ASSET",
-  "description": "Reviewed native IntelliJ IDEA window recording of synthetic first-result sources; Russian subtitles, no audio or account settings",
-  "recordedAt": "2026-10-05",
+  "description": "Two reviewed native IntelliJ IDEA recordings of synthetic HTTP and Kafka scenarios; Russian captions, no audio or account settings",
+  "recordedAt": "2026-10-06",
   "pluginVersion": "3.0.4",
   "ideaVersion": "2026.1.4",
   "files": {
     "docs/media/first-result-3.0.4.mp4": {
       "sha256": "de82f57385cf52a5f32239c78cdc4378f200a7f1f71df677498faf85bc4cfa49",
-      "bytes": 812225
+      "bytes": 812225,
+      "recordedAt": "2026-10-05"
     },
     "docs/media/first-result-3.0.4.png": {
       "sha256": "f3c4eb9b46b30e603f17732bfaf169d92dc100e34e0b93dfdb9b62643d8a19ab",
-      "bytes": 466933
+      "bytes": 466933,
+      "recordedAt": "2026-10-05"
+    },
+    "docs/media/kafka-profiles-3.0.4.mp4": {
+      "sha256": "6ffc84eda913ff5b33211ad6bb39a5423d98d84808f1048aea3ce294350c76d1",
+      "bytes": 1665937,
+      "recordedAt": "2026-10-06"
+    },
+    "docs/media/kafka-profiles-3.0.4.png": {
+      "sha256": "563bcad619858e621f908da3233c183acf0fb6ee19ea8631df0a0d8eefff9dd2",
+      "bytes": 456216,
+      "recordedAt": "2026-10-06"
     }
   }
 }
