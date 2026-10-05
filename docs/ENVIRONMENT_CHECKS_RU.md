@@ -93,6 +93,14 @@ python suite-support/inspect_export.py work/review.md --kind markdown
 SVG root, Mermaid diagram, SARIF 2.1.0, readable Review Markdown и redaction.
 Format inspection не запускает анализ и не доказывает полноту/SAFE.
 
+Для анализа, на котором строится приёмка, добавьте
+`--require-complete --project-id <observed-projectId>`; для Impact —
+`--require-complete`. Partial/failed/cancelled JSON можно читать, но он не даёт
+PASS полного сценария. PNG checker проверяет IHDR, chunk lengths, CRC,
+image-data presence и IEND; фактическое изображение также надо открыть.
+Kafka checker всегда требует COMPLETE/partial=false и непустой context fingerprint;
+его `--project-id` связывает файл с выбранным проектом.
+
 **ArchVerity Tools поставляются отдельно** от этого публичного демо. Здесь нет
 копии закрытых исходников плагина/Tools и не обещается несуществующий pip пакет.
 С предоставленным оператором дистрибутивом `python -m archflow_tools --help`

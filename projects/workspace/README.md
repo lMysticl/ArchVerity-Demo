@@ -1,7 +1,7 @@
 # Workspace: архитектура, Impact и developer tools
 
 [Общая пошаговая инструкция](../../docs/DEMO_RUNBOOK_RU.md#3-архитектура-impact-и-инструменты-редактора)
-показывает подготовку этого проекта и переходы ко всем пяти лабораториям.
+показывает подготовку этого проекта и переходы ко всем шести лабораториям.
 
 Это Java/Kotlin Gradle-проект для анализа исходников четырёх service IDs:
 order-service, payment-service, notification-service, analytics-service.

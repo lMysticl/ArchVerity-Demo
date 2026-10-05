@@ -26,10 +26,8 @@ jobs:
         run: python -B -X utf8 suite-support/check_suite.py
       - name: Workspace coverage negative controls
         run: python -B -X utf8 -m unittest discover -s projects/workspace/qa-support -p test_verify_coverage.py -v
-      - name: Complete function guide negative controls
-        run: python -B -X utf8 -m unittest discover -s suite-support -p test_playbooks.py -v
-      - name: Kafka profile recipes and export negative controls
-        run: python -B -X utf8 -m unittest discover -s suite-support -p test_kafka_cases.py -v
+      - name: Function guides, standalone preparation and export regressions
+        run: python -B -X utf8 -m unittest discover -s suite-support -p 'test_*.py' -v
       - name: Public-only JDK truststore inputs
         run: java suite-support/PublicTruststores.java verify projects/workspace
       - name: Actual Git submodule fixture

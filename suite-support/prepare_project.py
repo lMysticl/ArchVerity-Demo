@@ -7,10 +7,13 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PROJECTS = ("first-result", "workspace", "api-lab", "mobile-lab", "runtime-evidence", "kafka-profile-lab")
 EXCLUDED = {".git", ".gradle", ".idea", ".kotlin", ".expo", "node_modules", "build", "out", "work", "reports", "__pycache__", "android", "ios"}
 
 
 def prepare(name, destination):
+    if name not in PROJECTS:
+        raise ValueError(f"Unknown project: {name}")
     destination = destination.resolve()
     if destination.exists():
         raise ValueError(f"Refusing to overwrite existing directory: {destination}")
@@ -34,7 +37,7 @@ def prepare(name, destination):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--project", choices=("first-result", "workspace", "runtime-evidence", "mobile-lab", "kafka-profile-lab"), required=True)
+    parser.add_argument("--project", choices=PROJECTS, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     try:

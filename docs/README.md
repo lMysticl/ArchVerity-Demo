@@ -16,6 +16,7 @@
 | Проверить Kafka profiles, cluster scope и UNKNOWN | [12 Kafka-сценариев](../projects/kafka-profile-lab/README.md) |
 | Записать actual positive/negative/recovery result | [Шаблон прогона](RUN_RECORD.md) |
 | Посмотреть реально выполненные проверки | [Verification record](VERIFICATION_RU.md) |
+| Связать каждую функцию с тестами, исправлениями и оставшимися проверками | [Функциональная проверка](FUNCTIONAL_AUDIT_RU.md) |
 | Понять происхождение исходников и зависимостей | [NOTICE](../NOTICE.md) |
 
 ## Документы шести проектов

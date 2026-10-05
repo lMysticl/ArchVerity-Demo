@@ -3,10 +3,29 @@ import argparse
 import json
 from pathlib import Path
 from prepare_kafka_case import CASES
+from inspect_export import validate_analysis, unique_keys
 
-def check(snapshot, case):
+def check(snapshot, case, expected_project_id=None):
+    validate_analysis(snapshot, require_complete=True, expected_project_id=expected_project_id)
     findings = snapshot.get('findings', [])
     nodes = snapshot.get('nodes', [])
+    if any(not isinstance(finding.get('ruleId'),str) or not finding['ruleId'].strip() for finding in findings):
+        raise ValueError('Finding rule identity is missing')
+    if any(not isinstance(node.get('kind'),str) or not node['kind'].strip() for node in nodes):
+        raise ValueError('Node kind is missing')
+    for node in nodes:
+        if not isinstance(node.get('attributes', {}), dict):
+            raise ValueError('Node attributes must be an object')
+    for entity in [*nodes, *findings]:
+        evidence = entity.get('evidence', [])
+        if not isinstance(evidence, list) or any(not isinstance(item, dict) for item in evidence):
+            raise ValueError('Evidence must be an array of objects')
+        for item in evidence:
+            if not isinstance(item.get('label', ''), str):
+                raise ValueError('Evidence label must be text')
+            source = item.get('source')
+            if source is not None and (not isinstance(source, dict) or not isinstance(source.get('path', ''), str)):
+                raise ValueError('Evidence source/path is malformed')
     rule_ids = {finding['ruleId'] for finding in findings}
     missing = set(case['expected']) - rule_ids
     if missing:
@@ -41,15 +60,18 @@ def check(snapshot, case):
         raise ValueError('Declared logical cluster failed to resolve')
     if case['serializer'] == 'explicit' and 'AFG-KAFKA-010' in rule_ids:
         raise ValueError('Independently precise static wire binding was lost')
-    return {'status':'KAFKA_EXPORT_CASE_PASS','case':case['id'],'findings':len(findings),'boundary':'Actual export content; the operator must record IDE/build/project identity separately'}
+    return {'status':'KAFKA_EXPORT_CASE_PASS','case':case['id'],'findings':len(findings),
+            'projectId':snapshot['projectId'],'analysisContext':snapshot['analysisContext']['fingerprint'],
+            'boundary':'Complete export content; the operator must record IDE/build/project identity separately'}
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--case',choices=[case['name'] for case in CASES],required=True)
     parser.add_argument('--snapshot',type=Path,required=True)
+    parser.add_argument('--project-id',help='Exact projectId observed in this case export')
     args=parser.parse_args()
     try:
         case=next(case for case in CASES if case['name']==args.case)
-        print(json.dumps(check(json.loads(args.snapshot.read_text(encoding='utf-8')),case)))
-    except ValueError as error:
+        print(json.dumps(check(json.loads(args.snapshot.read_text(encoding='utf-8'),object_pairs_hook=unique_keys),case,args.project_id)))
+    except (ValueError, OSError) as error:
         parser.error(str(error))

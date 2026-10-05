@@ -1,7 +1,7 @@
 # API Client laboratory
 
 [Пошаговый запуск этой лаборатории](../../docs/DEMO_RUNBOOK_RU.md#4-локальные-http-websocket-и-grpc)
-включён в общую инструкцию демонстрации всех пяти проектов.
+включён в общую инструкцию демонстрации всех шести проектов.
 
 HTTP, WebSocket and gRPC use real loopback servers. No remote service is needed.
 
@@ -9,6 +9,10 @@ HTTP, WebSocket and gRPC use real loopback servers. No remote service is needed.
 imports/exports/cookies раскрыты в [полном руководстве](../../docs/ALL_FUNCTIONS_RU.md#devs-01).
 Все остальные возможности плагина доступны через содержание этого руководства.
 Use the commands from the repository root; Python 3.10+ is required.
+
+For a separate clean Git project, prepare all API inputs with
+`python suite-support/prepare_project.py --project api-lab --output <new-directory>`.
+Run `serve.py` from that copy and use its `schema/` and `scenarios/` files.
 
 ```powershell
 python -m venv work/api-venv

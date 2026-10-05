@@ -74,7 +74,7 @@ def guides(data, entry_points):
              f"Source scope: ArchVerity {data['source_product_version']}; исходный inventory commit `{data['source_inventory_commit']}`.",
              "62 пользовательские возможности, все 87 registered entry points и все 41 прежние capability recipes связаны с конкретными входами.",
              "Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).", "",
-             "[Пошаговый запуск всех пяти лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
+             "[Пошаговый запуск всех шести лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
              "## Подготовка", "", "Для первого finding подготовьте отдельную first-result copy через `suite-support/prepare_project.py` и откройте её с JDK 21. Для архитектуры и Impact создайте новую workspace copy тем же helper и получите настоящий полный снимок чистого HEAD в IDEA.",
              "API запускается через `projects/api-lab/serve.py`. Mobile имеет свой lockfile/native prerequisites. Runtime evidence требует настоящего current IDEA export; producer smoke явно использует synthetic test context.",
              "При отсутствии SDK/device, SSH, real entitlement, PasswordSafe/Vault input или Tools distribution записывайте точную недоступную зависимость. Остальные независимые проверки продолжаются. Signing, credentials и device install/clear/uninstall требуют отдельного разрешения.", "",
