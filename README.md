@@ -29,13 +29,17 @@ ArchVerity. Начните с небольшого HTTP-примера, зате
 | [api-lab](projects/api-lab/README.md) | Проверка API Client | HTTP/WebSocket/gRPC loopback, descriptor с imports, сценарии, отрицательные входы, deadline и cancel |
 | [mobile-lab](projects/mobile-lab/README.md) | React Native / Expo и команды устройств | Настоящее приложение, lockfile, Metro, bundle; native проекты создаются через Expo prebuild |
 | [runtime-evidence](projects/runtime-evidence/README.md) | Импорт runtime и verification evidence | Запускаемый Spring Boot Actuator, реальные bean dependencies, локальные PASS/FAIL отчёты в Pact/Drift форматах |
-| [kafka-profile-lab](projects/kafka-profile-lab/README.md) | Kafka UNKNOWN и границы evidence | 12 изолированных случаев: разные profiles/clusters, внешний serializer, regex, defaults/cycles, равные DTO и положительные контроли; требует source build с исправлением |
+| [kafka-profile-lab](projects/kafka-profile-lab/README.md) | Kafka UNKNOWN и границы evidence | 12 изолированных случаев: разные profiles/clusters, внешний serializer, regex, defaults/cycles, равные DTO и положительные контроли; требует ArchVerity 3.0.4 или новее |
 
 ## Быстрый показ
 
 Нужны Git, Python 3.10+, JDK 21 и IDEA, поддерживаемая **установленной версией**
-ArchVerity. Полное руководство привязано к ArchVerity 3.0.3; используйте эту или более новую
-совместимую сборку. Trial/Pro необходим для платных операций, экспорта и MCP;
+ArchVerity. Для всех шести лабораторий используйте **3.0.4** или более новую
+совместимую сборку; для локальной IDEA 2024.3 нужен отдельный **3.0.4-2024.3**.
+Inventory полного руководства сохраняет 62 функции и 87 точек входа версии 3.0.3.
+Оба обновления 3.0.4 переданы в Marketplace 05.10.2026 и ожидают одобрения;
+[запись проверки выпуска](docs/VERIFICATION_RU.md#выпуск-304--05102026)
+разделяет загрузку и публичную доступность. Trial/Pro необходим для платных операций, экспорта и MCP;
 этот репозиторий не выдаёт и не подменяет лицензию. Первый Gradle/npm install
 требует сети; основные архитектурные примеры не требуют Kafka/RabbitMQ/БД.
 

@@ -80,3 +80,27 @@ local development ZIP: `7a3ab62df0bc2cdfffef1d2f08428d6cfb2cbe2e1ad4c0a9c8d33d53
 передача/десериализация bytes, физический cluster ID и delivery guarantees
 остаются **NOT RUN** в этом дополнении. CI recipe checks и fixture compile
 не заменяют эти наблюдения.
+
+## Выпуск 3.0.4 — 05.10.2026
+
+Исходный commit выпуска: **68ebcaedea2e70827986e694f384dddaebb8b66d**.
+Оба пакета построены из этого commit; 3.0.4 содержит исправление Kafka profiles
+и provenance, а 3.0.4-2024.3 переносит его в отдельную локальную линию IDEA 2024.3.
+Предыдущая запись development/source run выше остаётся историческим наблюдением.
+
+| Проверка | Непосредственное наблюдение |
+| --- | --- |
+| Tests на IDEA 2024.3 | 976 tests, 0 failures/errors/skipped. Все 12 публичных Kafka cases действительно отсканированы backend; публичный JSON checker принял каждый экспорт |
+| Опциональные fixture inputs | Без явных input/output roots 12 внешних cases исключаются из обычного запуска; два самостоятельных Kafka profile tests проходят. Запуск с roots выполняет все cases |
+| Защищённые ZIP | Plugin Verifier 1.410: Compatible на IDEA 2025.3.6.1, 2026.1, 2026.1.4, 2026.2.0.1, 2026.2.3 для modern и 2024.3, 2024.3.7.1 для legacy. Строгая проверка не обнаружила deprecated/internal/experimental API findings |
+| Runtime serialization | 98 serializers в каждом из семи IDE runtimes, всего 686 проверок descriptor/children/type parameters; PASS |
+| Подпись | Оба точных защищённых ZIP подписаны и проверены. Неподписанный контроль отвергнут; все 14 payload entries каждого пакета сохранились побайтно |
+| Установленный modern ZIP, native UI | На IDEA 2026.1.4 реальный анализ K01 завершён: 2 services, 2 scoped topics, 5 findings, 4 relations. `AFG-KAFKA-009 UNKNOWN` сохраняет ссылки на blue/green configuration; навигация открыла consumer application-green.yml |
+| Границы native run | В изолированном headless-процессе entitlement не подтвердился до анализа. Обычный GUI run с тем же защищённым пакетом прошёл. Это не проверка реального Kafka broker, bytes/serializer interoperability, physical cluster ID или delivery guarantees |
+| Marketplace | Оба signed updates приняты в Stable с Make Hidden выключенным: modern **1187795**, legacy **1187796**. На момент записи оба **Under review**; публичная доступность ожидает одобрения JetBrains |
+
+[Marketplace versions](https://plugins.jetbrains.com/plugin/34234-archverity/versions)
+показывает доступные обновления. Пока 3.0.4 ожидает одобрения, не используйте
+публичный 3.0.3 как подтверждение новых 009/010. Все 62 функции, 87 entry points,
+41 исходный capability recipe и 19 Impact-мутаций сохранены; Kafka добавляет
+12 воспроизводимых recipes с собственными положительными и отрицательными controls.

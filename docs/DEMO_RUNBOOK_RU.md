@@ -200,8 +200,10 @@ Ctrl+C в launcher terminal останавливает его приложени
 
 ## 7. Kafka profiles и UNKNOWN
 
-Этот дополнительный lab требует source build с исправлением Kafka
-profile/evidence: прежний Marketplace package 3.0.3 его не содержит.
+Этот дополнительный lab требует **ArchVerity 3.0.4** или новее; для локальной
+IDEA 2024.3 используйте **3.0.4-2024.3**. Прежний Marketplace package 3.0.3
+не содержит исправления Kafka profile/evidence. Оба новых обновления загружены
+05.10.2026 и ожидают одобрения; см. [запись выпуска](VERIFICATION_RU.md#выпуск-304--05102026).
 Подготовьте новую копию:
 
 ```powershell

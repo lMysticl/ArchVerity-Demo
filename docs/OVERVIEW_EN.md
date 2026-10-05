@@ -26,8 +26,10 @@ and 87-entry guides. Detailed launch instructions are in Russian.
    execution by a branded verifier.
 6. Prepare one of the 12 `kafka-profile-lab` recipes to test profile paths,
    unresolved serializer overrides and separate cluster scopes. New `009/010`
-   outcomes require a source build with the Kafka evidence fix; an older
-   Marketplace package with the same version number does not contain it.
+   outcomes require ArchVerity **3.0.4** or newer, or **3.0.4-2024.3** for
+   local IDEA 2024.3. Both signed updates were submitted to Marketplace on
+   October 5, 2026 and are awaiting approval. The older published 3.0.3
+   does not contain this fix. See the [release verification record](VERIFICATION_RU.md#выпуск-304--05102026).
 
 `python suite-support/check_suite.py` validates fixture binding and documentation.
 Maintainers can supply `--plugin-source ... --require-source` to compare all
