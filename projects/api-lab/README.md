@@ -1,5 +1,8 @@
 # API Client laboratory
 
+[Пошаговый запуск этой лаборатории](../../docs/DEMO_RUNBOOK_RU.md#4-локальные-http-websocket-и-grpc)
+включён в общую инструкцию демонстрации всех пяти проектов.
+
 HTTP, WebSocket and gRPC use real loopback servers. No remote service is needed.
 
 Подробные действия API Client, environments/secrets, DSL, WebSocket/gRPC,

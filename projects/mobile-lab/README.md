@@ -1,5 +1,8 @@
 # Expo / React Native laboratory
 
+[Пошаговый запуск и общий маршрут демонстрации](../../docs/DEMO_RUNBOOK_RU.md#5-react-native--expo)
+связывает эту лабораторию с первым finding, API, Impact и runtime evidence.
+
 This is a real app, with a screen, interactions, console events, Metro config,
 an index entry point, pinned dependencies and an npm lockfile. The package is
 `com.archverity.demo`. Use a disposable emulator/simulator for device actions.

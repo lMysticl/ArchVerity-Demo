@@ -96,8 +96,11 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
         raise ValueError("Feature catalog drifted; use --write-catalog after reviewing features.json")
     from check_playbooks import check as check_playbooks
     playbooks = check_playbooks(plugin_source, require_source)
+    from check_docs import check as check_docs
+    documentation = check_docs()
     return {"status": "INPUT_CONTRACT_PASS", "features": len(features), "entry_points": sum(registration["entries"].values()),
             "registered": registration, "isolated_mutations": len(SCENARIOS), "python_sources": python_files, "full_playbooks": playbooks,
+            "documentation": documentation,
             "boundary": "Prepared inputs and source matching; live IDEA/device/licensing observations remain separate"}
 
 

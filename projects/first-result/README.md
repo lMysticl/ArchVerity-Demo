@@ -1,18 +1,22 @@
 # One contract mismatch, before you run an application
 
+Start with the [step-by-step demo instructions](../../docs/DEMO_RUNBOOK_RU.md#2-первый-finding-и-его-исправление)
+to prepare a disposable copy and follow the complete five-lab demonstration.
+
 This small source-analysis demo contains two Java modules. Both compile, but
 the OpenFeign caller sends `POST /payments/{paymentId}` and the Spring MVC
 provider accepts `PUT /payments/{paymentId}`. No server, database, Docker,
 credentials, or customer source code is needed.
 
 Prerequisites: an IntelliJ IDEA supported by your installed ArchVerity build,
-JDK 21, ArchVerity 3.0.2 or a newer compatible build, and an active Trial or subscription.
+JDK 21, ArchVerity 3.0.3 or a newer compatible build, and an active Trial or subscription.
 An internet connection is needed for the first Gradle/dependency download.
 This is a compileable analysis sample, not a runnable Spring Boot application.
 
 ## See the finding
 
-1. Clone the public demo repository and open this directory in IntelliJ IDEA as a Gradle project.
+1. Clone the public demo repository, prepare a disposable `first-result` copy
+   using the linked instructions above, and open that output in IntelliJ IDEA as a Gradle project.
    Trust only the copy you obtained from the publisher. Wait for Gradle import
    and indexing to finish. Select JDK 21 or later if prompted.
 2. Build with `./gradlew classes` (Windows: `.\gradlew.bat classes`). A successful

@@ -411,7 +411,7 @@
     "id": "processCommands:ADB_RELOAD",
     "feature_id": "DEVS-21",
     "trigger": "В выбранной console запустить ADB_RELOAD с selected app/device; проверить Stop/repeat.",
-    "expect": "Работающее demo app действительно reloads",
+    "expect": "keyevent 82 открывает development menu выбранного demo app; оператор выбирает Reload и наблюдает перезагрузку.",
     "inputs": [
       "projects/mobile-lab/package.json",
       "projects/mobile-lab/package-lock.json",

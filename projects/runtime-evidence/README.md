@@ -1,5 +1,8 @@
 # Real local runtime and verification evidence
 
+[Пошаговый запуск в общем demo route](../../docs/DEMO_RUNBOOK_RU.md#6-runtime-beans-и-verification-evidence)
+показывает подготовку отдельной копии, реальный IDEA export и capture.
+
 This Spring Boot 3.5.12 app exposes only loopback HTTP on port 18430, including
 the real Actuator `/actuator/beans` response. Kafka factory/template beans are
 created; no broker is started, no message is sent and no listener consumes.

@@ -41,7 +41,10 @@ def main():
             endpoints["grpc"] = f"http://127.0.0.1:{port}"
         print(json.dumps({"status": "READY", "endpoints": endpoints}), flush=True)
         try:
-            threading.Event().wait()
+            # A timed wait lets Python dispatch Ctrl+C on Windows as well.
+            stop = threading.Event()
+            while not stop.wait(timeout=0.2):
+                pass
         except KeyboardInterrupt:
             pass
     for thread in threads:

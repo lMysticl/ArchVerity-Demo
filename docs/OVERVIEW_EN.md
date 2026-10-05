@@ -4,7 +4,13 @@ This public suite exercises ArchVerity against synthetic, inspectable inputs.
 Install ArchVerity separately from JetBrains Marketplace. Use a compatible
 IntelliJ IDEA and JDK 21; paid features need a legitimate Trial/Pro entitlement.
 
-1. Open `projects/first-result` as a Gradle project for the first HTTP finding.
+The [step-by-step launch runbook](DEMO_RUNBOOK_RU.md) links prerequisites,
+all five labs, expected observations, recovery and actual result recording.
+Use the [documentation index](README.md) to reach the complete 62-function
+and 87-entry guides. Detailed launch instructions are in Russian.
+
+1. Prepare a standalone `first-result` copy with `suite-support/prepare_project.py`
+   and open that output as a Gradle project for the first HTTP finding.
    It compiles while its Feign POST call disagrees with the provider's PUT.
 2. Prepare a standalone `workspace` with `suite-support/prepare_project.py`,
    scan its clean HEAD in IDEA, and apply one `qa-support/apply_impact.py`

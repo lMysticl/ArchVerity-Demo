@@ -928,8 +928,8 @@
       "setup": "Нужны Android SDK/ADB и выделенный device/emulator. Установка, очистка и удаление требуют конкретного разрешения оператора; в этом наборе они не исполняются автоматически.",
       "steps": [
         {
-          "do": "На выделенном disposable device проверить ADB_DEVICES, ADB_LOGCAT, ADB_REVERSE и ADB_RELOAD; нажать demo counter.",
-          "expect": "Device serial выбран явно; ARCHVERITY_DEMO_CLICK виден в logs; reverse/reload относятся к этому приложению."
+          "do": "На выделенном disposable device проверить ADB_DEVICES, ADB_LOGCAT, ADB_REVERSE и ADB_RELOAD; нажать demo counter. ADB_RELOAD открывает development menu; выбрать Reload вручную.",
+          "expect": "Device serial выбран явно; ARCHVERITY_DEMO_CLICK виден в logs; reverse и development menu относятся к этому приложению; reload наблюдается после выбора Reload оператором."
         },
         {
           "do": "ADB_INSTALL_APK, ADB_CLEAR_DATA и ADB_UNINSTALL проверять только после отдельного разрешения для этого package/device.",

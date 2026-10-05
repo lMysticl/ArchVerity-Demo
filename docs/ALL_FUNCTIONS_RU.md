@@ -4,9 +4,11 @@ Source scope: ArchVerity 3.0.3; исходный inventory commit `4af0956850124
 62 пользовательские возможности, все 87 registered entry points и все 41 прежние capability recipes связаны с конкретными входами.
 Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).
 
+[Пошаговый запуск всех пяти лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)
+
 ## Подготовка
 
-Для первого finding откройте `projects/first-result` с JDK 21. Для архитектуры и Impact создайте новую копию через `suite-support/prepare_project.py` и получите настоящий полный снимок чистого HEAD в IDEA.
+Для первого finding подготовьте отдельную first-result copy через `suite-support/prepare_project.py` и откройте её с JDK 21. Для архитектуры и Impact создайте новую workspace copy тем же helper и получите настоящий полный снимок чистого HEAD в IDEA.
 API запускается через `projects/api-lab/serve.py`. Mobile имеет свой lockfile/native prerequisites. Runtime evidence требует настоящего current IDEA export; producer smoke явно использует synthetic test context.
 При отсутствии SDK/device, SSH, real entitlement, PasswordSafe/Vault input или Tools distribution записывайте точную недоступную зависимость. Остальные независимые проверки продолжаются. Signing, credentials и device install/clear/uninstall требуют отдельного разрешения.
 
@@ -715,8 +717,8 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Входы:** [package.json](../projects/mobile-lab/package.json), [package-lock.json](../projects/mobile-lab/package-lock.json), [index.js](../projects/mobile-lab/index.js), [App.js](../projects/mobile-lab/App.js), [app.json](../projects/mobile-lab/app.json)
 
-1. На выделенном disposable device проверить ADB_DEVICES, ADB_LOGCAT, ADB_REVERSE и ADB_RELOAD; нажать demo counter.
-   Ожидаемое наблюдение: Device serial выбран явно; ARCHVERITY_DEMO_CLICK виден в logs; reverse/reload относятся к этому приложению.
+1. На выделенном disposable device проверить ADB_DEVICES, ADB_LOGCAT, ADB_REVERSE и ADB_RELOAD; нажать demo counter. ADB_RELOAD открывает development menu; выбрать Reload вручную.
+   Ожидаемое наблюдение: Device serial выбран явно; ARCHVERITY_DEMO_CLICK виден в logs; reverse и development menu относятся к этому приложению; reload наблюдается после выбора Reload оператором.
 2. ADB_INSTALL_APK, ADB_CLEAR_DATA и ADB_UNINSTALL проверять только после отдельного разрешения для этого package/device.
    Ожидаемое наблюдение: Оператор наблюдает установку, очистку данных либо отсутствие com.archverity.demo; команды не переключаются на другой package.
 
