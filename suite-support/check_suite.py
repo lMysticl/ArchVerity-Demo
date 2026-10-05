@@ -16,6 +16,8 @@ from apply_impact import SCENARIOS
 
 def catalog(features, entries):
     lines = ["# Function and input catalog", "",
+             "Detailed steps, counterexamples and recovery: [all 62 functions](ALL_FUNCTIONS_RU.md).",
+             "Separate registered control recipes: [all 87 entry points](ENTRY_POINTS_RU.md).", "",
              "Generated from `suite-support/features.json` and the workspace's registered-entry contract.",
              "Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDEA/device action.", "",
              "## Capabilities", "", "| ID / function | Input | Action | Observable result | Prerequisite / guide |",
@@ -92,8 +94,10 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
         target.write_text(expected, encoding="utf-8", newline="\n")
     elif not target.is_file() or target.read_text(encoding="utf-8") != expected:
         raise ValueError("Feature catalog drifted; use --write-catalog after reviewing features.json")
+    from check_playbooks import check as check_playbooks
+    playbooks = check_playbooks(plugin_source, require_source)
     return {"status": "INPUT_CONTRACT_PASS", "features": len(features), "entry_points": sum(registration["entries"].values()),
-            "registered": registration, "isolated_mutations": len(SCENARIOS), "python_sources": python_files,
+            "registered": registration, "isolated_mutations": len(SCENARIOS), "python_sources": python_files, "full_playbooks": playbooks,
             "boundary": "Prepared inputs and source matching; live IDEA/device/licensing observations remain separate"}
 
 

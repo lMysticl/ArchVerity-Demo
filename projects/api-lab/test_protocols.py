@@ -52,6 +52,16 @@ class HttpTest(unittest.TestCase):
         self.assertEqual(self.get("/qa-openapi")["source"], "openapi")
         self.assertEqual(self.get("/health")["status"], "ok")
 
+    def test_dsl_type_and_pointer_inputs_over_real_http(self):
+        value = self.get("/dsl-shapes")
+        self.assertIs(type(value["id"]), int)
+        self.assertIs(type(value["numericString"]), str)
+        self.assertIs(value["enabled"], True)
+        self.assertIsNone(value["optional"])
+        self.assertNotIn("missing", value)
+        self.assertEqual(value["items"][0]["id"], 42)
+        self.assertEqual(value["a/b"]["~name"], "escaped")
+
     def test_cookie_and_environment_header(self):
         jar = CookieJar()
         client = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))

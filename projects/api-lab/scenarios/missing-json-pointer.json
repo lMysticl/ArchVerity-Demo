@@ -1,0 +1,4 @@
+[
+  {"name": "Missing is not null", "url": "http://127.0.0.1:18427/dsl-shapes", "after": "assert json /missing == null"},
+  {"name": "Must not execute after missing pointer", "url": "http://127.0.0.1:18427/health"}
+]

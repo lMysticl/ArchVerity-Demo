@@ -1,5 +1,8 @@
 # Function and input catalog
 
+Detailed steps, counterexamples and recovery: [all 62 functions](ALL_FUNCTIONS_RU.md).
+Separate registered control recipes: [all 87 entry points](ENTRY_POINTS_RU.md).
+
 Generated from `suite-support/features.json` and the workspace's registered-entry contract.
 Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDEA/device action.
 

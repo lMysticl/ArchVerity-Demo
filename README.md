@@ -10,6 +10,13 @@ ArchVerity. Начните с небольшого HTTP-примера, зате
 и лаборатории. Плагин устанавливается отдельно из
 [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34234-archverity).
 
+**[Все функции подробно](docs/ALL_FUNCTIONS_RU.md):** 62 пользовательские
+возможности ArchVerity 3.0.3 — назначение, подготовка, конкретные действия,
+ожидаемый результат, контрпример и восстановление. Отдельная
+**[матрица 87 точек входа](docs/ENTRY_POINTS_RU.md)** раскрывает каждую команду,
+настройку и editor extension. Прежние 41 capability recipe и 19 Impact-мутаций
+сохранены.
+
 | Проект | Зачем открыть | Что подготовлено |
 | --- | --- | --- |
 | [first-result](projects/first-result/README.md) | Первый результат за несколько действий | Компилируемые Spring MVC + OpenFeign, намеренный POST/PUT mismatch, исправление до совпадающего метода |

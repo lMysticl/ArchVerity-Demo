@@ -1,0 +1,4 @@
+demo:
+  sql: 'select id, status from payments where id = 42'
+  regex: '^payment-[0-9]+$'
+  cron: '0 */5 * * * *'

@@ -19,6 +19,10 @@ class Handler(WorkspaceHandler):
         parsed = urlsplit(self.path)
         if parsed.path == "/items/42":
             self.respond(200, {"id": 42, "name": "demo", "enabled": True, "optional": None})
+        elif parsed.path == "/dsl-shapes":
+            self.respond(200, {"id": 42, "numericString": "42", "enabled": True,
+                               "optional": None, "items": [{"id": 42}],
+                               "a/b": {"~name": "escaped"}})
         elif parsed.path == "/cookies/set":
             body = b'{"cookieSet":true}'
             self.send_response(200)

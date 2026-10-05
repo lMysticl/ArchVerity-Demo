@@ -1,5 +1,12 @@
 # A record for each observed run
 
+The full scenario is identified by its function ID in
+[ALL_FUNCTIONS_RU.md](ALL_FUNCTIONS_RU.md), for example `DEVS-03`, and optionally
+its exact registered entry ID in [ENTRY_POINTS_RU.md](ENTRY_POINTS_RU.md).
+Record each positive step, counterexample and recovery observation separately.
+The prepared playbook's `NOT_RUN` status is not an executed result; keep actual
+IDEA/device/remote evidence in this run record.
+
 Copy this template into a task-owned `work/` directory. Do not commit customer
 evidence, credentials, raw secrets or unbounded logs. Keep screenshots/logs as
 evidence files and record their paths and decisive observations here.

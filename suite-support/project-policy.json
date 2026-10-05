@@ -1,0 +1,4 @@
+{
+  "analysis": {"profiles": ["demo"]},
+  "services": {"order-service": {"owner": "project-order-team"}}
+}

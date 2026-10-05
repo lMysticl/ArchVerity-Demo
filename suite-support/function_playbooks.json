@@ -1,0 +1,2071 @@
+{
+  "schema_version": 1,
+  "source_product_version": "3.0.3",
+  "source_inventory_commit": "4af095685012405a9420415a0e26c3256c5a61a6",
+  "features": [
+    {
+      "id": "DEV-01",
+      "title": "SVG-каталог и отрисовка иконок",
+      "source_capability": "3 bundled styles produce complete SVG icon assets from 63 code-owned DevIconSpec entries; same production catalog styles feed IntelliJ painting.",
+      "capability_ids": [
+        "DEV-ICONS"
+      ],
+      "inputs": [
+        "projects/workspace/archverity-qa.aficons",
+        "projects/workspace/archflow-studio.aficons",
+        "projects/workspace/qa-support/generate_icon_pack.py"
+      ],
+      "purpose": "Проверить, что иконки помогают различать типы файлов и папок в настоящем Project View.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть Dev Icons → Preview и выбрать ArchVerity Studio; просмотреть Java/Kotlin, YAML, shell и folder glyphs.",
+          "expect": "Одинаковые семантические типы имеют разные подходящие glyphs; всего в поставляемом demo pack 63 SVG."
+        },
+        {
+          "do": "Экспортировать разрешённый pack в work/, открыть ZIP manifest и один SVG, затем проверить иконку того же типа в Project View.",
+          "expect": "ID и SVG соответствуют выбранному каталогу; реальная Project View использует выбранный glyph."
+        }
+      ],
+      "negative": {
+        "do": "Импортировать копию pack с повреждённым SVG.",
+        "expect": "Валидация отклоняет повреждённый pack; текущий рабочий набор остаётся применённым."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEV-02",
+      "title": "Три встроенных стиля",
+      "source_capability": "Three named bundled variants: ArchVerity Studio, ArchVerity Outline, ArchVerity Contrast; each provides the same semantic glyph catalog with a distinct visual treatment.",
+      "capability_ids": [
+        "DEV-ICONS"
+      ],
+      "inputs": [
+        "projects/workspace/archverity-qa.aficons",
+        "projects/workspace/archflow-studio.aficons",
+        "projects/workspace/qa-support/generate_icon_pack.py"
+      ],
+      "purpose": "Выбрать подходящий читаемый стиль, сохранив семантику типов файлов.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "По очереди выбрать Studio, Outline и Contrast в Dev Icons Preview.",
+          "expect": "Типы файлов сохраняются, визуальный стиль меняется для того же glyph."
+        },
+        {
+          "do": "Применить каждый стиль, закрыть и открыть settings; проверить один Java-файл и папку.",
+          "expect": "Выбор сохраняется и влияет на реальные иконки проекта, включая папки."
+        }
+      ],
+      "negative": {
+        "do": "Проверить export/apply при реальном отсутствии paid entitlement.",
+        "expect": "Недоступное действие даёт явное ограничение; Preview и право на изменение не смешиваются."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEV-03",
+      "title": "Глобальные и проектные настройки иконок",
+      "source_capability": "Global and project-level enablement, project INHERIT/ENABLED/DISABLED override, independent global/project rules, IntelliJ PSI/file icon providers and Project View refresh.",
+      "capability_ids": [
+        "DEV-ICONS",
+        "IDE-SETTINGS",
+        "IDE-LICENSE"
+      ],
+      "inputs": [
+        "projects/workspace/archverity-qa.aficons",
+        "projects/workspace/archflow-studio.aficons",
+        "projects/workspace/qa-support/generate_icon_pack.py",
+        "projects/workspace/qa-support/coverage.json",
+        "projects/workspace/QA_MATRIX_RU.md"
+      ],
+      "purpose": "Разделить личные настройки IDE и правила конкретного проекта.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Записать глобальное состояние; переключить project override INHERIT → DISABLED → ENABLED.",
+          "expect": "DISABLED выключает иконки в этом проекте; ENABLED включает; INHERIT использует глобальный выбор."
+        },
+        {
+          "do": "Добавить project rule только для PaymentController.java и повторно открыть проект.",
+          "expect": "Правило и override сохраняются в project scope; глобальная настройка остаётся прежней."
+        }
+      ],
+      "negative": {
+        "do": "В проекте с DISABLED выбрать другой глобальный стиль.",
+        "expect": "Project override продолжает определять состояние; чужая настройка не превращается в project rule."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEV-04",
+      "title": "Типы, приоритеты и диагностика правил иконок",
+      "source_capability": "Rule authoring supports file/folder target, exact/glob/regex matcher, global or project origin, priority, deterministic precedence, submodule-only behavior and explicit diagnostics.",
+      "capability_ids": [
+        "DEV-ICONS"
+      ],
+      "inputs": [
+        "projects/workspace/archverity-qa.aficons",
+        "projects/workspace/archflow-studio.aficons",
+        "projects/workspace/qa-support/generate_icon_pack.py",
+        "suite-support/prepare_icon_submodule.py",
+        "docs/ICON_AND_KEYSTORE_INPUTS_RU.md"
+      ],
+      "purpose": "Предсказуемо разрешать пересекающиеся правила и находить ошибочные matchers.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В rules создать FILE/EXACT для PaymentController.java, FILE/GLOB для *.java и FOLDER/EXACT для payment-app; выбрать существующие icon IDs.",
+          "expect": "Exact, glob и folder target применяются к соответствующим элементам; результат показывает выбранное правило."
+        },
+        {
+          "do": "Для двух пересекающихся project rules поменять priority и проверить один файл; REGEX использовать Payment.*[.]java. Создать отдельную copy через prepare_icon_submodule.py и проверить FOLDER/EXACT demo-icon-module с gitSubmoduleOnly.",
+          "expect": "Порядок разрешается детерминированно; правило submoduleOnly применяется к настоящему gitlink demo-icon-module, но не к обычной payment-app."
+        }
+      ],
+      "negative": {
+        "do": "Внести некорректный REGEX или неизвестный iconId.",
+        "expect": "Появляется конкретная диагностика; ошибочное правило не вытесняет действующее."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEV-05",
+      "title": "Жизненный цикл custom .aficons",
+      "source_capability": "Import, enable/disable, remove from registry, replace with confirmation, and export custom .aficons packs; generated bundled packs are exportable when paid entitlement permits.",
+      "capability_ids": [
+        "DEV-ICONS"
+      ],
+      "inputs": [
+        "projects/workspace/archverity-qa.aficons",
+        "projects/workspace/archflow-studio.aficons",
+        "projects/workspace/qa-support/generate_icon_pack.py"
+      ],
+      "purpose": "Добавить свой pack и проверить замену, экспорт и возвращение к fallback.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Импортировать archverity-qa.aficons, включить pack и экспортировать его в work/.",
+          "expect": "Pack имеет demo ID и 63 glyphs; экспорт открывается как корректный pack."
+        },
+        {
+          "do": "Сгенерировать v2 тем же ID по README, Import → Replace; проверить version 2 и новый accent в ansible.svg.",
+          "expect": "Заменилось содержимое pack, а не только строка списка; disable и enable изменяют фактическую иконку."
+        }
+      ],
+      "negative": {
+        "do": "Отменить Replace; затем Remove именно импортированного demo pack.",
+        "expect": "Cancel сохраняет первую версию; Remove убирает только выбранный pack и возвращает подходящий bundled fallback."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "KEY-01",
+      "title": "Типы хранилищ, aliases и certificate chains",
+      "source_capability": "Read-only open/inspect JKS,JCEKS,PKCS12/PFX,BKS,BCFKS,UBER; output provider/type, entry alias/kind/created time/certificate chain and certificate metadata.",
+      "capability_ids": [
+        "DEV-CRYPTO"
+      ],
+      "inputs": [
+        "projects/workspace/qa-cert.pem",
+        "projects/workspace/qa-cert.der",
+        "projects/workspace/qa-public-artifacts.pem",
+        "projects/workspace/qa-request.csr",
+        "projects/workspace/qa-public-key.pem",
+        "projects/workspace/qa-truststore.p12",
+        "projects/workspace/qa-truststore.jks",
+        "projects/workspace/qa-truststore.jceks",
+        "projects/workspace/qa-truststore.pfx",
+        "projects/workspace/qa-truststore.bks",
+        "projects/workspace/qa-truststore.bcfks",
+        "projects/workspace/qa-truststore.uber",
+        "suite-support/PublicTruststores.java",
+        "suite-support/public_truststores.json",
+        "docs/ICON_AND_KEYSTORE_INPUTS_RU.md"
+      ],
+      "purpose": "Исследовать содержимое хранилища, aliases и chains без изменения ключевого материала.",
+      "setup": "Все семь public-only inputs поставляются готовыми; password archverity-qa-only защищает целостность открытых demo-файлов. Закрытых ключей и действующих credentials в них нет. Плагин поставляет BC 1.85; standalone Java verifier использует тот же jar для BKS/BCFKS/UBER.",
+      "steps": [
+        {
+          "do": "Inspect qa-truststore.p12 с demo-паролем archverity-qa-only через Keystore и Project View action.",
+          "expect": "Тип PKCS12, alias, trustedCertEntry и fingerprint видны; закрытого ключа в этом input нет."
+        },
+        {
+          "do": "По очереди Inspect qa-truststore.jks/.jceks/.pfx/.bks/.bcfks/.uber с тем же demo-паролем; открыть alias/certificate.",
+          "expect": "Все семь файлов содержат только archverity-qa trusted certificate с одинаковым SHA-256; тип и фактический JDK/BC provider отображаются, isKeyEntry=false."
+        }
+      ],
+      "negative": {
+        "do": "Ввести неверный пароль или открыть повреждённую копию.",
+        "expect": "Явная ошибка без успешного пустого хранилища; другой сохранённый результат не выдаётся за новый."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "KEY-02",
+      "title": "Certificate, PEM/DER, CRL, CSR и key metadata",
+      "source_capability": "Read-only PEM/DER inspection of certificate, CRL, public key, private-key metadata and PKCS#10 CSR; reports certificate validity/signature metadata, CSR verification and selected CRL fields.",
+      "capability_ids": [
+        "DEV-CRYPTO"
+      ],
+      "inputs": [
+        "projects/workspace/qa-cert.pem",
+        "projects/workspace/qa-cert.der",
+        "projects/workspace/qa-public-artifacts.pem",
+        "projects/workspace/qa-request.csr",
+        "projects/workspace/qa-public-key.pem",
+        "projects/workspace/qa-truststore.p12"
+      ],
+      "purpose": "Сопоставить публичные криптографические артефакты и проверить их метаданные/подписи.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Inspect qa-cert.pem и qa-cert.der; сравнить fingerprint и validity. Затем Inspect qa-public-artifacts.pem.",
+          "expect": "PEM/DER описывают один сертификат; bundle содержит другой сертификат и CRL с одной записью."
+        },
+        {
+          "do": "Открыть qa-request.csr и qa-public-key.pem; проверить subject/public-key relation и результат CSR signature check.",
+          "expect": "CSR и public key относятся к сертификату bundle; validity, signature state и Copy fingerprint доступны."
+        }
+      ],
+      "negative": {
+        "do": "Открыть повреждённую копию PEM; private-key metadata проверять лишь на отдельном разрешённом операторском input.",
+        "expect": "Повреждение даёт диагностику; private-key bytes не показываются и не экспортируются. Без такого input эта часть NOT RUN."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-01",
+      "title": "HTTP Send, Cancel, limits и response",
+      "source_capability": "API: HTTP requests",
+      "capability_ids": [
+        "API-HTTP"
+      ],
+      "inputs": [
+        "projects/api-lab/requests.http",
+        "projects/workspace/qa-openapi.json",
+        "projects/workspace/qa-postman.json",
+        "projects/workspace/qa-curl.txt"
+      ],
+      "purpose": "Отправлять и диагностировать запросы, ограничивать нагрузку и безопасно отменять ожидание.",
+      "setup": "Запустить python projects/api-lab/serve.py --protocol http. В API указать http://127.0.0.1:18427; если порт изменён, поменять URL во всех inputs.",
+      "steps": [
+        {
+          "do": "Запустить api-lab; Send GET /health, POST /qa-roundtrip с {\"id\":42}; раскрыть Limits.",
+          "expect": "HTTP 200; ответ POST содержит received.id=42; status, headers и body относятся к выбранному запросу."
+        },
+        {
+          "do": "Отправить /qa-slow?delay_ms=5000, Cancel, сразу Send /health; затем /large?bytes=100000 с меньшим byte budget.",
+          "expect": "Поздний slow response не заменяет новый health result; лимит явно показывает truncation/ошибку вместо полного PASS."
+        }
+      ],
+      "negative": {
+        "do": "Send /missing и /error; затем корректный /health.",
+        "expect": "404 и 500 видимы как ответы; следующий 200 не наследует body/status ошибки."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-02",
+      "title": "Environment variables, headers и PasswordSafe",
+      "source_capability": "API: Environments and secrets",
+      "capability_ids": [
+        "API-HTTP",
+        "IDE-SETTINGS"
+      ],
+      "inputs": [
+        "projects/api-lab/requests.http",
+        "projects/workspace/qa-openapi.json",
+        "projects/workspace/qa-postman.json",
+        "projects/workspace/qa-curl.txt",
+        "projects/workspace/qa-support/coverage.json"
+      ],
+      "purpose": "Повторно использовать окружения и передавать secrets через специальное хранилище.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Environments: создать demo-local, variable DEMO=local; Send /headers с X-Demo: {{DEMO}}.",
+          "expect": "demoHeader=local; выбранное окружение используется этим запросом."
+        },
+        {
+          "do": "С операторским одноразовым secret использовать Set secret и запрос /headers; открыть только несекретный settings export.",
+          "expect": "hasAuthorization показывает присутствие header без его значения; secret хранится через PasswordSafe, а не plain project JSON."
+        }
+      ],
+      "negative": {
+        "do": "Сослаться на {{MISSING_DEMO_VARIABLE}}.",
+        "expect": "Запрос отклоняется с указанием отсутствующей переменной; placeholder не отправляется буквальным текстом."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-03",
+      "title": "DSL, captures, assertions и последовательные Scenarios",
+      "source_capability": "API: Scenarios",
+      "capability_ids": [
+        "API-SCENARIOS"
+      ],
+      "inputs": [
+        "projects/api-lab/scenarios/happy.json",
+        "projects/api-lab/scenarios/assertion-fails.json",
+        "projects/api-lab/scenarios/missing-variable.json",
+        "projects/api-lab/scenarios/dsl-types.json",
+        "projects/api-lab/scenarios/wrong-json-type.json",
+        "projects/api-lab/scenarios/missing-json-pointer.json",
+        "projects/api-lab/scenarios/unsupported-javascript.json"
+      ],
+      "purpose": "Проверять API цепочками с точными assertions и передавать значения между шагами.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В Scenarios вставить dsl-types.json и запустить.",
+          "expect": "Шаг 1 проверяет number/string/boolean/null, массив и escaped JSON Pointer; capture ID=42 попадает в POST шага 2."
+        },
+        {
+          "do": "Повторить запуск и выполнить happy.json.",
+          "expect": "Captures принадлежат одному запуску; шаги исполняются последовательно, результат каждого шага виден."
+        }
+      ],
+      "negative": {
+        "do": "По очереди выполнить wrong-json-type.json, missing-json-pointer.json, missing-variable.json и unsupported-javascript.json.",
+        "expect": "Каждый завершается конкретной ошибкой; последующие шаги после ошибки не исполняются; Postman JS не запускается."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-04",
+      "title": "WebSocket и динамический gRPC",
+      "source_capability": "API: WebSocket and gRPC",
+      "capability_ids": [
+        "API-WEBSOCKET",
+        "API-GRPC"
+      ],
+      "inputs": [
+        "projects/api-lab/websocket_server.py",
+        "projects/api-lab/schema/echo.proto",
+        "projects/api-lab/schema/echo.pb",
+        "projects/api-lab/grpc_server.py"
+      ],
+      "purpose": "Исследовать сообщения WebSocket и schema-bound gRPC вызовы с контролем lifecycle.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Запустить все api-lab transports; WS Connect ws://127.0.0.1:18428 → Send ArchVerity → Close.",
+          "expect": "Входящий текст совпадает с отправленным; sequence/close состояние относится к текущей сессии."
+        },
+        {
+          "do": "gRPC: Load schema/echo.pb, target 127.0.0.1:18429; вызвать Echo/Health с {}, Echo/Say и Echo/Watch по README.",
+          "expect": "Imported google.protobuf.Empty разрешается; unary body корректен, server stream упорядочен, Cancel/deadline завершает вызов."
+        }
+      ],
+      "negative": {
+        "do": "WS send error/reconnect; gRPC Fail, deadline и Upload/Chat.",
+        "expect": "1011 и INVALID_ARGUMENT видимы; восстановление создаёт новую сессию; client/bidi streams явно unsupported, без зависания."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-05",
+      "title": "Четыре импорта, request exports, cookies и history",
+      "source_capability": "API: Import/export/cookies",
+      "capability_ids": [
+        "API-HTTP"
+      ],
+      "inputs": [
+        "projects/api-lab/requests.http",
+        "projects/workspace/qa-openapi.json",
+        "projects/workspace/qa-postman.json",
+        "projects/workspace/qa-curl.txt"
+      ],
+      "purpose": "Переносить запросы между форматами и управлять session cookies/history.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Через Import .http / Import cURL / Import OpenAPI/Postman импортировать четыре workspace inputs и отправить по одному запросу.",
+          "expect": "URL, method, headers/body перенесены; все запросы идут в тот же loopback API."
+        },
+        {
+          "do": "Copy cURL, Save .http, Copy OpenAPI, Copy Postman; повторно импортировать сохранённый demo request. Затем /cookies/set → /cookies/show → Clear cookies → show; открыть history.",
+          "expect": "Roundtrip сохраняет семантику запроса; hasDemoCookie меняется true → false; history повторяет выбранный собственный запрос."
+        }
+      ],
+      "negative": {
+        "do": "Импортировать повреждённую JSON-копию; Clear history.",
+        "expect": "Import error не заменяет исправный запрос; очищается история demo-запросов, не список исходных endpoint contracts."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-06",
+      "title": "Spring inspect, profiles и source navigation",
+      "source_capability": "Spring: Config inspection/profile filter/navigation",
+      "capability_ids": [
+        "DEV-SPRING",
+        "ARCH-PROPERTIES",
+        "ARCH-SCOPE"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/resources/application.yml",
+        "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+        "projects/workspace/payment-app/src/main/resources/application-demo.properties",
+        "projects/workspace/payment-app/src/main/resources/application-dev.yml",
+        "projects/workspace/.archflow.yml",
+        "projects/workspace/qa-support/extended_scenarios.py"
+      ],
+      "purpose": "Понять effective Spring configuration и найти её конкретный источник.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Spring → Inspect project; поиск payment и фильтр profile dev.",
+          "expect": "application.yml, application-dev.yml/properties и связанные keys различимы; профиль меняет effective view."
+        },
+        {
+          "do": "Открыть строку результата; сравнить override/import с .archflow.yml и локальными application-demo.properties.",
+          "expect": "Навигация идёт к точному ключу; local import и выбранные profiles отражаются в context fingerprint."
+        }
+      ],
+      "negative": {
+        "do": "На новой копии применить spring-profile или scope-change и пересканировать.",
+        "expect": "Scope/context change не объявляет исчезнувшее finding resolved; неподдержанный import получает диагностику."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-07",
+      "title": "Spring completion, docs, strings и injected language",
+      "source_capability": "Spring: Editor intelligence",
+      "capability_ids": [
+        "DEV-SPRING"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/resources/application.yml",
+        "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+        "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+        "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+        "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+      ],
+      "purpose": "Редактировать конфигурацию с completion/docs и переходами из кода.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В application-qa.properties и application.yml вызвать Ctrl+Space на ключе и Quick Documentation; использовать известный ключ payment из fixture.",
+          "expect": "Предложения и документация относятся к property/key context и доступным metadata, с источником определения."
+        },
+        {
+          "do": "В новых Java/Kotlin SpringPropertyReferences на ${server.port:8085} и ${spring.rabbitmq.virtual-host} вызвать Ctrl+B; в application-editor-demo.yml проверить sql, regex и cron value injection при наличии соответствующего language plugin.",
+          "expect": "Переход ведёт к определению выбранного ключа; Injection классифицируется как SQL, RegExp либо CRON по поддержанному key; SpEL/JSON/URL этим injector не поддержаны. Отсутствующий language plugin фиксируется отдельно."
+        }
+      ],
+      "negative": {
+        "do": "Использовать неизвестный ключ и обычную несвязанную строку.",
+        "expect": "Нет выдуманного определения или Spring injection; неразрешённость остаётся явной."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-08",
+      "title": "Spring YAML↔properties и key variants",
+      "source_capability": "Spring: Conversion/key variants",
+      "capability_ids": [
+        "DEV-SPRING"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/resources/application.yml",
+        "projects/workspace/payment-app/src/main/resources/application-qa.properties"
+      ],
+      "purpose": "Менять представление конфигурации, сохраняя ключи и значения.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Spring config action: конвертировать копию application.yml в properties и обратным действием в YAML.",
+          "expect": "Ключи, значения и вложенные пути сохраняют смысл; результат расположен в выбранном demo output."
+        },
+        {
+          "do": "Выбрать key с dotted/kebab naming и просмотреть предлагаемые relaxed variants/переход.",
+          "expect": "Преобразование относится к выбранному key; исходник и результат сравнимы."
+        }
+      ],
+      "negative": {
+        "do": "Конвертировать повреждённую YAML-копию либо неподдержанный неоднозначный input.",
+        "expect": "Появляется parse/validation error; исходный файл не заменяется успешной пустой конфигурацией."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-09",
+      "title": "Все четыре Spring live templates",
+      "source_capability": "Spring: Live templates",
+      "capability_ids": [
+        "DEV-SPRING"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/resources/application.yml",
+        "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+        "projects/runtime-evidence/src/main/java/demo/evidence/TemplateTargets.java",
+        "projects/runtime-evidence/src/main/resources/application-demo.properties"
+      ],
+      "purpose": "Быстро создавать типовые Spring declarations в правильном language context.",
+      "setup": "Открыть runtime-evidence с настоящим Spring Boot classpath. Java templates имеют JAVA_DECLARATION/JAVA_CODE contexts; afprofile имеет OTHER context и его YAML block проверяют в YAML input. Изменять только demo/scratch файлы.",
+      "steps": [
+        {
+          "do": "В Java declaration expand afcfgrecord; задать PREFIX=demo, NAME=DemoProperties, TYPE=String, PROPERTY=value.",
+          "expect": "Получается ConfigurationProperties record с prefix demo и компонентом value."
+        },
+        {
+          "do": "В TemplateTargets.java expand afvalue над полем; в scratch method expand afgetprop; в YAML application.yml expand afprofile.",
+          "expect": "afvalue создаёт @Value с key/default, afgetprop — getRequiredProperty, afprofile — spring.config.activate.on-profile block."
+        }
+      ],
+      "negative": {
+        "do": "Попытаться раскрыть Java template в несоответствующем language/context.",
+        "expect": "Java template не предлагается как подходящий; обычный введённый текст не выдаётся за успешное expansion. afprofile имеет общий OTHER context, поэтому проверяется отдельно."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-10",
+      "title": "MyBatis paste/selection → готовый SQL",
+      "source_capability": "MyBatis: Paste/selection reconstruction",
+      "capability_ids": [
+        "DEV-MYBATIS"
+      ],
+      "inputs": [
+        "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+        "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+        "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt"
+      ],
+      "purpose": "Получать исполнимый SQL из Preparing/Parameters без ручного подставления literals.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Скопировать обе строки Preparing/Parameters из MyBatisConsoleFixture.java в MyBatis panel → Restore.",
+          "expect": "Восстановлены id=42 и status='O''Reilly'; placeholders заменены в правильном порядке."
+        },
+        {
+          "do": "В Run console выделить тот же блок и вызвать Restore MyBatis SQL; проверить Format и Copy.",
+          "expect": "Контекстное действие и paste дают одинаковый SQL; formatting не меняет параметры."
+        }
+      ],
+      "negative": {
+        "do": "Убрать один Parameters value либо нарушить Preparing line.",
+        "expect": "Несовпадение параметров показано как partial/ошибка; не получается ложный полностью восстановленный SQL."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-11",
+      "title": "MyBatis live capture из Run console",
+      "source_capability": "MyBatis: Live console capture",
+      "capability_ids": [
+        "DEV-MYBATIS"
+      ],
+      "inputs": [
+        "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+        "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+        "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt"
+      ],
+      "purpose": "Восстанавливать запросы непосредственно из реального запуска приложения.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Запустить main MyBatisConsoleFixture в Run configuration; открыть MyBatis live console.",
+          "expect": "Реальные Preparing и Parameters захватываются в один восстановленный query."
+        },
+        {
+          "do": "Повторить Run, проверить выбранную строку, Copy/Format и доступную историю.",
+          "expect": "Новый query относится к новому запуску; SQL и escaped literal остаются воспроизводимыми."
+        }
+      ],
+      "negative": {
+        "do": "Остановить процесс до Parameters либо вывести посторонние log lines.",
+        "expect": "Частичный блок не подменяется завершённым query и не забирает параметры соседнего блока."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-12",
+      "title": "MyBatis Java/Kotlin/XML navigation и settings",
+      "source_capability": "MyBatis: Settings and mapper navigation",
+      "capability_ids": [
+        "DEV-MYBATIS",
+        "IDE-SETTINGS"
+      ],
+      "inputs": [
+        "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+        "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+        "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
+        "projects/workspace/qa-support/coverage.json"
+      ],
+      "purpose": "Переходить между mapper methods и XML statements, настроив поведение console.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Ctrl+B на PaymentMapper.findById и XML namespace/id/include refid; повторить PaymentNotificationMapper.kt ↔ PaymentNotificationMapper.xml.",
+          "expect": "Каждый переход ведёт к своему mapper/statement; Java, Kotlin и XML проверены отдельно."
+        },
+        {
+          "do": "В MyBatis Assistant изменить несекретную опцию live capture/format, применить, переоткрыть и повторить один query.",
+          "expect": "Опция сохранена и меняет именно назначенное поведение."
+        }
+      ],
+      "negative": {
+        "do": "В копии изменить statement id на неизвестный.",
+        "expect": "Нет перехода к чужому похожему statement; восстановление id возвращает правильную ссылку."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-13",
+      "title": "Ansible project model и offline editor support",
+      "source_capability": "Ansible: Project scan and offline IDE support",
+      "capability_ids": [
+        "DEV-ANSIBLE"
+      ],
+      "inputs": [
+        "projects/workspace/ansible/professional/playbooks/site.yml",
+        "projects/workspace/ansible/vault-plain.yml"
+      ],
+      "purpose": "Ориентироваться в Ansible roles/inventory/variables без обязательного сетевого каталога.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Inspect ansible/professional: inventories, group_vars/host_vars, roles, collection acme.platform, Jinja template.",
+          "expect": "Типы и связи видны с project-relative source locations."
+        },
+        {
+          "do": "Ctrl+B на role/import_tasks/include_vars/module references; Ctrl+Space на task module и доступной variable.",
+          "expect": "Переходы ведут к конкретному role/task/vars; offline module catalog и project symbols различимы."
+        }
+      ],
+      "negative": {
+        "do": "В копии сослаться на отсутствующий role/variable.",
+        "expect": "Неизвестная ссылка обозначается, а не ведёт к случайному соседнему файлу."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-14",
+      "title": "Vault encrypt и decrypt/edit/re-encrypt",
+      "source_capability": "Ansible: Vault decrypt/edit and encrypt",
+      "capability_ids": [
+        "DEV-ANSIBLE"
+      ],
+      "inputs": [
+        "projects/workspace/ansible/professional/playbooks/site.yml",
+        "projects/workspace/ansible/vault-plain.yml"
+      ],
+      "purpose": "Редактировать разрешённый Vault input с сохранением шифрованного состояния.",
+      "setup": "Нужны изолированная копия, отдельно разрешённый тестовый password и право на local encrypt/edit. В repository есть только synthetic plaintext; secret/ключи не создаются и не публикуются автоматически.",
+      "steps": [
+        {
+          "do": "На отдельной копии vault-plain.yml вызвать Encrypt Ansible Vault и использовать разрешённый операторский одноразовый password/vault-id.",
+          "expect": "Получен корректный $ANSIBLE_VAULT header; публичный fixture не изменён."
+        },
+        {
+          "do": "Decrypt/Edit, поменять синтетическое поле, сохранить; снова открыть с тем же password.",
+          "expect": "Изменённое значение восстановлено после re-encrypt; plaintext не сохранён отдельным project file."
+        }
+      ],
+      "negative": {
+        "do": "Неверный password/HMAC или Cancel в editor.",
+        "expect": "Ошибка fail-closed; Cancel сохраняет исходный encrypted input, никакого partial plaintext overwrite."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-15",
+      "title": "Ansible syntax check и process lifecycle",
+      "source_capability": "Ansible: Syntax check",
+      "capability_ids": [
+        "DEV-ANSIBLE"
+      ],
+      "inputs": [
+        "projects/workspace/ansible/professional/playbooks/site.yml",
+        "projects/workspace/ansible/vault-plain.yml"
+      ],
+      "purpose": "Получать результат установленного syntax checker, а не только parse модели.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "С установленным ansible-playbook выполнить ANSIBLE_SYNTAX_CHECK для ansible/playbook.yml.",
+          "expect": "Реальный process output и exit code показывают syntax result."
+        },
+        {
+          "do": "В отдельной копии нарушить YAML/task syntax, повторить и исправить.",
+          "expect": "Неверный input получает nonzero/diagnostic; исправленный input снова проверяется."
+        }
+      ],
+      "negative": {
+        "do": "Запустить при отсутствующем executable либо Cancel активную проверку.",
+        "expect": "Сообщается точная недоступная зависимость; Cancel завершает свой process, а не показывает старый PASS."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-16",
+      "title": "ShellCheck и shfmt diff",
+      "source_capability": "Shell/Bats: ShellCheck/shfmt",
+      "capability_ids": [
+        "DEV-SHELL"
+      ],
+      "inputs": [
+        "projects/workspace/shell-professional/lib/common.sh",
+        "projects/workspace/shell-professional/test/deploy.bats",
+        "projects/workspace/shell-professional/qa-debug.sh"
+      ],
+      "purpose": "Находить shell diagnostics и форматировать scripts по реальному diff.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "SHELLCHECK для shell-professional/lib/common.sh; SHFMT_DIFF для shell-tools/format.sh.",
+          "expect": "Показаны реальные tool diagnostics и ожидаемый formatting diff."
+        },
+        {
+          "do": "В копии применить предлагаемое форматирование, повторить diff; проверить Ctrl+B/rename function reference.",
+          "expect": "Diff исчезает после исправления; символ и его ссылки относятся к одной функции."
+        }
+      ],
+      "negative": {
+        "do": "Передать неподдержанный/отсутствующий path или отсутствующий executable.",
+        "expect": "Явная ошибка запуска/path validation; старый успешный tool output не считается новым."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-17",
+      "title": "Bats обнаружение и два настоящих теста",
+      "source_capability": "Shell/Bats: Bats tests",
+      "capability_ids": [
+        "DEV-SHELL"
+      ],
+      "inputs": [
+        "projects/workspace/shell-professional/lib/common.sh",
+        "projects/workspace/shell-professional/test/deploy.bats",
+        "projects/workspace/shell-professional/qa-debug.sh"
+      ],
+      "purpose": "Запускать Bats tests и отличать успешный process от пройденных assertions.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть shell-professional/test/deploy.bats; выполнить BATS_TEST с этим project-relative path.",
+          "expect": "Bats распознаёт test declarations и реально выполняет два fixture tests."
+        },
+        {
+          "do": "В копии изменить одно expected value и повторить; вернуть исходное значение.",
+          "expect": "Один test падает с понятным output; восстановление возвращает проходящий suite."
+        }
+      ],
+      "negative": {
+        "do": "Передать extensionless bin/deploy вместо Bats input.",
+        "expect": "Не происходит ложного Bats PASS по одному наличию shell file."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-18",
+      "title": "Shell editor, семь debugger commands и remote session",
+      "source_capability": "Shell/Bats: Local/remote debugger and editor support",
+      "capability_ids": [
+        "DEV-SHELL"
+      ],
+      "inputs": [
+        "projects/workspace/shell-professional/lib/common.sh",
+        "projects/workspace/shell-professional/test/deploy.bats",
+        "projects/workspace/shell-professional/qa-debug.sh"
+      ],
+      "purpose": "Исследовать shell execution и symbols локально или в явно выбранной remote среде.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Ctrl+Space/Quick Documentation/Ctrl+B на function, source и variable в shell-professional; запустить BASH_DEBUG qa-debug.sh.",
+          "expect": "Определения, документация и completion относятся к реальным символам; debugger session остановлена на понятной строке."
+        },
+        {
+          "do": "В своей сессии выполнить BREAKPOINT, STEP, NEXT, PRINT_VARIABLE, STACK, CONTINUE, CLEAR_BREAKPOINTS; remote вариант — по ENVIRONMENT_CHECKS с разрешённым SSH host.",
+          "expect": "Каждая команда имеет наблюдаемую строку/значение/stack; локальная и remote сессии связаны с указанным script."
+        }
+      ],
+      "negative": {
+        "do": "Команда после завершения сессии или unknown variable.",
+        "expect": "Явное terminal/not-found состояние без возобновления чужого процесса."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-19",
+      "title": "RN/Expo discovery и scripts",
+      "source_capability": "React Native: Detect projects/scripts",
+      "capability_ids": [
+        "DEV-MOBILE"
+      ],
+      "inputs": [
+        "projects/mobile-lab/package.json",
+        "projects/mobile-lab/package-lock.json",
+        "projects/mobile-lab/index.js",
+        "projects/mobile-lab/App.js",
+        "projects/mobile-lab/app.json"
+      ],
+      "purpose": "Находить настоящий RN/Expo project и выполнять выбранные package scripts.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "React Native → Detect projects в mobile-lab; выбрать найденное Expo/RN package.json.",
+          "expect": "Выбрано настоящее приложение com.archverity.demo с pinned lockfile; не workspace detection-only rn-qa."
+        },
+        {
+          "do": "RN_SCRIPT qa:verify; проверить work/qa-script-result.txt.",
+          "expect": "Процесс завершился успешно; файл содержит RN_SCRIPT_OK."
+        }
+      ],
+      "negative": {
+        "do": "Указать несуществующий script либо package без RN/Expo.",
+        "expect": "Появляется конкретная ошибка/detection result, без выдуманного bundle."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-20",
+      "title": "Metro, Expo, bundle и платформенные команды",
+      "source_capability": "React Native: RN/JS/platform commands",
+      "capability_ids": [
+        "DEV-MOBILE"
+      ],
+      "inputs": [
+        "projects/mobile-lab/package.json",
+        "projects/mobile-lab/package-lock.json",
+        "projects/mobile-lab/index.js",
+        "projects/mobile-lab/App.js",
+        "projects/mobile-lab/app.json"
+      ],
+      "purpose": "Запускать dev servers, получать JS bundles и работать с подготовленными native hosts.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "После npm ci по очереди RN_METRO и RN_EXPO; для каждого дождаться ready и нажать Stop.",
+          "expect": "Реальный dev server отвечает packager-status:running и после Stop порт закрыт."
+        },
+        {
+          "do": "RN_BUNDLE android/ios; затем на отдельно подготовленном host проверить RN_ANDROID_RUN, RN_IOS_RUN, GRADLE_TASK, COCOAPODS_INSTALL, IOS_DEVICES по mobile table.",
+          "expect": "JS bundle создан из index.js; native commands выполняются только с сгенерированными android/ios и нужным SDK/device/macOS."
+        }
+      ],
+      "negative": {
+        "do": "Выполнить native command без native folders или iOS command на Windows.",
+        "expect": "Диагностика prerequisites; JS bundle PASS не выдаётся за установленное native app."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-21",
+      "title": "ADB devices, logcat, reverse, reload и device changes",
+      "source_capability": "React Native: ADB device controls",
+      "capability_ids": [
+        "DEV-MOBILE"
+      ],
+      "inputs": [
+        "projects/mobile-lab/package.json",
+        "projects/mobile-lab/package-lock.json",
+        "projects/mobile-lab/index.js",
+        "projects/mobile-lab/App.js",
+        "projects/mobile-lab/app.json"
+      ],
+      "purpose": "Диагностировать своё мобильное приложение на явно выбранном устройстве.",
+      "setup": "Нужны Android SDK/ADB и выделенный device/emulator. Установка, очистка и удаление требуют конкретного разрешения оператора; в этом наборе они не исполняются автоматически.",
+      "steps": [
+        {
+          "do": "На выделенном disposable device проверить ADB_DEVICES, ADB_LOGCAT, ADB_REVERSE и ADB_RELOAD; нажать demo counter.",
+          "expect": "Device serial выбран явно; ARCHVERITY_DEMO_CLICK виден в logs; reverse/reload относятся к этому приложению."
+        },
+        {
+          "do": "ADB_INSTALL_APK, ADB_CLEAR_DATA и ADB_UNINSTALL проверять только после отдельного разрешения для этого package/device.",
+          "expect": "Оператор наблюдает установку, очистку данных либо отсутствие com.archverity.demo; команды не переключаются на другой package."
+        }
+      ],
+      "negative": {
+        "do": "Нет device, неверный serial либо неподготовленный APK.",
+        "expect": "Явная ошибка; чужое устройство или приложение не выбирается автоматически."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-22",
+      "title": "ANSI raw/rendered, search, wrap и source links",
+      "source_capability": "ANSI: Open registered log and render",
+      "capability_ids": [
+        "DEV-ANSI"
+      ],
+      "inputs": [
+        "projects/workspace/ansible/qa.ansi",
+        "projects/workspace/archflow-live.ansi"
+      ],
+      "purpose": "Читать цветные logs и переходить из записей к исходникам.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть ansible/qa.ansi и archflow-live.ansi через зарегистрированный editor; переключить raw/rendered.",
+          "expect": "Escape sequences превращаются в стили только в rendered view; исходный текст остаётся доступным."
+        },
+        {
+          "do": "Найти конкретный marker, включить wrap и открыть доступную source reference.",
+          "expect": "Поиск приводит к той же строке; wrap не меняет содержимое; ссылка открывает правильный файл."
+        }
+      ],
+      "negative": {
+        "do": "В обычном текстовом файле поместить похожую строку без соответствующей регистрации.",
+        "expect": "Editor selection следует extension/pattern settings; raw escape text не выдаётся за подтверждённую ANSI отрисовку."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-23",
+      "title": "Большой ANSI-log: bounded pages и Tail",
+      "source_capability": "ANSI: Large file pages",
+      "capability_ids": [
+        "DEV-ANSI"
+      ],
+      "inputs": [
+        "projects/workspace/ansible/qa.ansi",
+        "projects/workspace/archflow-live.ansi",
+        "suite-support/generate_large_ansi.py"
+      ],
+      "purpose": "Навигировать по большому log без загрузки всего текста в одну rendered страницу.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В отдельной workspace copy выполнить generate_large_ansi.py --output work/large.ansi; открыть файл.",
+          "expect": "Производитель сообщает 70001 строк и размер больше source threshold 5000000 bytes; используется large-log editor с bounded pages."
+        },
+        {
+          "do": "Проверить First → Next → Previous → Tail → First, затем Raw page / ANSI page.",
+          "expect": "Для 100-byte lines первая page начинается LINE-0000001, следующая LINE-0020001, Tail заканчивается LINE-0070001; byte offsets и navigation enabled state соответствуют странице. В ANSI page escape sequences оформлены стилями."
+        }
+      ],
+      "negative": {
+        "do": "Быстро сменить page и закрыть только свой log tab во время загрузки; затем открыть файл снова.",
+        "expect": "Поздняя загрузка не заменяет новую выбранную page и не пишет в закрытый editor; повторное открытие начинает текущий файл с First."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "DEVS-24",
+      "title": "ANSI settings и file registration",
+      "source_capability": "ANSI: Settings",
+      "capability_ids": [
+        "DEV-ANSI",
+        "IDE-SETTINGS"
+      ],
+      "inputs": [
+        "projects/workspace/ansible/qa.ansi",
+        "projects/workspace/archflow-live.ansi",
+        "projects/workspace/qa-support/coverage.json"
+      ],
+      "purpose": "Управлять регистрацией log editor и его resource limits.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Записать ANSI Log Editor patterns/render limit; добавить demo extension/pattern и переоткрыть matching файл.",
+          "expect": "Изменился выбор editor для указанного input; значение сохраняется после Apply/reopen."
+        },
+        {
+          "do": "Изменить Maximum rendered size в диапазоне 1..100 MB и один из 16 palette colors на #00AAFF; переоткрыть цветной log, затем вернуть исходные значения.",
+          "expect": "Размер и цвет сохраняются после Apply/reopen; corresponding ANSI foreground меняется, остальные file associations сохранены."
+        }
+      ],
+      "negative": {
+        "do": "Внести pattern с / либо \\ и palette color #12GG34; Apply.",
+        "expect": "ConfigurationException сообщает filename-only pattern либо требование #RRGGBB; некорректная настройка не применяется."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-01",
+      "title": "Анализ, обновление, отмена и индексация",
+      "source_capability": "Project analysis and refresh",
+      "capability_ids": [
+        "IDE-IMPACT",
+        "IDE-RUNTIME"
+      ],
+      "inputs": [
+        "projects/workspace/qa-support/apply_impact.py",
+        "projects/workspace/qa-support/prepare_impact.py",
+        "projects/workspace/QA_MATRIX_RU.md"
+      ],
+      "purpose": "Получать свежий анализ текущего проекта и отличать complete от interrupted scan.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть чистый workspace → Analyze project; записать HEAD и состояние completeness.",
+          "expect": "Snapshot относится к текущему проекту и revision; при доступном полном анализе clean HEAD → WORKTREE не имеет изменений."
+        },
+        {
+          "do": "На новой копии поменять один контракт; Analyze/Run again, затем проверить текущий snapshot. Cancel и Dumb Mode проверять как отдельные состояния.",
+          "expect": "Новый результат содержит своё изменение; cancelled/partial/indexing состояние не выдаётся за complete старый результат."
+        }
+      ],
+      "negative": {
+        "do": "Запустить до окончания index или изменить файл во время старого запроса.",
+        "expect": "Не возникает ложного complete result для другой revision; нужно дождаться готовности и повторить текущий scan."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-02",
+      "title": "HTTP server inventory: обычные, inherited и composed mappings",
+      "source_capability": "HTTP server inventory",
+      "capability_ids": [
+        "ARCH-MVC"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/java/sample/payment/DemoContractsController.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/DemoGet.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/InheritedController.java"
+      ],
+      "purpose": "Видеть объявленные HTTP provider contracts и происхождение inherited mappings.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Inventory → HTTP → поиск demo; открыть DemoContractsController.java и DemoGet.java.",
+          "expect": "Method/path и условия endpoint имеют locations к provider и composed annotation."
+        },
+        {
+          "do": "Найти inherited endpoint и открыть InheritedController.java/base declaration.",
+          "expect": "Наследуемый mapping сохраняет связь с исходной declaration; не появляется выдуманный runtime route."
+        }
+      ],
+      "negative": {
+        "do": "Добавить неизвестный runtime path либо unsupported expression в копии.",
+        "expect": "Неизвестное значение остаётся diagnostic/UNKNOWN, а не статически доказанным endpoint."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-03",
+      "title": "HTTP clients, route matching и условия",
+      "source_capability": "HTTP client and route compatibility",
+      "capability_ids": [
+        "ARCH-FEIGN",
+        "ARCH-EXCHANGE",
+        "ARCH-FLUENT",
+        "ARCH-HTTP-CONDITIONS"
+      ],
+      "inputs": [
+        "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+        "projects/first-result/payment-app/src/main/java/demo/payments/PaymentController.java",
+        "projects/workspace/order-app/src/main/java/sample/order/PaymentHttpExchange.java",
+        "projects/workspace/order-app/src/main/java/sample/order/FluentPaymentClients.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/DemoContractsController.java",
+        "projects/workspace/qa-support/extended_scenarios.py"
+      ],
+      "purpose": "Проверять согласованность client/provider routes и условия совместимости HTTP.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В first-result Analyze POST client vs PUT provider; открыть finding и обе стороны.",
+          "expect": "Несовместимость метода имеет provider/client source evidence; исправление client на PUT устраняет именно этот finding."
+        },
+        {
+          "do": "В workspace сравнить Feign, HttpExchange, RestTemplate/RestClient/WebClient; применить отдельно http-media-type и http-header-condition.",
+          "expect": "Resolved/inferred/dynamic отличаются; methods, paths, media negotiation и constraints показывают конкретную причину совместимости."
+        }
+      ],
+      "negative": {
+        "do": "У клиента убрать известный header/target факт или оставить динамический вызов.",
+        "expect": "Недостаток фактов остаётся UNKNOWN; не объявляется resolved runtime связь."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-04",
+      "title": "Kafka contracts: topic, group, binding и orphan",
+      "source_capability": "Kafka producer/consumer contracts",
+      "capability_ids": [
+        "ARCH-KAFKA"
+      ],
+      "inputs": [
+        "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/OrderListener.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/KafkaAdvanced.java"
+      ],
+      "purpose": "Понимать Kafka producer/consumer declarations и изменения статических bindings.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Inventory/Topology → Kafka; открыть send/ProducerRecord и listener/group/partition declarations.",
+          "expect": "Topics, producer/consumer, group и bean binding имеют source evidence."
+        },
+        {
+          "do": "На чистой сравнимой копии применить kafka-topic; открыть before/after и consumer path.",
+          "expect": "Отмечен конкретный topic change; internal/external topic semantics учитываются в orphan finding."
+        }
+      ],
+      "negative": {
+        "do": "Посмотреть pattern listener или неизвестный динамический topic.",
+        "expect": "Pattern/dynamic evidence не выдаётся за точное совпадение любого topic."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-05",
+      "title": "Kafka retry, DLT и reply paths",
+      "source_capability": "Kafka retry, DLT and reply paths",
+      "capability_ids": [
+        "ARCH-KAFKA"
+      ],
+      "inputs": [
+        "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/OrderListener.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/KafkaAdvanced.java"
+      ],
+      "purpose": "Отличать retry/DLT/reply topology от обычного message flow.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть retry/DLT/reply declarations в PaymentListener/KafkaAdvanced и соответствующие edges.",
+          "expect": "Retry/DLT/reply различаются от обычной producer→consumer связи и ведут к правильным строкам."
+        },
+        {
+          "do": "Перейти по reply source и проверить partition listener отдельно.",
+          "expect": "Direction, declared topic и source kind согласованы; topology не утверждает реальный broker delivery."
+        }
+      ],
+      "negative": {
+        "do": "Убрать статически известный reply topic в копии.",
+        "expect": "Недостающий факт обозначается; старое точное reply ребро не сохраняется как доказанное."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-06",
+      "title": "AMQP direct/topic/fanout/default exchange",
+      "source_capability": "AMQP/RabbitMQ declared routes",
+      "capability_ids": [
+        "ARCH-AMQP"
+      ],
+      "inputs": [
+        "projects/workspace/order-app/src/main/java/sample/order/AmqpPublisher.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/AmqpTopology.java",
+        "projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt"
+      ],
+      "purpose": "Исследовать объявленную RabbitMQ маршрутизацию по exchange/binding/queue.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Inventory/Topology → AMQP; пройти AmqpPublisher → exchange → binding → queue → Java/Kotlin listener.",
+          "expect": "Source locations и routing keys относятся к соответствующим producer/exchange/queue declarations."
+        },
+        {
+          "do": "Сравнить direct/topic/fanout/default cases в AmqpTopology; применить amqp-binding на новой копии.",
+          "expect": "Default exchange, fanout и topic/direct matcher различаются; изменение binding объясняет наблюдаемую связь."
+        }
+      ],
+      "negative": {
+        "do": "Неизвестный routingKey/queue либо dynamic broker declaration.",
+        "expect": "Статический анализ не подменяет неизвестное реальной доставкой сообщения."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-07",
+      "title": "DTO/Jackson: вложенность, коллекции, enum и Unknown",
+      "source_capability": "DTO wire-shape comparison",
+      "capability_ids": [
+        "ARCH-NESTED-DTO",
+        "ARCH-JACKSON",
+        "ARCH-UNKNOWN"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/java/sample/payment/DemoContractsController.java",
+        "projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt",
+        "projects/workspace/qa-support/extended_scenarios.py",
+        "projects/workspace/payment-app/src/main/java/sample/payment/BasicWireDto.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/WireController.java",
+        "projects/workspace/payment-app/src/main/java/sample/payment/UnknownContractsController.java",
+        "projects/workspace/order-app/src/main/java/sample/order/AmqpPublisher.java"
+      ],
+      "purpose": "Выявлять изменения wire shape и видеть пределы статически известного DTO.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть DTO wire-shape в Java и Kotlin: nested object, List/Map, nullable, enum, inheritance, snake_case, JsonProperty/Ignore/access/discriminator.",
+          "expect": "Wire names и request/response направления объяснимы исходными аннотациями; nested path отображается как конкретное поле."
+        },
+        {
+          "do": "Отдельно применить nested-request-required, enum-response-added, response-removed и response-optional-added.",
+          "expect": "Before/after показывает точный path/enum change; verdict учитывает направление контракта."
+        }
+      ],
+      "negative": {
+        "do": "Открыть generic/recursive UnknownContractsController.",
+        "expect": "Unsupported/bounded shape обозначается UNKNOWN; нет обещания полной wire-shape там, где данных нет."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "ARC-08",
+      "title": "Severity, confidence, disposition и evidence",
+      "source_capability": "Finding severity, confidence and disposition",
+      "capability_ids": [
+        "IDE-FINDINGS"
+      ],
+      "inputs": [
+        "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+        "projects/workspace/qa-support/extended_scenarios.py"
+      ],
+      "purpose": "Принимать решение по finding с учётом severity, confidence и причины disposition.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В first-result выбрать реальный method mismatch; открыть severity, confidence, reason и evidence.",
+          "expect": "Показаны причина и source locations обеих сторон, а не только цвет карточки."
+        },
+        {
+          "do": "После исправления пересканировать; на отдельной копии применить suppression с reason/expiry и пересканировать.",
+          "expect": "Исправление и suppression имеют различимые disposition; suppression не означает resolved."
+        }
+      ],
+      "negative": {
+        "do": "Просмотреть UNKNOWN либо partial result.",
+        "expect": "Unknown/low confidence не превращается в доказанный Breaking/Safe только по имени сценария."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "UI-01",
+      "title": "Все 15 экранов, layouts и navigation history",
+      "source_capability": "Workspace and 15 registered surfaces",
+      "capability_ids": [
+        "IDE-NAVIGATION",
+        "IDE-RUNTIME",
+        "IDE-LICENSE"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+        "projects/workspace/QA_MATRIX_RU.md"
+      ],
+      "purpose": "Найти каждый инструмент и выбрать удобное представление того же результата.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть Workspace, Impact, Inventory, Topology, Relations, Diagnostics, Spring, MyBatis, Ansible, Shell, API, React Native, ANSI, Dev Icons, Keystore.",
+          "expect": "Каждый экран имеет свой заголовок и рабочие actions; breadcrumbs/back/forward ведут к выбранному состоянию."
+        },
+        {
+          "do": "В Impact переключить Editor Companion, Graphite Focus, Paper Review; проверить compact/wide, reopen и настоящий Local/Split Mode отдельно.",
+          "expect": "Presentation меняет layout того же результата; source evidence/revision сохраняются. Runtime, license, renderer и accessibility наблюдения записываются раздельно."
+        }
+      ],
+      "negative": {
+        "do": "Перейти back/forward после смены filter/layout.",
+        "expect": "История не открывает карточку другого проекта или старый выбранный endpoint."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "UI-02",
+      "title": "Поиск, protocol filters и переход к исходнику",
+      "source_capability": "Search, protocol filtering and source navigation",
+      "capability_ids": [
+        "IDE-TOPOLOGY"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml"
+      ],
+      "purpose": "Сузить результат до нужного контракта и открыть его конкретный исходник.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Inventory: filter HTTP, search payments, выбрать endpoint; затем Kafka/AMQP.",
+          "expect": "Список соответствует одновременно query и protocol; выбранный элемент открывает свой source."
+        },
+        {
+          "do": "Сбросить query/filter, открыть relation и проверить source locations обоих концов.",
+          "expect": "Полный набор восстановлен; navigation ведёт к той же relation."
+        }
+      ],
+      "negative": {
+        "do": "Поиск без совпадений и reset.",
+        "expect": "Пустой результат объясним query; reset возвращает элементы, без ложного исчезновения из snapshot."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "UI-03",
+      "title": "Topology: уровни, focus и exploration",
+      "source_capability": "Topology exploration",
+      "capability_ids": [
+        "IDE-TOPOLOGY"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml"
+      ],
+      "purpose": "Исследовать graph через уровни детализации, focus и связи.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Topology: Services/Details level, HTTP/Kafka/AMQP filter; выбрать payment-service и relation.",
+          "expect": "Clustering/detail различаются, selection показывает связанную информацию и source evidence."
+        },
+        {
+          "do": "Включить focus на узле, пройти соседнее ребро и Reset focus; проверить graph keyboard selection.",
+          "expect": "Соседи соответствуют текущему graph; reset возвращает полный текущий graph, keyboard focus видим."
+        }
+      ],
+      "negative": {
+        "do": "Выбрать node после scope change/reanalysis.",
+        "expect": "Удалённая selection не сохраняет чужую details/card; partial scope явно обозначен."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "UI-04",
+      "title": "Diagnostics и восстановление после missing input",
+      "source_capability": "Diagnostics and recovery guidance",
+      "capability_ids": [
+        "IDE-FINDINGS"
+      ],
+      "inputs": [
+        "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+        "projects/workspace/qa-support/extended_scenarios.py"
+      ],
+      "purpose": "Понять причину неполного анализа и проверить восстановление после исправления input.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "На исправном workspace открыть Diagnostics и location каждого имеющегося сообщения.",
+          "expect": "Ноль diagnostic допустим; существующие сообщения показывают конкретный source/config факт."
+        },
+        {
+          "do": "На свежих копиях применить manifest-missing, runtime-beans-missing и verification-missing.",
+          "expect": "Для каждой отсутствующей зависимости есть точная причина и recovery guidance; snapshots не объявлены полностью исправными."
+        }
+      ],
+      "negative": {
+        "do": "Вернуть нужный файл и Analyze.",
+        "expect": "Устраняется связанная диагностика; повторное использование старого error/result не выдаётся за recovery."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CFG-01",
+      "title": "Scope, service IDs, profiles и aliases",
+      "source_capability": "Project scope, services, aliases and profiles",
+      "capability_ids": [
+        "ARCH-SCOPE",
+        "ARCH-PROPERTIES"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml",
+        "projects/workspace/qa-support/extended_scenarios.py",
+        "projects/workspace/payment-app/src/main/resources/application.yml",
+        "projects/workspace/payment-app/src/main/resources/application-demo.properties",
+        "projects/workspace/payment-app/src/main/resources/application-dev.yml"
+      ],
+      "purpose": "Определить границы проекта и effective profiles до сравнения контрактов.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Открыть .archflow.yml: services/modulePaths/paths/profiles/aliases; сопоставить с effective config в scan.",
+          "expect": "Project identity, service IDs и active property sources соответствуют этому workspace."
+        },
+        {
+          "do": "На новых копиях отдельно spring-profile/scope-change; повторить scan и сравнение.",
+          "expect": "Context/scope fingerprint меняется по фактам, а сравнимость baseline объясняется явно."
+        }
+      ],
+      "negative": {
+        "do": "Удалить требуемый service ID либо внести invalid profile expression.",
+        "expect": "Конфигурация получает validation error/partial; отсутствующие элементы не считаются resolved."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CFG-02",
+      "title": "Rules, guided alias/manifest suggestions и suppression",
+      "source_capability": "Rules, guided aliases/manifests and suppressions",
+      "capability_ids": [
+        "IDE-FINDINGS",
+        "ARCH-MANIFESTS"
+      ],
+      "inputs": [
+        "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+        "projects/workspace/qa-support/extended_scenarios.py",
+        "projects/workspace/qa-openapi.json",
+        "projects/workspace/qa-asyncapi.json",
+        "projects/workspace/qa-backstage.json",
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/contracts/qa-event-bus.archflow.json",
+        "projects/workspace/contracts/qa-backstage.archflow.json"
+      ],
+      "purpose": "Настраивать проверяемые правила и подавлять конкретные findings с объяснением.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Из реального finding открыть suggested alias/manifest action и проверить preview/copy.",
+          "expect": "Suggestion содержит подходящие service/contract IDs и источник причины; оно не применяется к чужому проекту."
+        },
+        {
+          "do": "В отдельной копии создать suppression с reason/expiry; применить rule-severity и повторить Analyze.",
+          "expect": "Suppression и severity rule действуют на выбранный rule/finding, с видимым конфигурационным изменением."
+        }
+      ],
+      "negative": {
+        "do": "Invalid suppression/expiry или unknown rule.",
+        "expect": "Validation error вместо молчаливого отключения всего анализа."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CFG-03",
+      "title": "Dependency allow/deny и bounded cycles",
+      "source_capability": "Dependency rules and cycles",
+      "capability_ids": [
+        "ARCH-POLICIES"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml",
+        "projects/workspace/qa-support/extended_scenarios.py"
+      ],
+      "purpose": "Контролировать разрешённые зависимости и прослеживать обнаруженные циклы.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Применить dependency-deny; открыть policy finding order→payment и его source.",
+          "expect": "Нарушение относится к явно запрещённым service IDs/protocol, а не ко всем relations."
+        },
+        {
+          "do": "На fixture reverse Payment→Order inspect cycle path и configured allow/deny precedence.",
+          "expect": "Цикл имеет bounded source-backed путь; policy применяется детерминированно."
+        }
+      ],
+      "negative": {
+        "do": "Unknown/dynamic dependency либо scope без одной стороны цикла.",
+        "expect": "Неполный путь не представляется полным доказанным циклом."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "IMP-01",
+      "title": "Git base/HEAD → WORKTREE и unsaved edits",
+      "source_capability": "Fresh Git base -> current working tree",
+      "capability_ids": [
+        "IDE-IMPACT",
+        "IDE-UNSAVED"
+      ],
+      "inputs": [
+        "projects/workspace/qa-support/apply_impact.py",
+        "projects/workspace/qa-support/prepare_impact.py",
+        "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+      ],
+      "purpose": "Узнать impact текущих файлов и несохранённых document changes относительно Git base.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Создать чистую workspace copy, Analyze HEAD; применить combined-breaking и сравнить HEAD → WORKTREE.",
+          "expect": "Before/after показывает method/request/response delta и актуальный revision/scope."
+        },
+        {
+          "do": "На новой копии изменить Java contract в editor без Save; Analyze и открыть Impact/gutter.",
+          "expect": "Снимок включает текущий document после корректного PSI commit; source card и gutter относятся к одной declaration."
+        }
+      ],
+      "negative": {
+        "do": "Неверная base revision, отсутствующий полный HEAD snapshot либо invalid scope.",
+        "expect": "Сравнение явно incomplete/unavailable; expected verdict не придумывается по имени мутации."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "IMP-02",
+      "title": "Local baseline: Save, compare и Clear",
+      "source_capability": "Same-scope local baseline",
+      "capability_ids": [
+        "IDE-BASELINE"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml"
+      ],
+      "purpose": "Сохранить локальную точку сравнения и корректно управлять её жизненным циклом.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Analyze clean workspace → Save baseline; изменить один contract и повторить Analyze.",
+          "expect": "Baseline comparison показывает именно это изменение с совпадающим scope."
+        },
+        {
+          "do": "Clear baseline и снова открыть comparison controls; для Git base выбрать реальный существующий ref.",
+          "expect": "Local baseline убран; Git и local baseline источники не смешиваются."
+        }
+      ],
+      "negative": {
+        "do": "Изменить profile/scope после Save baseline.",
+        "expect": "Несравнимость объясняется; исчезнувший из scope contract не помечается resolved."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "IMP-03",
+      "title": "Breaking/Safe/Unknown и downstream REVIEW",
+      "source_capability": "Direct verdicts and downstream review",
+      "capability_ids": [
+        "IDE-IMPACT",
+        "IDE-REVIEW"
+      ],
+      "inputs": [
+        "projects/workspace/qa-support/apply_impact.py",
+        "projects/workspace/qa-support/prepare_impact.py",
+        "projects/workspace/.archflow.yml",
+        "projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java"
+      ],
+      "purpose": "Различать прямую несовместимость, неизвестность и последующую область review.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "На разных чистых копиях request-required, response-optional-added и unknown shape; открыть reasons, consumers и paths.",
+          "expect": "Прямой verdict объяснён контрактом/направлением, Unknown — недостающим фактом."
+        },
+        {
+          "do": "Пройти downstream review path от payment через order/notification.",
+          "expect": "REVIEW отмечает достижимость и необходимость проверить последующие hops; не доказывает field transmission."
+        }
+      ],
+      "negative": {
+        "do": "Попытаться трактовать REVIEW path как доказанную wire incompatibility.",
+        "expect": "Evidence показывает границу такого вывода; direct Breaking и downstream REVIEW различимы."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "IMP-04",
+      "title": "Две стороны, field table, recommendation и Markdown review",
+      "source_capability": "Both-side evidence, before/after and review actions",
+      "capability_ids": [
+        "IDE-REVIEW",
+        "IDE-IMPACT"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml",
+        "projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java",
+        "projects/workspace/qa-support/apply_impact.py",
+        "projects/workspace/qa-support/prepare_impact.py"
+      ],
+      "purpose": "Проверить изменение с двух сторон и подготовить понятный review для коллеги.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В изменённой карточке открыть Было/Стало, field table, evidence и оба source links.",
+          "expect": "Удалённое providerReference и неизменённые поля различимы; ссылки ведут к correct side/revision."
+        },
+        {
+          "do": "Review → Copy/Save Markdown в work/; открыть файл и сверить owners/consumers/unknown limits.",
+          "expect": "Review пригоден для передачи коллеге: известные изменения, paths и ограничения относятся к этому comparison."
+        }
+      ],
+      "negative": {
+        "do": "Review для partial comparison или отсутствующего consumer evidence.",
+        "expect": "Ограничение включено в review; нет обещания доказанной совместимости по всем consumers."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "EVD-01",
+      "title": "External OpenAPI/AsyncAPI/Backstage manifests",
+      "source_capability": "Local external repository manifests",
+      "capability_ids": [
+        "ARCH-MANIFESTS"
+      ],
+      "inputs": [
+        "projects/workspace/qa-openapi.json",
+        "projects/workspace/qa-asyncapi.json",
+        "projects/workspace/qa-backstage.json",
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/contracts/qa-event-bus.archflow.json",
+        "projects/workspace/contracts/qa-backstage.archflow.json"
+      ],
+      "purpose": "Добавить известные контракты внешних репозиториев с явным file provenance.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Применить manifest-import на новой копии, Analyze и найти qa-loopback, qa-event-bus, qa-catalog-service.",
+          "expect": "HTTP/Kafka/service declarations видны с provenance manifest и project-relative locations."
+        },
+        {
+          "do": "Отдельно выполнить offline adapters и validate-manifest по CLI guide.",
+          "expect": "Canonical manifests валидны; повторный import не притворяется исходным Java declaration."
+        }
+      ],
+      "negative": {
+        "do": "manifest-missing либо unsupported raw external protocol.",
+        "expect": "Missing/unsupported input даёт явную диагностику; scope не расширяется произвольно."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "EVD-02",
+      "title": "Настоящие Actuator beans и local runtime metadata",
+      "source_capability": "Opt-in local Spring runtime-bean observation",
+      "capability_ids": [
+        "ARCH-RUNTIME"
+      ],
+      "inputs": [
+        "projects/runtime-evidence/src/main/java/demo/evidence/KafkaBindings.java",
+        "projects/runtime-evidence/run_local.py",
+        "projects/runtime-evidence/capture.py"
+      ],
+      "purpose": "Дополнить static bindings настоящим сохранённым наблюдением Spring beans.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Подготовить чистую runtime-evidence copy и реальный current IDEA export; запустить run_local.py и capture.py по README.",
+          "expect": "/actuator/beans действительно получен из этого Spring Boot; metadata связывает source revision/config/context/environment/time."
+        },
+        {
+          "do": "Analyze/import и открыть template→producer factory, listener factory→consumer factory observation.",
+          "expect": "Observed bindings привязаны к current snapshot; imported file provenance отображается как LOCAL_FILE."
+        }
+      ],
+      "negative": {
+        "do": "Подставить другой HEAD/configHash/context либо expired metadata.",
+        "expect": "Evidence отклонено/устарело; оно не меняет текущую static contract истину."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "EVD-03",
+      "title": "Executed verification: PASS, FAIL, drift и freshness",
+      "source_capability": "Imported executed contract-verification reports",
+      "capability_ids": [
+        "ARCH-VERIFICATION"
+      ],
+      "inputs": [
+        "projects/runtime-evidence/capture.py",
+        "projects/runtime-evidence/.archflow.yml",
+        "projects/runtime-evidence/contracts/payment-openapi.json"
+      ],
+      "purpose": "Связать выполненную проверку контракта с актуальным operation/spec/context.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "С реальным current export получить локальные Pact-shaped PASS, Pact-shaped FAIL и Drift-shaped PASS по runtime README.",
+          "expect": "Каждый отчёт получен именованным local HTTP verifier от реального запроса; это не vendor-authenticated run."
+        },
+        {
+          "do": "Convert/import verification, проверить operation/spec hash/version/outcome и consumer отображение.",
+          "expect": "PASS и FAIL различимы; verdict относится к конкретному operation и связанному spec/context."
+        }
+      ],
+      "negative": {
+        "do": "Изменить spec bytes, service version, revision/context либо удалить report.",
+        "expect": "Нет доверенного PASS от неверного/отсутствующего evidence; диагностирована конкретная причина."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "TEAM-01",
+      "title": "Analysis JSON и Impact JSON для команды",
+      "source_capability": "Copy/save analysis and Impact JSON",
+      "capability_ids": [
+        "IDE-EXPORTS"
+      ],
+      "inputs": [
+        "suite-support/inspect_export.py",
+        "projects/workspace/QA_MATRIX_RU.md"
+      ],
+      "purpose": "Передать фактический analysis/comparison результат машинному consumer.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "На current scan Copy/Save analysis JSON; на реальном comparison Copy/Save Impact JSON в work/.",
+          "expect": "Два документа имеют свои schema/kind/context; recorded revision и completeness совпадают с UI."
+        },
+        {
+          "do": "Inspect export script, затем сопоставить один finding и один field delta с исходником.",
+          "expect": "Формат проверяется отдельно от смысла; одинаковая запись прослеживается до видимого результата и source."
+        }
+      ],
+      "negative": {
+        "do": "Попытаться экспортировать неготовый/stale результат либо смешать Analysis с Impact.",
+        "expect": "Действие не маскирует stale state; consumer определяет тип и completeness документа."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "TEAM-02",
+      "title": "Mermaid, SVG, PNG и SARIF",
+      "source_capability": "Topology Mermaid/SVG/PNG and SARIF",
+      "capability_ids": [
+        "IDE-EXPORTS"
+      ],
+      "inputs": [
+        "suite-support/inspect_export.py",
+        "projects/workspace/QA_MATRIX_RU.md"
+      ],
+      "purpose": "Поделиться graph и finding locations в пригодных для просмотра/интеграции форматах.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Из текущей topology экспортировать Mermaid/SVG/PNG; открыть каждый artifact и проверить service IDs/edges.",
+          "expect": "Это читаемый текущий graph, PNG действительно изображение; SVG/Mermaid содержат ожидаемые узлы."
+        },
+        {
+          "do": "Export SARIF; inspect_export.py и сопоставить finding rule/location с текущим source.",
+          "expect": "SARIF 2.1.0 имеет правильные finding locations; source navigation и экспорт согласованы."
+        }
+      ],
+      "negative": {
+        "do": "Пустой graph, partial scope либо повреждённая копия export.",
+        "expect": "Пустота/ограничение обозначены; validator отвергает неверный format, а parse PASS не означает semantic PASS."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "IDE-01",
+      "title": "Java inspection и Impact gutter → карточка",
+      "source_capability": "Java inspection and Impact gutter navigation",
+      "capability_ids": [
+        "IDE-UNSAVED",
+        "IDE-FINDINGS"
+      ],
+      "inputs": [
+        "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+        "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+        "projects/workspace/qa-support/extended_scenarios.py"
+      ],
+      "purpose": "Увидеть finding в редакторе и перейти к связанному Impact без поиска вручную.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "На Java mismatch открыть inspection ArchFlowContract; изменить контракт и открыть Impact marker на той же declaration.",
+          "expect": "Highlight/gutter привязаны к правильной строке и contract ID."
+        },
+        {
+          "do": "Перейти marker → Impact → source; восстановить contract и пересканировать.",
+          "expect": "Navigation совпадает с выбранной карточкой; устаревший marker исчезает после восстановления."
+        }
+      ],
+      "negative": {
+        "do": "Во время indexing либо после удаления declaration открыть прежнее finding.",
+        "expect": "Неразрешимая location обозначается; нет navigation к похожей чужой declaration."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CLI-01",
+      "title": "Offline import adapters",
+      "source_capability": "Import adapters",
+      "capability_ids": [
+        "TOOLS-CI",
+        "ARCH-MANIFESTS"
+      ],
+      "inputs": [
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/qa-openapi.json",
+        "suite-support/inspect_export.py",
+        "projects/workspace/qa-asyncapi.json",
+        "projects/workspace/qa-backstage.json",
+        "projects/workspace/contracts/qa-event-bus.archflow.json",
+        "projects/workspace/contracts/qa-backstage.archflow.json"
+      ],
+      "purpose": "Получать canonical manifests из поддержанных source/spec форматов.",
+      "setup": "Tools distribution устанавливается отдельно, private Tools source в public Git отсутствует. Точные имена и аргументы команд приведены в ENVIRONMENT_CHECKS_RU.md и Tools --help.",
+      "steps": [
+        {
+          "do": "Из отдельно предоставленного Tools выполнить convert-openapi, convert-asyncapi, convert-backstage для трёх raw QA inputs, затем validate-manifest.",
+          "expect": "Каждый canonical output принят actual Tools validator и имеет правильные service/contract IDs."
+        },
+        {
+          "do": "import-sources для известного source language subset; результат сравнить с исходными declarations.",
+          "expect": "Manifest отражает заявленные поддержанные элементы и provenance; это не PSI scan произвольного runtime."
+        }
+      ],
+      "negative": {
+        "do": "Неверный JSON/spec или неподдержанный protocol.",
+        "expect": "Nonzero/diagnostic вместо пустого успешного manifest."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CLI-02",
+      "title": "Snapshot diff, git-diff и policy merge",
+      "source_capability": "Snapshot diff and team policy merge",
+      "capability_ids": [
+        "TOOLS-CI"
+      ],
+      "inputs": [
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/qa-openapi.json",
+        "suite-support/inspect_export.py",
+        "suite-support/team-policy.json",
+        "suite-support/project-policy.json"
+      ],
+      "purpose": "Сравнивать настоящие snapshots и объединять team/project policy.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Получить два настоящих same-scope exports из clean и mutated copy; выполнить diff и проверить Markdown; для git-diff использовать repository с реальными сохранёнными snapshot files.",
+          "expect": "Изменения и findings связываются с correct base/head; git-diff читает указанный существующий snapshot path."
+        },
+        {
+          "do": "policy-merge team-policy.json project-policy.json → work/merged-policy.json; открыть analysis.profiles и services.order-service.owner.",
+          "expect": "Profiles объединены в [default, demo], owner заменён на project-order-team; modules [order-app] и includeModules [*] сохранены, policyMetadata.merged=true."
+        }
+      ],
+      "negative": {
+        "do": "Нет snapshot в одном ref или несовместимые scopes.",
+        "expect": "Явная отсутствующая зависимость/несравнимость; ни одна сторона не подменяется текущим экспортом."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CLI-03",
+      "title": "CI gates findings и Impact",
+      "source_capability": "Snapshot CI and Impact gates",
+      "capability_ids": [
+        "TOOLS-CI"
+      ],
+      "inputs": [
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/qa-openapi.json",
+        "suite-support/inspect_export.py"
+      ],
+      "purpose": "Сделать findings и completeness проверяемым условием CI.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Для настоящего export выполнить ci --threshold ERROR --sarif/--report; для comparison ci-impact --fail-on BREAKING --require-complete.",
+          "expect": "Exit code соответствует фактическим findings/verdict/completeness; reports читаются."
+        },
+        {
+          "do": "Повторить на исправленном source/current export и сравнить controlled failing case.",
+          "expect": "Исправление меняет gate outcome по реальным данным; старый report не используется как новый."
+        }
+      ],
+      "negative": {
+        "do": "Incomplete/UNKNOWN comparison и строгий completeness gate.",
+        "expect": "Incomplete analysis отклоняется отдельно от severity threshold; отсутствующий scan не становится success."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CLI-04",
+      "title": "Fresh headless PSI producer и committed source",
+      "source_capability": "Fresh headless committed-source analysis",
+      "capability_ids": [
+        "TOOLS-CI",
+        "IDE-LICENSE"
+      ],
+      "inputs": [
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/qa-openapi.json",
+        "suite-support/inspect_export.py",
+        "projects/workspace/QA_MATRIX_RU.md"
+      ],
+      "purpose": "Выполнить новый PSI scan committed source в подготовленной licensed CI среде.",
+      "setup": "Нужны отдельно предоставленные IDE/plugin distribution и настоящий подготовленный licensed CI config. Credentials автоматически не копируются. Без этой среды NOT RUN; offline JSON gate не заменяет fresh producer.",
+      "steps": [
+        {
+          "do": "На clean repository с JDK/IDE/plugin paths и заранее лицензированным isolated CI profile выполнить headless-ci/headless-impact по environment guide.",
+          "expect": "Producer открывает committed source и выдаёт свежий PSI scan с реальным context/revision."
+        },
+        {
+          "do": "Изменить committed contract в новой fixture copy, повторить с новым HEAD и проверить результат/выходной gate.",
+          "expect": "Result принадлежит новому commit; working-tree assumptions и старый snapshot не заменяют PSI run."
+        }
+      ],
+      "negative": {
+        "do": "Нет entitlement/config, dirty repository или неподдержанный IDE/plugin.",
+        "expect": "Fail-closed с точной причиной; dev license override и synthetic snapshot не считаются полноценным producer proof."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "CLI-05",
+      "title": "Verification converter и реальный extension provider",
+      "source_capability": "Verification conversion and extension SDK",
+      "capability_ids": [
+        "TOOLS-CI",
+        "ARCH-VERIFICATION"
+      ],
+      "inputs": [
+        "projects/workspace/contracts/qa-loopback.archflow.json",
+        "projects/workspace/qa-openapi.json",
+        "suite-support/inspect_export.py",
+        "projects/runtime-evidence/capture.py",
+        "projects/runtime-evidence/.archflow.yml",
+        "projects/runtime-evidence/contracts/payment-openapi.json",
+        "suite-support/example_provider.py",
+        "suite-support/provider-context.json",
+        "suite-support/provider-invalid-context.json"
+      ],
+      "purpose": "Подключить свой manifest provider и преобразовать выполненные verification reports.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "Convert actual runtime reports с --format, --metadata, --spec по runtime guide; сравнить canonical outcome/hash/context.",
+          "expect": "Importer сохраняет observed PASS/FAIL и привязку к действительному report/spec."
+        },
+        {
+          "do": "run-provider suite-support/example_provider.py --context suite-support/provider-context.json -o work/provider.archflow.json; validate-manifest work/provider.archflow.json.",
+          "expect": "Настоящий SDK вызывает generate_manifest(context); manifest содержит demo-extension-service и проходит actual validator."
+        }
+      ],
+      "negative": {
+        "do": "run-provider с suite-support/provider-invalid-context.json либо повреждённым output.",
+        "expect": "Nonzero/validation error; неизвестные или отсутствующие данные не заменяются доверенным результатом."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    },
+    {
+      "id": "MCP-01",
+      "title": "Все четыре MCP tools и bounded responses",
+      "source_capability": "Four read-only MCP tools",
+      "capability_ids": [
+        "MCP-TOOLS"
+      ],
+      "inputs": [
+        "projects/workspace/.archflow.yml",
+        "projects/workspace/qa-support/coverage.json"
+      ],
+      "purpose": "Дать внешнему MCP consumer ограниченный read-only доступ к текущему результату.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "steps": [
+        {
+          "do": "В отсканированном same-project MCP Server вызвать change_impact и findings с параметрами из ENVIRONMENT_CHECKS_RU.md.",
+          "expect": "Ответы относятся к current HEAD/context, фильтры и limit соблюдены."
+        },
+        {
+          "do": "Вызвать contract_evidence с query реального contract и trace_flow inbound/outbound/both с непустым query; сопоставить paths с UI. Проверить limit=0 и завышенный limit.",
+          "expect": "Evidence и direction соответствуют выбранному объекту; limit ограничен до 1..100; locations project-relative без source text/absolute paths."
+        }
+      ],
+      "negative": {
+        "do": "Неверные severity/direction, пустой trace query и отсутствие real entitlement.",
+        "expect": "Explicit validation/entitlement error; пустой evidence ответ не превращается в выдуманный contract. Evidence optional query может быть пустым; неизвестный query допускает пустой результат."
+      },
+      "restore": "Работать в отдельной копии. Отменить свои изменения в редакторе, вернуть изменённую настройку, остановить только запущенный для этой проверки процесс. Для следующей мутации создать новую чистую копию; исходный набор сохраняется.",
+      "capture": "Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.",
+      "consumer_status": "NOT_RUN"
+    }
+  ]
+}

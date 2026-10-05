@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Types, null, arrays and escaped JSON Pointer",
+    "url": "http://127.0.0.1:18427/dsl-shapes",
+    "before": "set variable DEMO = local\nset header X-Demo = {{DEMO}}\nremove header X-Old",
+    "after": "assert status == 200\nassert json /id == 42\nassert json /numericString == \"42\"\nassert json /enabled == true\nassert json /optional == null\nassert json /items/0/id == 42\nassert json /a~1b/~0name == \"escaped\"\ncapture ID = json /items/0/id\ncapture TYPE = header Content-Type"
+  },
+  {
+    "name": "Capture feeds the next request",
+    "method": "POST",
+    "url": "http://127.0.0.1:18427/qa-roundtrip",
+    "headers": {"Content-Type": "application/json"},
+    "body": "{\"id\":{{ID}}}",
+    "after": "assert status == 200\nassert json /received/id == 42"
+  }
+]

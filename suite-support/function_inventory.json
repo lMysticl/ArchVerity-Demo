@@ -1,0 +1,255 @@
+{
+  "source_commit": "4af095685012405a9420415a0e26c3256c5a61a6",
+  "product_version": "3.0.3",
+  "functions": [
+    {
+      "id": "DEV-01",
+      "capability": "3 bundled styles produce complete SVG icon assets from 63 code-owned DevIconSpec entries; same production catalog styles feed IntelliJ painting."
+    },
+    {
+      "id": "DEV-02",
+      "capability": "Three named bundled variants: ArchVerity Studio, ArchVerity Outline, ArchVerity Contrast; each provides the same semantic glyph catalog with a distinct visual treatment."
+    },
+    {
+      "id": "DEV-03",
+      "capability": "Global and project-level enablement, project INHERIT/ENABLED/DISABLED override, independent global/project rules, IntelliJ PSI/file icon providers and Project View refresh."
+    },
+    {
+      "id": "DEV-04",
+      "capability": "Rule authoring supports file/folder target, exact/glob/regex matcher, global or project origin, priority, deterministic precedence, submodule-only behavior and explicit diagnostics."
+    },
+    {
+      "id": "DEV-05",
+      "capability": "Import, enable/disable, remove from registry, replace with confirmation, and export custom .aficons packs; generated bundled packs are exportable when paid entitlement permits."
+    },
+    {
+      "id": "KEY-01",
+      "capability": "Read-only open/inspect JKS,JCEKS,PKCS12/PFX,BKS,BCFKS,UBER; output provider/type, entry alias/kind/created time/certificate chain and certificate metadata."
+    },
+    {
+      "id": "KEY-02",
+      "capability": "Read-only PEM/DER inspection of certificate, CRL, public key, private-key metadata and PKCS#10 CSR; reports certificate validity/signature metadata, CSR verification and selected CRL fields."
+    },
+    {
+      "id": "DEVS-01",
+      "capability": "API: HTTP requests"
+    },
+    {
+      "id": "DEVS-02",
+      "capability": "API: Environments and secrets"
+    },
+    {
+      "id": "DEVS-03",
+      "capability": "API: Scenarios"
+    },
+    {
+      "id": "DEVS-04",
+      "capability": "API: WebSocket and gRPC"
+    },
+    {
+      "id": "DEVS-05",
+      "capability": "API: Import/export/cookies"
+    },
+    {
+      "id": "DEVS-06",
+      "capability": "Spring: Config inspection/profile filter/navigation"
+    },
+    {
+      "id": "DEVS-07",
+      "capability": "Spring: Editor intelligence"
+    },
+    {
+      "id": "DEVS-08",
+      "capability": "Spring: Conversion/key variants"
+    },
+    {
+      "id": "DEVS-09",
+      "capability": "Spring: Live templates"
+    },
+    {
+      "id": "DEVS-10",
+      "capability": "MyBatis: Paste/selection reconstruction"
+    },
+    {
+      "id": "DEVS-11",
+      "capability": "MyBatis: Live console capture"
+    },
+    {
+      "id": "DEVS-12",
+      "capability": "MyBatis: Settings and mapper navigation"
+    },
+    {
+      "id": "DEVS-13",
+      "capability": "Ansible: Project scan and offline IDE support"
+    },
+    {
+      "id": "DEVS-14",
+      "capability": "Ansible: Vault decrypt/edit and encrypt"
+    },
+    {
+      "id": "DEVS-15",
+      "capability": "Ansible: Syntax check"
+    },
+    {
+      "id": "DEVS-16",
+      "capability": "Shell/Bats: ShellCheck/shfmt"
+    },
+    {
+      "id": "DEVS-17",
+      "capability": "Shell/Bats: Bats tests"
+    },
+    {
+      "id": "DEVS-18",
+      "capability": "Shell/Bats: Local/remote debugger and editor support"
+    },
+    {
+      "id": "DEVS-19",
+      "capability": "React Native: Detect projects/scripts"
+    },
+    {
+      "id": "DEVS-20",
+      "capability": "React Native: RN/JS/platform commands"
+    },
+    {
+      "id": "DEVS-21",
+      "capability": "React Native: ADB device controls"
+    },
+    {
+      "id": "DEVS-22",
+      "capability": "ANSI: Open registered log and render"
+    },
+    {
+      "id": "DEVS-23",
+      "capability": "ANSI: Large file pages"
+    },
+    {
+      "id": "DEVS-24",
+      "capability": "ANSI: Settings"
+    },
+    {
+      "id": "ARC-01",
+      "capability": "Project analysis and refresh"
+    },
+    {
+      "id": "ARC-02",
+      "capability": "HTTP server inventory"
+    },
+    {
+      "id": "ARC-03",
+      "capability": "HTTP client and route compatibility"
+    },
+    {
+      "id": "ARC-04",
+      "capability": "Kafka producer/consumer contracts"
+    },
+    {
+      "id": "ARC-05",
+      "capability": "Kafka retry, DLT and reply paths"
+    },
+    {
+      "id": "ARC-06",
+      "capability": "AMQP/RabbitMQ declared routes"
+    },
+    {
+      "id": "ARC-07",
+      "capability": "DTO wire-shape comparison"
+    },
+    {
+      "id": "ARC-08",
+      "capability": "Finding severity, confidence and disposition"
+    },
+    {
+      "id": "UI-01",
+      "capability": "Workspace and 15 registered surfaces"
+    },
+    {
+      "id": "UI-02",
+      "capability": "Search, protocol filtering and source navigation"
+    },
+    {
+      "id": "UI-03",
+      "capability": "Topology exploration"
+    },
+    {
+      "id": "UI-04",
+      "capability": "Diagnostics and recovery guidance"
+    },
+    {
+      "id": "CFG-01",
+      "capability": "Project scope, services, aliases and profiles"
+    },
+    {
+      "id": "CFG-02",
+      "capability": "Rules, guided aliases/manifests and suppressions"
+    },
+    {
+      "id": "CFG-03",
+      "capability": "Dependency rules and cycles"
+    },
+    {
+      "id": "IMP-01",
+      "capability": "Fresh Git base -> current working tree"
+    },
+    {
+      "id": "IMP-02",
+      "capability": "Same-scope local baseline"
+    },
+    {
+      "id": "IMP-03",
+      "capability": "Direct verdicts and downstream review"
+    },
+    {
+      "id": "IMP-04",
+      "capability": "Both-side evidence, before/after and review actions"
+    },
+    {
+      "id": "EVD-01",
+      "capability": "Local external repository manifests"
+    },
+    {
+      "id": "EVD-02",
+      "capability": "Opt-in local Spring runtime-bean observation"
+    },
+    {
+      "id": "EVD-03",
+      "capability": "Imported executed contract-verification reports"
+    },
+    {
+      "id": "TEAM-01",
+      "capability": "Copy/save analysis and Impact JSON"
+    },
+    {
+      "id": "TEAM-02",
+      "capability": "Topology Mermaid/SVG/PNG and SARIF"
+    },
+    {
+      "id": "IDE-01",
+      "capability": "Java inspection and Impact gutter navigation"
+    },
+    {
+      "id": "CLI-01",
+      "capability": "Import adapters"
+    },
+    {
+      "id": "CLI-02",
+      "capability": "Snapshot diff and team policy merge"
+    },
+    {
+      "id": "CLI-03",
+      "capability": "Snapshot CI and Impact gates"
+    },
+    {
+      "id": "CLI-04",
+      "capability": "Fresh headless committed-source analysis"
+    },
+    {
+      "id": "CLI-05",
+      "capability": "Verification conversion and extension SDK"
+    },
+    {
+      "id": "MCP-01",
+      "capability": "Four read-only MCP tools"
+    }
+  ],
+  "schema_version": 1
+}

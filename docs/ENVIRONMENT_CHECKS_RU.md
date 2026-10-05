@@ -62,6 +62,21 @@ project-relative locations, без source snippets/absolute paths. Повтор�
 
 ## JSON, CLI и headless
 
+Раскрытые CLI сценарии: [CLI-01–CLI-05](ALL_FUNCTIONS_RU.md#cli-01).
+Для SDK используйте собственный публичный `suite-support/example_provider.py`:
+
+```powershell
+python -m archflow_tools run-provider suite-support/example_provider.py --context suite-support/provider-context.json -o work/provider.archflow.json
+python -m archflow_tools validate-manifest work/provider.archflow.json
+python -m archflow_tools policy-merge suite-support/team-policy.json suite-support/project-policy.json -o work/merged-policy.json
+```
+
+Tools предоставляется отдельно. В provider output должен присутствовать
+`demo-extension-service`; invalid context должен завершиться nonzero. Policy
+merge объединяет profiles в `["default", "demo"]`, заменяет owner на
+`project-order-team`, сохраняя
+team `includeModules` и service `modules`.
+
 Реальные IDE exports проверяйте на format и затем на текущую identity:
 
 ```powershell

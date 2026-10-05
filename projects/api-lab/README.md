@@ -1,6 +1,10 @@
 # API Client laboratory
 
 HTTP, WebSocket and gRPC use real loopback servers. No remote service is needed.
+
+Подробные действия API Client, environments/secrets, DSL, WebSocket/gRPC,
+imports/exports/cookies раскрыты в [полном руководстве](../../docs/ALL_FUNCTIONS_RU.md#devs-01).
+Все остальные возможности плагина доступны через содержание этого руководства.
 Use the commands from the repository root; Python 3.10+ is required.
 
 ```powershell
@@ -55,3 +59,14 @@ work/api-venv/Scripts/python.exe -m unittest discover -s projects/api-lab -p tes
 These tests send actual HTTP/WebSocket/gRPC traffic and verify errors, sizes,
 deadlines, cancellation and import completeness. They prove the laboratory's
 servers; the ArchVerity UI steps above need their own IDEA run.
+
+Additional scenario inputs:
+
+- `scenarios/dsl-types.json`: numbers versus strings, boolean/null, arrays,
+  RFC 6901 escaped keys and capture → next HTTP request, using `/dsl-shapes`.
+- `scenarios/wrong-json-type.json`: number `42` compared to string `"42"` fails.
+- `scenarios/missing-json-pointer.json`: a missing field differs from JSON null.
+- `scenarios/unsupported-javascript.json`: Postman JavaScript is rejected.
+
+The negative chains must stop before their second step. These are ArchVerity DSL
+consumer recipes; the protocol tests separately verify their actual server input.

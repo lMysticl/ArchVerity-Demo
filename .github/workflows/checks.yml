@@ -26,6 +26,12 @@ jobs:
         run: python -B -X utf8 suite-support/check_suite.py
       - name: Workspace coverage negative controls
         run: python -B -X utf8 -m unittest discover -s projects/workspace/qa-support -p test_verify_coverage.py -v
+      - name: Complete function guide negative controls
+        run: python -B -X utf8 -m unittest discover -s suite-support -p test_playbooks.py -v
+      - name: Public-only JDK truststore inputs
+        run: java suite-support/PublicTruststores.java verify projects/workspace
+      - name: Actual Git submodule fixture
+        run: python -B -X utf8 suite-support/prepare_icon_submodule.py --output "${{ runner.temp }}/archverity-icon-demo"
       - name: Install pinned protocol dependencies
         run: python -m pip install -r projects/api-lab/requirements.txt
       - name: Real TCP protocol tests

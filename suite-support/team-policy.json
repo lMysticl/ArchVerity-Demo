@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "analysis": {"profiles": ["default"], "includeModules": ["*"]},
+  "services": {"order-service": {"modules": ["order-app"], "owner": "team-default"}}
+}

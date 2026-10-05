@@ -1,0 +1,945 @@
+[
+  {
+    "id": "surfaces:WORKSPACE",
+    "feature_id": "UI-01",
+    "trigger": "Workspace → Analyze project; открыть quick link и back.",
+    "expect": "Current project/scan state и заголовок соответствуют экрану; история возвращает Workspace.",
+    "inputs": [
+      "projects/workspace/README_RU.md"
+    ]
+  },
+  {
+    "id": "surfaces:IMPACT",
+    "feature_id": "IMP-01",
+    "trigger": "Чистый HEAD → WORKTREE, затем отдельная combined-breaking copy.",
+    "expect": "Пустой clean comparison и точный changed-contract comparison различимы.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+      "projects/workspace/qa-support/apply_impact.py",
+      "projects/workspace/contracts/qa-loopback.archflow.json",
+      "projects/workspace/contracts/qa-event-bus.archflow.json",
+      "projects/workspace/contracts/qa-backstage.archflow.json"
+    ]
+  },
+  {
+    "id": "surfaces:INVENTORY",
+    "feature_id": "ARC-02",
+    "trigger": "Inventory → HTTP, search demo, открыть endpoint.",
+    "expect": "Method/path/source относятся к выбранному provider.",
+    "inputs": [
+      "projects/workspace/order-app/src/main/java/sample/order/PaymentClient.java"
+    ]
+  },
+  {
+    "id": "surfaces:TOPOLOGY",
+    "feature_id": "UI-03",
+    "trigger": "Topology → выбрать payment-service, Focus и Reset focus.",
+    "expect": "Соседи и затем весь текущий graph отображаются согласованно.",
+    "inputs": [
+      "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java",
+      "projects/workspace/payment-app/src/main/java/sample/payment/OrderListener.java"
+    ]
+  },
+  {
+    "id": "surfaces:RELATIONS",
+    "feature_id": "UI-02",
+    "trigger": "Relations → выбрать order→payment HTTP связь; открыть оба source links.",
+    "expect": "Обе locations принадлежат концам выбранной relation.",
+    "inputs": [
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentListener.kt"
+    ]
+  },
+  {
+    "id": "surfaces:DIAGNOSTICS",
+    "feature_id": "UI-04",
+    "trigger": "Diagnostics на clean и manifest-missing copy.",
+    "expect": "Clean zero допустим; missing input имеет конкретную причину и location.",
+    "inputs": [
+      "projects/workspace/.archflow.yml",
+      "projects/workspace/qa-support/apply_impact.py"
+    ]
+  },
+  {
+    "id": "surfaces:SPRING",
+    "feature_id": "DEVS-06",
+    "trigger": "Spring → Inspect project → profile dev → key location.",
+    "expect": "Effective configuration и navigation показывают нужный profile/key.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/resources/application-dev.yml",
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties"
+    ]
+  },
+  {
+    "id": "surfaces:MYBATIS",
+    "feature_id": "DEVS-10",
+    "trigger": "MyBatis → Paste Preparing/Parameters → Restore SQL.",
+    "expect": "id=42 и escaped O''Reilly заменяют правильные placeholders.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentMapper.java",
+      "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java"
+    ]
+  },
+  {
+    "id": "surfaces:ANSIBLE",
+    "feature_id": "DEVS-13",
+    "trigger": "Ansible → Inspect ansible/professional → role/task reference.",
+    "expect": "Index и navigation ведут к выбранному role/task/variable.",
+    "inputs": [
+      "projects/workspace/ansible/professional/playbooks/site.yml",
+      "projects/workspace/ansible/professional/vars/release.yml",
+      "projects/workspace/ansible/vault-plain.yml"
+    ]
+  },
+  {
+    "id": "surfaces:SHELL",
+    "feature_id": "DEVS-16",
+    "trigger": "Shell → SHELLCHECK/SHFMT_DIFF на указанных scripts.",
+    "expect": "Реальный tool output/exit/diff привязан к этому script.",
+    "inputs": [
+      "projects/workspace/shell-professional/bin/deploy",
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/lib/common.sh"
+    ]
+  },
+  {
+    "id": "surfaces:API",
+    "feature_id": "DEVS-01",
+    "trigger": "API → Send /health → slow Cancel → Send health.",
+    "expect": "200 с корректным body; late cancelled reply не заменяет новый result.",
+    "inputs": [
+      "projects/workspace/qa-api.http",
+      "projects/workspace/qa-slow.http",
+      "projects/workspace/qa-openapi.json",
+      "projects/workspace/qa-postman.json",
+      "projects/workspace/qa-curl.txt",
+      "projects/workspace/qa-support/local_api.py"
+    ]
+  },
+  {
+    "id": "surfaces:REACT_NATIVE",
+    "feature_id": "DEVS-19",
+    "trigger": "React Native → Detect projects → mobile-lab → qa:verify.",
+    "expect": "Настоящий app найден; process создаёт RN_SCRIPT_OK.",
+    "inputs": [
+      "projects/workspace/rn-qa/package.json",
+      "projects/workspace/rn-qa/scripts/qa-verify.js"
+    ]
+  },
+  {
+    "id": "surfaces:ANSI",
+    "feature_id": "DEVS-22",
+    "trigger": "ANSI → Open qa.ansi → rendered/raw, search marker.",
+    "expect": "Стили и raw escape отличаются; marker находится в правильной строке.",
+    "inputs": [
+      "projects/workspace/archflow-live.ansi",
+      "projects/workspace/ansible/qa.ansi"
+    ]
+  },
+  {
+    "id": "surfaces:DEV_ICONS",
+    "feature_id": "DEV-05",
+    "trigger": "Dev Icons → import demo pack → apply → replace v2.",
+    "expect": "Реальная иконка обновляется; version/accent относятся к v2.",
+    "inputs": [
+      "projects/workspace/archverity-qa.aficons",
+      "projects/workspace/archflow-studio.aficons"
+    ]
+  },
+  {
+    "id": "surfaces:KEYSTORE",
+    "feature_id": "KEY-01",
+    "trigger": "Keystore → qa-truststore.p12 с demo password.",
+    "expect": "PKCS12 provider/type, alias и trustedCertEntry видимы.",
+    "inputs": [
+      "projects/workspace/qa-cert.pem",
+      "projects/workspace/qa-cert.der",
+      "projects/workspace/qa-public-artifacts.pem",
+      "projects/workspace/qa-request.csr",
+      "projects/workspace/qa-public-key.pem",
+      "projects/workspace/qa-truststore.p12"
+    ]
+  },
+  {
+    "id": "actions:ArchFlow.RestoreMyBatisSql",
+    "feature_id": "DEVS-10",
+    "trigger": "Выделить обе console lines → Restore MyBatis SQL.",
+    "expect": "Готовый SQL содержит 42 и корректно escaped literal.",
+    "inputs": [
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java"
+    ]
+  },
+  {
+    "id": "actions:ArchFlow.SpringConfigTools",
+    "feature_id": "DEVS-08",
+    "trigger": "Context action на application.yml/properties → conversion/key tools.",
+    "expect": "Выбранные keys/values сохранены в корректном преобразованном input.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties"
+    ]
+  },
+  {
+    "id": "actions:ArchFlow.InspectKeystore",
+    "feature_id": "KEY-01",
+    "trigger": "Project View qa-truststore.p12 → Inspect Keystore.",
+    "expect": "Показан выбранный store, alias и fingerprint.",
+    "inputs": [
+      "projects/workspace/qa-truststore.p12"
+    ]
+  },
+  {
+    "id": "actions:ArchFlow.InspectX509Artifact",
+    "feature_id": "KEY-02",
+    "trigger": "По очереди Inspect PEM/DER, CSR, CRL и public key.",
+    "expect": "Type-specific metadata корректны; PEM/DER fingerprint совпадает.",
+    "inputs": [
+      "projects/workspace/qa-cert.pem",
+      "projects/workspace/qa-cert.der",
+      "projects/workspace/qa-public-artifacts.pem",
+      "projects/workspace/qa-request.csr",
+      "projects/workspace/qa-public-key.pem"
+    ]
+  },
+  {
+    "id": "actions:ArchFlow.DecryptEditAnsibleVault",
+    "feature_id": "DEVS-14",
+    "trigger": "На разрешённом isolated encrypted demo input → Decrypt/Edit, edit/save/reopen.",
+    "expect": "Re-encrypt сохраняет изменение; wrong password/Cancel не заменяют ciphertext.",
+    "inputs": [
+      "projects/workspace/ansible/vault-plain.yml"
+    ]
+  },
+  {
+    "id": "actions:ArchFlow.EncryptAnsibleVault",
+    "feature_id": "DEVS-14",
+    "trigger": "На отдельной копии vault-plain.yml → Encrypt с операторским тестовым password.",
+    "expect": "Vault header создан; plaintext public fixture и реальные secrets не публикуются.",
+    "inputs": [
+      "projects/workspace/ansible/vault-plain.yml"
+    ]
+  },
+  {
+    "id": "mcp:archverity_change_impact",
+    "feature_id": "MCP-01",
+    "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_change_impact с {\"base_revision\":\"HEAD\",\"limit\":10}",
+    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "inputs": [
+      "projects/workspace/qa-support/apply_impact.py"
+    ]
+  },
+  {
+    "id": "mcp:archverity_findings",
+    "feature_id": "MCP-01",
+    "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_findings с {\"severity\":\"ERROR\",\"include_suppressed\":false,\"limit\":10}",
+    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "mcp:archverity_contract_evidence",
+    "feature_id": "MCP-01",
+    "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_contract_evidence с {\"query\":\"payments\",\"limit\":10}",
+    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_trace_flow",
+    "feature_id": "MCP-01",
+    "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_trace_flow с {\"query\":\"payment-service\",\"direction\":\"both\",\"max_depth\":4,\"limit\":20}",
+    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "inputs": [
+      "projects/workspace/order-app/src/main/java/sample/order/PaymentClient.java"
+    ]
+  },
+  {
+    "id": "processCommands:RN_SCRIPT",
+    "feature_id": "DEVS-19",
+    "trigger": "В выбранной console запустить RN_SCRIPT с qa:verify; проверить Stop/repeat.",
+    "expect": "RN_SCRIPT_OK в work/qa-script-result.txt",
+    "inputs": [
+      "projects/workspace/rn-qa/package.json"
+    ]
+  },
+  {
+    "id": "processCommands:RN_METRO",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить RN_METRO с no argument; проверить Stop/repeat.",
+    "expect": "Реальный Metro ready/status, Stop закрывает свой process/port",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:RN_EXPO",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить RN_EXPO с no argument; проверить Stop/repeat.",
+    "expect": "Реальный Expo ready/status, Stop закрывает свой process/port",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:RN_ANDROID_RUN",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить RN_ANDROID_RUN с no argument; generated android + SDK/device; проверить Stop/repeat.",
+    "expect": "Demo screen на выбранном Android device",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:RN_IOS_RUN",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить RN_IOS_RUN с no argument; generated ios + macOS/Xcode/simulator; проверить Stop/repeat.",
+    "expect": "Demo screen на выбранном iOS target",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:RN_BUNDLE",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить RN_BUNDLE с android, отдельно ios; проверить Stop/repeat.",
+    "expect": "Bundle существует и содержит ARCHVERITY_DEMO_CLICK",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:GRADLE_TASK",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить GRADLE_TASK с prepared Android task по mobile table; проверить Stop/repeat.",
+    "expect": "Реальный Gradle task/exit/output; signing требует отдельного разрешения",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:COCOAPODS_INSTALL",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить COCOAPODS_INSTALL с generated ios + Podfile, macOS/CocoaPods; проверить Stop/repeat.",
+    "expect": "Pod installation реально завершилась в этой ios copy",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:IOS_DEVICES",
+    "feature_id": "DEVS-20",
+    "trigger": "В выбранной console запустить IOS_DEVICES с macOS/Xcode; проверить Stop/repeat.",
+    "expect": "Каталог реальных доступных devices/simulators",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_DEVICES",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_DEVICES с selected disposable device; проверить Stop/repeat.",
+    "expect": "Выведены actual serial/state",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_LOGCAT",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_LOGCAT с selected disposable device/package; проверить Stop/repeat.",
+    "expect": "ARCHVERITY_DEMO_CLICK после нажатия в приложении",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_REVERSE",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_REVERSE с Metro port по mobile table; проверить Stop/repeat.",
+    "expect": "Reverse mapping относится к selected device/port",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_RELOAD",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_RELOAD с selected app/device; проверить Stop/repeat.",
+    "expect": "Работающее demo app действительно reloads",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_INSTALL_APK",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_INSTALL_APK с operator-approved demo APK/device; проверить Stop/repeat.",
+    "expect": "com.archverity.demo установлен; прежнее чужое app не выбрано",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_UNINSTALL",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_UNINSTALL с operator-approved com.archverity.demo/device; проверить Stop/repeat.",
+    "expect": "Удалён именно разрешённый demo package",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ADB_CLEAR_DATA",
+    "feature_id": "DEVS-21",
+    "trigger": "В выбранной console запустить ADB_CLEAR_DATA с operator-approved com.archverity.demo/device; проверить Stop/repeat.",
+    "expect": "Demo state сброшен; действие затронуло выбранный package",
+    "inputs": [
+      "projects/mobile-lab/package.json",
+      "projects/mobile-lab/package-lock.json",
+      "projects/mobile-lab/index.js",
+      "projects/mobile-lab/App.js",
+      "projects/mobile-lab/app.json"
+    ]
+  },
+  {
+    "id": "processCommands:ANSIBLE_SYNTAX_CHECK",
+    "feature_id": "DEVS-15",
+    "trigger": "В выбранной console запустить ANSIBLE_SYNTAX_CHECK с ansible/playbook.yml; проверить Stop/repeat.",
+    "expect": "Real syntax output и exit code",
+    "inputs": [
+      "projects/workspace/ansible/professional/playbooks/site.yml"
+    ]
+  },
+  {
+    "id": "processCommands:SHELLCHECK",
+    "feature_id": "DEVS-16",
+    "trigger": "В выбранной console запустить SHELLCHECK с shell-professional/lib/common.sh; проверить Stop/repeat.",
+    "expect": "Real diagnostics для указанного script",
+    "inputs": [
+      "projects/workspace/shell-professional/lib/common.sh"
+    ]
+  },
+  {
+    "id": "processCommands:SHFMT_DIFF",
+    "feature_id": "DEVS-16",
+    "trigger": "В выбранной console запустить SHFMT_DIFF с shell-tools/format.sh; проверить Stop/repeat.",
+    "expect": "Ожидаемый diff; после formatting copy diff пуст",
+    "inputs": [
+      "projects/workspace/shell-professional/lib/common.sh"
+    ]
+  },
+  {
+    "id": "processCommands:BATS_TEST",
+    "feature_id": "DEVS-17",
+    "trigger": "В выбранной console запустить BATS_TEST с shell-professional/test/deploy.bats; проверить Stop/repeat.",
+    "expect": "Реально выполнены два tests, не просто найден .bats",
+    "inputs": [
+      "projects/workspace/shell-professional/test/deploy.bats"
+    ]
+  },
+  {
+    "id": "processCommands:BASH_DEBUG",
+    "feature_id": "DEVS-18",
+    "trigger": "В выбранной console запустить BASH_DEBUG с shell-professional/qa-debug.sh; проверить Stop/repeat.",
+    "expect": "Своя local session остановлена на строке script",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "processCommands:BASH_REMOTE_DEBUG",
+    "feature_id": "DEVS-18",
+    "trigger": "В выбранной console запустить BASH_REMOTE_DEBUG с prepared authorized SSH host/script по environment guide; проверить Stop/repeat.",
+    "expect": "Remote session связана с заданным host/script; недоступность точная",
+    "inputs": [
+      "projects/workspace/shell-professional/lib/common.sh",
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:STEP",
+    "feature_id": "DEVS-18",
+    "trigger": "В paused qa-debug.sh сессии Step.",
+    "expect": "Одна исполняемая строка выполнена, текущая location изменилась.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:NEXT",
+    "feature_id": "DEVS-18",
+    "trigger": "На вызове qa_step выполнить Next.",
+    "expect": "Вызов пройден, следующая caller location видима.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:CONTINUE",
+    "feature_id": "DEVS-18",
+    "trigger": "В своей paused session Continue.",
+    "expect": "Достигнут следующий breakpoint либо terminal exit.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:BREAKPOINT",
+    "feature_id": "DEVS-18",
+    "trigger": "Поставить breakpoint на исполняемую строку qa_step и Continue.",
+    "expect": "Остановка соответствует выбранной source line.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:CLEAR_BREAKPOINTS",
+    "feature_id": "DEVS-18",
+    "trigger": "Clear breakpoints, затем Continue в своей session.",
+    "expect": "Прежняя точка больше не останавливает process.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:PRINT_VARIABLE",
+    "feature_id": "DEVS-18",
+    "trigger": "На остановке после assignment Print variable qa_value.",
+    "expect": "Видно start либо start-checked в соответствии с текущей строкой.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "debugCommands:STACK",
+    "feature_id": "DEVS-18",
+    "trigger": "На остановке внутри qa_step запросить Stack.",
+    "expect": "Frames и source locations описывают qa_step и caller.",
+    "inputs": [
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "settings:archflow.developer.ansi",
+    "feature_id": "DEVS-24",
+    "trigger": "Ctrl+Alt+S → поиск ArchVerity ANSI Log Editor; изменить pattern/limit, Apply/reopen, затем restore.",
+    "expect": "Editor registration/limit реально изменились",
+    "inputs": [
+      "projects/workspace/archflow-live.ansi"
+    ]
+  },
+  {
+    "id": "settings:archflow.developer.mybatis",
+    "feature_id": "DEVS-12",
+    "trigger": "Ctrl+Alt+S → поиск ArchVerity MyBatis Assistant; изменить capture/format, Apply/reopen, затем restore.",
+    "expect": "MyBatis console повторяет сохранённое поведение",
+    "inputs": [
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java"
+    ]
+  },
+  {
+    "id": "settings:archflow.developer.icons",
+    "feature_id": "DEV-03",
+    "trigger": "Ctrl+Alt+S → поиск ArchVerity Dev Icons; изменить global enable/style/rule, Apply/reopen, затем restore.",
+    "expect": "Глобальный выбор влияет на Project View при INHERIT",
+    "inputs": [
+      "projects/workspace/archverity-qa.aficons"
+    ]
+  },
+  {
+    "id": "settings:archflow.developer.icons.project",
+    "feature_id": "DEV-03",
+    "trigger": "Ctrl+Alt+S → поиск ArchVerity Dev Icons (Project); изменить project INHERIT/ENABLED/DISABLED/rule, Apply/reopen, затем restore.",
+    "expect": "Project override и правило сохранены только в project scope",
+    "inputs": [
+      "projects/workspace/archverity-qa.aficons"
+    ]
+  },
+  {
+    "id": "settings:archflow.developer.http.environments",
+    "feature_id": "DEVS-02",
+    "trigger": "Ctrl+Alt+S → поиск ArchVerity API Environments; изменить demo-local nonsecret variable, Apply/reopen, затем restore.",
+    "expect": "Запрос /headers использует сохранённую DEMO=local variable",
+    "inputs": [
+      "projects/workspace/qa-api.http"
+    ]
+  },
+  {
+    "id": "exports:JSON",
+    "feature_id": "TEAM-01",
+    "trigger": "Save/Copy analysis JSON",
+    "expect": "Current context/revision/findings в analysis schema",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:MERMAID",
+    "feature_id": "TEAM-02",
+    "trigger": "Topology → Export Mermaid",
+    "expect": "Текст graph содержит фактические service IDs/edges",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:SVG",
+    "feature_id": "TEAM-02",
+    "trigger": "Topology → Export SVG, открыть",
+    "expect": "Видимый current graph и корректный XML/SVG",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:PNG",
+    "feature_id": "TEAM-02",
+    "trigger": "Topology → Export PNG, открыть",
+    "expect": "Реальное изображение current graph",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:SARIF",
+    "feature_id": "TEAM-02",
+    "trigger": "Export SARIF, inspect и source mapping",
+    "expect": "SARIF 2.1.0 с нужными rule/location",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:IMPACT",
+    "feature_id": "TEAM-01",
+    "trigger": "Save/Copy Impact JSON для actual comparison",
+    "expect": "Правильные base/current scope и field delta",
+    "inputs": [
+      "projects/workspace/qa-support/apply_impact.py"
+    ]
+  },
+  {
+    "id": "editorExtensions:fileEditorProvider:AnsiLogFileEditorProvider",
+    "feature_id": "DEVS-22",
+    "trigger": "Открыть зарегистрированный .ansi файл → ANSI rendered/raw.",
+    "expect": "Выбран AnsiLog editor, styles и raw text различимы.",
+    "inputs": [
+      "projects/workspace/archflow-live.ansi",
+      "projects/workspace/ansible/qa.ansi"
+    ]
+  },
+  {
+    "id": "editorExtensions:fileType:BatsFileType:Shell Script",
+    "feature_id": "DEVS-17",
+    "trigger": "Открыть deploy.bats, проверить file type, test declaration и запуск.",
+    "expect": "Файл распознан как Bats/Shell Script; test grammar и BATS_TEST работают на этом input.",
+    "inputs": [
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/lib/common.sh",
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "editorExtensions:localInspection:ArchFlowContract:JAVA",
+    "feature_id": "IDE-01",
+    "trigger": "На Java mismatch включить ArchFlowContract inspection.",
+    "expect": "Finding highlight/source совпадает с real current analysis.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+      "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+      "projects/workspace/qa-support/extended_scenarios.py"
+    ]
+  },
+  {
+    "id": "editorExtensions:codeInsight.lineMarkerProvider:ArchFlowImpactLineMarkerProvider:JAVA",
+    "feature_id": "IDE-01",
+    "trigger": "На changed Java declaration нажать Impact gutter marker.",
+    "expect": "Открыта Impact card того же contract и source line.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+      "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
+      "projects/workspace/qa-support/extended_scenarios.py"
+    ]
+  },
+  {
+    "id": "editorExtensions:psi.referenceContributor:MyBatisReferenceContributor:XML",
+    "feature_id": "DEVS-12",
+    "trigger": "Ctrl+B на XML namespace/id/include либо Java PaymentMapper.findById / Kotlin PaymentNotificationMapper.findStatus согласно language.",
+    "expect": "Переход к matching mapper/statement; unknown id не ведёт к соседнему statement.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
+      "projects/workspace/qa-support/coverage.json"
+    ]
+  },
+  {
+    "id": "editorExtensions:psi.referenceContributor:MyBatisReferenceContributor:JAVA",
+    "feature_id": "DEVS-12",
+    "trigger": "Ctrl+B на XML namespace/id/include либо Java PaymentMapper.findById / Kotlin PaymentNotificationMapper.findStatus согласно language.",
+    "expect": "Переход к matching mapper/statement; unknown id не ведёт к соседнему statement.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentMapper.java",
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+      "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
+      "projects/workspace/qa-support/coverage.json"
+    ]
+  },
+  {
+    "id": "editorExtensions:psi.referenceContributor:MyBatisReferenceContributor:kotlin",
+    "feature_id": "DEVS-12",
+    "trigger": "Ctrl+B на XML namespace/id/include либо Java PaymentMapper.findById / Kotlin PaymentNotificationMapper.findStatus согласно language.",
+    "expect": "Переход к matching mapper/statement; unknown id не ведёт к соседнему statement.",
+    "inputs": [
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+      "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+      "projects/workspace/qa-support/coverage.json"
+    ]
+  },
+  {
+    "id": "editorExtensions:psi.referenceContributor:SpringStringReferenceContributor:JAVA",
+    "feature_id": "DEVS-07",
+    "trigger": "Ctrl+B на Java ${server.port:8085} или Kotlin ${spring.rabbitmq.virtual-host} в соответствующем SpringPropertyReferences.",
+    "expect": "Property reference ведёт к matching definition; неизвестный key явно unresolved.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:psi.referenceContributor:SpringStringReferenceContributor:kotlin",
+    "feature_id": "DEVS-07",
+    "trigger": "Ctrl+B на Java ${server.port:8085} или Kotlin ${spring.rabbitmq.virtual-host} в соответствующем SpringPropertyReferences.",
+    "expect": "Property reference ведёт к matching definition; неизвестный key явно unresolved.",
+    "inputs": [
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentListener.kt",
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:gotoDeclarationHandler:MyBatisGotoDeclarationHandler",
+    "feature_id": "DEVS-12",
+    "trigger": "Ctrl+B на XML namespace/id/include либо Java PaymentMapper.findById / Kotlin PaymentNotificationMapper.findStatus согласно language.",
+    "expect": "Переход к matching mapper/statement; unknown id не ведёт к соседнему statement.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
+      "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
+      "projects/workspace/qa-support/coverage.json"
+    ]
+  },
+  {
+    "id": "editorExtensions:gotoDeclarationHandler:SpringConfigGotoDeclarationHandler",
+    "feature_id": "DEVS-07",
+    "trigger": "Ctrl+B на известном property placeholder либо supported Spring string reference.",
+    "expect": "Открыто соответствующее config/resource/type/bean определение, согласно reference kind.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:multiHostInjector:SpringLanguageInjector",
+    "feature_id": "DEVS-07",
+    "trigger": "В application-editor-demo.yml проверить sql/regex/cron scalar с установленным соответствующим language plugin.",
+    "expect": "SQL/RegExp/CRON injection соответствует key; SpEL/JSON/URL не приписываются этому injector.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:lang.documentationProvider:SpringConfigDocumentationProvider:Properties",
+    "feature_id": "DEVS-07",
+    "trigger": "Quick Documentation на известном properties/YAML key согласно language.",
+    "expect": "Documentation относится к выбранному key и available metadata/source, unknown не получает выдуманный тип.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:lang.documentationProvider:SpringConfigDocumentationProvider:yaml",
+    "feature_id": "DEVS-07",
+    "trigger": "Quick Documentation на известном properties/YAML key согласно language.",
+    "expect": "Documentation относится к выбранному key и available metadata/source, unknown не получает выдуманный тип.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:gotoDeclarationHandler:ShellGotoDeclarationHandler",
+    "feature_id": "DEVS-18",
+    "trigger": "Ctrl+B на qa_step, qa_value и source lib/common.sh; rename в demo copy.",
+    "expect": "Переход и связанные references относятся к своему symbol/source.",
+    "inputs": [
+      "projects/workspace/shell-professional/bin/deploy",
+      "projects/workspace/shell-professional/lib/common.sh",
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "editorExtensions:psi.referenceContributor:ShellReferenceContributor:Shell Script",
+    "feature_id": "DEVS-18",
+    "trigger": "Ctrl+B на qa_step, qa_value и source lib/common.sh; rename в demo copy.",
+    "expect": "Переход и связанные references относятся к своему symbol/source.",
+    "inputs": [
+      "projects/workspace/shell-professional/bin/deploy",
+      "projects/workspace/shell-professional/lib/common.sh",
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "editorExtensions:lang.documentationProvider:ShellDocumentationProvider:Shell Script",
+    "feature_id": "DEVS-18",
+    "trigger": "Quick Documentation на shell command/function.",
+    "expect": "Документация относится к command/function; неизвестный symbol не получает чужую справку.",
+    "inputs": [
+      "projects/workspace/shell-professional/bin/deploy",
+      "projects/workspace/shell-professional/lib/common.sh",
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "editorExtensions:gotoDeclarationHandler:AnsibleGotoDeclarationHandler",
+    "feature_id": "DEVS-13",
+    "trigger": "Ctrl+B на role, include/import task либо variable в ansible/professional.",
+    "expect": "Открыто matching role/task/vars определение в этом project.",
+    "inputs": [
+      "projects/workspace/ansible/professional/playbooks/site.yml",
+      "projects/workspace/ansible/vault-plain.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:completion.contributor:SpringConfigCompletionContributor:Properties",
+    "feature_id": "DEVS-07",
+    "trigger": "Ctrl+Space на config key в .properties либо YAML согласно language.",
+    "expect": "Предложены подходящие metadata/project key variants; source/code descriptions доступны.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:completion.contributor:SpringConfigCompletionContributor:yaml",
+    "feature_id": "DEVS-07",
+    "trigger": "Ctrl+Space на config key в .properties либо YAML согласно language.",
+    "expect": "Предложены подходящие metadata/project key variants; source/code descriptions доступны.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/resources/application.yml",
+      "projects/workspace/payment-app/src/main/resources/application-qa.properties",
+      "projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java",
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt",
+      "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:completion.contributor:ShellCompletionContributor:Shell Script",
+    "feature_id": "DEVS-18",
+    "trigger": "Ctrl+Space на qa_step/function/variable в shell-professional.",
+    "expect": "Предложения относятся к indexed script symbols/commands.",
+    "inputs": [
+      "projects/workspace/shell-professional/bin/deploy",
+      "projects/workspace/shell-professional/lib/common.sh",
+      "projects/workspace/shell-professional/test/deploy.bats",
+      "projects/workspace/shell-professional/qa-debug.sh"
+    ]
+  },
+  {
+    "id": "editorExtensions:completion.contributor:AnsibleCompletionContributor:yaml",
+    "feature_id": "DEVS-13",
+    "trigger": "Ctrl+Space в task module/variable/role context ansible/professional.",
+    "expect": "Project/offline module предложения соответствуют YAML/Jinja context.",
+    "inputs": [
+      "projects/workspace/ansible/professional/playbooks/site.yml",
+      "projects/workspace/ansible/vault-plain.yml"
+    ]
+  }
+]

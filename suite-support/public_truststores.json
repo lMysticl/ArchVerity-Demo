@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "certificate_sha256": "715d297f1628481a45c647669ef58cb4e30fb8bc7805041128366c2b857551f0",
+  "entries": "exactly one archverity-qa trusted certificate; isKeyEntry=false",
+  "bcprov_version": "1.85",
+  "files": {
+    "projects/workspace/qa-truststore.jks": {
+      "type": "JKS",
+      "sha256": "d29843e0168b006dbac953c8fe95d8e25c4b9e51ec7341f3bfdaebce55c95a0a"
+    },
+    "projects/workspace/qa-truststore.jceks": {
+      "type": "JCEKS",
+      "sha256": "0c1786cf007ae1307b07e83d6b39129b3a1b33941100e702a154ea34f969b91b"
+    },
+    "projects/workspace/qa-truststore.p12": {
+      "type": "PKCS12",
+      "sha256": "0c53d43b102462328183abe97b96172b97831dede063efaea7cea8268a95e08b"
+    },
+    "projects/workspace/qa-truststore.pfx": {
+      "type": "PKCS12",
+      "sha256": "dd445cf03a45b735de4c509589561c23dc4c1844873d26d5709ad85a5186217f"
+    },
+    "projects/workspace/qa-truststore.bks": {
+      "type": "BKS",
+      "sha256": "581145d00cd466a5af626e333ed18f54abcd93c70f0fd8f4d83a2bb116038e43"
+    },
+    "projects/workspace/qa-truststore.bcfks": {
+      "type": "BCFKS",
+      "sha256": "80979525086cd02b730d44d72563c92a26ba63660edf5c745bd46f97afa7da46"
+    },
+    "projects/workspace/qa-truststore.uber": {
+      "type": "UBER",
+      "sha256": "07b6c700ef90f232ac76725b53e21ddc73ac33d82cfd01e3d7b518fdecf7018d"
+    }
+  }
+}

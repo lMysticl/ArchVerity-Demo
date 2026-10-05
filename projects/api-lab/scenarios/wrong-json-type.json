@@ -1,0 +1,4 @@
+[
+  {"name": "Number is not a string", "url": "http://127.0.0.1:18427/dsl-shapes", "after": "assert json /id == \"42\""},
+  {"name": "Must not execute after failed assertion", "url": "http://127.0.0.1:18427/health"}
+]
