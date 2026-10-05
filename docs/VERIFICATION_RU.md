@@ -95,12 +95,13 @@ local development ZIP: `7a3ab62df0bc2cdfffef1d2f08428d6cfb2cbe2e1ad4c0a9c8d33d53
 | Защищённые ZIP | Plugin Verifier 1.410: Compatible на IDEA 2025.3.6.1, 2026.1, 2026.1.4, 2026.2.0.1, 2026.2.3 для modern и 2024.3, 2024.3.7.1 для legacy. Строгая проверка не обнаружила deprecated/internal/experimental API findings |
 | Runtime serialization | 98 serializers в каждом из семи IDE runtimes, всего 686 проверок descriptor/children/type parameters; PASS |
 | Подпись | Оба точных защищённых ZIP подписаны и проверены. Неподписанный контроль отвергнут; все 14 payload entries каждого пакета сохранились побайтно |
-| Установленный modern ZIP, native UI | На IDEA 2026.1.4 реальный анализ K01 завершён: 2 services, 2 scoped topics, 5 findings, 4 relations. `AFG-KAFKA-009 UNKNOWN` сохраняет ссылки на blue/green configuration; навигация открыла consumer application-green.yml |
+| Установленный modern ZIP, native UI | На IDEA 2026.1.4 реальный анализ K01 завершён: 2 services, 2 scoped topics, 5 findings, 4 relations. `AFG-KAFKA-009 UNKNOWN` сохраняет ссылки на blue/green configuration; навигация открыла consumer application-green.yml. Полный JSON скопирован через платную GUI-команду; публичный checker подтвердил K01, включая unresolved wire override |
 | Границы native run | В изолированном headless-процессе entitlement не подтвердился до анализа. Обычный GUI run с тем же защищённым пакетом прошёл. Это не проверка реального Kafka broker, bytes/serializer interoperability, physical cluster ID или delivery guarantees |
-| Marketplace | Оба signed updates приняты в Stable с Make Hidden выключенным: modern **1187795**, legacy **1187796**. На момент записи оба **Under review**; публичная доступность ожидает одобрения JetBrains |
+| Marketplace | Оба signed updates одобрены и публично доступны в Stable: modern **1187795**, legacy **1187796**. Публичный API подтверждает `approve=true`, `listed=true`, `hidden=false`; диапазоны modern `253.33813.55 — 262.*`, legacy `243.21565.193 — 243.*` |
+| Скачанные с Marketplace ZIP | Проверены подпись исходного разработчика, ZIP integrity и побайтное совпадение всех 14 payload entries с точными защищёнными пакетами. Marketplace меняет signed ZIP envelope, поэтому SHA-256 всего скачанного архива отличается от локального signed ZIP |
 
 [Marketplace versions](https://plugins.jetbrains.com/plugin/34234-archverity/versions)
-показывает доступные обновления. Пока 3.0.4 ожидает одобрения, не используйте
-публичный 3.0.3 как подтверждение новых 009/010. Все 62 функции, 87 entry points,
+показывает доступные обновления. Для новых 009/010 нужен 3.0.4 или новее.
+Все 62 функции, 87 entry points,
 41 исходный capability recipe и 19 Impact-мутаций сохранены; Kafka добавляет
 12 воспроизводимых recipes с собственными положительными и отрицательными controls.
