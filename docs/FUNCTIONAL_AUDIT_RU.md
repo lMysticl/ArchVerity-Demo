@@ -10,6 +10,14 @@ PASS полного пользовательского playbook. Число те
 [87 точек входа](ENTRY_POINTS_RU.md) · [Средовые предпосылки](ENVIRONMENT_CHECKS_RU.md) ·
 [Форма фактического прогона](RUN_RECORD.md)
 
+Дополнительно выполнен [первый HTTP-сценарий в установленной IDEA 2026.1.4 с
+ArchVerity 3.0.4](FIRST_RESULT_ARTICLE_RU.md#демонстрация-за-70-секунд): `AFG-HTTP-001`
+появляется при `POST` клиента / `PUT` провайдера, исчезает после исправления и
+возвращается после восстановления кода. Три экспорта имеют одинаковый scope,
+`COMPLETE`, `partial=false` и ноль unknown relations. Сборки до и после прошли;
+исходный файл восстановлен. В статье сохранена реальная запись на 70 секунд.
+Этот дополнительный прогон не закрывает полные playbook остальных функций.
+
 ## Что исправлено
 
 - Impact при отсутствии contract delta показывал пустой Selected contract, unresolved source и
@@ -43,7 +51,7 @@ PASS полного пользовательского playbook. Число те
 | Source correctness suite | 981 tests; 0 failures/errors/skips. Performance suite не запускалась в этой задаче. |
 | Critical coverage, source audit, buildPlugin | Все требуемые gates прошли; локальный ZIP unsigned, не uploaded и не installed. |
 | Python Tools | 144 tests passed, включая Windows process ownership и canonical import/CI contracts. |
-| Public support tests | 21 tests passed: guides, links, exports, шесть clean projects и 12 Kafka contracts. |
+| Public support tests | 21 tests исходного аудита; последующий прогон включает 27 tests: дополнительно standalone cross-project links и negative controls для reviewed media. |
 | Kafka source consumer | 12 clean cases → loader → Java PSI → graph/rules → full JSON; updated public checker принял все 12 actual exports. Каждому сопоставлены input, IDE test project, context fingerprint и export. Licensed UI и Kafka broker не запускались. |
 | Workspace coverage и preflight | 4 negative-control tests; 19 exact mutation anchors, manifests, local HTTP 200/400/404/413, crypto/icon/Node inputs. |
 | API laboratory | 18 real TCP HTTP/WebSocket/gRPC tests: ordered messages, imports, cookies, DSL data, error, timeout, cancel и limits. |

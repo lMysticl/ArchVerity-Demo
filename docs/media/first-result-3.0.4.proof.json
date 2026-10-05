@@ -1,0 +1,39 @@
+{
+  "status": "INSTALLED_IDEA_HTTP_LOOP_PASS",
+  "pluginVersion": "3.0.4",
+  "ideaVersion": "2026.1.4",
+  "projectId": "archverity-first-result",
+  "scopeFingerprint": "9ae9b9d2976566eedb6e575d",
+  "findingCounts": [
+    1,
+    0,
+    1
+  ],
+  "findingRule": "AFG-HTTP-001",
+  "identicalFindingIdBeforeRecovery": true,
+  "fullScopeAllStates": true,
+  "unknownRelations": [
+    0,
+    0,
+    0
+  ],
+  "originalClientSha256": "f6d7f5e45b19071989fe8d36c2f1b629b761bacf8ec49ebd715eca1ae8e37f69",
+  "recoveryCleanGit": true,
+  "buildBefore": "PASS",
+  "buildAfter": "PASS",
+  "boundary": "One installed HTTP source-analysis workflow; no live HTTP request or full 62-function consumer certification",
+  "classification": "PRODUCT_ASSET",
+  "recordedAt": "2026-10-05",
+  "video": {
+    "file": "first-result-3.0.4.mp4",
+    "sha256": "de82f57385cf52a5f32239c78cdc4378f200a7f1f71df677498faf85bc4cfa49",
+    "durationSeconds": 70,
+    "width": 1384,
+    "height": 1040,
+    "codec": "h264",
+    "fps": 10,
+    "audio": false,
+    "screenCapture": "Native IDEA window; pauses between recorded steps removed; Russian captions added",
+    "inspection": "Before, provider, edit, repaired, reverse edit and recovered states inspected; all 700 frames decoded"
+  }
+}

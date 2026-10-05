@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prepare_project import ROOT, prepare
+from prepare_project import ROOT, prepare, retarget_document_links
 
 
 class StandaloneProjectTest(unittest.TestCase):
@@ -27,7 +27,9 @@ class StandaloneProjectTest(unittest.TestCase):
                 root = Path(result["project"])
                 self.assertEqual("", subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True))
                 self.assertEqual(result["baseline"], subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip())
-                self.assertEqual((ROOT / "projects" / name / "README.md").read_bytes(), (root / "README.md").read_bytes())
+                configuration = ROOT / "projects" / name / ".archflow.yml"
+                if configuration.is_file():
+                    self.assertEqual(configuration.read_bytes(), (root / ".archflow.yml").read_bytes())
                 with self.assertRaisesRegex(ValueError, "overwrite"):
                     prepare(name, root)
 
@@ -36,6 +38,25 @@ class StandaloneProjectTest(unittest.TestCase):
             with self.subTest(name=name), self.assertRaises(ValueError):
                 prepare(name, self.output / "escaped")
         self.assertFalse((self.output / "escaped").exists())
+
+    def test_first_result_copy_links_to_the_public_launch_guide_and_article(self):
+        result = prepare("first-result", self.output / "first")
+        text = (Path(result["project"]) / "README.md").read_text(encoding="utf-8")
+        self.assertIn("https://github.com/lMysticl/ArchVerity-Demo/blob/main/docs/DEMO_RUNBOOK_RU.md#", text)
+        self.assertIn("https://github.com/lMysticl/ArchVerity-Demo/blob/main/docs/FIRST_RESULT_ARTICLE_RU.md", text)
+        self.assertNotIn("](../../docs/", text)
+        client = "order-app/src/main/java/demo/orders/PaymentClient.java"
+        self.assertEqual((ROOT / "projects/first-result" / client).read_bytes(), (Path(result["project"]) / client).read_bytes())
+
+    def test_local_links_remote_urls_and_code_examples_keep_their_meaning(self):
+        source = self.output / "source"
+        destination = self.output / "copy"
+        source.mkdir(); destination.mkdir()
+        text = "[Local](README.md#here)\n[Remote](https://example.test/a?b=1#c)\n```md\n[Example](../../docs/guide.md)\n```\n"
+        (source / "README.md").write_text(text, encoding="utf-8")
+        (destination / "README.md").write_text(text, encoding="utf-8")
+        retarget_document_links(source.resolve(), destination)
+        self.assertEqual(text, (destination / "README.md").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

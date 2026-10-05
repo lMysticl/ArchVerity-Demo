@@ -1,0 +1,17 @@
+{
+  "classification": "PRODUCT_ASSET",
+  "description": "Reviewed native IntelliJ IDEA window recording of synthetic first-result sources; Russian subtitles, no audio or account settings",
+  "recordedAt": "2026-10-05",
+  "pluginVersion": "3.0.4",
+  "ideaVersion": "2026.1.4",
+  "files": {
+    "docs/media/first-result-3.0.4.mp4": {
+      "sha256": "de82f57385cf52a5f32239c78cdc4378f200a7f1f71df677498faf85bc4cfa49",
+      "bytes": 812225
+    },
+    "docs/media/first-result-3.0.4.png": {
+      "sha256": "f3c4eb9b46b30e603f17732bfaf169d92dc100e34e0b93dfdb9b62643d8a19ab",
+      "bytes": 466933
+    }
+  }
+}

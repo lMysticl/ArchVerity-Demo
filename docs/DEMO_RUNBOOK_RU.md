@@ -13,8 +13,8 @@ QA на открытых исходниках. Набор описывает ф�
 | --- | --- | --- |
 | Git | Получение исходников и самостоятельный Git baseline | `git --version` |
 | Python 3.10+ | Проверки набора, подготовка копий, локальные API | `python --version`; hosted CI использует 3.12 |
-| JDK 21 | Gradle import/build трёх JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
-| Совместимая IDEA и установленный ArchVerity 3.0.3 | Действия плагина | Settings → Plugins → ArchVerity; записать version/build |
+| JDK 21 | Gradle import/build четырёх JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
+| Совместимая IDEA и установленный ArchVerity 3.0.4 или новее | Действия плагина и все шесть лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать отдельную 3.0.4-2024.3 |
 | Настоящий Trial/Pro для соответствующих операций | Impact, paid tools/export/MCP | Записать фактически видимое состояние лицензии |
 | Node 22 | Metro/Expo/JavaScript bundle | `node --version`, `npm --version`; native device пока не нужен |
 | Сеть для первого download | Gradle/npm/pinned Python packages | Установка завершается с exit code 0 |

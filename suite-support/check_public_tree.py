@@ -9,7 +9,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_BINARY = {".aficons", ".jar", ".der", ".p12", ".pb"}
 TRUSTSTORE_PATHS = {f"projects/workspace/qa-truststore.{extension}" for extension in ("jks", "jceks", "p12", "pfx", "bks", "bcfks", "uber")}
+MEDIA_PATHS = {"docs/media/first-result-3.0.4.mp4", "docs/media/first-result-3.0.4.png"}
 EXCLUDED = {"node_modules", "build", "work", ".idea", ".gradle", "__pycache__", "SOURCE", "plugin-backend", "plugin-frontend"}
+
+
+def check_media(relative, data, manifest):
+    """Admit only the inspected public recording and its exact poster bytes."""
+    if relative not in MEDIA_PATHS or set(manifest["files"]) != MEDIA_PATHS:
+        raise ValueError(f"Unreviewed media path: {relative}")
+    if len(data) > 2_000_000:
+        raise ValueError(f"Unexpected large staged artifact: {relative}")
+    expected = manifest["files"][relative]
+    if len(data) != expected["bytes"] or hashlib.sha256(data).hexdigest() != expected["sha256"]:
+        raise ValueError(f"Unreviewed media bytes: {relative}")
 
 
 def check():
@@ -20,6 +32,9 @@ def check():
         raise ValueError("Stage the scoped demo tree before inspecting public delivery")
     forbidden = re.compile(r"(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,}|AKIA[A-Z0-9]{16})")
     truststores = json.loads((ROOT / "suite-support/public_truststores.json").read_text(encoding="utf-8"))
+    media = json.loads((ROOT / "suite-support/public_media.json").read_text(encoding="utf-8"))
+    if set(media["files"]) != MEDIA_PATHS or not MEDIA_PATHS.issubset(paths):
+        raise ValueError("Public recording/poster inventory does not match the reviewed media")
     if set(truststores["files"]) != TRUSTSTORE_PATHS or truststores["certificate_sha256"] != hashlib.sha256((ROOT / "projects/workspace/qa-cert.der").read_bytes()).hexdigest():
         raise ValueError("Public-only truststore inventory does not match the reviewed certificate")
     total, binaries = 0, []
@@ -38,6 +53,10 @@ def check():
         total += len(data)
         if len(data) > 2_000_000:
             raise ValueError(f"Unexpected large staged artifact: {relative}")
+        if path.suffix in {".mp4", ".png"}:
+            check_media(relative, data, media)
+            binaries.append(relative)
+            continue
         if path.suffix in ALLOWED_BINARY:
             if path.suffix == ".jar" and path.name != "gradle-wrapper.jar":
                 raise ValueError(f"Non-wrapper compiled code staged: {relative}")
@@ -47,7 +66,7 @@ def check():
         if forbidden.search(text) or any(("-----BEGIN " + kind + "-----") in text for kind in ("PRIVATE KEY", "RSA PRIVATE KEY", "EC PRIVATE KEY", "OPENSSH PRIVATE KEY", "ENCRYPTED PRIVATE KEY")):
             raise ValueError(f"Credential/private-key marker in staged file: {relative}")
     return {"status": "PUBLIC_TREE_PASS", "files": len(paths), "bytes": total,
-            "reviewed_binary_inputs": binaries, "boundary": "Exact tracked demo tree; seven public-only truststore bytes bound to the separately executed Java verifier"}
+            "reviewed_binary_inputs": binaries, "boundary": "Exact tracked demo tree; seven public-only truststores and the inspected native IDEA recording/poster bound to reviewed byte manifests"}
 
 
 if __name__ == "__main__":
