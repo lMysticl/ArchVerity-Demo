@@ -630,7 +630,8 @@
         "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
         "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
         "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
-        "projects/workspace/qa-support/coverage.json"
+        "projects/workspace/qa-support/coverage.json",
+        "projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml"
       ],
       "purpose": "Переходить между mapper methods и XML statements, настроив поведение console.",
       "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",

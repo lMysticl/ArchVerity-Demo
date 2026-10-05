@@ -506,7 +506,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 3.0.3, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
-**Входы:** [MyBatisConsoleFixture.java](../projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java), [PaymentMapper.xml](../projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml), [PaymentNotificationMapper.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt), [coverage.json](../projects/workspace/qa-support/coverage.json)
+**Входы:** [MyBatisConsoleFixture.java](../projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java), [PaymentMapper.xml](../projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml), [PaymentNotificationMapper.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt), [coverage.json](../projects/workspace/qa-support/coverage.json), [PaymentNotificationMapper.xml](../projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml)
 
 1. Ctrl+B на PaymentMapper.findById и XML namespace/id/include refid; повторить PaymentNotificationMapper.kt ↔ PaymentNotificationMapper.xml.
    Ожидаемое наблюдение: Каждый переход ведёт к своему mapper/statement; Java, Kotlin и XML проверены отдельно.

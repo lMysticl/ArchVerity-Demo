@@ -223,7 +223,7 @@
     "id": "mcp:archverity_change_impact",
     "feature_id": "MCP-01",
     "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_change_impact с {\"base_revision\":\"HEAD\",\"limit\":10}",
-    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "expect": "HEAD и current working tree образуют указанное comparison; прямые HTTP/Kafka/AMQP/DTO changes и downstream REVIEW различимы, completeness/reasons совпадают с Impact. Current project identity и bounded result сверяются отдельно.",
     "inputs": [
       "projects/workspace/qa-support/apply_impact.py"
     ]
@@ -232,7 +232,7 @@
     "id": "mcp:archverity_findings",
     "feature_id": "MCP-01",
     "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_findings с {\"severity\":\"ERROR\",\"include_suppressed\":false,\"limit\":10}",
-    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "expect": "Возвращены только ERROR findings текущего complete scan, suppressed исключены; severity/include_suppressed можно переключить и сверить с UI. Current project identity и bounded result сверяются отдельно.",
     "inputs": [
       "projects/workspace/.archflow.yml"
     ]
@@ -241,7 +241,7 @@
     "id": "mcp:archverity_contract_evidence",
     "feature_id": "MCP-01",
     "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_contract_evidence с {\"query\":\"payments\",\"limit\":10}",
-    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "expect": "Case-insensitive query payments возвращает matching evidence labels/values/locations; пути project-relative, source snippets отсутствуют. Unknown query допускает пустой result. Current project identity и bounded result сверяются отдельно.",
     "inputs": [
       "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
     ]
@@ -250,7 +250,7 @@
     "id": "mcp:archverity_trace_flow",
     "feature_id": "MCP-01",
     "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_trace_flow с {\"query\":\"payment-service\",\"direction\":\"both\",\"max_depth\":4,\"limit\":20}",
-    "expect": "Result относится к current snapshot, bounded 1..100 limit и project-relative locations; для trace проверить обе directions и непустой query.",
+    "expect": "Узлы и ребра вокруг payment-service соответствуют current topology; inbound/outbound/both различаются, depth ограничен до 1..8, limit до 1..100. Current project identity и bounded result сверяются отдельно.",
     "inputs": [
       "projects/workspace/order-app/src/main/java/sample/order/PaymentClient.java"
     ]
@@ -729,7 +729,8 @@
       "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
       "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
       "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
-      "projects/workspace/qa-support/coverage.json"
+      "projects/workspace/qa-support/coverage.json",
+      "projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml"
     ]
   },
   {
@@ -742,7 +743,8 @@
       "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
       "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
       "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
-      "projects/workspace/qa-support/coverage.json"
+      "projects/workspace/qa-support/coverage.json",
+      "projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml"
     ]
   },
   {
@@ -754,7 +756,8 @@
       "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
       "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
       "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
-      "projects/workspace/qa-support/coverage.json"
+      "projects/workspace/qa-support/coverage.json",
+      "projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml"
     ]
   },
   {
@@ -793,7 +796,8 @@
       "projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml",
       "projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java",
       "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt",
-      "projects/workspace/qa-support/coverage.json"
+      "projects/workspace/qa-support/coverage.json",
+      "projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml"
     ]
   },
   {
