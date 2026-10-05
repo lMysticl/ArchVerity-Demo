@@ -51,3 +51,32 @@ JCEF/native renderer переключение, screen reader и licensed headles
 Локальные отчёты, logs, bundles и runtime captures остаются evidence-only либо
 ignored result files. Публичная поставка содержит исходные примеры, descriptor,
 безопасные public certificate/icon inputs, инструкции и проверки.
+
+
+## Kafka profiles и границы доказательства — дополнение 05.10.2026
+
+Добавлена шестая лаборатория [kafka-profile-lab](../projects/kafka-profile-lab/README.md).
+Для этого прогона использованы исходники ArchVerity **8c7461a5193877d5de3547f0cb8a3c740222aad3**,
+IntelliJ test SDK **2026.2.0.1** и JBR **25**. API declarations в IDEA fixtures
+проверяют source consumer; отдельная компиляция lab использует настоящие
+Spring Boot BOM **3.5.12**, Spring Kafka **3.3.14**, kafka-clients **3.9.2**,
+Jackson **2.19.4** и JDK **21**.
+
+| Проверка | Непосредственное наблюдение |
+| --- | --- |
+| 12 actual exports K01–K12 | Каждый case отсканирован backend в отдельном IDEA test project: loader → Java PSI → graph/rules → полный JSON. Публичный checker принял все 12 экспортов; оба profile paths сохранены, неизвестный override явно отмечен |
+| UNKNOWN и положительные контроли | Неизвестные/разные scopes не объединяются; missing/nested/fallback/cyclic config и equal DTO не устанавливают wire compatibility. Только K11 даёт `005 PROVEN_MISMATCH` при явно общем логическом scope и точных статических bindings |
+| Повторный scan | Замена точной JSON factory на opaque map возвращает INFERRED и `010 UNKNOWN`; прежняя точная привязка не сохраняется |
+| Runtime identity | Проверены service/environment/revision/config/context/hash, future/expired observation и включительная max-age boundary. Accepted export сохраняет identity/time/hash и альтернативные static candidate paths без повышения wire confidence |
+| Scope round trip | Unknown scopes, patterns, группы и DTO проверены в domain tests. Воспроизведён и исправлен импорт чужой DLT по одинаковому retry name; оригинальный incoming node ID сохраняет отдельные retry/DLT/reply ветки |
+| Product tests | 980 tests, 0 failures/errors/skipped; `verifyCriticalCoverage` PASS. Результаты включают ранее успешно выполненные неизменённые модули и завершающий backend run |
+| Public preparation и отрицательные контроли | Два unittest проверяют все 12 чистых изолированных copies, неизменность baseline, отказ от overwrite и отклонение утраченных scope/provenance/UNKNOWN |
+| Compile и package | Lab `classes` PASS с pinned настоящими libraries. Development ZIP 3.0.3 собран отдельно с default SDK 2025.3.6.1; packaging/license boundary PASS |
+
+Прежняя Marketplace-сборка с тем же номером **3.0.3** не содержит это исправление.
+Этот consumer run использовал source build. SHA-256 проверенного unsigned
+local development ZIP: `7a3ab62df0bc2cdfffef1d2f08428d6cfb2cbe2e1ad4c0a9c8d33d5373cd9704`.
+Он не опубликован в Marketplace. Ручной licensed UI, фактический Kafka broker,
+передача/десериализация bytes, физический cluster ID и delivery guarantees
+остаются **NOT RUN** в этом дополнении. CI recipe checks и fixture compile
+не заменяют эти наблюдения.

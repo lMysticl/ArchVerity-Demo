@@ -34,7 +34,7 @@ def prepare(name, destination):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--project", choices=("first-result", "workspace", "runtime-evidence", "mobile-lab"), required=True)
+    parser.add_argument("--project", choices=("first-result", "workspace", "runtime-evidence", "mobile-lab", "kafka-profile-lab"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     try:

@@ -11,7 +11,7 @@ ArchVerity. Начните с небольшого HTTP-примера, зате
 [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34234-archverity).
 
 **[Пошаговая инструкция запуска](docs/DEMO_RUNBOOK_RU.md)** проводит через
-подготовку, первый finding, все пять лабораторий, полную проверку и запись
+подготовку, первый finding, все шесть лабораторий, полную проверку и запись
 результатов. **[Оглавление документации](docs/README.md)** связывает инструкции,
 каталоги функций и руководства каждого проекта.
 
@@ -29,6 +29,7 @@ ArchVerity. Начните с небольшого HTTP-примера, зате
 | [api-lab](projects/api-lab/README.md) | Проверка API Client | HTTP/WebSocket/gRPC loopback, descriptor с imports, сценарии, отрицательные входы, deadline и cancel |
 | [mobile-lab](projects/mobile-lab/README.md) | React Native / Expo и команды устройств | Настоящее приложение, lockfile, Metro, bundle; native проекты создаются через Expo prebuild |
 | [runtime-evidence](projects/runtime-evidence/README.md) | Импорт runtime и verification evidence | Запускаемый Spring Boot Actuator, реальные bean dependencies, локальные PASS/FAIL отчёты в Pact/Drift форматах |
+| [kafka-profile-lab](projects/kafka-profile-lab/README.md) | Kafka UNKNOWN и границы evidence | 12 изолированных случаев: разные profiles/clusters, внешний serializer, regex, defaults/cycles, равные DTO и положительные контроли; требует source build с исправлением |
 
 ## Быстрый показ
 

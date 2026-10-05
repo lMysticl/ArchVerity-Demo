@@ -5,7 +5,7 @@ Install ArchVerity separately from JetBrains Marketplace. Use a compatible
 IntelliJ IDEA and JDK 21; paid features need a legitimate Trial/Pro entitlement.
 
 The [step-by-step launch runbook](DEMO_RUNBOOK_RU.md) links prerequisites,
-all five labs, expected observations, recovery and actual result recording.
+all six labs, expected observations, recovery and actual result recording.
 Use the [documentation index](README.md) to reach the complete 62-function
 and 87-entry guides. Detailed launch instructions are in Russian.
 
@@ -24,6 +24,10 @@ and 87-entry guides. Detailed launch instructions are in Russian.
    and locally executed HTTP verification reports. The reports use supported
    Pact/Drift shapes with explicit LOCAL_FILE provenance, without claiming an
    execution by a branded verifier.
+6. Prepare one of the 12 `kafka-profile-lab` recipes to test profile paths,
+   unresolved serializer overrides and separate cluster scopes. New `009/010`
+   outcomes require a source build with the Kafka evidence fix; an older
+   Marketplace package with the same version number does not contain it.
 
 `python suite-support/check_suite.py` validates fixture binding and documentation.
 Maintainers can supply `--plugin-source ... --require-source` to compare all

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "K01",
+    "name": "unknown-cluster-and-override",
+    "cluster": "unknown",
+    "serializer": "missing",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-009",
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": true
+  },
+  {
+    "id": "K02",
+    "name": "shared-cluster-unresolved-serializer",
+    "cluster": "shared",
+    "serializer": "missing",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-005",
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": true
+  },
+  {
+    "id": "K03",
+    "name": "separate-clusters-same-topic",
+    "cluster": "separate",
+    "serializer": "explicit",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [],
+    "proven": false,
+    "unresolved": false
+  },
+  {
+    "id": "K04",
+    "name": "unknown-cluster-pattern",
+    "cluster": "unknown",
+    "serializer": "explicit",
+    "dto": "drift",
+    "pattern": true,
+    "expected": [
+      "AFG-KAFKA-009"
+    ],
+    "proven": false,
+    "unresolved": false
+  },
+  {
+    "id": "K05",
+    "name": "separate-cluster-pattern",
+    "cluster": "separate",
+    "serializer": "explicit",
+    "dto": "drift",
+    "pattern": true,
+    "expected": [],
+    "proven": false,
+    "unresolved": false
+  },
+  {
+    "id": "K06",
+    "name": "equal-dto-unresolved-serializer",
+    "cluster": "shared",
+    "serializer": "missing",
+    "dto": "equal",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": true
+  },
+  {
+    "id": "K07",
+    "name": "nested-external-override",
+    "cluster": "shared",
+    "serializer": "nested",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-005",
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": true
+  },
+  {
+    "id": "K08",
+    "name": "fallback-is-not-deployment-proof",
+    "cluster": "shared",
+    "serializer": "fallback",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-005",
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": true
+  },
+  {
+    "id": "K09",
+    "name": "cyclic-serializer-configuration",
+    "cluster": "shared",
+    "serializer": "cycle",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": true
+  },
+  {
+    "id": "K10",
+    "name": "fixed-analysis-override",
+    "cluster": "shared",
+    "serializer": "override",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-010"
+    ],
+    "proven": false,
+    "unresolved": false
+  },
+  {
+    "id": "K11",
+    "name": "proven-drift-control",
+    "cluster": "shared",
+    "serializer": "explicit",
+    "dto": "drift",
+    "pattern": false,
+    "expected": [
+      "AFG-KAFKA-005"
+    ],
+    "proven": true,
+    "unresolved": false
+  },
+  {
+    "id": "K12",
+    "name": "compatible-static-control",
+    "cluster": "shared",
+    "serializer": "explicit",
+    "dto": "equal",
+    "pattern": false,
+    "expected": [],
+    "proven": false,
+    "unresolved": false
+  }
+]

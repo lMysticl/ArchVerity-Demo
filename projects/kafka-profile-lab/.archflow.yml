@@ -1,0 +1,14 @@
+schemaVersion: 1
+project:
+  id: kafka-profile-lab
+  displayName: Kafka profile and deployment evidence
+analysis:
+  profiles: [default]
+  includeModules: ["*"]
+services:
+  producer:
+    modules: [producer, archverity-kafka-profile-lab.producer.main]
+    repository: demo/producer-repository
+  consumer:
+    modules: [consumer, archverity-kafka-profile-lab.consumer.main]
+    repository: demo/consumer-repository

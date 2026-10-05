@@ -198,7 +198,27 @@ Ctrl+C в launcher terminal останавливает его приложени
 явно synthetic producer-test input; реальный IDEA consumer run требует
 настоящего current export из выбранной копии.
 
-## 7. Полный обход функций и запись результата
+## 7. Kafka profiles и UNKNOWN
+
+Этот дополнительный lab требует source build с исправлением Kafka
+profile/evidence: прежний Marketplace package 3.0.3 его не содержит.
+Подготовьте новую копию:
+
+```powershell
+python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output E:/CodexData/Temp/archverity-kafka-K01
+```
+
+Откройте output как Gradle project, выберите JDK 21, дождитесь двух modules и
+indexing, выполните Analyze. Одинаковые `orders.events` и bootstrap из blue/green
+profiles должны дать два отдельных scopes и `009/010 UNKNOWN`. Evidence содержит
+оба profile paths и missing `KAFKA_VALUE_SERIALIZER`, без доказанного контракта
+из совпадения имени. Сохраните current full JSON и проверьте его checker из
+[Kafka README](../projects/kafka-profile-lab/README.md).
+Там даны все 12 recipes, положительные контроли и runtime rejection boundaries.
+Для каждого нужен новый output; source commit и SHA-256 ZIP записываются отдельно
+от номера версии. Брокер для static scan не нужен.
+
+## 8. Полный обход функций и запись результата
 
 1. Откройте [содержание 62 функций](ALL_FUNCTIONS_RU.md) и выберите ID.
 2. Подготовьте указанный input/среду. Для конкретного control используйте

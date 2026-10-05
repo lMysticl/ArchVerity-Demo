@@ -98,9 +98,24 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
     playbooks = check_playbooks(plugin_source, require_source)
     from check_docs import check as check_docs
     documentation = check_docs()
+    from prepare_kafka_case import CASES, LAB
+    if {case["id"] for case in CASES} != {f"K{index:02}" for index in range(1, 13)} or len(CASES) != 12:
+        raise ValueError("Kafka lab must retain all 12 unique scenarios")
+    if len({case["name"] for case in CASES}) != len(CASES):
+        raise ValueError("Kafka scenario names must be unique")
+    for case in CASES:
+        if case["cluster"] not in {"unknown", "shared", "separate"} or case["serializer"] not in {"missing", "explicit", "nested", "fallback", "cycle", "override"}:
+            raise ValueError(f"Invalid Kafka recipe: {case['id']}")
+        if case["dto"] not in {"equal", "drift"} or not set(case["expected"]).issubset({"AFG-KAFKA-005", "AFG-KAFKA-009", "AFG-KAFKA-010"}):
+            raise ValueError(f"Invalid Kafka proof expectation: {case['id']}")
+        if case["proven"] and (case["cluster"], case["serializer"], case["dto"]) != ("shared", "explicit", "drift"):
+            raise ValueError(f"Kafka proof boundary was weakened: {case['id']}")
+    for relative in ("README.md", "producer/src/main/resources/application-blue.yml", "consumer/src/main/resources/application-green.yml", "producer/src/main/java/demo/producer/Publisher.java", "consumer/src/main/java/demo/consumer/Listener.java"):
+        if not (LAB / relative).is_file():
+            raise ValueError(f"Missing Kafka fixture: {relative}")
     return {"status": "INPUT_CONTRACT_PASS", "features": len(features), "entry_points": sum(registration["entries"].values()),
             "registered": registration, "isolated_mutations": len(SCENARIOS), "python_sources": python_files, "full_playbooks": playbooks,
-            "documentation": documentation,
+            "documentation": documentation, "kafka_profile_cases": len(CASES),
             "boundary": "Prepared inputs and source matching; live IDEA/device/licensing observations remain separate"}
 
 

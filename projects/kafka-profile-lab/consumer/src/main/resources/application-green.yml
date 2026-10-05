@@ -1,0 +1,9 @@
+topics:
+  orders: ${topic.alias}
+topic:
+  alias: orders.events
+spring:
+  kafka:
+    bootstrap-servers: 127.0.0.1:1
+    consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
