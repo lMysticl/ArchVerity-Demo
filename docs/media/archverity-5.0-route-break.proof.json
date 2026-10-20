@@ -1,0 +1,36 @@
+{
+  "classification": "EVIDENCE_ONLY",
+  "recordedAt": "2026-10-20",
+  "ideaVersion": "2026.1.4",
+  "pluginVersion": "5.0.0",
+  "project": "Spring Petclinic Microservices fixture with pinned Config Server sources (local fixture commit a1a33b4), analysis scope customers-service and api-gateway",
+  "captureMethod": "Step-by-step native captures of the IntelliJ IDEA window region (editor and ArchVerity tool window) taken after each action; the screen recorder could not record alongside the remote desktop control. Frames are cropped and zoomed, not repainted.",
+  "scenario": [
+    "Overview with the original route GET /owners/{ownerId}",
+    "Temporary provider edit to GET /owners/record/{ownerId} (file written on disk, then reloaded in IDEA)",
+    "Check changes: Not safe to merge, api-gateway breaks with this change, proven mismatch",
+    "Open both sides: CustomersServiceClient.java:36 and OwnerResource.java:68",
+    "Apply fix: Fixed - nothing breaks in the analyzed services now; Breaking 0, change compatible, indirect paths listed",
+    "Editor shows @GetMapping(value = {\"/record/{ownerId}\", \"/{ownerId}\"})"
+  ],
+  "restoration": "OwnerResource.java restored to its original bytes after capture (SHA-256 prefix 5e1d5ad2be62a445); no content change remained versus the project's HEAD.",
+  "video": {
+    "path": "archverity-5.0-route-break.mp4",
+    "sha256": "36abdaf81d6a0457ad9154d13f921dd2fae7ec17b5c06cf75049c1bed49fd339",
+    "bytes": 1807655,
+    "durationSeconds": 49,
+    "width": 1600,
+    "height": 900,
+    "codec": "H.264",
+    "fps": 12,
+    "audio": false,
+    "captions": "English, burned in"
+  },
+  "poster": {
+    "path": "archverity-5.0-route-break.png",
+    "sha256": "4539302a07ab528e64104db5c2506c26d9b27a2ece1d6e1992fe7bfb73f4de6f",
+    "bytes": 760846,
+    "videoTimeSeconds": 18.5
+  },
+  "limitations": "HTTP route change only. Static source analysis; runtime routing, gateways and deployment are not executed. No AI request was made."
+}

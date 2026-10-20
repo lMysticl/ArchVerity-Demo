@@ -11,6 +11,8 @@ ArchVerity. Основная демонстрация показывает Kafka
 Плагин устанавливается отдельно из
 [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34234-archverity).
 
+**[Видео ArchVerity 5.0](docs/media/archverity-5.0-route-break.mp4)** (49 секунд, английские подписи): в Spring Petclinic Microservices маршрут `customers-service` переезжает, ArchVerity показывает «Not safe to merge», обе стороны контракта и исправление, после которого ничего не ломается.
+
 **[Kafka: profiles и границы совместимости](docs/KAFKA_PROFILES_ARTICLE_RU.md)** —
 практическая статья для Java/Spring-разработчиков и
 [видео настоящей IDEA с русскими пояснениями](docs/media/kafka-profiles-3.0.4.mp4).

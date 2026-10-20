@@ -1,6 +1,6 @@
 {
   "classification": "PRODUCT_ASSET",
-  "description": "Two reviewed native IntelliJ IDEA recordings of synthetic HTTP and Kafka scenarios; Russian captions, no audio or account settings",
+  "description": "Reviewed native IntelliJ IDEA media: two 3.0.4 recordings of synthetic HTTP and Kafka scenarios with Russian captions, and a 5.0.0 step-by-step walkthrough of Spring Petclinic Microservices with English captions; no audio or account settings",
   "recordedAt": "2026-10-06",
   "pluginVersion": "3.0.4",
   "ideaVersion": "2026.1.4",
@@ -24,6 +24,16 @@
       "sha256": "563bcad619858e621f908da3233c183acf0fb6ee19ea8631df0a0d8eefff9dd2",
       "bytes": 456216,
       "recordedAt": "2026-10-06"
+    },
+    "docs/media/archverity-5.0-route-break.mp4": {
+      "sha256": "36abdaf81d6a0457ad9154d13f921dd2fae7ec17b5c06cf75049c1bed49fd339",
+      "bytes": 1807655,
+      "recordedAt": "2026-10-20"
+    },
+    "docs/media/archverity-5.0-route-break.png": {
+      "sha256": "4539302a07ab528e64104db5c2506c26d9b27a2ece1d6e1992fe7bfb73f4de6f",
+      "bytes": 760846,
+      "recordedAt": "2026-10-20"
     }
   }
 }

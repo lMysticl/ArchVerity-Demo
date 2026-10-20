@@ -9,13 +9,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_BINARY = {".aficons", ".jar", ".der", ".p12", ".pb"}
 TRUSTSTORE_PATHS = {f"projects/workspace/qa-truststore.{extension}" for extension in ("jks", "jceks", "p12", "pfx", "bks", "bcfks", "uber")}
-MEDIA_PATHS = {f"docs/media/{story}-3.0.4.{extension}"
-               for story in ("first-result", "kafka-profiles") for extension in ("mp4", "png")}
+MEDIA_PATHS = {f"docs/media/{story}.{extension}"
+               for story in ("first-result-3.0.4", "kafka-profiles-3.0.4", "archverity-5.0-route-break")
+               for extension in ("mp4", "png")}
 EXCLUDED = {"node_modules", "build", "work", ".idea", ".gradle", "__pycache__", "SOURCE", "plugin-backend", "plugin-frontend"}
 
 
 def check_media(relative, data, manifest):
-    """Admit only the two inspected recordings and their exact poster bytes."""
+    """Admit only the inspected recordings and their exact poster bytes."""
     if relative not in MEDIA_PATHS or set(manifest["files"]) != MEDIA_PATHS:
         raise ValueError(f"Unreviewed media path: {relative}")
     if len(data) > 2_000_000:
@@ -67,7 +68,7 @@ def check():
         if forbidden.search(text) or any(("-----BEGIN " + kind + "-----") in text for kind in ("PRIVATE KEY", "RSA PRIVATE KEY", "EC PRIVATE KEY", "OPENSSH PRIVATE KEY", "ENCRYPTED PRIVATE KEY")):
             raise ValueError(f"Credential/private-key marker in staged file: {relative}")
     return {"status": "PUBLIC_TREE_PASS", "files": len(paths), "bytes": total,
-            "reviewed_binary_inputs": binaries, "boundary": "Exact tracked demo tree; seven public-only truststores and two inspected native IDEA recordings/posters bound to reviewed byte manifests"}
+            "reviewed_binary_inputs": binaries, "boundary": "Exact tracked demo tree; seven public-only truststores and three inspected native IDEA recordings/posters bound to reviewed byte manifests"}
 
 
 if __name__ == "__main__":
