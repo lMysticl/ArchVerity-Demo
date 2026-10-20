@@ -1,6 +1,6 @@
 # ArchVerity Demo
 
-Open demonstration and regression projects for the ArchVerity IntelliJ plugin.
+Open demonstration and regression projects for ArchVerity AI, an IntelliJ IDEA plugin.
 All service identities, source code and data are synthetic. You can inspect
 architecture without running business services, and exercise network features
 against local servers. [English project overview](docs/OVERVIEW_EN.md).
@@ -71,7 +71,7 @@ python -B -X utf8 suite-support/check_suite.py
 Для короткого показа сначала создайте отдельную копию из корня набора:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project first-result --output D:/CodexData/Temp/archverity-first-demo
+python -B -X utf8 suite-support/prepare_project.py --project first-result --output $env:TEMP\archverity-first-demo
 ```
 
 Откройте **созданную папку как Gradle-проект** в
@@ -84,7 +84,7 @@ ArchVerity → Analyze. Откройте finding: клиент отправля�
 этого репозитория. Из корня набора:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project workspace --output D:\CodexData\Temp\archverity-demo-workspace
+python -B -X utf8 suite-support/prepare_project.py --project workspace --output $env:TEMP\archverity-demo-workspace
 ```
 
 Откройте созданную папку в IDEA, выполните Analyze на чистом HEAD. Затем из

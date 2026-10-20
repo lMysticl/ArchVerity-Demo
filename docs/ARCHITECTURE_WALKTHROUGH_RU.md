@@ -12,7 +12,7 @@ Kafka/RabbitMQ/HTTP business services здесь не запускаются. Д
 ```powershell
 python -B -X utf8 suite-support/check_suite.py
 python -B -X utf8 projects/workspace/qa-support/preflight.py
-python -B -X utf8 suite-support/prepare_project.py --project workspace --output D:\CodexData\Temp\archverity-demo-impact
+python -B -X utf8 suite-support/prepare_project.py --project workspace --output $env:TEMP\archverity-demo-impact
 ```
 
 Из полученной папки `gradlew.bat classes` компилирует Java и Kotlin. На

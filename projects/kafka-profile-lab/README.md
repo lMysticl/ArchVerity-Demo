@@ -36,7 +36,7 @@ Boot BOM **3.5.12**, Spring Kafka **3.3.14**, kafka-clients **3.9.2**, Jackson
 Из корня demo repo подготовьте новую самостоятельную копию:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output E:/CodexData/Temp/kafka-K01
+python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output $env:TEMP\kafka-K01
 ```
 
 Helper создаёт чистый собственный Git HEAD, сохраняет исходную лабораторию и
@@ -60,7 +60,7 @@ project, выберите JDK 21, дождитесь импорта обоих �
 Analysis JSON той же копии в `work/analysis.json`. Из корня demo repo:
 
 ```powershell
-python -B -X utf8 suite-support/inspect_kafka_export.py --case unknown-cluster-and-override --snapshot E:/CodexData/Temp/kafka-K01/work/analysis.json
+python -B -X utf8 suite-support/inspect_kafka_export.py --case unknown-cluster-and-override --snapshot $env:TEMP\kafka-K01\work\analysis.json
 ```
 
 Checker проверяет actual export; IDE/build/project identity оператор фиксирует

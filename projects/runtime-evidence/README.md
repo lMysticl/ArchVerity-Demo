@@ -11,7 +11,7 @@ JDK 21 is sufficient; the BOM pins the Spring family for this separate project.
 Prepare a standalone clean copy from the suite root:
 
 ```powershell
-python suite-support/prepare_project.py --project runtime-evidence --output D:\CodexData\Temp\archverity-runtime-demo
+python suite-support/prepare_project.py --project runtime-evidence --output $env:TEMP\archverity-runtime-demo
 ```
 
 In that new project, with JDK 21 selected, run in its terminal:

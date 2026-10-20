@@ -65,7 +65,7 @@ Jackson 2.19.4; версия broker не заявлена.
 Из корня demo repository создайте новую самостоятельную копию:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output E:/CodexData/Temp/kafka-story
+python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output $env:TEMP\kafka-story
 ```
 
 Helper создаёт собственный чистый Git HEAD и отказывается перезаписывать output.
@@ -99,7 +99,7 @@ paths объясняют, откуда взята связь. `RESOLVED` у им
 Сохраните `k01-unknown.json`. Из корня demo repository:
 
 ```powershell
-python -B -X utf8 suite-support/inspect_kafka_export.py --case unknown-cluster-and-override --snapshot E:/CodexData/Temp/k01-unknown.json --project-id kafka-profile-lab
+python -B -X utf8 suite-support/inspect_kafka_export.py --case unknown-cluster-and-override --snapshot $env:TEMP\k01-unknown.json --project-id kafka-profile-lab
 ```
 
 ## 2. Объявляем общий scope, сохраняем UNKNOWN у wire

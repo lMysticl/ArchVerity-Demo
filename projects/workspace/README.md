@@ -11,7 +11,7 @@ order-service, payment-service, notification-service, analytics-service.
 Из корня ArchVerity-Demo создайте новый самостоятельный Git-root:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project workspace --output D:/CodexData/Temp/archverity-workspace-demo
+python -B -X utf8 suite-support/prepare_project.py --project workspace --output $env:TEMP\archverity-workspace-demo
 ```
 
 Откройте output как Gradle project, дождитесь import/index, выполните Analyze

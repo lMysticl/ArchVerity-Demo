@@ -38,7 +38,7 @@ python -B -X utf8 suite-support/check_suite.py
 изменения сохраняйте своим обычным Git-процессом.
 
 Все команды `suite-support/...` выполняются из корня **ArchVerity-Demo**.
-Пути `D:/CodexData/Temp/...` ниже — примеры новых выходных каталогов на Windows;
+Пути `$env:TEMP\...` ниже — примеры новых выходных каталогов на Windows (PowerShell);
 на Linux/macOS задайте путь своей рабочей папки. Выход не должен существовать:
 helper откажется его перезаписывать. Для нового прогона выберите новый путь.
 Оригинальные исходники набора сохраняются для следующих демонстраций.
@@ -48,7 +48,7 @@ helper откажется его перезаписывать. Для новог
 Из корня набора создайте отдельный проект:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project first-result --output D:/CodexData/Temp/archverity-first-demo
+python -B -X utf8 suite-support/prepare_project.py --project first-result --output $env:TEMP\archverity-first-demo
 ```
 
 1. Откройте **созданную папку** в IDEA как Gradle-проект. Выберите JDK 21 как
@@ -74,7 +74,7 @@ python -B -X utf8 suite-support/prepare_project.py --project first-result --outp
 Вернитесь в корень набора и создайте **новую** копию:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project workspace --output D:/CodexData/Temp/archverity-impact-demo
+python -B -X utf8 suite-support/prepare_project.py --project workspace --output $env:TEMP\archverity-impact-demo
 ```
 
 Откройте этот output как Gradle project, выполните import/build с JDK 21 и
@@ -147,7 +147,7 @@ work/api-venv/bin/python projects/api-lab/serve.py
 Из корня набора подготовьте отдельное приложение:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project mobile-lab --output D:/CodexData/Temp/archverity-mobile-demo
+python -B -X utf8 suite-support/prepare_project.py --project mobile-lab --output $env:TEMP\archverity-mobile-demo
 ```
 
 В терминале **созданного output**:
@@ -175,7 +175,7 @@ Native Android/iOS требуют prebuild и платформенной сре�
 Из корня набора:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project runtime-evidence --output D:/CodexData/Temp/archverity-runtime-demo
+python -B -X utf8 suite-support/prepare_project.py --project runtime-evidence --output $env:TEMP\archverity-runtime-demo
 ```
 
 В терминале **созданного output** запустите `python run_local.py`; дождитесь
@@ -207,7 +207,7 @@ IDEA 2024.3 используйте **3.0.4-2024.3**. Прежний Marketplace 
 Подготовьте новую копию:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output E:/CodexData/Temp/archverity-kafka-K01
+python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and-override --output $env:TEMP\archverity-kafka-K01
 ```
 
 Откройте output как Gradle project, выберите JDK 21, дождитесь двух modules и

@@ -5,7 +5,7 @@
 gitlink. Из корня demo создайте новую независимую копию:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_icon_submodule.py --output D:/CodexData/Temp/archverity-icon-demo
+python -B -X utf8 suite-support/prepare_icon_submodule.py --output $env:TEMP\archverity-icon-demo
 ```
 
 Откройте этот output как IDEA project. `demo-icon-module` — действительный

@@ -152,5 +152,5 @@ target, MCP Server и client, Split Mode, operator-supplied disposable PasswordS
 не заменено passing unit test, synthetic producer context или названием кнопки.
 
 Прямые receipts, XML, logs, screenshots и подготовленные project copies сохранены как
-EVIDENCE_ONLY под `E:\CodexData\Temp\ArchVerity-demo-audit-20261005`. В публичный Git
+EVIDENCE_ONLY в локальном каталоге вне репозитория. В публичный Git
 попадают исходники проверок и этот отчёт; тяжёлые результаты, кеши и customer evidence не включаются.

@@ -36,8 +36,8 @@ To keep a device session in its own Git checkout, run this from the suite root
 before installing dependencies:
 
 ```powershell
-python -B -X utf8 suite-support/prepare_project.py --project mobile-lab --output D:\CodexData\Temp\archverity-demo-mobile
-cd D:\CodexData\Temp\archverity-demo-mobile
+python -B -X utf8 suite-support/prepare_project.py --project mobile-lab --output $env:TEMP\archverity-demo-mobile
+cd $env:TEMP\archverity-demo-mobile
 npm ci --ignore-scripts
 ```
 

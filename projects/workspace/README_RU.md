@@ -22,10 +22,10 @@ python -B -X utf8 qa-support/preflight.py
 python -B -X utf8 qa-support/verify_coverage.py
 python -B -X utf8 -m unittest discover -s qa-support -p test_verify_coverage.py
 .\gradlew.bat classes
-python -B -X utf8 qa-support/prepare_impact.py --output D:\CodexData\Temp\archverity-sample-check
+python -B -X utf8 qa-support/prepare_impact.py --output $env:TEMP\archverity-sample-check
 ```
 
-Последняя команда создаёт **новую чистую** Git-копию и откажется перезаписать существующую. Откройте именно `D:\CodexData\Temp\archverity-sample-check` в IDEA как Gradle-проект, дождитесь импорта и индексации. Если IDEA сообщает `Invalid Gradle JDK configuration`, назначьте установленный JDK 21 в Gradle settings и повторите импорт. Откройте ArchVerity → Workspace → **Analyze project** на **чистой** версии: Impact должен показать отсутствие изменений. Это создаёт точный снимок коммита `HEAD` в `.idea/archflow/commits/`.
+Последняя команда создаёт **новую чистую** Git-копию и откажется перезаписать существующую. Откройте именно `%TEMP%\archverity-sample-check` в IDEA как Gradle-проект, дождитесь импорта и индексации. Если IDEA сообщает `Invalid Gradle JDK configuration`, назначьте установленный JDK 21 в Gradle settings и повторите импорт. Откройте ArchVerity → Workspace → **Analyze project** на **чистой** версии: Impact должен показать отсутствие изменений. Это создаёт точный снимок коммита `HEAD` в `.idea/archflow/commits/`.
 
 При запуске внутри полного дерева исходников плагина добавьте `--require-source` к `verify_coverage.py`: тогда любое расхождение с зарегистрированными entry points завершит проверку ошибкой. В переносимой копии этот source-check недоступен и явно помечается как пропущенный.
 
@@ -79,4 +79,4 @@ python -B -X utf8 qa-support/generate_icon_pack.py --version 2 --accent '#D946EF
 
 `preflight.py` проверяет файлы и форматы, 19 изолированных сценариев, три внешних manifest, эквивалентность PEM/DER, публичное хранилище через `keytool` при его наличии, пакет иконок, цикл HTTP включая 400/404/413 и Node script при наличии Node.js. Если доступен пакет Python `cryptography`, он дополнительно проверяет подписи CSR/CRL и соответствие публичного ключа; отсутствие пакета явно отражается в результате. `gradlew classes` доказывает, что Java/Kotlin-исходники проекта компилируются. Эти проверки **не доказывают работу кнопок IDEA**: для этого нужно пройти `QA_MATRIX_RU.md` в запущенном плагине. Отдельной средовой проверки требуют внешние Bash/Bats/Ansible, Android/iOS, SSH, MCP Server и реальные состояния Marketplace-лицензии.
 
-Чтобы передать исходный образец без кешей IDEA/Gradle и результатов запуска, выполните `python -B -X utf8 qa-support/package_sample.py --output D:\CodexData\ArchFlow\deliverables\archverity-sample-workspace.zip`. Упаковщик проверяет ZIP и не перезаписывает существующий файл. После распаковки выполните `prepare_impact.py` уже из распакованной папки: ZIP содержит исходную версию, а не заранее изменённую рабочую копию.
+Чтобы передать исходный образец без кешей IDEA/Gradle и результатов запуска, выполните `python -B -X utf8 qa-support/package_sample.py --output $env:TEMP\archverity-sample-workspace.zip`. Упаковщик проверяет ZIP и не перезаписывает существующий файл. После распаковки выполните `prepare_impact.py` уже из распакованной папки: ZIP содержит исходную версию, а не заранее изменённую рабочую копию.
