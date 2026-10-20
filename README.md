@@ -11,6 +11,14 @@ ArchVerity. Основная демонстрация показывает Kafka
 Плагин устанавливается отдельно из
 [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/34234-archverity).
 
+**Текущая версия плагина — 5.0.0** (одобрена в Marketplace 20.10.2026; для IDEA 2024.3
+есть отдельный пакет 5.0.0-2024.3). В 5.0 рабочее окно разделено на постоянно видимые
+вкладки Overview, Review, Architecture, Findings, Agents и Tools: прежний Impact теперь
+Review, Diagnostics — Findings, а Inventory, Topology и Relations собраны в Architecture.
+Статьи, записи и проверки ниже сделаны на 3.0.4 и показывают прежний интерфейс и прежние
+вердикты; в 5.0 часть вердиктов строже (например, перенос маршрута при найденном вызывающем —
+BREAKING, а не UNKNOWN).
+
 **[Kafka: profiles и границы совместимости](docs/KAFKA_PROFILES_ARTICLE_RU.md)** —
 практическая статья для Java/Spring-разработчиков и
 [видео настоящей IDEA с русскими пояснениями](docs/media/kafka-profiles-3.0.4.mp4).
