@@ -1,0 +1,25 @@
+baseline: nodes=100 edges=116 dtoShapes=34 findings=16 complete=true scanMs=3151
+xray: services=4 links={HTTP=4, KAFKA=1, AMQP=2} fragile=5 mismatches=0 unresolved=2 withoutConsumer=8 located=12
+combined-breaking: decision=BREAKING canProceed=false commitStops=true complete=true deltas=3 breaking=6 unknown=3 safe=0 fixes=[MAKE_OPTIONAL[mandatoryRiskToken], KEEP_FIELDS[providerReference], KEEP_ROUTE[]] unproven=[CONTRACT_UNRESOLVED] diagnostics=0 elapsedMs=461 applyFix=[MakeOptionalPlan, KeepRoutePlan] after=BREAKING afterBreaking=2
+http-method: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=2 unknown=1 safe=0 fixes=[KEEP_ROUTE[]] unproven=[CONTRACT_UNRESOLVED] diagnostics=0 elapsedMs=247 applyFix=[KeepRoutePlan] after=UNKNOWN afterBreaking=0
+request-required: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=2 unknown=1 safe=0 fixes=[MAKE_OPTIONAL[mandatoryRiskToken]] unproven=[CONTRACT_UNRESOLVED] diagnostics=0 elapsedMs=216 applyFix=[MakeOptionalPlan] after=UNKNOWN afterBreaking=0
+response-removed: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=2 unknown=1 safe=0 fixes=[KEEP_FIELDS[providerReference]] unproven=[CONTRACT_UNRESOLVED] diagnostics=0 elapsedMs=205 applyFix=[] after=BREAKING afterBreaking=2
+response-optional-added: decision=UNKNOWN canProceed=false commitStops=true complete=true deltas=1 breaking=0 unknown=3 safe=0 fixes=[] unproven=[CONTRACT_UNRESOLVED, UNPROVEN_FINDING] diagnostics=0 elapsedMs=211
+kafka-topic: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=1 unknown=0 safe=0 fixes=[PUBLISH_BOTH[]] unproven=[] diagnostics=0 elapsedMs=205 applyFix=[KeepTopicPlan] after=REVIEW REQUIRED afterBreaking=0
+spring-profile: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=1 elapsedMs=234
+manifest-import: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=1 elapsedMs=184
+manifest-missing: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=1 elapsedMs=184
+nested-request-required: decision=UNKNOWN canProceed=false commitStops=true complete=true deltas=3 breaking=0 unknown=3 safe=4 fixes=[] unproven=[UNPROVEN_FINDING, NO_CONSUMER] diagnostics=0 elapsedMs=188
+enum-response-added: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=4 unknown=1 safe=0 fixes=[MIGRATE_CONSUMER_FIRST[]] unproven=[UNPROVEN_FINDING] diagnostics=0 elapsedMs=216 applyFix=[] after=BREAKING afterBreaking=4
+http-media-type: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=1 unknown=0 safe=0 fixes=[KEEP_CONDITIONS[]] unproven=[] diagnostics=0 elapsedMs=193 applyFix=[KeepConditionsPlan] after=UNKNOWN afterBreaking=0
+http-header-condition: decision=UNKNOWN canProceed=false commitStops=true complete=true deltas=1 breaking=0 unknown=1 safe=0 fixes=[] unproven=[UNPROVEN_FINDING] diagnostics=0 elapsedMs=180
+amqp-binding: decision=UNKNOWN canProceed=false commitStops=true complete=true deltas=1 breaking=0 unknown=1 safe=1 fixes=[] unproven=[UNPROVEN_FINDING] diagnostics=0 elapsedMs=220
+dependency-deny: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=1 elapsedMs=204
+rule-severity: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=1 elapsedMs=181
+scope-change: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=1 elapsedMs=176
+runtime-beans-missing: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=3 elapsedMs=206
+verification-missing: decision=UNKNOWN canProceed=false commitStops=true complete=false deltas=0 breaking=0 unknown=0 safe=0 fixes=[] unproven=[] diagnostics=3 elapsedMs=212
+beyond the demo script:
+extra-listener-topic: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=1 unknown=0 safe=0 fixes=[LISTEN_BOTH[]] unproven=[] diagnostics=0 elapsedMs=181 applyFix=[KeepListeningPlan] after=UNKNOWN afterBreaking=0
+extra-http-path: decision=BREAKING canProceed=false commitStops=true complete=true deltas=1 breaking=4 unknown=1 safe=0 fixes=[KEEP_ROUTE[]] unproven=[UNPROVEN_FINDING] diagnostics=0 elapsedMs=174 applyFix=[KeepRoutePlan] after=REVIEW REQUIRED afterBreaking=0
+what-if: simulated=13 equal=13 differ=[]

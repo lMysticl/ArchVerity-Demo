@@ -1,0 +1,15 @@
+schemaVersion: 1
+project:
+  id: archverity-boot-upgrade
+  displayName: ArchVerity Spring Boot Upgrade
+analysis:
+  profiles: [default]
+  includeModules: ["*billing-service*", "*orders-service*"]
+  excludePaths: ["verification/**", "build/**"]
+services:
+  billing:
+    modules: [billing-service, archverity-boot-upgrade.billing-service.main]
+    aliases: [billing, billing.example.test]
+  orders:
+    modules: [orders-service, archverity-boot-upgrade.orders-service.main]
+    aliases: [orders]

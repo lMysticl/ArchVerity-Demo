@@ -80,7 +80,7 @@ def main():
         if temporary.exists():
             parser.error(f"Refusing to overwrite stale temporary file: {temporary}")
         try:
-            temporary.write_text(after, encoding="utf-8")
+            temporary.write_text(after, encoding="utf-8", newline="\n")
             os.replace(temporary, target)
         finally:
             temporary.unlink(missing_ok=True)

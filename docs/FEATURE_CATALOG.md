@@ -1,7 +1,8 @@
 # Function and input catalog
 
-Detailed steps, counterexamples and recovery: [all 62 functions](ALL_FUNCTIONS_RU.md).
-Separate registered control recipes: [all 87 entry points](ENTRY_POINTS_RU.md).
+Start with the [current product tour](PRODUCT_TOUR_EN.md) / [русский маршрут](PRODUCT_TOUR_RU.md).
+Detailed steps, counterexamples and recovery: [function groups](ALL_FUNCTIONS_RU.md).
+Separate registered control recipes: [114 entry points](ENTRY_POINTS_RU.md).
 
 Generated from `suite-support/features.json` and the workspace's registered-entry contract.
 Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDEA/device action.
@@ -30,7 +31,7 @@ Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDE
 | IDE-UNSAVED — Unsaved editor changes and gutter → Impact | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Edit the mapping without saving; use Java gutter/Impact; compare saved and unsaved states | Working comparison includes current editor text; source navigation targets this file/version | [Guide](../docs/ARCHITECTURE_WALKTHROUGH_RU.md) — Running IDEA on prepared project |
 | IDE-BASELINE — Save/clear baseline and Git comparison controls | [.archflow.yml](../projects/workspace/.archflow.yml) | Save clean baseline, apply change, compare, Clear baseline; test explicit existing base revision | Comparable snapshot diff appears; Clear removes comparison; changed scope is not reported resolved | [Guide](../projects/workspace/QA_MATRIX_RU.md) — Trial/Pro and complete snapshots |
 | IDE-REVIEW — Markdown PR review and downstream REVIEW paths | [.archflow.yml](../projects/workspace/.archflow.yml), [PaymentClient.java](../projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java) | Impact → Review; copy/save Markdown; inspect downstream source hops and owners | Comparison, direct consumers, unknowns and review limits are readable; reachability is not claimed as field transmission or wire break | [Guide](../docs/ARCHITECTURE_WALKTHROUGH_RU.md) — Current licensed Impact result |
-| IDE-NAVIGATION — Workspace, Editor Companion, Graphite Focus, Paper Review and history | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Select one change; switch three layouts; use breadcrumbs and Alt+Left/Alt+Right | Selection/base comparison remain consistent; keyboard/history return to correct surfaces | [Guide](../projects/workspace/QA_MATRIX_RU.md) — IDEA with a build containing these workspace layouts |
+| IDE-NAVIGATION — Overview, Review, Architecture, Findings, Agents, Tools and navigation history | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Select one change; switch three layouts; use breadcrumbs and Alt+Left/Alt+Right | Selection/base comparison remain consistent; keyboard/history return to correct surfaces | [Guide](../projects/workspace/QA_MATRIX_RU.md) — IDEA with a build containing these workspace layouts |
 | IDE-TOPOLOGY — Inventory, Topology, Relations and filters/focus | [.archflow.yml](../projects/workspace/.archflow.yml) | Filter protocol/search/service; select node; one-hop focus; clear focus | Graph/list selection agrees and source links open the exact declaration | [Guide](../projects/workspace/QA_MATRIX_RU.md) — Complete analyzed project |
 | IDE-FINDINGS — Findings, diagnostics, confidence and reasoned suppressions | [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py) | Open both finding sides; use deterministic alias/manifest guidance; suppress with reason and expiry; fresh copy: rule-severity | PROVEN_MISMATCH/UNKNOWN/OBSERVATION and source proof remain distinct; suppression is persisted and expiry enforced | [Guide](../projects/workspace/QA_MATRIX_RU.md) — Real finding and authorized disposable config edit |
 | IDE-EXPORTS — JSON, Impact JSON, Mermaid, SVG, PNG, SARIF and Review Markdown | [inspect_export.py](../suite-support/inspect_export.py), [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md) | Export from current analysis/Impact; inspect saved files; copy/save JSON and Review text | Readable nonempty formats with current run/scope/base/head, redaction and explicit incomplete status | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Trial/Pro, user-selected output directory |
@@ -47,10 +48,18 @@ Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDE
 | API-SCENARIOS — Sequential HTTP, declarative DSL, structural JSON assertions and captures | [happy.json](../projects/api-lab/scenarios/happy.json), [assertion-fails.json](../projects/api-lab/scenarios/assertion-fails.json), [missing-variable.json](../projects/api-lab/scenarios/missing-variable.json) | Run each JSON array in Scenarios; rerun with fresh transient variables | ID captured and used; first error stops later steps; absent variable fails before request; no arbitrary JS | [Guide](../projects/api-lab/README.md) — Local HTTP server and entitled backend |
 | DEV-MOBILE — All 16 React Native/Expo/Gradle/iOS/ADB commands | [package.json](../projects/mobile-lab/package.json), [package-lock.json](../projects/mobile-lab/package-lock.json), [index.js](../projects/mobile-lab/index.js), [App.js](../projects/mobile-lab/App.js), [app.json](../projects/mobile-lab/app.json) | Follow all 16 command rows in mobile-lab README | Real process, bundle, app screen and selected serial; native setup and iOS are observed separately | [Guide](../projects/mobile-lab/README.md) — Node; prebuild+SDK/JDK/device for native; macOS for iOS; explicit install/uninstall/clear authority |
 | IDE-SETTINGS — Five application/project settings pages | [coverage.json](../projects/workspace/qa-support/coverage.json) | Change a nonsecret option; reopen and observe consumer; return to original value | Setting persists in correct scope and changes actual editor/API/icon/MyBatis behavior | [Guide](../projects/workspace/QA_MATRIX_RU.md) — Running IDEA on disposable project |
-| MCP-TOOLS — Four read-only bounded MCP tools | [.archflow.yml](../projects/workspace/.archflow.yml), [coverage.json](../projects/workspace/qa-support/coverage.json) | Use exact JSON examples in environment guide; filter/limits/directions and negative inputs | Current matching project data, bounded result, relative paths; no source snippets or license bypass | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — JetBrains MCP Server and real Trial/Pro |
-| IDE-LICENSE — Free/Trial/Pro/expired/offline gates | [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md) | Repeat paid reads/exports/MCP with independently provisioned genuine entitlement states | UI/backend agree; cached paid data remains gated; no synthetic entitlement is accepted as proof | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Real external license states; each NOT RUN until observed |
+| MCP-TOOLS — Four foundational read-only MCP calls within the 18-tool bridge | [.archflow.yml](../projects/workspace/.archflow.yml), [coverage.json](../projects/workspace/qa-support/coverage.json) | Use exact JSON examples in environment guide; filter/limits/directions and negative inputs | Current matching project data, bounded result, relative paths; no source snippets or license bypass | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — JetBrains MCP Server and real Trial/Pro |
+| IDE-LICENSE — Trial/Pro, absent, expired and offline entitlement gates | [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md) | Repeat paid reads/exports/MCP with independently provisioned genuine entitlement states | UI/backend agree; cached paid data remains gated; no synthetic entitlement is accepted as proof | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Real external license states; each NOT RUN until observed |
 | IDE-RUNTIME — Local/Split Mode, JCEF/native, light/dark, scale/accessibility/persistence | [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md) | Repeat selected project actions in bound frontend/backend; theme/scale/keyboard; reopen project | Same source/selection/result; bounded cleanup; actual selected graph renderer and accessible controls | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Prepared IDEA runtimes and genuine entitlement |
 | TOOLS-CI — Exported JSON gates, converters/diff/policy and fresh headless PSI | [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-openapi.json](../projects/workspace/qa-openapi.json), [inspect_export.py](../suite-support/inspect_export.py) | Run documented ArchVerity Tools commands on real exports and committed prepared demo revisions | Incomplete/UNKNOWN inputs fail closed; fresh producer has commit/toolchain identity; JSON gate is distinct from a source scan | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Separately supplied Tools distribution; compatible IDE/plugin and provisioned licensed CI config for producer |
+| ARCH-WHATIF — Pre-edit Java contract simulation | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Place caret on a Java DTO field/mapping/Kafka send; invoke What Breaks If This Changes? | Affected counterpart and supported variants with evidence; git diff remains empty | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, imported and analyzed Java project, Trial/Pro |
+| ARCH-BOOT-UPGRADE — Spring Boot 4 wire upgrade check | [InvoiceView.java](../projects/boot-upgrade/billing-service/src/main/java/demo/billing/InvoiceView.java) | Scan the default-mapper pair; check the upgrade, apply the explicit fix and recheck | Supported enum/Month/primitive risks and locations; fixed controls; unproven mapper remains explicit | [Guide](../projects/boot-upgrade/README.md) — 5.3.2, JDK 21, real Boot dependencies and Trial/Pro |
+| ARCH-FIRST-SCAN — Useful contract overview before editing | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Analyze clean workspace; inspect important contracts, mismatches and unresolved counterparts | Located source evidence before a change; absent callers are a coverage limit | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, complete imported project and Trial/Pro |
+| TEAM-MARKDOWN — Copy for my team | [BillingClient.java](../projects/boot-upgrade/orders-service/src/main/java/demo/orders/BillingClient.java) | Copy Overview team report after the scan and upgrade check | Same service names, relative locations, upgrade risks and uncertainty in usable Markdown | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, current scan and Trial/Pro |
+| TEAM-REGISTRY — Publish preview into a local team registry | [.archflow.yml](../projects/workspace/.archflow.yml) | Select Publish contracts to team registry; inspect preview and local checkout diff | Own source-backed snapshot only; explicit local publication, no automatic commit or push | [Guide](../docs/PRODUCT_TOUR_RU.md) — Separate local registry checkout, current scan and Trial/Pro |
+| TEAM-RECEIPT — Recorded commit check for CI | [apply_impact.py](../projects/workspace/qa-support/apply_impact.py) | Preview Add commit receipt check to CI in a disposable copy; check receipt then change the tree | Receipt belongs to exact checked tree; modified tree cannot reuse it; no fresh CI source scan claimed | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, Git and current entitled check |
+| MCP-CURRENT — Current agent workflow and review protocol | [MCP_TOUR_RU.md](../docs/MCP_TOUR_RU.md) | Run before-edit file contracts, after-edit check, bounded plans and real prepared/submitted review | Same project and current identities; stale/malformed inputs rejected; NOT_EXECUTED/PARTIAL remain explicit | [Guide](../docs/MCP_TOUR_RU.md) — Modern IDE MCP Server, own supported agent, Trial/Pro |
+| SETTINGS-PREVIEW — AI settings assistant and bounded preview | [.archflow.yml](../projects/workspace/.archflow.yml) | Read settings, preview whitelisted analysis change, inspect and cancel or explicitly Apply/Undo | Preview alone does not edit files; stale input identity rejected | [Guide](../docs/MCP_TOUR_RU.md) — 5.3.2 and Trial/Pro; agent optional for IDE path |
 
 ## Registered IDEA entry points
 
@@ -58,7 +67,7 @@ All entries below bind to the executable/manual case in [QA matrix](../projects/
 Process commands also use the complete [mobile table](../projects/mobile-lab/README.md) and [environment guide](ENVIRONMENT_CHECKS_RU.md).
 The workspace-only coverage preserves its truthful six local inputs and sixteen external environments; the mobile app supplies additional real inputs after setup.
 
-### surfaces (15)
+### surfaces (18)
 
 | Entry | Case | Workspace fixture |
 | --- | --- | --- |
@@ -77,8 +86,11 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | ANSI | QA-ANSI | [archflow-live.ansi](../projects/workspace/archflow-live.ansi), [qa.ansi](../projects/workspace/ansible/qa.ansi) |
 | DEV_ICONS | QA-ICONS | [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons), [archflow-studio.aficons](../projects/workspace/archflow-studio.aficons) |
 | KEYSTORE | QA-CRYPTO | [qa-cert.pem](../projects/workspace/qa-cert.pem), [qa-cert.der](../projects/workspace/qa-cert.der), [qa-public-artifacts.pem](../projects/workspace/qa-public-artifacts.pem), [qa-request.csr](../projects/workspace/qa-request.csr), [qa-public-key.pem](../projects/workspace/qa-public-key.pem), [qa-truststore.p12](../projects/workspace/qa-truststore.p12) |
+| AGENTS | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| KAFKA_CONTRACTS | QA-NAV | [OrderPublisher.java](../projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java) |
+| TOOLS | QA-NAV | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 
-### actions (6)
+### actions (10)
 
 | Entry | Case | Workspace fixture |
 | --- | --- | --- |
@@ -88,8 +100,12 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | ArchFlow.InspectX509Artifact | QA-CRYPTO | [qa-cert.pem](../projects/workspace/qa-cert.pem), [qa-cert.der](../projects/workspace/qa-cert.der), [qa-public-artifacts.pem](../projects/workspace/qa-public-artifacts.pem), [qa-request.csr](../projects/workspace/qa-request.csr), [qa-public-key.pem](../projects/workspace/qa-public-key.pem) |
 | ArchFlow.DecryptEditAnsibleVault | QA-ANSIBLE | [vault-plain.yml](../projects/workspace/ansible/vault-plain.yml) |
 | ArchFlow.EncryptAnsibleVault | QA-ANSIBLE | [vault-plain.yml](../projects/workspace/ansible/vault-plain.yml) |
+| ArchVerity.ConnectAiAgent | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| ArchVerity.FindSection | QA-NAV | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| ArchVerity.SettingsAssistant | QA-SETTINGS | [.archflow.yml](../projects/workspace/.archflow.yml) |
+| ArchVerity.WhatIf | QA-WHATIF | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 
-### mcp (4)
+### mcp (18)
 
 | Entry | Case | Workspace fixture |
 | --- | --- | --- |
@@ -97,6 +113,20 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | archverity_findings | QA-MCP | [.archflow.yml](../projects/workspace/.archflow.yml) |
 | archverity_contract_evidence | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 | archverity_trace_flow | QA-MCP | [PaymentClient.java](../projects/workspace/order-app/src/main/java/sample/order/PaymentClient.java) |
+| archverity_architecture_diagram | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_capabilities | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_check_change | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_config_usage | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_context | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_explain_flow | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_file_contracts | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_kafka_migration_plan | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_prepare_review | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_preview_rule | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_preview_settings | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_settings | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_submit_review | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_test_plan | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 
 ### processCommands (22)
 
@@ -158,7 +188,7 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | archflow.developer.icons.project | QA-SETTINGS | [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons) |
 | archflow.developer.http.environments | QA-SETTINGS | [qa-api.http](../projects/workspace/qa-api.http) |
 
-### editorExtensions (22)
+### editorExtensions (28)
 
 | Entry | Case | Workspace fixture |
 | --- | --- | --- |
@@ -184,3 +214,9 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | completion.contributor:SpringConfigCompletionContributor:yaml | QA-SPRING | [application.yml](../projects/workspace/payment-app/src/main/resources/application.yml) |
 | completion.contributor:ShellCompletionContributor:Shell Script | QA-SHELL | [deploy](../projects/workspace/shell-professional/bin/deploy) |
 | completion.contributor:AnsibleCompletionContributor:yaml | QA-ANSIBLE | [site.yml](../projects/workspace/ansible/professional/playbooks/site.yml) |
+| codeInsight.lineMarkerProvider:ProjectReviewLineMarkerProvider:JAVA | QA-AIREVIEW | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| codeInsight.lineMarkerProvider:ProjectReviewLineMarkerProvider:kotlin | QA-AIREVIEW | [AmqpListener.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt) |
+| localInspection:ArchVerityAiReviewJava:JAVA | QA-AIREVIEW | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| localInspection:ArchVerityAiReviewKotlin:kotlin | QA-AIREVIEW | [AmqpListener.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt) |
+| localInspection:ArchVerityContractChange:JAVA | QA-EDITOR | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| localInspection:ArchVerityContractChangeKotlin:kotlin | QA-EDITOR | [AmqpListener.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt) |

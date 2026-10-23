@@ -58,6 +58,8 @@ jobs:
           }
       - name: Real Spring Boot runtime and verification producers
         run: python -B -X utf8 suite-support/smoke_runtime.py --output "${{ runner.temp }}/archverity-demo-runtime"
+      - name: Real Boot 3 and 4 JSON before and after the explicit fix
+        run: python -B -X utf8 suite-support/smoke_boot_upgrade.py --output "${{ runner.temp }}/archverity-boot-upgrade"
       - name: Install the mobile lockfile
         working-directory: projects/mobile-lab
         run: npm ci --ignore-scripts --no-audit --no-fund

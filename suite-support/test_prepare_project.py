@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from prepare_project import ROOT, prepare, retarget_document_links
+from prepare_project import PROJECTS, ROOT, prepare, retarget_document_links
 
 
 class StandaloneProjectTest(unittest.TestCase):
@@ -21,7 +21,7 @@ class StandaloneProjectTest(unittest.TestCase):
         self.assertTrue((self.output / "api/schema/echo.pb").is_file())
 
     def test_each_shipped_lab_has_an_isolated_clean_git_baseline(self):
-        for name in ("first-result", "workspace", "api-lab", "mobile-lab", "runtime-evidence", "kafka-profile-lab"):
+        for name in PROJECTS:
             with self.subTest(project=name):
                 result = prepare(name, self.output / name)
                 root = Path(result["project"])

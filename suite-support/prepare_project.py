@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECTS = ("first-result", "workspace", "api-lab", "mobile-lab", "runtime-evidence", "kafka-profile-lab")
+PROJECTS = ("first-result", "workspace", "api-lab", "mobile-lab", "runtime-evidence", "kafka-profile-lab", "boot-upgrade")
 EXCLUDED = {".git", ".gradle", ".idea", ".kotlin", ".expo", "node_modules", "build", "out", "work", "reports", "__pycache__", "android", "ios"}
 
 
@@ -56,7 +56,9 @@ def prepare(name, destination):
     retarget_document_links(source.resolve(), destination)
     shutil.copy2(ROOT / ".gitattributes", destination / ".gitattributes")
     def git(*arguments):
-        return subprocess.check_output(["git", *arguments], cwd=destination, text=True).strip()
+        return subprocess.check_output(["git", "-c", "commit.gpgSign=false", "-c",
+                                        f"core.hooksPath={destination / '.git/no-demo-hooks'}", *arguments],
+                                       cwd=destination, text=True).strip()
     git("init", "--quiet", "--initial-branch=main")
     git("add", "--all")
     git("-c", "user.name=ArchVerity Demo Fixture", "-c", "user.email=demo@invalid.example",

@@ -16,8 +16,9 @@ from apply_impact import SCENARIOS
 
 def catalog(features, entries):
     lines = ["# Function and input catalog", "",
-             "Detailed steps, counterexamples and recovery: [all 62 functions](ALL_FUNCTIONS_RU.md).",
-             "Separate registered control recipes: [all 87 entry points](ENTRY_POINTS_RU.md).", "",
+             "Start with the [current product tour](PRODUCT_TOUR_EN.md) / [русский маршрут](PRODUCT_TOUR_RU.md).",
+             "Detailed steps, counterexamples and recovery: [function groups](ALL_FUNCTIONS_RU.md).",
+             f"Separate registered control recipes: [{sum(len(group) for group in entries.values())} entry points](ENTRY_POINTS_RU.md).", "",
              "Generated from `suite-support/features.json` and the workspace's registered-entry contract.",
              "Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDEA/device action.", "",
              "## Capabilities", "", "| ID / function | Input | Action | Observable result | Prerequisite / guide |",
@@ -98,6 +99,8 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
     playbooks = check_playbooks(plugin_source, require_source)
     from check_docs import check as check_docs
     documentation = check_docs()
+    from check_boot_upgrade import check as check_boot_upgrade
+    upgrade = check_boot_upgrade()
     from prepare_kafka_case import CASES, LAB
     if {case["id"] for case in CASES} != {f"K{index:02}" for index in range(1, 13)} or len(CASES) != 12:
         raise ValueError("Kafka lab must retain all 12 unique scenarios")
@@ -115,7 +118,7 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
             raise ValueError(f"Missing Kafka fixture: {relative}")
     return {"status": "INPUT_CONTRACT_PASS", "features": len(features), "entry_points": sum(registration["entries"].values()),
             "registered": registration, "isolated_mutations": len(SCENARIOS), "python_sources": python_files, "full_playbooks": playbooks,
-            "documentation": documentation, "kafka_profile_cases": len(CASES),
+            "documentation": documentation, "kafka_profile_cases": len(CASES), "boot_upgrade": upgrade,
             "boundary": "Prepared inputs and source matching; live IDEA/device/licensing observations remain separate"}
 
 

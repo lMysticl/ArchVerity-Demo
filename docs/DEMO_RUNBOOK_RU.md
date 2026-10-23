@@ -1,9 +1,11 @@
 # Запуск демонстрации ArchVerity: пошаговая инструкция
 
+**Начните с [маршрута ArchVerity 5.3.2](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
+
 Этот маршрут предназначен для первого знакомства, показа плагина и повторяемого
-QA на открытых исходниках. Набор описывает функции ArchVerity **3.0.3**:
-[62 функции](ALL_FUNCTIONS_RU.md), [87 точек входа](ENTRY_POINTS_RU.md),
-41 прежний capability recipe и 19 отдельных изменений для Impact.
+QA на открытых исходниках. Набор описывает функции ArchVerity **5.3.2**:
+[62 функции](ALL_FUNCTIONS_RU.md), [114 точек входа](ENTRY_POINTS_RU.md),
+49 capability recipes (41 прежний сохранён) и 19 отдельных изменений для Impact.
 Выберите нужный этап; архитектурные примеры и сетевые лаборатории запускаются
 по своим инструкциям ниже. [Оглавление всей документации](README.md).
 
@@ -13,8 +15,8 @@ QA на открытых исходниках. Набор описывает ф�
 | --- | --- | --- |
 | Git | Получение исходников и самостоятельный Git baseline | `git --version` |
 | Python 3.10+ | Проверки набора, подготовка копий, локальные API | `python --version`; hosted CI использует 3.12 |
-| JDK 21 | Gradle import/build четырёх JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
-| Совместимая IDEA и установленный ArchVerity 3.0.4 или новее | Действия плагина и все шесть лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать отдельную 3.0.4-2024.3 |
+| JDK 21 | Gradle import/build пяти JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
+| Совместимая IDEA и установленный ArchVerity 5.3.2 | Действия плагина и все семь лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать совместимый legacy-пакет; MCP требует современную IDEA |
 | Настоящий Trial/Pro для соответствующих операций | Impact, paid tools/export/MCP | Записать фактически видимое состояние лицензии |
 | Node 22 | Metro/Expo/JavaScript bundle | `node --version`, `npm --version`; native device пока не нужен |
 | Сеть для первого download | Gradle/npm/pinned Python packages | Установка завершается с exit code 0 |
@@ -33,7 +35,7 @@ python -B -X utf8 suite-support/check_suite.py
 ```
 
 Если clone уже есть, откройте его корень и выполните только проверку набора.
-Проверка должна сообщить `INPUT_CONTRACT_PASS`, `functions=62`, `entry_points=87`.
+Проверка должна сообщить `INPUT_CONTRACT_PASS`, `functions=62`, `entry_points=114`.
 Перед обновлением существующего clone просмотрите `git status`; локальные
 изменения сохраняйте своим обычным Git-процессом.
 
@@ -200,10 +202,9 @@ Ctrl+C в launcher terminal останавливает его приложени
 
 ## 7. Kafka profiles и UNKNOWN
 
-Этот дополнительный lab требует **ArchVerity 3.0.4** или новее; для локальной
-IDEA 2024.3 используйте **3.0.4-2024.3**. Прежний Marketplace package 3.0.3
-не содержит исправления Kafka profile/evidence. Оба новых обновления загружены
-и одобрены 05.10.2026; см. [запись выпуска](VERIFICATION_RU.md#выпуск-304--05102026).
+Для текущего маршрута используйте **ArchVerity 5.3.2** и поддерживаемую им IDEA.
+Сценарии были впервые проверены в 3.0.4; старые exports и видео сохраняют
+[историческую запись выпуска](VERIFICATION_RU.md#выпуск-304--05102026).
 Подготовьте новую копию:
 
 ```powershell
@@ -227,7 +228,7 @@ profiles должны дать два отдельных scopes и `009/010 UNKN
 
 1. Откройте [содержание 62 функций](ALL_FUNCTIONS_RU.md) и выберите ID.
 2. Подготовьте указанный input/среду. Для конкретного control используйте
-   [87 точек входа](ENTRY_POINTS_RU.md); выполните positive, counterexample,
+   [114 точек входа](ENTRY_POINTS_RU.md); выполните positive, counterexample,
    recovery и зафиксируйте каждое наблюдение.
 3. Скопируйте [RUN_RECORD](RUN_RECORD.md) в `work/` своего проекта. Запишите
    demo commit, IDE/plugin version, project path/HEAD, license state,
@@ -256,3 +257,7 @@ Tools, MCP Server, лицензии, SSH, Split Mode и private inputs имею�
 Для воспроизведения автоматических checks используется
 [CI workflow](../.github/workflows/checks.yml); его результат относится к
 конкретному commit, а ручной IDEA/device run — к записанному проекту и версии.
+
+## Лаборатория Spring Boot upgrade
+
+[boot-upgrade](../projects/boot-upgrade/README.md) — седьмой проект: настоящие Boot 3/4 мапперы, четыре риска, явное исправление и mapper-unknown control. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project boot-upgrade --output ../archverity-upgrade-demo`.

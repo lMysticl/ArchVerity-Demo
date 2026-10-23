@@ -1,0 +1,1 @@
+{"bootGeneration":4,"bootVersion":"4.1.1","mapper":"tools.jackson.databind.json.JsonMapper","invoiceJson":"{\"id\":\"42\",\"status\":\"PAID\",\"period\":\"JANUARY\",\"quantity\":null}","enumJson":"\"PAID\"","monthJson":"1","monthNumberOne":"JANUARY","nullPrimitive":false,"absentPrimitive":false,"readsOwnInvoice":true,"readsLegacyInvoice":true}

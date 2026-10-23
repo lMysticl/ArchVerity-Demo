@@ -71,14 +71,16 @@ def validate(data, entry_points, root=ROOT):
 
 def guides(data, entry_points):
     lines = ["# Все функции ArchVerity: демонстрация и проверка", "",
-             f"Source scope: ArchVerity {data['source_product_version']}; исходный inventory commit `{data['source_inventory_commit']}`.",
-             "62 пользовательские возможности, все 87 registered entry points и все 41 прежние capability recipes связаны с конкретными входами.",
+             f"Recipes: ArchVerity {data['source_product_version']}; сверка текущих registrations с commit `{data['source_inventory_commit']}`.",
+             f"{len(data['features'])} исторические функциональные группы сохраняют stable IDs; {len(entry_points)} текущих registered entry points связаны с конкретными входами.",
+             "Старые source_capability формулировки сохранены для сверки legacy inventory; актуальные действия и ограничения описаны ниже.",
+             "[Начните с маршрута 5.3.2](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [18 MCP tools](MCP_TOUR_RU.md).",
              "Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).", "",
-             "[Пошаговый запуск всех шести лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
+             "[Пошаговый запуск всех семи лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
              "## Подготовка", "", "Для первого finding подготовьте отдельную first-result copy через `suite-support/prepare_project.py` и откройте её с JDK 21. Для архитектуры и Impact создайте новую workspace copy тем же helper и получите настоящий полный снимок чистого HEAD в IDEA.",
              "API запускается через `projects/api-lab/serve.py`. Mobile имеет свой lockfile/native prerequisites. Runtime evidence требует настоящего current IDEA export; producer smoke явно использует synthetic test context.",
              "При отсутствии SDK/device, SSH, real entitlement, PasswordSafe/Vault input или Tools distribution записывайте точную недоступную зависимость. Остальные независимые проверки продолжаются. Signing, credentials и device install/clear/uninstall требуют отдельного разрешения.", "",
-             "[Каталог входов](FEATURE_CATALOG.md) · [87 точек входа](ENTRY_POINTS_RU.md) · [Архитектура и 19 мутаций](ARCHITECTURE_WALKTHROUGH_RU.md) · [Средовые команды и MCP](ENVIRONMENT_CHECKS_RU.md)", "",
+             "[Каталог входов](FEATURE_CATALOG.md) · [Точки входа](ENTRY_POINTS_RU.md) · [Архитектура и 19 мутаций](ARCHITECTURE_WALKTHROUGH_RU.md) · [Средовые команды и MCP](ENVIRONMENT_CHECKS_RU.md)", "",
              "## Содержание", "", "| ID | Функция |", "| --- | --- |"]
     for f in data["features"]:
         lines.append(f"| {f['id']} | [{f['title']}](#{f['id'].lower()}) |")
@@ -97,7 +99,7 @@ def guides(data, entry_points):
                       f"**Восстановление:** {f['restore']}", "", f"**Доказательство:** {f['capture']}", "",
                       f"**Consumer run:** `{f['consumer_status']}`. Capability IDs: " + ", ".join(f["capability_ids"]) + "."])
     entries = ["# Все зарегистрированные точки входа", "",
-               "Каждая из 87 записей имеет отдельные trigger, oracle и inputs. Подробные positive/negative/recovery сценарии — в [полном руководстве](ALL_FUNCTIONS_RU.md).",
+               f"Каждая из {len(entry_points)} записей имеет отдельные trigger, oracle и inputs. Подробные positive/negative/recovery сценарии — в [полном руководстве](ALL_FUNCTIONS_RU.md).",
                "Это prepared coverage; фактический consumer run записывается отдельно в [RUN_RECORD](RUN_RECORD.md).", ""]
     previous = None
     for e in entry_points:
@@ -123,7 +125,7 @@ def check(plugin_source=None, require_source=False, write_guides=False):
         expected = {f["id"]: f["capability"] for f in source["features"]}
         if actual != expected:
             raise ValueError("Complete user-facing feature inventory drifted from plugin source")
-        result["source"] = "62 source capabilities match"
+        result["source"] = f"{len(expected)} legacy source capability groups match; current registrations checked separately"
     elif require_source:
         raise ValueError("Plugin source is required")
     else:

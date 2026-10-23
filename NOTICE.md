@@ -16,3 +16,10 @@ The two `.aficons` packages contain synthetic QA icons and the ArchVerity
 Studio demonstration pack. The `.p12` fixture is a public-only truststore:
 it contains a trusted certificate and no private key. Its documented fixture
 password protects no secret. PEM/DER/CSR/CRL inputs contain public material only.
+# Current upgrade demonstration
+
+The `projects/boot-upgrade` business DTOs adapt the owner's ArchVerity test
+fixture into a public project with real Spring Boot dependencies. Framework
+stubs and private plugin implementation are not included. The Gradle wrapper
+retains the same upstream origin as the other labs. Spring Boot/Jackson
+libraries are resolved from Maven Central; they are not bundled here.

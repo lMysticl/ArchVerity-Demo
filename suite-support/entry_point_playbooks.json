@@ -2,8 +2,8 @@
   {
     "id": "surfaces:WORKSPACE",
     "feature_id": "UI-01",
-    "trigger": "Workspace → Analyze project; открыть quick link и back.",
-    "expect": "Current project/scan state и заголовок соответствуют экрану; история возвращает Workspace.",
+    "trigger": "Overview → Analyze project; открыть quick link и back.",
+    "expect": "Current project/scan state и заголовок соответствуют экрану; история возвращает Overview.",
     "inputs": [
       "projects/workspace/README_RU.md"
     ]
@@ -33,7 +33,7 @@
   {
     "id": "surfaces:TOPOLOGY",
     "feature_id": "UI-03",
-    "trigger": "Topology → выбрать payment-service, Focus и Reset focus.",
+    "trigger": "Architecture → выбрать payment-service, Focus и Reset focus.",
     "expect": "Соседи и затем весь текущий graph отображаются согласованно.",
     "inputs": [
       "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java",
@@ -52,7 +52,7 @@
   {
     "id": "surfaces:DIAGNOSTICS",
     "feature_id": "UI-04",
-    "trigger": "Diagnostics на clean и manifest-missing copy.",
+    "trigger": "Findings на clean и manifest-missing copy.",
     "expect": "Clean zero допустим; missing input имеет конкретную причину и location.",
     "inputs": [
       "projects/workspace/.archflow.yml",
@@ -162,6 +162,33 @@
     ]
   },
   {
+    "id": "surfaces:AGENTS",
+    "feature_id": "MCP-01",
+    "trigger": "Открыть Agents / Set up assistant; выбрать поддержанный клиент и проверить connection.",
+    "expect": "Статус реального соединения и выбранный project; отсутствие агента/лицензии остаётся явным.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "surfaces:KAFKA_CONTRACTS",
+    "feature_id": "UI-01",
+    "trigger": "Architecture → Kafka contracts; открыть orders.created и участников потока.",
+    "expect": "Producer/consumer и uncertainty scope относятся к выбранному topic.",
+    "inputs": [
+      "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java"
+    ]
+  },
+  {
+    "id": "surfaces:TOOLS",
+    "feature_id": "UI-01",
+    "trigger": "Открыть Tools и выбрать API, Spring config и MyBatis по очереди.",
+    "expect": "Инструменты доступны из одного раздела; возврат сохраняет текущий проект.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
     "id": "actions:ArchFlow.RestoreMyBatisSql",
     "feature_id": "DEVS-10",
     "trigger": "Выделить обе console lines → Restore MyBatis SQL.",
@@ -220,6 +247,42 @@
     ]
   },
   {
+    "id": "actions:ArchVerity.ConnectAiAgent",
+    "feature_id": "MCP-01",
+    "trigger": "Открыть Agents / Set up assistant; выбрать поддержанный клиент и проверить connection.",
+    "expect": "Статус реального соединения и выбранный project; отсутствие агента/лицензии остаётся явным.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "actions:ArchVerity.FindSection",
+    "feature_id": "UI-01",
+    "trigger": "Find Action → Find ArchVerity Section…; найти Spring config и вернуться через историю.",
+    "expect": "Поиск открывает нужное представление внутри Architecture/Tools без потери проекта.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "actions:ArchVerity.SettingsAssistant",
+    "feature_id": "CFG-02",
+    "trigger": "Find Action → ArchVerity AI Settings Assistant; прочитать настройки, preview analysis.profiles, отменить.",
+    "expect": "Whitelisted preview не меняет файл до Apply; устаревшие inputs не применяются.",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "actions:ArchVerity.WhatIf",
+    "feature_id": "IMP-04",
+    "trigger": "Курсор на Java DTO-поле или Spring mapping; Find Action → ArchVerity: What Breaks If This Changes?",
+    "expect": "Варианты с affected consumers и evidence; git diff остаётся пустым.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
     "id": "mcp:archverity_change_impact",
     "feature_id": "MCP-01",
     "trigger": "На current same-project licensed MCP Server вызвать отдельно archverity_change_impact с {\"base_revision\":\"HEAD\",\"limit\":10}",
@@ -253,6 +316,132 @@
     "expect": "Узлы и ребра вокруг payment-service соответствуют current topology; inbound/outbound/both различаются, depth ограничен до 1..8, limit до 1..100. Current project identity и bounded result сверяются отдельно.",
     "inputs": [
       "projects/workspace/order-app/src/main/java/sample/order/PaymentClient.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_architecture_diagram",
+    "feature_id": "MCP-01",
+    "trigger": "Query payment-service, direction=both, max_depth=3, limit=10.",
+    "expect": "Mermaid и structured flow совпадают; truncated/ambiguous/empty не выдаются за complete.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_capabilities",
+    "feature_id": "MCP-01",
+    "trigger": "Вызвать с {} на выбранном проекте.",
+    "expect": "Capability contract и пределы совпадают с текущим bridge; это не проверка исходников.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_check_change",
+    "feature_id": "MCP-01",
+    "trigger": "После http-method вызвать HEAD, from_merge_base=false, limit=10, настоящий project_root; повторить после исправления.",
+    "expect": "Свежий результат для текущего дерева; affected clients совпадают с Review; receipt не переносится на следующую правку.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_config_usage",
+    "feature_id": "MCP-01",
+    "trigger": "query=spring.application.name, limit=10; отдельно неверный status.",
+    "expect": "Объявления/явные usages без значений; UNUSED не доказательство ненужной настройки, неверный status отклонён.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_context",
+    "feature_id": "MCP-01",
+    "trigger": "kind=NODE, selector из текущего выбранного payment-service; повторить с previous_identity.",
+    "expect": "Один selected object с bounded evidence; неправильная/устаревшая identity не подменяется чужим контекстом.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_explain_flow",
+    "feature_id": "MCP-01",
+    "trigger": "Query payment-service, direction=both, base_revision=HEAD, max_depth=3; повторить с previous_identity после изменения.",
+    "expect": "Технический flow и identity соответствуют evidence; устаревшая интерпретация обнаружена, бизнес-смысл не придуман.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_file_contracts",
+    "feature_id": "MCP-01",
+    "trigger": "Перед правкой передать path PaymentController.java, limit=10 и настоящий project_root.",
+    "expect": "Контракты и locations другой стороны; неверный project_root отклоняется, пустой ответ не доказывает безопасность.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_kafka_migration_plan",
+    "feature_id": "MCP-01",
+    "trigger": "После kafka-topic вызвать base_revision=HEAD, limit=10.",
+    "expect": "Bounded план сохраняет неизвестные deployment/schema факты; ничего не развёртывается.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_prepare_review",
+    "feature_id": "MCP-01",
+    "trigger": "scope=CHANGES, base_revision=HEAD, from_merge_base=false, limit=10.",
+    "expect": "Текущие session/identity/manifest выбранного method; следующие страницы используют тот же session.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_preview_rule",
+    "feature_id": "MCP-01",
+    "trigger": "policy_id=demo-no-payments, from_services=[order-service], to_services=[payment-service], protocol=HTTP, mode=deny.",
+    "expect": "Наблюдаемые paths и YAML preview; файл конфигурации не изменён.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_preview_settings",
+    "feature_id": "MCP-01",
+    "trigger": "Передать identity от settings и proposal_json для analysis.profiles=[default].",
+    "expect": "Локальное preview, Apply/Undo остаются в IDE; stale identity отклоняется.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_settings",
+    "feature_id": "MCP-01",
+    "trigger": "Вызвать с {} и сохранить текущую inputIdentity.",
+    "expect": "Только whitelisted настройки без секретных значений; scan не обязателен.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_submit_review",
+    "feature_id": "MCP-01",
+    "trigger": "Подключённый агент передаёт strict report_json текущего prepared session с фактическими anchors/coverage.",
+    "expect": "Только review-state; stale/malformed отклоняются, неполный охват остаётся PARTIAL, verdict не подменяется.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_test_plan",
+    "feature_id": "MCP-01",
+    "trigger": "После request-required вызвать base_revision=HEAD, from_merge_base=false, limit=10.",
+    "expect": "Контроли и gaps относятся к изменённому полю; NOT_EXECUTED не становится результатом теста.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
     ]
   },
   {
@@ -624,60 +813,6 @@
     ]
   },
   {
-    "id": "exports:JSON",
-    "feature_id": "TEAM-01",
-    "trigger": "Save/Copy analysis JSON",
-    "expect": "Current context/revision/findings в analysis schema",
-    "inputs": [
-      "projects/workspace/.archflow.yml"
-    ]
-  },
-  {
-    "id": "exports:MERMAID",
-    "feature_id": "TEAM-02",
-    "trigger": "Topology → Export Mermaid",
-    "expect": "Текст graph содержит фактические service IDs/edges",
-    "inputs": [
-      "projects/workspace/.archflow.yml"
-    ]
-  },
-  {
-    "id": "exports:SVG",
-    "feature_id": "TEAM-02",
-    "trigger": "Topology → Export SVG, открыть",
-    "expect": "Видимый current graph и корректный XML/SVG",
-    "inputs": [
-      "projects/workspace/.archflow.yml"
-    ]
-  },
-  {
-    "id": "exports:PNG",
-    "feature_id": "TEAM-02",
-    "trigger": "Topology → Export PNG, открыть",
-    "expect": "Реальное изображение current graph",
-    "inputs": [
-      "projects/workspace/.archflow.yml"
-    ]
-  },
-  {
-    "id": "exports:SARIF",
-    "feature_id": "TEAM-02",
-    "trigger": "Export SARIF, inspect и source mapping",
-    "expect": "SARIF 2.1.0 с нужными rule/location",
-    "inputs": [
-      "projects/workspace/.archflow.yml"
-    ]
-  },
-  {
-    "id": "exports:IMPACT",
-    "feature_id": "TEAM-01",
-    "trigger": "Save/Copy Impact JSON для actual comparison",
-    "expect": "Правильные base/current scope и field delta",
-    "inputs": [
-      "projects/workspace/qa-support/apply_impact.py"
-    ]
-  },
-  {
     "id": "editorExtensions:fileEditorProvider:AnsiLogFileEditorProvider",
     "feature_id": "DEVS-22",
     "trigger": "Открыть зарегистрированный .ansi файл → ANSI rendered/raw.",
@@ -944,6 +1079,114 @@
     "inputs": [
       "projects/workspace/ansible/professional/playbooks/site.yml",
       "projects/workspace/ansible/vault-plain.yml"
+    ]
+  },
+  {
+    "id": "editorExtensions:codeInsight.lineMarkerProvider:ProjectReviewLineMarkerProvider:JAVA",
+    "feature_id": "IDE-01",
+    "trigger": "Открыть соответствующий Java/Kotlin источник и реально созданное contract/review finding для codeInsight.lineMarkerProvider:ProjectReviewLineMarkerProvider:JAVA; перейти по highlight/gutter.",
+    "expect": "Marker относится к правильной строке, revision и finding; устаревшее review не показано как текущее.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "editorExtensions:codeInsight.lineMarkerProvider:ProjectReviewLineMarkerProvider:kotlin",
+    "feature_id": "IDE-01",
+    "trigger": "Открыть соответствующий Java/Kotlin источник и реально созданное contract/review finding для codeInsight.lineMarkerProvider:ProjectReviewLineMarkerProvider:kotlin; перейти по highlight/gutter.",
+    "expect": "Marker относится к правильной строке, revision и finding; устаревшее review не показано как текущее.",
+    "inputs": [
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt"
+    ]
+  },
+  {
+    "id": "editorExtensions:localInspection:ArchVerityAiReviewJava:JAVA",
+    "feature_id": "IDE-01",
+    "trigger": "Открыть соответствующий Java/Kotlin источник и реально созданное contract/review finding для localInspection:ArchVerityAiReviewJava:JAVA; перейти по highlight/gutter.",
+    "expect": "Marker относится к правильной строке, revision и finding; устаревшее review не показано как текущее.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "editorExtensions:localInspection:ArchVerityAiReviewKotlin:kotlin",
+    "feature_id": "IDE-01",
+    "trigger": "Открыть соответствующий Java/Kotlin источник и реально созданное contract/review finding для localInspection:ArchVerityAiReviewKotlin:kotlin; перейти по highlight/gutter.",
+    "expect": "Marker относится к правильной строке, revision и finding; устаревшее review не показано как текущее.",
+    "inputs": [
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt"
+    ]
+  },
+  {
+    "id": "editorExtensions:localInspection:ArchVerityContractChange:JAVA",
+    "feature_id": "IDE-01",
+    "trigger": "Открыть соответствующий Java/Kotlin источник и реально созданное contract/review finding для localInspection:ArchVerityContractChange:JAVA; перейти по highlight/gutter.",
+    "expect": "Marker относится к правильной строке, revision и finding; устаревшее review не показано как текущее.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "editorExtensions:localInspection:ArchVerityContractChangeKotlin:kotlin",
+    "feature_id": "IDE-01",
+    "trigger": "Открыть соответствующий Java/Kotlin источник и реально созданное contract/review finding для localInspection:ArchVerityContractChangeKotlin:kotlin; перейти по highlight/gutter.",
+    "expect": "Marker относится к правильной строке, revision и finding; устаревшее review не показано как текущее.",
+    "inputs": [
+      "projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt"
+    ]
+  },
+  {
+    "id": "exports:JSON",
+    "feature_id": "TEAM-01",
+    "trigger": "Save/Copy analysis JSON",
+    "expect": "Current context/revision/findings в analysis schema",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:MERMAID",
+    "feature_id": "TEAM-02",
+    "trigger": "Architecture → Export Mermaid",
+    "expect": "Текст graph содержит фактические service IDs/edges",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:SVG",
+    "feature_id": "TEAM-02",
+    "trigger": "Architecture → Export SVG, открыть",
+    "expect": "Видимый current graph и корректный XML/SVG",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:PNG",
+    "feature_id": "TEAM-02",
+    "trigger": "Architecture → Export PNG, открыть",
+    "expect": "Реальное изображение current graph",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:SARIF",
+    "feature_id": "TEAM-02",
+    "trigger": "Export SARIF, inspect и source mapping",
+    "expect": "SARIF 2.1.0 с нужными rule/location",
+    "inputs": [
+      "projects/workspace/.archflow.yml"
+    ]
+  },
+  {
+    "id": "exports:IMPACT",
+    "feature_id": "TEAM-01",
+    "trigger": "Save/Copy Impact JSON для actual comparison",
+    "expect": "Правильные base/current scope и field delta",
+    "inputs": [
+      "projects/workspace/qa-support/apply_impact.py"
     ]
   }
 ]

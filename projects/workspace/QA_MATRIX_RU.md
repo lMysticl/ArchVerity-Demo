@@ -5,7 +5,7 @@
 
 Подробные сценарии всех 62 пользовательских функций:
 [ALL_FUNCTIONS_RU.md](../../docs/ALL_FUNCTIONS_RU.md).
-Каждая из 87 зарегистрированных точек входа имеет отдельный trigger и oracle:
+Каждая из 114 зарегистрированных точек входа имеет отдельный trigger и oracle:
 [ENTRY_POINTS_RU.md](../../docs/ENTRY_POINTS_RU.md).
 
 Матрица привязана к зарегистрированным экранам, действиям, командам, экспортам, страницам настроек, editor extension и четырём MCP-инструментам текущего исходного плагина. `qa-support/verify_coverage.py` падает при появлении нового entry point без сценария. Для process-команд проверка различает шесть пригодных локальных входов и 16 команд с внешними предпосылками; `rn-qa/package.json` подходит для `RN_SCRIPT`, но не для сборки Android/iOS и не для ADB. Наличие входного файла и успешный preflight **не равны** успешному нажатию кнопки в IDEA. Для каждого прогона фиксируйте версию и SHA-256 установленного ZIP, версию IDEA, ОС, путь открытого проекта, Git `HEAD`, entitlement, время, статус `PASS / FAIL / BLOCKED` и наблюдаемый артефакт. Используйте новую копию для каждого изменения и каждого действия, меняющего файл.
@@ -53,3 +53,20 @@
 | QA-LICENSE | На реальных Free/Trial/Pro/Expired/offline состояниях проверить видимость findings, baseline, exports, Dev Icons и MCP. | UI и backend дают одинаковое право, истечение Trial закрывает paid действия. Локальный dev override не доказывает Marketplace entitlement. Внешние состояния без выданной лицензии — `BLOCKED`. |
 
 `qa-support/preflight.py` проверяет только подготовку файлов, форматов, loopback HTTP, сертификата, pack и script. `qa-support/verify_coverage.py` сверяет набор entry points с исходниками, когда они доступны. `gradlew classes` доказывает компиляцию образца. Полный `PASS` по этой матрице возможен только после ручного/автоматизированного прогона в установленной IDEA и отдельных внешних средовых проверок; неотмеченные строки остаются `UNVERIFIED`.
+
+## Сценарии текущего продукта 5.3.2
+
+[Полный пользовательский маршрут](../../docs/PRODUCT_TOUR_RU.md) связывает эти
+проверки с решением разработчика. Датированные старые receipts не обновляются.
+
+| Case | Действие | Контроль результата |
+| --- | --- | --- |
+| QA-WHATIF | Java field/mapping/send → What Breaks If This Changes?; затем фактическая такая же правка | Affected consumer и evidence; simulation не меняет файлы, реальный review подтверждает конкретный результат |
+| QA-SETTINGS | Settings Assistant → read → preview scope → cancel; отдельно Apply/Undo в демо-копии | Preview не редактирует файл; изменившиеся inputs не применяются как прежние |
+| QA-AIREVIEW | Подключённый агент prepare/submit review на Java/Kotlin; открыть finding и gutter, затем изменить источник | Реальные anchors и coverage; stale finding не становится текущим, PARTIAL остаётся PARTIAL |
+
+QA-MCP теперь включает все [18 отдельных инструментов](../../docs/MCP_TOUR_RU.md),
+а не только четыре исторических read-only вызова. Запись analysis/review state
+и preview не означает автоматической правки исходников. Java/Kotlin contract
+inspection проверяется отдельно от model review. QA-NAV использует шесть вкладок:
+Overview, Review, Architecture, Findings, Agents, Tools и их 18 views.

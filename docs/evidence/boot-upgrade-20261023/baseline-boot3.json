@@ -1,0 +1,1 @@
+{"bootGeneration":3,"bootVersion":"3.5.15","mapper":"com.fasterxml.jackson.databind.ObjectMapper","invoiceJson":"{\"id\":\"42\",\"status\":\"PAID\",\"period\":\"JANUARY\",\"quantity\":null}","enumJson":"\"PAID\"","monthJson":"\"JANUARY\"","monthNumberOne":"FEBRUARY","nullPrimitive":true,"absentPrimitive":true,"readsOwnInvoice":true,"readsLegacyInvoice":true}

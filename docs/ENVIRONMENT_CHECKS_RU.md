@@ -41,7 +41,7 @@ Keystore private-key metadata требует отдельно предостав
 ## MCP
 
 Включите встроенный JetBrains MCP Server, выберите **этот** отсканированный
-проект, убедитесь в действительном Trial/Pro. Примеры аргументов четырёх tools:
+проект, убедитесь в действительном Trial/Pro. Полный маршрут всех **18 инструментов 5.3.2** — [MCP tour](MCP_TOUR_RU.md). Ниже четыре базовых read-only вызова:
 
 ```json
 {
@@ -57,7 +57,7 @@ inbound/outbound/both; limit вне диапазона должен быть о�
 бюджета. Negative inputs: trace query пустой, severity `INVALID`, direction
 `INVALID`, неподходящий base revision. Evidence tool допускает пустой optional
 query; trace требует непустой query. Ответ содержит bounded metadata и
-project-relative locations, без source snippets/absolute paths. Повторите
+project-relative locations, без source snippets; source locations относительные. Новый check_change отдельно возвращает явную projectRoot-привязку. Повторите
 неполный/stale scan и отсутствие entitlement: нужна явная ошибка.
 
 ## JSON, CLI и headless
