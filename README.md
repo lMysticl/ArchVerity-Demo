@@ -68,6 +68,26 @@ with **3.0.4**. These are historical demonstrations, not recordings of 5.3.2.
 The current tour covers the newer actions. [Kafka's six inspectable exports](docs/evidence/kafka-3.0.4/README.md)
 retain their original identities.
 
+**Following an older recording?** The current primary tabs are Overview, Review,
+Architecture, Findings, Agents and Tools. Use this map when a recording or an
+older guide shows a different name:
+
+| Name in the older guide | Where to look in 5.3.2 |
+| --- | --- |
+| Impact | Review |
+| Diagnostics | Findings |
+| Topology | Architecture → Map |
+| Inventory / Relations | Architecture → Inventory / Relations |
+
+Older verdicts also reflect the analyzer version. Do not use a historical
+`UNKNOWN` as the expected outcome of a current run: with a proven affected
+caller, moving an HTTP route can be `BREAKING`. In the measured 5.3.2
+[`extra-http-path` case](docs/evidence/engine-5.3.2-20261023/shipped-workspace.txt),
+the change is `BREAKING`; preserving the old route removes those breaks and
+leaves `REVIEW REQUIRED`. Insufficient evidence can still produce `UNKNOWN`.
+[Current verification and its limits](docs/CURRENT_VERIFICATION_RU.md) ·
+[Пояснение на русском](docs/PRODUCT_TOUR_RU.md#как-читать-старые-записи).
+
 ## Полная проверка
 
 The 62 legacy function groups remain as an index; their recipes are refreshed
