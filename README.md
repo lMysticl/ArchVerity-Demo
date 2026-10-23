@@ -59,10 +59,10 @@ should disappear. Restore POST to confirm it returns.
 
 ## Watch an actual IDE walkthrough
 
-[![ArchVerity 5.0: route break, affected caller and fix](docs/media/archverity-5.0-route-break.png)](docs/media/archverity-5.0-route-break.mp4)
+[![ArchVerity 5.0: route break, affected caller and fix](docs/media/archverity-5.0-route-break.png)](https://archverity.hashnode.dev/why-spring-contracts-break-between-repositories-while-everything-still-compiles#a-real-break-in-spring-petclinic-microservices)
 
-[49-second Petclinic walkthrough](docs/media/archverity-5.0-route-break.mp4),
-recorded with **5.0**. The [HTTP article/video](docs/FIRST_RESULT_ARTICLE_RU.md)
+[49-second Petclinic walkthrough](https://archverity.hashnode.dev/why-spring-contracts-break-between-repositories-while-everything-still-compiles#a-real-break-in-spring-petclinic-microservices),
+recorded with **5.0** ([original MP4 file](docs/media/archverity-5.0-route-break.mp4)). The [HTTP article/video](docs/FIRST_RESULT_ARTICLE_RU.md)
 and [Kafka profiles article/video](docs/KAFKA_PROFILES_ARTICLE_RU.md) were recorded
 with **3.0.4**. These are historical demonstrations, not recordings of 5.3.2.
 The current tour covers the newer actions. [Kafka's six inspectable exports](docs/evidence/kafka-3.0.4/README.md)
