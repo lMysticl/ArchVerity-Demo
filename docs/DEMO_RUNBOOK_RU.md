@@ -261,3 +261,7 @@ Tools, MCP Server, лицензии, SSH, Split Mode и private inputs имею�
 ## Лаборатория Spring Boot upgrade
 
 [boot-upgrade](../projects/boot-upgrade/README.md) — седьмой проект: настоящие Boot 3/4 мапперы, четыре риска, явное исправление и mapper-unknown control. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project boot-upgrade --output ../archverity-upgrade-demo`.
+
+## Лаборатория «спросить до правки» (5.5)
+
+[ask-before-edit](../projects/ask-before-edit/README.md) — восьмой проект: Kotlin-поставщик с context path и Java-клиент; ответ «What breaks if…» и `archverity_simulate_change` до переименования поля или переноса маршрута совпадает с ревью после настоящей правки. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project ask-before-edit --output ../archverity-ask-demo`.

@@ -39,6 +39,7 @@
     "archverity_architecture_diagram": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_capabilities": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_check_change": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
+    "archverity_simulate_change": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_config_usage": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_context": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_explain_flow": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},

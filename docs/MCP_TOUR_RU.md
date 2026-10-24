@@ -38,6 +38,7 @@
 | `archverity_capabilities` | `{}` | Реальные возможности и ограничения текущего bridge |
 | `archverity_file_contracts` | Путь PaymentController.java выше | Контракты файла, другая сторона, текущий pair verdict |
 | `archverity_check_change` | HEAD, `from_merge_base:false`, фактический `project_root` | Решение для текущего дерева; новый receipt только для допустимого сохранённого состояния |
+| `archverity_simulate_change` (с 5.5) | До правки: `edits_json` из [ask-before-edit](../projects/ask-before-edit/README.md) (`qa-support/apply_scenario.py --print-edits`), фактический `project_root` | Решение, которое check_change даст после этой правки; файлы не меняются; неоднозначный `old` или путь вне проекта отклоняются с причиной |
 | `archverity_change_impact` | `{"base_revision":"HEAD","limit":10}` | Прямые HTTP/Kafka/AMQP/DTO последствия отдельно от downstream REVIEW |
 | `archverity_findings` | `{"severity":"ERROR","include_suppressed":false,"limit":10}` | Фильтр и source locations совпадают с Findings |
 | `archverity_contract_evidence` | `{"query":"payments","limit":10}` | Источник доказанной связи и её ограничения |

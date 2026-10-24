@@ -2,7 +2,7 @@
 
 Start with the [current product tour](PRODUCT_TOUR_EN.md) / [русский маршрут](PRODUCT_TOUR_RU.md).
 Detailed steps, counterexamples and recovery: [function groups](ALL_FUNCTIONS_RU.md).
-Separate registered control recipes: [114 entry points](ENTRY_POINTS_RU.md).
+Separate registered control recipes: [115 entry points](ENTRY_POINTS_RU.md).
 
 Generated from `suite-support/features.json` and the workspace's registered-entry contract.
 Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDEA/device action.
@@ -53,6 +53,7 @@ Each row is an acceptance recipe. It is not a PASS receipt for an unobserved IDE
 | IDE-RUNTIME — Local/Split Mode, JCEF/native, light/dark, scale/accessibility/persistence | [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md) | Repeat selected project actions in bound frontend/backend; theme/scale/keyboard; reopen project | Same source/selection/result; bounded cleanup; actual selected graph renderer and accessible controls | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Prepared IDEA runtimes and genuine entitlement |
 | TOOLS-CI — Exported JSON gates, converters/diff/policy and fresh headless PSI | [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-openapi.json](../projects/workspace/qa-openapi.json), [inspect_export.py](../suite-support/inspect_export.py) | Run documented ArchVerity Tools commands on real exports and committed prepared demo revisions | Incomplete/UNKNOWN inputs fail closed; fresh producer has commit/toolchain identity; JSON gate is distinct from a source scan | [Guide](../docs/ENVIRONMENT_CHECKS_RU.md) — Separately supplied Tools distribution; compatible IDE/plugin and provisioned licensed CI config for producer |
 | ARCH-WHATIF — Pre-edit Java contract simulation | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Place caret on a Java DTO field/mapping/Kafka send; invoke What Breaks If This Changes? | Affected counterpart and supported variants with evidence; git diff remains empty | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, imported and analyzed Java project, Trial/Pro |
+| ARCH-ASK-BEFORE-EDIT — Ask before the edit: Kotlin What-if and planned-edit simulation | [InvoiceView.kt](../projects/ask-before-edit/billing-service/src/main/kotlin/demo/billing/InvoiceView.kt), [apply_scenario.py](../projects/ask-before-edit/qa-support/apply_scenario.py) | Ask What breaks if… on the Kotlin route and property, call archverity_simulate_change with the printed edits_json, then apply the same edit and Analyze change | Moved route BREAKING for orders, renamed field UNKNOWN (orders maps a field no longer sent) before and after the edit; the answer writes nothing | [Guide](../projects/ask-before-edit/README.md) — 5.5.0, JDK 21, real Boot dependencies and Trial/Pro; an MCP client for the agent step |
 | ARCH-BOOT-UPGRADE — Spring Boot 4 wire upgrade check | [InvoiceView.java](../projects/boot-upgrade/billing-service/src/main/java/demo/billing/InvoiceView.java) | Scan the default-mapper pair; check the upgrade, apply the explicit fix and recheck | Supported enum/Month/primitive risks and locations; fixed controls; unproven mapper remains explicit | [Guide](../projects/boot-upgrade/README.md) — 5.3.2, JDK 21, real Boot dependencies and Trial/Pro |
 | ARCH-FIRST-SCAN — Useful contract overview before editing | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) | Analyze clean workspace; inspect important contracts, mismatches and unresolved counterparts | Located source evidence before a change; absent callers are a coverage limit | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, complete imported project and Trial/Pro |
 | TEAM-MARKDOWN — Copy for my team | [BillingClient.java](../projects/boot-upgrade/orders-service/src/main/java/demo/orders/BillingClient.java) | Copy Overview team report after the scan and upgrade check | Same service names, relative locations, upgrade risks and uncertainty in usable Markdown | [Guide](../docs/PRODUCT_TOUR_RU.md) — 5.3.2, current scan and Trial/Pro |
@@ -105,7 +106,7 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | ArchVerity.SettingsAssistant | QA-SETTINGS | [.archflow.yml](../projects/workspace/.archflow.yml) |
 | ArchVerity.WhatIf | QA-WHATIF | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 
-### mcp (18)
+### mcp (19)
 
 | Entry | Case | Workspace fixture |
 | --- | --- | --- |
@@ -116,6 +117,7 @@ The workspace-only coverage preserves its truthful six local inputs and sixteen 
 | archverity_architecture_diagram | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 | archverity_capabilities | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 | archverity_check_change | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
+| archverity_simulate_change | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 | archverity_config_usage | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 | archverity_context | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |
 | archverity_explain_flow | QA-MCP | [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java) |

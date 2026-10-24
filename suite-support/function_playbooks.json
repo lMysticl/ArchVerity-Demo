@@ -1657,14 +1657,17 @@
       "capability_ids": [
         "IDE-REVIEW",
         "IDE-IMPACT",
-        "ARCH-WHATIF"
+        "ARCH-WHATIF",
+        "ARCH-ASK-BEFORE-EDIT"
       ],
       "inputs": [
         "projects/workspace/.archflow.yml",
         "projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java",
         "projects/workspace/qa-support/apply_impact.py",
         "projects/workspace/qa-support/prepare_impact.py",
-        "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+        "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+        "projects/ask-before-edit/billing-service/src/main/kotlin/demo/billing/InvoiceView.kt",
+        "projects/ask-before-edit/qa-support/apply_scenario.py"
       ],
       "purpose": "Проверить изменение с двух сторон и подготовить понятный review для коллеги.",
       "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
@@ -1680,6 +1683,10 @@
         {
           "do": "Place caret on a Java DTO field/mapping/Kafka send; invoke What Breaks If This Changes? Подробный маршрут: docs/PRODUCT_TOUR_RU.md",
           "expect": "Affected counterpart and supported variants with evidence; git diff remains empty"
+        },
+        {
+          "do": "Ask What breaks if… on the Kotlin route and property, call archverity_simulate_change with the printed edits_json, then apply the same edit and Analyze change Подробный маршрут: projects/ask-before-edit/README.md",
+          "expect": "Moved route BREAKING for orders, renamed field UNKNOWN (orders maps a field no longer sent) before and after the edit; the answer writes nothing"
         }
       ],
       "negative": {
@@ -2080,7 +2087,7 @@
     },
     {
       "id": "MCP-01",
-      "title": "Все 18 MCP tools, текущие identities и bounded review",
+      "title": "Все MCP tools (18 в 5.3.2, 19 с 5.5), текущие identities и bounded review",
       "source_capability": "Four read-only MCP tools",
       "capability_ids": [
         "MCP-TOOLS",
@@ -2095,7 +2102,7 @@
       "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides. Современная IDEA с JetBrains MCP Server, поддержанный клиент и собственный аккаунт; legacy 2024.3 исключён.",
       "steps": [
         {
-          "do": "На same-project MCP Server выполнить before/after маршрут и все 18 отдельных recipes из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.",
+          "do": "На same-project MCP Server выполнить before/after маршрут и все отдельные recipes (18 в 5.3.2; archverity_simulate_change с 5.5) из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.",
           "expect": "Ответы относятся к current HEAD/context, фильтры и limit соблюдены."
         },
         {

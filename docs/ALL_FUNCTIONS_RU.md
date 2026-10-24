@@ -1,7 +1,7 @@
 # Все функции ArchVerity: демонстрация и проверка
 
 Recipes: ArchVerity 5.3.2; сверка текущих registrations с commit `15ca7a22519abbf92d8a3d7f9f59f1f17adaa9a4`.
-62 исторические функциональные группы сохраняют stable IDs; 114 текущих registered entry points связаны с конкретными входами.
+62 исторические функциональные группы сохраняют stable IDs; 115 текущих registered entry points связаны с конкретными входами.
 Старые source_capability формулировки сохранены для сверки legacy inventory; актуальные действия и ограничения описаны ниже.
 [Начните с маршрута 5.3.2](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [18 MCP tools](MCP_TOUR_RU.md).
 Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).
@@ -81,7 +81,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 | CLI-03 | [CI gates findings и Impact](#cli-03) |
 | CLI-04 | [Fresh headless PSI producer и committed source](#cli-04) |
 | CLI-05 | [Verification converter и реальный extension provider](#cli-05) |
-| MCP-01 | [Все 18 MCP tools, текущие identities и bounded review](#mcp-01) |
+| MCP-01 | [Все MCP tools (18 в 5.3.2, 19 с 5.5), текущие identities и bounded review](#mcp-01) |
 
 ## Иконки
 
@@ -1237,7 +1237,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
-**Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [PaymentClient.java](../projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java), [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java)
+**Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [PaymentClient.java](../projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java), [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java), [InvoiceView.kt](../projects/ask-before-edit/billing-service/src/main/kotlin/demo/billing/InvoiceView.kt), [apply_scenario.py](../projects/ask-before-edit/qa-support/apply_scenario.py)
 
 1. В изменённой карточке открыть Было/Стало, field table, evidence и оба source links.
    Ожидаемое наблюдение: Удалённое providerReference и неизменённые поля различимы; ссылки ведут к correct side/revision.
@@ -1245,6 +1245,8 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
    Ожидаемое наблюдение: Review пригоден для передачи коллеге: известные изменения, paths и ограничения относятся к этому comparison.
 3. Place caret on a Java DTO field/mapping/Kafka send; invoke What Breaks If This Changes? Подробный маршрут: docs/PRODUCT_TOUR_RU.md
    Ожидаемое наблюдение: Affected counterpart and supported variants with evidence; git diff remains empty
+4. Ask What breaks if… on the Kotlin route and property, call archverity_simulate_change with the printed edits_json, then apply the same edit and Analyze change Подробный маршрут: projects/ask-before-edit/README.md
+   Ожидаемое наблюдение: Moved route BREAKING for orders, renamed field UNKNOWN (orders maps a field no longer sent) before and after the edit; the answer writes nothing
 
 **Контрпример:** Review для partial comparison или отсутствующего consumer evidence.
 Ожидаемое наблюдение: Ограничение включено в review; нет обещания доказанной совместимости по всем consumers.
@@ -1253,7 +1255,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Доказательство:** Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.
 
-**Consumer run:** `NOT_RUN`. Capability IDs: IDE-REVIEW, IDE-IMPACT, ARCH-WHATIF.
+**Consumer run:** `NOT_RUN`. Capability IDs: IDE-REVIEW, IDE-IMPACT, ARCH-WHATIF, ARCH-ASK-BEFORE-EDIT.
 
 ## Внешние evidence
 
@@ -1525,7 +1527,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 ## MCP
 
 <a id="mcp-01"></a>
-### MCP-01 — Все 18 MCP tools, текущие identities и bounded review
+### MCP-01 — Все MCP tools (18 в 5.3.2, 19 с 5.5), текущие identities и bounded review
 
 **Зачем:** Дать внешнему MCP consumer ограниченный read-only доступ к текущему результату.
 
@@ -1533,7 +1535,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [coverage.json](../projects/workspace/qa-support/coverage.json), [MCP_TOUR_RU.md](../docs/MCP_TOUR_RU.md)
 
-1. На same-project MCP Server выполнить before/after маршрут и все 18 отдельных recipes из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.
+1. На same-project MCP Server выполнить before/after маршрут и все отдельные recipes (18 в 5.3.2; archverity_simulate_change с 5.5) из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.
    Ожидаемое наблюдение: Ответы относятся к current HEAD/context, фильтры и limit соблюдены.
 2. Вызвать contract_evidence с query реального contract и trace_flow inbound/outbound/both с непустым query; сопоставить paths с UI. Проверить limit=0 и завышенный limit.
    Ожидаемое наблюдение: Evidence и direction совпадают с выбранным объектом; limits ограничены. Source locations относительные, project_root/projectRoot явно привязывают вызов; source bodies не возвращаются.

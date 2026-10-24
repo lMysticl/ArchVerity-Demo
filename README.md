@@ -37,6 +37,7 @@ should disappear. Restore POST to confirm it returns.
 | Question you need answered | Demonstration |
 | --- | --- |
 | What would break before I edit this field, route or Kafka call? | [Java What-if, then an actual HEAD review](docs/PRODUCT_TOUR_EN.md#2-ask-before-editing-check-the-real-edit-afterward) |
+| Can my agent ask before it writes a Kotlin or Java edit? (5.5) | [Ask-before-edit lab: What breaks if…, archverity_simulate_change, then the real edit](projects/ask-before-edit/README.md) |
 | Does the proposed fix resolve the affected caller? | [Apply fix and recheck, with compatible and UNKNOWN controls](docs/PRODUCT_TOUR_RU.md#проверить-реальное-изменение-и-применить-исправление) |
 | Can a Spring Boot upgrade change our JSON without an API edit? | [New Boot upgrade lab: real mappers, four risks and explicit fixes](projects/boot-upgrade/README.md) |
 | What can I show a teammate? | [Copy for my team, review export, registry and recorded CI check](docs/PRODUCT_TOUR_EN.md#4-leave-with-something-your-team-can-use) |
@@ -49,6 +50,7 @@ should disappear. Restore POST to confirm it returns.
 | [first-result](projects/first-result/README.md) | Compiling Spring MVC/OpenFeign POST–PUT mismatch, source navigation, correction and return control |
 | [workspace](docs/ARCHITECTURE_WALKTHROUGH_RU.md) | Java/Kotlin HTTP/Kafka/AMQP, nested DTOs, 19 isolated changes, review/fix and concrete developer-tool inputs |
 | [boot-upgrade](projects/boot-upgrade/README.md) | Enum/Month/null/missing-field changes, real Boot 3.5.15 and 4.1.1 JSON, explicit fixes and an unproven-mapper control |
+| [ask-before-edit](projects/ask-before-edit/README.md) | Kotlin provider under a context path, Java caller; the answer before a rename or route move equals the review after it (5.5) |
 | [kafka-profile-lab](projects/kafka-profile-lab/README.md) | 12 isolated profile/cluster/serializer cases, including equal DTOs and unresolved evidence |
 | [api-lab](projects/api-lab/README.md) | Local HTTP/WebSocket/gRPC, captures, assertions, deadlines, cancellation and cookies |
 | [runtime-evidence](projects/runtime-evidence/README.md) | Real Actuator input and locally executed verification reports with explicit provenance |
