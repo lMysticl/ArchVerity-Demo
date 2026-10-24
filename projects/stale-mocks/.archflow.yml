@@ -1,0 +1,15 @@
+schemaVersion: 1
+project:
+  id: archverity-stale-mocks
+  displayName: ArchVerity Stale Mocks
+analysis:
+  profiles: [default]
+  includeModules: ["*billing-service*", "*orders-service*"]
+  excludePaths: ["verification/**", "build/**"]
+services:
+  billing:
+    modules: [billing-service, archverity-stale-mocks.billing-service.main]
+    aliases: [billing, billing.example.test]
+  orders:
+    modules: [orders-service, archverity-stale-mocks.orders-service.main]
+    aliases: [orders]

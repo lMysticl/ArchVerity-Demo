@@ -1288,11 +1288,13 @@
       "title": "Severity, confidence, disposition и evidence",
       "source_capability": "Finding severity, confidence and disposition",
       "capability_ids": [
-        "IDE-FINDINGS"
+        "IDE-FINDINGS",
+        "ARCH-STALE-MOCK"
       ],
       "inputs": [
         "projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java",
-        "projects/workspace/qa-support/extended_scenarios.py"
+        "projects/workspace/qa-support/extended_scenarios.py",
+        "projects/stale-mocks/orders-service/src/test/java/demo/orders/BillingInvoiceTest.java"
       ],
       "purpose": "Принимать решение по finding с учётом severity, confidence и причины disposition.",
       "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",

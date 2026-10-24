@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECTS = ("first-result", "workspace", "api-lab", "mobile-lab", "runtime-evidence", "kafka-profile-lab", "boot-upgrade")
+PROJECTS = ("first-result", "workspace", "api-lab", "mobile-lab", "runtime-evidence", "kafka-profile-lab", "boot-upgrade", "stale-mocks")
 EXCLUDED = {".git", ".gradle", ".idea", ".kotlin", ".expo", "node_modules", "build", "out", "work", "reports", "__pycache__", "android", "ios"}
 
 
