@@ -97,6 +97,8 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
         raise ValueError("Feature catalog drifted; use --write-catalog after reviewing features.json")
     from check_playbooks import check as check_playbooks
     playbooks = check_playbooks(plugin_source, require_source)
+    from check_stale_mocks import check as check_stale_mocks
+    check_stale_mocks()
     from check_docs import check as check_docs
     documentation = check_docs()
     from check_boot_upgrade import check as check_boot_upgrade

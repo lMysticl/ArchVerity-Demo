@@ -974,7 +974,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
-**Входы:** [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
+**Входы:** [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py), [BillingInvoiceTest.java](../projects/stale-mocks/orders-service/src/test/java/demo/orders/BillingInvoiceTest.java)
 
 1. В first-result выбрать реальный method mismatch; открыть severity, confidence, reason и evidence.
    Ожидаемое наблюдение: Показаны причина и source locations обеих сторон, а не только цвет карточки.
@@ -988,7 +988,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Доказательство:** Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.
 
-**Consumer run:** `NOT_RUN`. Capability IDs: IDE-FINDINGS.
+**Consumer run:** `NOT_RUN`. Capability IDs: IDE-FINDINGS, ARCH-STALE-MOCK.
 
 ## Навигация и граф
 

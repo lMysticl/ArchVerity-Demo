@@ -258,6 +258,10 @@ Tools, MCP Server, лицензии, SSH, Split Mode и private inputs имею�
 [CI workflow](../.github/workflows/checks.yml); его результат относится к
 конкретному commit, а ручной IDEA/device run — к записанному проекту и версии.
 
+## Лаборатория устаревших моков (5.5)
+
+[stale-mocks](../projects/stale-mocks/README.md): тест потребителя подменяет поставщика JSON, который тот больше не отправляет. Тест зелёный, настоящий вызов теряет поле, ArchVerity показывает `AFG-MOCK-001` на строке заглушки; исправление «потребитель двигается первым» снимает предупреждение. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project stale-mocks --output ../archverity-stale-mocks`.
+
 ## Лаборатория Spring Boot upgrade
 
 [boot-upgrade](../projects/boot-upgrade/README.md) — седьмой проект: настоящие Boot 3/4 мапперы, четыре риска, явное исправление и mapper-unknown control. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project boot-upgrade --output ../archverity-upgrade-demo`.

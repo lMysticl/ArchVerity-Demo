@@ -39,6 +39,7 @@ should disappear. Restore POST to confirm it returns.
 | What would break before I edit this field, route or Kafka call? | [Java What-if, then an actual HEAD review](docs/PRODUCT_TOUR_EN.md#2-ask-before-editing-check-the-real-edit-afterward) |
 | Does the proposed fix resolve the affected caller? | [Apply fix and recheck, with compatible and UNKNOWN controls](docs/PRODUCT_TOUR_RU.md#проверить-реальное-изменение-и-применить-исправление) |
 | Can a Spring Boot upgrade change our JSON without an API edit? | [New Boot upgrade lab: real mappers, four risks and explicit fixes](projects/boot-upgrade/README.md) |
+| Do our consumer's tests still fake what the provider sends? (5.5) | [Stale-mocks lab: a green test, a real call that loses a field, and `AFG-MOCK-001`](projects/stale-mocks/README.md) |
 | What can I show a teammate? | [Copy for my team, review export, registry and recorded CI check](docs/PRODUCT_TOUR_EN.md#4-leave-with-something-your-team-can-use) |
 | Can my coding agent check the other service before committing? | [All 18 MCP tools and a before/after workflow](docs/MCP_TOUR_RU.md) |
 
@@ -50,6 +51,7 @@ should disappear. Restore POST to confirm it returns.
 | [workspace](docs/ARCHITECTURE_WALKTHROUGH_RU.md) | Java/Kotlin HTTP/Kafka/AMQP, nested DTOs, 19 isolated changes, review/fix and concrete developer-tool inputs |
 | [boot-upgrade](projects/boot-upgrade/README.md) | Enum/Month/null/missing-field changes, real Boot 3.5.15 and 4.1.1 JSON, explicit fixes and an unproven-mapper control |
 | [kafka-profile-lab](projects/kafka-profile-lab/README.md) | 12 isolated profile/cluster/serializer cases, including equal DTOs and unresolved evidence |
+| [stale-mocks](projects/stale-mocks/README.md) | A consumer's `MockRestServiceServer` fake answers with a renamed field; real loopback call, `AFG-MOCK-001` and the consumer-first fix (5.5) |
 | [api-lab](projects/api-lab/README.md) | Local HTTP/WebSocket/gRPC, captures, assertions, deadlines, cancellation and cookies |
 | [runtime-evidence](projects/runtime-evidence/README.md) | Real Actuator input and locally executed verification reports with explicit provenance |
 | [mobile-lab](projects/mobile-lab/README.md) | Real Expo/React Native app, Metro/bundle, and separate SDK/device requirements |
