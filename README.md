@@ -3,7 +3,7 @@
 **Your service compiles. Does the service calling it still work?**
 
 Find a contract break, inspect both sides, fix it and check again. These open
-examples let you evaluate **ArchVerity 5.3.2** on synthetic Java/Spring services
+examples let you evaluate **ArchVerity 5.5.0** on synthetic Java/Spring services
 before trying it on your own change. No broker or database is needed for the
 static contract scenarios.
 
@@ -37,10 +37,11 @@ should disappear. Restore POST to confirm it returns.
 | Question you need answered | Demonstration |
 | --- | --- |
 | What would break before I edit this field, route or Kafka call? | [Java What-if, then an actual HEAD review](docs/PRODUCT_TOUR_EN.md#2-ask-before-editing-check-the-real-edit-afterward) |
+| Can my agent ask before it writes a Kotlin or Java edit? (5.5) | [Ask-before-edit lab: What breaks if…, archverity_simulate_change, then the real edit](projects/ask-before-edit/README.md) |
 | Does the proposed fix resolve the affected caller? | [Apply fix and recheck, with compatible and UNKNOWN controls](docs/PRODUCT_TOUR_RU.md#проверить-реальное-изменение-и-применить-исправление) |
 | Can a Spring Boot upgrade change our JSON without an API edit? | [New Boot upgrade lab: real mappers, four risks and explicit fixes](projects/boot-upgrade/README.md) |
 | What can I show a teammate? | [Copy for my team, review export, registry and recorded CI check](docs/PRODUCT_TOUR_EN.md#4-leave-with-something-your-team-can-use) |
-| Can my coding agent check the other service before committing? | [All 18 MCP tools and a before/after workflow](docs/MCP_TOUR_RU.md) |
+| Can my coding agent check the other service before committing? | [All 19 MCP tools and a before/after workflow](docs/MCP_TOUR_RU.md) |
 
 ## Choose the lab for your work
 
@@ -49,6 +50,7 @@ should disappear. Restore POST to confirm it returns.
 | [first-result](projects/first-result/README.md) | Compiling Spring MVC/OpenFeign POST–PUT mismatch, source navigation, correction and return control |
 | [workspace](docs/ARCHITECTURE_WALKTHROUGH_RU.md) | Java/Kotlin HTTP/Kafka/AMQP, nested DTOs, 19 isolated changes, review/fix and concrete developer-tool inputs |
 | [boot-upgrade](projects/boot-upgrade/README.md) | Enum/Month/null/missing-field changes, real Boot 3.5.15 and 4.1.1 JSON, explicit fixes and an unproven-mapper control |
+| [ask-before-edit](projects/ask-before-edit/README.md) | Kotlin provider under a context path, Java caller; the answer before a rename or route move equals the review after it (5.5) |
 | [kafka-profile-lab](projects/kafka-profile-lab/README.md) | 12 isolated profile/cluster/serializer cases, including equal DTOs and unresolved evidence |
 | [api-lab](projects/api-lab/README.md) | Local HTTP/WebSocket/gRPC, captures, assertions, deadlines, cancellation and cookies |
 | [runtime-evidence](projects/runtime-evidence/README.md) | Real Actuator input and locally executed verification reports with explicit provenance |
@@ -64,7 +66,7 @@ should disappear. Restore POST to confirm it returns.
 [49-second Petclinic walkthrough](https://archverity.hashnode.dev/why-spring-contracts-break-between-repositories-while-everything-still-compiles#a-real-break-in-spring-petclinic-microservices),
 recorded with **5.0** ([original MP4 file](docs/media/archverity-5.0-route-break.mp4)). The [HTTP article/video](docs/FIRST_RESULT_ARTICLE_RU.md)
 and [Kafka profiles article/video](docs/KAFKA_PROFILES_ARTICLE_RU.md) were recorded
-with **3.0.4**. These are historical demonstrations, not recordings of 5.3.2.
+with **3.0.4**. These are historical demonstrations, not recordings of 5.5.0.
 The current tour covers the newer actions. [Kafka's six inspectable exports](docs/evidence/kafka-3.0.4/README.md)
 retain their original identities.
 
@@ -72,7 +74,7 @@ retain their original identities.
 Architecture, Findings, Agents and Tools. Use this map when a recording or an
 older guide shows a different name:
 
-| Name in the older guide | Where to look in 5.3.2 |
+| Name in the older guide | Where to look in 5.5.0 |
 | --- | --- |
 | Impact | Review |
 | Diagnostics | Findings |
@@ -92,7 +94,7 @@ leaves `REVIEW REQUIRED`. Insufficient evidence can still produce `UNKNOWN`.
 
 The 62 legacy function groups remain as an index; their recipes are refreshed
 for the current tour. The registered-control matrix is checked against current
-5.3.2 source rather than keeping an obsolete count. Maintainers can run:
+5.5.0 source rather than keeping an obsolete count. Maintainers can run:
 
 ```powershell
 python -B -X utf8 suite-support/check_suite.py --plugin-source <plugin-source-root> --require-source

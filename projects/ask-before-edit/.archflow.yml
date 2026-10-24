@@ -1,0 +1,15 @@
+schemaVersion: 1
+project:
+  id: archverity-ask-before-edit
+  displayName: ArchVerity Ask Before The Edit
+analysis:
+  profiles: [default]
+  includeModules: ["*"]
+  excludePaths: ["build/**"]
+services:
+  billing:
+    modules: [billing-service, archverity-ask-before-edit.billing-service.main]
+    aliases: [billing, billing.example.test]
+  orders:
+    modules: [orders-service, archverity-ask-before-edit.orders-service.main]
+    aliases: [orders]

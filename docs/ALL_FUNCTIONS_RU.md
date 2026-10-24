@@ -1,9 +1,9 @@
 # Все функции ArchVerity: демонстрация и проверка
 
-Recipes: ArchVerity 5.3.2; сверка текущих registrations с commit `15ca7a22519abbf92d8a3d7f9f59f1f17adaa9a4`.
-62 исторические функциональные группы сохраняют stable IDs; 114 текущих registered entry points связаны с конкретными входами.
+Recipes: ArchVerity 5.5.0; сверка текущих registrations с commit `f75340b9d346b22b30f28a0ee8cc56c85abf7420`.
+62 исторические функциональные группы сохраняют stable IDs; 115 текущих registered entry points связаны с конкретными входами.
 Старые source_capability формулировки сохранены для сверки legacy inventory; актуальные действия и ограничения описаны ниже.
-[Начните с маршрута 5.3.2](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [18 MCP tools](MCP_TOUR_RU.md).
+[Начните с маршрута 5.5.0](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [19 MCP tools](MCP_TOUR_RU.md).
 Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).
 
 [Пошаговый запуск всех семи лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)
@@ -81,7 +81,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 | CLI-03 | [CI gates findings и Impact](#cli-03) |
 | CLI-04 | [Fresh headless PSI producer и committed source](#cli-04) |
 | CLI-05 | [Verification converter и реальный extension provider](#cli-05) |
-| MCP-01 | [Все 18 MCP tools, текущие identities и bounded review](#mcp-01) |
+| MCP-01 | [Все MCP tools (18 в 5.3.2, 19 с 5.5), текущие identities и bounded review](#mcp-01) |
 
 ## Иконки
 
@@ -90,7 +90,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Проверить, что иконки помогают различать типы файлов и папок в настоящем Project View.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons), [archflow-studio.aficons](../projects/workspace/archflow-studio.aficons), [generate_icon_pack.py](../projects/workspace/qa-support/generate_icon_pack.py)
 
@@ -113,7 +113,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Выбрать подходящий читаемый стиль, сохранив семантику типов файлов.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons), [archflow-studio.aficons](../projects/workspace/archflow-studio.aficons), [generate_icon_pack.py](../projects/workspace/qa-support/generate_icon_pack.py)
 
@@ -136,7 +136,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Разделить личные настройки IDE и правила конкретного проекта.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons), [archflow-studio.aficons](../projects/workspace/archflow-studio.aficons), [generate_icon_pack.py](../projects/workspace/qa-support/generate_icon_pack.py), [coverage.json](../projects/workspace/qa-support/coverage.json), [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md)
 
@@ -159,7 +159,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Предсказуемо разрешать пересекающиеся правила и находить ошибочные matchers.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons), [archflow-studio.aficons](../projects/workspace/archflow-studio.aficons), [generate_icon_pack.py](../projects/workspace/qa-support/generate_icon_pack.py), [prepare_icon_submodule.py](../suite-support/prepare_icon_submodule.py), [ICON_AND_KEYSTORE_INPUTS_RU.md](../docs/ICON_AND_KEYSTORE_INPUTS_RU.md)
 
@@ -182,7 +182,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Добавить свой pack и проверить замену, экспорт и возвращение к fallback.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [archverity-qa.aficons](../projects/workspace/archverity-qa.aficons), [archflow-studio.aficons](../projects/workspace/archflow-studio.aficons), [generate_icon_pack.py](../projects/workspace/qa-support/generate_icon_pack.py)
 
@@ -230,7 +230,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Сопоставить публичные криптографические артефакты и проверить их метаданные/подписи.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa-cert.pem](../projects/workspace/qa-cert.pem), [qa-cert.der](../projects/workspace/qa-cert.der), [qa-public-artifacts.pem](../projects/workspace/qa-public-artifacts.pem), [qa-request.csr](../projects/workspace/qa-request.csr), [qa-public-key.pem](../projects/workspace/qa-public-key.pem), [qa-truststore.p12](../projects/workspace/qa-truststore.p12)
 
@@ -278,7 +278,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Повторно использовать окружения и передавать secrets через специальное хранилище.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [requests.http](../projects/api-lab/requests.http), [qa-openapi.json](../projects/workspace/qa-openapi.json), [qa-postman.json](../projects/workspace/qa-postman.json), [qa-curl.txt](../projects/workspace/qa-curl.txt), [coverage.json](../projects/workspace/qa-support/coverage.json)
 
@@ -301,7 +301,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Проверять API цепочками с точными assertions и передавать значения между шагами.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [happy.json](../projects/api-lab/scenarios/happy.json), [assertion-fails.json](../projects/api-lab/scenarios/assertion-fails.json), [missing-variable.json](../projects/api-lab/scenarios/missing-variable.json), [dsl-types.json](../projects/api-lab/scenarios/dsl-types.json), [wrong-json-type.json](../projects/api-lab/scenarios/wrong-json-type.json), [missing-json-pointer.json](../projects/api-lab/scenarios/missing-json-pointer.json), [unsupported-javascript.json](../projects/api-lab/scenarios/unsupported-javascript.json)
 
@@ -324,7 +324,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Исследовать сообщения WebSocket и schema-bound gRPC вызовы с контролем lifecycle.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [websocket_server.py](../projects/api-lab/websocket_server.py), [echo.proto](../projects/api-lab/schema/echo.proto), [echo.pb](../projects/api-lab/schema/echo.pb), [grpc_server.py](../projects/api-lab/grpc_server.py)
 
@@ -347,7 +347,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Переносить запросы между форматами и управлять session cookies/history.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [requests.http](../projects/api-lab/requests.http), [qa-openapi.json](../projects/workspace/qa-openapi.json), [qa-postman.json](../projects/workspace/qa-postman.json), [qa-curl.txt](../projects/workspace/qa-curl.txt)
 
@@ -370,7 +370,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Понять effective Spring configuration и найти её конкретный источник.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [application.yml](../projects/workspace/payment-app/src/main/resources/application.yml), [application-qa.properties](../projects/workspace/payment-app/src/main/resources/application-qa.properties), [application-demo.properties](../projects/workspace/payment-app/src/main/resources/application-demo.properties), [application-dev.yml](../projects/workspace/payment-app/src/main/resources/application-dev.yml), [.archflow.yml](../projects/workspace/.archflow.yml), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
 
@@ -393,7 +393,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Редактировать конфигурацию с completion/docs и переходами из кода.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [application.yml](../projects/workspace/payment-app/src/main/resources/application.yml), [application-qa.properties](../projects/workspace/payment-app/src/main/resources/application-qa.properties), [SpringPropertyReferences.java](../projects/workspace/payment-app/src/main/java/sample/payment/SpringPropertyReferences.java), [SpringPropertyReferences.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/SpringPropertyReferences.kt), [application-editor-demo.yml](../projects/workspace/payment-app/src/main/resources/application-editor-demo.yml)
 
@@ -416,7 +416,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Менять представление конфигурации, сохраняя ключи и значения.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [application.yml](../projects/workspace/payment-app/src/main/resources/application.yml), [application-qa.properties](../projects/workspace/payment-app/src/main/resources/application-qa.properties)
 
@@ -462,7 +462,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Получать исполнимый SQL из Preparing/Parameters без ручного подставления literals.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [MyBatisConsoleFixture.java](../projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java), [PaymentMapper.xml](../projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml), [PaymentNotificationMapper.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt)
 
@@ -485,7 +485,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Восстанавливать запросы непосредственно из реального запуска приложения.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [MyBatisConsoleFixture.java](../projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java), [PaymentMapper.xml](../projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml), [PaymentNotificationMapper.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt)
 
@@ -508,7 +508,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Переходить между mapper methods и XML statements, настроив поведение console.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [MyBatisConsoleFixture.java](../projects/workspace/mybatis-console-fixture/src/main/java/sample/mybatis/MyBatisConsoleFixture.java), [PaymentMapper.xml](../projects/workspace/payment-app/src/main/resources/mappers/PaymentMapper.xml), [PaymentNotificationMapper.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt), [coverage.json](../projects/workspace/qa-support/coverage.json), [PaymentNotificationMapper.xml](../projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml)
 
@@ -531,7 +531,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Ориентироваться в Ansible roles/inventory/variables без обязательного сетевого каталога.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [site.yml](../projects/workspace/ansible/professional/playbooks/site.yml), [vault-plain.yml](../projects/workspace/ansible/vault-plain.yml)
 
@@ -577,7 +577,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Получать результат установленного syntax checker, а не только parse модели.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [site.yml](../projects/workspace/ansible/professional/playbooks/site.yml), [vault-plain.yml](../projects/workspace/ansible/vault-plain.yml)
 
@@ -600,7 +600,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Находить shell diagnostics и форматировать scripts по реальному diff.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [common.sh](../projects/workspace/shell-professional/lib/common.sh), [deploy.bats](../projects/workspace/shell-professional/test/deploy.bats), [qa-debug.sh](../projects/workspace/shell-professional/qa-debug.sh)
 
@@ -623,7 +623,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Запускать Bats tests и отличать успешный process от пройденных assertions.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [common.sh](../projects/workspace/shell-professional/lib/common.sh), [deploy.bats](../projects/workspace/shell-professional/test/deploy.bats), [qa-debug.sh](../projects/workspace/shell-professional/qa-debug.sh)
 
@@ -646,7 +646,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Исследовать shell execution и symbols локально или в явно выбранной remote среде.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [common.sh](../projects/workspace/shell-professional/lib/common.sh), [deploy.bats](../projects/workspace/shell-professional/test/deploy.bats), [qa-debug.sh](../projects/workspace/shell-professional/qa-debug.sh)
 
@@ -669,7 +669,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Находить настоящий RN/Expo project и выполнять выбранные package scripts.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [package.json](../projects/mobile-lab/package.json), [package-lock.json](../projects/mobile-lab/package-lock.json), [index.js](../projects/mobile-lab/index.js), [App.js](../projects/mobile-lab/App.js), [app.json](../projects/mobile-lab/app.json)
 
@@ -692,7 +692,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Запускать dev servers, получать JS bundles и работать с подготовленными native hosts.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [package.json](../projects/mobile-lab/package.json), [package-lock.json](../projects/mobile-lab/package-lock.json), [index.js](../projects/mobile-lab/index.js), [App.js](../projects/mobile-lab/App.js), [app.json](../projects/mobile-lab/app.json)
 
@@ -738,7 +738,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Читать цветные logs и переходить из записей к исходникам.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa.ansi](../projects/workspace/ansible/qa.ansi), [archflow-live.ansi](../projects/workspace/archflow-live.ansi)
 
@@ -761,7 +761,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Навигировать по большому log без загрузки всего текста в одну rendered страницу.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa.ansi](../projects/workspace/ansible/qa.ansi), [archflow-live.ansi](../projects/workspace/archflow-live.ansi), [generate_large_ansi.py](../suite-support/generate_large_ansi.py)
 
@@ -784,7 +784,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Управлять регистрацией log editor и его resource limits.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa.ansi](../projects/workspace/ansible/qa.ansi), [archflow-live.ansi](../projects/workspace/archflow-live.ansi), [coverage.json](../projects/workspace/qa-support/coverage.json)
 
@@ -809,7 +809,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Получать свежий анализ текущего проекта и отличать complete от interrupted scan.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md)
 
@@ -832,7 +832,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Видеть объявленные HTTP provider contracts и происхождение inherited mappings.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [DemoContractsController.java](../projects/workspace/payment-app/src/main/java/sample/payment/DemoContractsController.java), [DemoGet.java](../projects/workspace/payment-app/src/main/java/sample/payment/DemoGet.java), [InheritedController.java](../projects/workspace/payment-app/src/main/java/sample/payment/InheritedController.java)
 
@@ -855,7 +855,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Проверять согласованность client/provider routes и условия совместимости HTTP.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [PaymentController.java](../projects/first-result/payment-app/src/main/java/demo/payments/PaymentController.java), [PaymentHttpExchange.java](../projects/workspace/order-app/src/main/java/sample/order/PaymentHttpExchange.java), [FluentPaymentClients.java](../projects/workspace/order-app/src/main/java/sample/order/FluentPaymentClients.java), [DemoContractsController.java](../projects/workspace/payment-app/src/main/java/sample/payment/DemoContractsController.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
 
@@ -878,7 +878,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Понимать Kafka producer/consumer declarations и изменения статических bindings.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [OrderPublisher.java](../projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java), [OrderListener.java](../projects/workspace/payment-app/src/main/java/sample/payment/OrderListener.java), [KafkaAdvanced.java](../projects/workspace/payment-app/src/main/java/sample/payment/KafkaAdvanced.java)
 
@@ -901,7 +901,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Отличать retry/DLT/reply topology от обычного message flow.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [OrderPublisher.java](../projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java), [OrderListener.java](../projects/workspace/payment-app/src/main/java/sample/payment/OrderListener.java), [KafkaAdvanced.java](../projects/workspace/payment-app/src/main/java/sample/payment/KafkaAdvanced.java)
 
@@ -924,7 +924,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Исследовать объявленную RabbitMQ маршрутизацию по exchange/binding/queue.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [AmqpPublisher.java](../projects/workspace/order-app/src/main/java/sample/order/AmqpPublisher.java), [AmqpTopology.java](../projects/workspace/payment-app/src/main/java/sample/payment/AmqpTopology.java), [AmqpListener.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt)
 
@@ -947,7 +947,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Выявлять изменения wire shape и видеть пределы статически известного DTO.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [DemoContractsController.java](../projects/workspace/payment-app/src/main/java/sample/payment/DemoContractsController.java), [AmqpListener.kt](../projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py), [BasicWireDto.java](../projects/workspace/payment-app/src/main/java/sample/payment/BasicWireDto.java), [WireController.java](../projects/workspace/payment-app/src/main/java/sample/payment/WireController.java), [UnknownContractsController.java](../projects/workspace/payment-app/src/main/java/sample/payment/UnknownContractsController.java), [AmqpPublisher.java](../projects/workspace/order-app/src/main/java/sample/order/AmqpPublisher.java), [InvoiceView.java](../projects/boot-upgrade/billing-service/src/main/java/demo/billing/InvoiceView.java)
 
@@ -972,7 +972,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Принимать решение по finding с учётом severity, confidence и причины disposition.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
 
@@ -997,7 +997,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Найти каждый инструмент и выбрать удобное представление того же результата.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java), [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md)
 
@@ -1022,7 +1022,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Сузить результат до нужного контракта и открыть его конкретный исходник.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml)
 
@@ -1045,7 +1045,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Исследовать graph через уровни детализации, focus и связи.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml)
 
@@ -1068,7 +1068,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Понять причину неполного анализа и проверить восстановление после исправления input.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
 
@@ -1093,7 +1093,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Определить границы проекта и effective profiles до сравнения контрактов.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py), [application.yml](../projects/workspace/payment-app/src/main/resources/application.yml), [application-demo.properties](../projects/workspace/payment-app/src/main/resources/application-demo.properties), [application-dev.yml](../projects/workspace/payment-app/src/main/resources/application-dev.yml)
 
@@ -1116,7 +1116,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Настраивать проверяемые правила и подавлять конкретные findings с объяснением.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py), [qa-openapi.json](../projects/workspace/qa-openapi.json), [qa-asyncapi.json](../projects/workspace/qa-asyncapi.json), [qa-backstage.json](../projects/workspace/qa-backstage.json), [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-event-bus.archflow.json](../projects/workspace/contracts/qa-event-bus.archflow.json), [qa-backstage.archflow.json](../projects/workspace/contracts/qa-backstage.archflow.json), [.archflow.yml](../projects/workspace/.archflow.yml)
 
@@ -1141,7 +1141,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Контролировать разрешённые зависимости и прослеживать обнаруженные циклы.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
 
@@ -1166,7 +1166,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Узнать impact текущих файлов и несохранённых document changes относительно Git base.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java)
 
@@ -1189,7 +1189,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Сохранить локальную точку сравнения и корректно управлять её жизненным циклом.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml)
 
@@ -1212,7 +1212,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Различать прямую несовместимость, неизвестность и последующую область review.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [.archflow.yml](../projects/workspace/.archflow.yml), [PaymentClient.java](../projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java)
 
@@ -1235,9 +1235,9 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Проверить изменение с двух сторон и подготовить понятный review для коллеги.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
-**Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [PaymentClient.java](../projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java), [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java)
+**Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [PaymentClient.java](../projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java), [apply_impact.py](../projects/workspace/qa-support/apply_impact.py), [prepare_impact.py](../projects/workspace/qa-support/prepare_impact.py), [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java), [InvoiceView.kt](../projects/ask-before-edit/billing-service/src/main/kotlin/demo/billing/InvoiceView.kt), [apply_scenario.py](../projects/ask-before-edit/qa-support/apply_scenario.py)
 
 1. В изменённой карточке открыть Было/Стало, field table, evidence и оба source links.
    Ожидаемое наблюдение: Удалённое providerReference и неизменённые поля различимы; ссылки ведут к correct side/revision.
@@ -1245,6 +1245,8 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
    Ожидаемое наблюдение: Review пригоден для передачи коллеге: известные изменения, paths и ограничения относятся к этому comparison.
 3. Place caret on a Java DTO field/mapping/Kafka send; invoke What Breaks If This Changes? Подробный маршрут: docs/PRODUCT_TOUR_RU.md
    Ожидаемое наблюдение: Affected counterpart and supported variants with evidence; git diff remains empty
+4. Ask What breaks if… on the Kotlin route and property, call archverity_simulate_change with the printed edits_json, then apply the same edit and Analyze change Подробный маршрут: projects/ask-before-edit/README.md
+   Ожидаемое наблюдение: Moved route BREAKING for orders, renamed field UNKNOWN (orders maps a field no longer sent) before and after the edit; the answer writes nothing
 
 **Контрпример:** Review для partial comparison или отсутствующего consumer evidence.
 Ожидаемое наблюдение: Ограничение включено в review; нет обещания доказанной совместимости по всем consumers.
@@ -1253,7 +1255,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Доказательство:** Записать ID сценария, точный plugin/IDE build, project path и HEAD, вход и результат в RUN_RECORD. Для UI приложить видимое наблюдение; для экспорта — файл и hash. Успех producer/checker не присваивает PASS плагину.
 
-**Consumer run:** `NOT_RUN`. Capability IDs: IDE-REVIEW, IDE-IMPACT, ARCH-WHATIF.
+**Consumer run:** `NOT_RUN`. Capability IDs: IDE-REVIEW, IDE-IMPACT, ARCH-WHATIF, ARCH-ASK-BEFORE-EDIT.
 
 ## Внешние evidence
 
@@ -1262,7 +1264,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Добавить известные контракты внешних репозиториев с явным file provenance.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa-openapi.json](../projects/workspace/qa-openapi.json), [qa-asyncapi.json](../projects/workspace/qa-asyncapi.json), [qa-backstage.json](../projects/workspace/qa-backstage.json), [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-event-bus.archflow.json](../projects/workspace/contracts/qa-event-bus.archflow.json), [qa-backstage.archflow.json](../projects/workspace/contracts/qa-backstage.archflow.json)
 
@@ -1285,7 +1287,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Дополнить static bindings настоящим сохранённым наблюдением Spring beans.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [KafkaBindings.java](../projects/runtime-evidence/src/main/java/demo/evidence/KafkaBindings.java), [run_local.py](../projects/runtime-evidence/run_local.py), [capture.py](../projects/runtime-evidence/capture.py)
 
@@ -1308,7 +1310,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Связать выполненную проверку контракта с актуальным operation/spec/context.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [capture.py](../projects/runtime-evidence/capture.py), [.archflow.yml](../projects/runtime-evidence/.archflow.yml), [payment-openapi.json](../projects/runtime-evidence/contracts/payment-openapi.json)
 
@@ -1333,7 +1335,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Передать фактический analysis/comparison результат машинному consumer.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [inspect_export.py](../suite-support/inspect_export.py), [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md), [BillingClient.java](../projects/boot-upgrade/orders-service/src/main/java/demo/orders/BillingClient.java), [.archflow.yml](../projects/workspace/.archflow.yml)
 
@@ -1360,7 +1362,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Поделиться graph и finding locations в пригодных для просмотра/интеграции форматах.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [inspect_export.py](../suite-support/inspect_export.py), [QA_MATRIX_RU.md](../projects/workspace/QA_MATRIX_RU.md)
 
@@ -1385,7 +1387,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Увидеть finding в редакторе и перейти к связанному Impact без поиска вручную.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [PaymentController.java](../projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java), [PaymentClient.java](../projects/first-result/order-app/src/main/java/demo/orders/PaymentClient.java), [extended_scenarios.py](../projects/workspace/qa-support/extended_scenarios.py)
 
@@ -1433,7 +1435,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Сравнивать настоящие snapshots и объединять team/project policy.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-openapi.json](../projects/workspace/qa-openapi.json), [inspect_export.py](../suite-support/inspect_export.py), [team-policy.json](../suite-support/team-policy.json), [project-policy.json](../suite-support/project-policy.json)
 
@@ -1456,7 +1458,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Сделать findings и completeness проверяемым условием CI.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-openapi.json](../projects/workspace/qa-openapi.json), [inspect_export.py](../suite-support/inspect_export.py), [apply_impact.py](../projects/workspace/qa-support/apply_impact.py)
 
@@ -1504,7 +1506,7 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 
 **Зачем:** Подключить свой manifest provider и преобразовать выполненные verification reports.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.
 
 **Входы:** [qa-loopback.archflow.json](../projects/workspace/contracts/qa-loopback.archflow.json), [qa-openapi.json](../projects/workspace/qa-openapi.json), [inspect_export.py](../suite-support/inspect_export.py), [capture.py](../projects/runtime-evidence/capture.py), [.archflow.yml](../projects/runtime-evidence/.archflow.yml), [payment-openapi.json](../projects/runtime-evidence/contracts/payment-openapi.json), [example_provider.py](../suite-support/example_provider.py), [provider-context.json](../suite-support/provider-context.json), [provider-invalid-context.json](../suite-support/provider-invalid-context.json)
 
@@ -1525,15 +1527,15 @@ API запускается через `projects/api-lab/serve.py`. Mobile име
 ## MCP
 
 <a id="mcp-01"></a>
-### MCP-01 — Все 18 MCP tools, текущие identities и bounded review
+### MCP-01 — Все MCP tools (18 в 5.3.2, 19 с 5.5), текущие identities и bounded review
 
 **Зачем:** Дать внешнему MCP consumer ограниченный read-only доступ к текущему результату.
 
-**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides. Современная IDEA с JetBrains MCP Server, поддержанный клиент и собственный аккаунт; legacy 2024.3 исключён.
+**Подготовка:** Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides. Современная IDEA с JetBrains MCP Server, поддержанный клиент и собственный аккаунт; legacy 2024.3 исключён.
 
 **Входы:** [.archflow.yml](../projects/workspace/.archflow.yml), [coverage.json](../projects/workspace/qa-support/coverage.json), [MCP_TOUR_RU.md](../docs/MCP_TOUR_RU.md)
 
-1. На same-project MCP Server выполнить before/after маршрут и все 18 отдельных recipes из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.
+1. На same-project MCP Server выполнить before/after маршрут и все отдельные recipes (18 в 5.3.2; archverity_simulate_change с 5.5) из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.
    Ожидаемое наблюдение: Ответы относятся к current HEAD/context, фильтры и limit соблюдены.
 2. Вызвать contract_evidence с query реального contract и trace_flow inbound/outbound/both с непустым query; сопоставить paths с UI. Проверить limit=0 и завышенный limit.
    Ожидаемое наблюдение: Evidence и direction совпадают с выбранным объектом; limits ограничены. Source locations относительные, project_root/projectRoot явно привязывают вызов; source bodies не возвращаются.

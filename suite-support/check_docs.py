@@ -13,6 +13,7 @@ NAVIGATION = ("README.md", "docs/README.md", "docs/ALL_FUNCTIONS_RU.md",
               "projects/api-lab/README.md", "projects/mobile-lab/README.md",
               "projects/runtime-evidence/README.md", "projects/kafka-profile-lab/README.md",
               "projects/workspace/QA_MATRIX_RU.md", "projects/boot-upgrade/README.md",
+              "projects/ask-before-edit/README.md",
               "docs/PRODUCT_TOUR_RU.md", "docs/PRODUCT_TOUR_EN.md")
 
 

@@ -74,7 +74,7 @@ def guides(data, entry_points):
              f"Recipes: ArchVerity {data['source_product_version']}; сверка текущих registrations с commit `{data['source_inventory_commit']}`.",
              f"{len(data['features'])} исторические функциональные группы сохраняют stable IDs; {len(entry_points)} текущих registered entry points связаны с конкретными входами.",
              "Старые source_capability формулировки сохранены для сверки legacy inventory; актуальные действия и ограничения описаны ниже.",
-             "[Начните с маршрута 5.3.2](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [18 MCP tools](MCP_TOUR_RU.md).",
+             f"[Начните с маршрута {data['source_product_version']}](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [19 MCP tools](MCP_TOUR_RU.md).",
              "Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).", "",
              "[Пошаговый запуск всех семи лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
              "## Подготовка", "", "Для первого finding подготовьте отдельную first-result copy через `suite-support/prepare_project.py` и откройте её с JDK 21. Для архитектуры и Impact создайте новую workspace copy тем же helper и получите настоящий полный снимок чистого HEAD в IDEA.",

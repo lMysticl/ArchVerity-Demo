@@ -42,14 +42,14 @@ jobs:
         if: runner.os != 'Windows'
         shell: bash
         run: |
-          for project in first-result workspace runtime-evidence kafka-profile-lab; do
+          for project in first-result workspace runtime-evidence kafka-profile-lab ask-before-edit; do
             (cd "projects/$project" && ./gradlew classes --console=plain --warning-mode all --no-daemon)
           done
       - name: Compile all Java and Kotlin projects (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          foreach ($demoProject in @('first-result', 'workspace', 'runtime-evidence', 'kafka-profile-lab')) {
+          foreach ($demoProject in @('first-result', 'workspace', 'runtime-evidence', 'kafka-profile-lab', 'ask-before-edit')) {
             Push-Location "projects/$demoProject"
             try {
               & .\gradlew.bat classes --console=plain --warning-mode all --no-daemon

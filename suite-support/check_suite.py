@@ -101,6 +101,8 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
     documentation = check_docs()
     from check_boot_upgrade import check as check_boot_upgrade
     upgrade = check_boot_upgrade()
+    from check_ask_before_edit import check as check_ask_before_edit
+    ask = check_ask_before_edit()
     from prepare_kafka_case import CASES, LAB
     if {case["id"] for case in CASES} != {f"K{index:02}" for index in range(1, 13)} or len(CASES) != 12:
         raise ValueError("Kafka lab must retain all 12 unique scenarios")
@@ -118,7 +120,7 @@ def check(plugin_source=None, require_source=False, write_catalog=False):
             raise ValueError(f"Missing Kafka fixture: {relative}")
     return {"status": "INPUT_CONTRACT_PASS", "features": len(features), "entry_points": sum(registration["entries"].values()),
             "registered": registration, "isolated_mutations": len(SCENARIOS), "python_sources": python_files, "full_playbooks": playbooks,
-            "documentation": documentation, "kafka_profile_cases": len(CASES), "boot_upgrade": upgrade,
+            "documentation": documentation, "kafka_profile_cases": len(CASES), "boot_upgrade": upgrade, "ask_before_edit": ask,
             "boundary": "Prepared inputs and source matching; live IDEA/device/licensing observations remain separate"}
 
 

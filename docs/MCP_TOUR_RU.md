@@ -1,9 +1,9 @@
-# ArchVerity 5.3.2: 18 MCP-инструментов на одном проекте
+# ArchVerity 5.5.0: 19 MCP-инструментов на одном проекте
 
 [Маршрут продукта](PRODUCT_TOUR_RU.md) · [Средовые проверки](ENVIRONMENT_CHECKS_RU.md) ·
 [Точки входа](ENTRY_POINTS_RU.md) · [Запись результата](RUN_RECORD.md)
 
-Нужны современная совместимая IDEA с JetBrains MCP Server, ArchVerity 5.3.2,
+Нужны современная совместимая IDEA с JetBrains MCP Server, ArchVerity 5.5.0,
 активный Trial/Pro и ваш агент. Legacy-пакет для IDEA 2024.3 не предоставляет
 этот MCP-маршрут. Подготовьте отдельную `workspace`-копию, импортируйте Gradle,
 отсканируйте чистый HEAD. В **Agents** настройте выбранного клиента и проверьте
@@ -38,6 +38,7 @@
 | `archverity_capabilities` | `{}` | Реальные возможности и ограничения текущего bridge |
 | `archverity_file_contracts` | Путь PaymentController.java выше | Контракты файла, другая сторона, текущий pair verdict |
 | `archverity_check_change` | HEAD, `from_merge_base:false`, фактический `project_root` | Решение для текущего дерева; новый receipt только для допустимого сохранённого состояния |
+| `archverity_simulate_change` (с 5.5) | До правки: `edits_json` из [ask-before-edit](../projects/ask-before-edit/README.md) (`qa-support/apply_scenario.py --print-edits`), фактический `project_root` | Решение, которое check_change даст после этой правки; файлы не меняются; неоднозначный `old` или путь вне проекта отклоняются с причиной |
 | `archverity_change_impact` | `{"base_revision":"HEAD","limit":10}` | Прямые HTTP/Kafka/AMQP/DTO последствия отдельно от downstream REVIEW |
 | `archverity_findings` | `{"severity":"ERROR","include_suppressed":false,"limit":10}` | Фильтр и source locations совпадают с Findings |
 | `archverity_contract_evidence` | `{"query":"payments","limit":10}` | Источник доказанной связи и её ограничения |

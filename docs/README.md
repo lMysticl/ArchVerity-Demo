@@ -1,6 +1,6 @@
 # Документация ArchVerity Demo
 
-**Начните с [маршрута ArchVerity 5.3.2](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
+**Начните с [маршрута ArchVerity 5.5.0](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
 
 Начните с [пошаговой инструкции запуска](DEMO_RUNBOOK_RU.md): подготовка среды,
 первый finding, все семь лабораторий, остановка своих процессов и запись результатов.
@@ -34,7 +34,7 @@
 - [kafka-profile-lab](../projects/kafka-profile-lab/README.md): profiles, external overrides, отдельные scopes и actual JSON oracle.
 
 Полное руководство сохраняет 62 исторические группы из inventory 3.0.3;
-рецепты и 114 зарегистрированных controls сверены с исходниками **5.3.2**.
+рецепты и 115 зарегистрированных controls сверены с исходниками **5.5.0**.
 Все 41 прежние capability recipes сохранены, добавлено восемь текущих.
 `suite-support/check_suite.py` проверяет
 входы и подготовленные рецепты; maintainer с исходниками добавляет
@@ -43,10 +43,14 @@
 [README набора](../README.md#полная-проверка).
 Actual IDEA/device/MCP/remote outcomes записываются по выбранной версии и проекту.
 
-Для текущего маршрута используйте 5.3.2 и поддерживаемую им IDEA.
+Для текущего маршрута используйте 5.5.0 и поддерживаемую им IDEA.
 [Историческая запись 3.0.4](VERIFICATION_RU.md#выпуск-304--05102026)
 относится к старым Kafka-видео и exports; это не текущая инструкция установки.
 
 ## Лаборатория Spring Boot upgrade
 
 [boot-upgrade](../projects/boot-upgrade/README.md) — седьмой проект: настоящие Boot 3/4 мапперы, четыре риска, явное исправление и mapper-unknown control. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project boot-upgrade --output ../archverity-upgrade-demo`.
+
+## Лаборатория «спросить до правки» (5.5)
+
+[ask-before-edit](../projects/ask-before-edit/README.md) — восьмой проект: Kotlin-поставщик с context path и Java-клиент; ответ «What breaks if…» и `archverity_simulate_change` до переименования поля или переноса маршрута совпадает с ревью после настоящей правки. Подготовка: `python -B -X utf8 suite-support/prepare_project.py --project ask-before-edit --output ../archverity-ask-demo`.

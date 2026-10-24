@@ -346,6 +346,15 @@
     ]
   },
   {
+    "id": "mcp:archverity_simulate_change",
+    "feature_id": "MCP-01",
+    "trigger": "До правки (5.5+) передать edits_json — массив {path, old, new}, где old встречается в файле ровно один раз, — и настоящий project_root; затем записать ту же правку и вызвать archverity_check_change.",
+    "expect": "Решение совпадает с check_change после настоящей правки; ни один файл не меняется; повторяющийся или отсутствующий old, путь вне проекта и не Java/Kotlin файл отклоняются с причиной.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
     "id": "mcp:archverity_config_usage",
     "feature_id": "MCP-01",
     "trigger": "query=spring.application.name, limit=10; отдельно неверный status.",
