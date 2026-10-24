@@ -46,13 +46,16 @@ Expected: `STALE_MOCK_CONFIRMED`. Orders' test passes, billing sends
 
 ## Find it in ArchVerity
 
-1. In ArchVerity **Overview**, use **Map this project** / refresh the analysis.
+1. In ArchVerity **Overview**, use **Map this project** / refresh the analysis. A scan that ran
+   before the Gradle import finished reports `/invoices/{id}` as unmapped; run **Analyze** again.
 2. Open the HTTP link from `orders` to `billing`. Both sides must resolve to the
    sources above; if they do not, inspect import, scope and diagnostics first.
 3. Expected finding: **`AFG-MOCK-001` Test stub answers with fields the provider no longer sends**
    (warning). It names `orders-service/src/test/java/demo/orders/BillingInvoiceTest.java:20`,
-   `GET /invoices/42`, the property `'id'` and billing's `InvoiceView`. The same stub is listed
-   in the link's Contract X-ray.
+   `GET /invoices/42`, the property `'id'` and billing's `InvoiceView`. **Overview** lists the
+   same stub with **Open BillingInvoiceTest.java:20**.
+4. Two notes appear beside it. *HTTP response contract drift* says billing sends `invoiceId`,
+   which orders does not read. *HTTP client read timeout not configured* covers `BillingClient`.
 
 The finding is an observation, not a verdict. A stale fake does not prove the
 real call breaks, and a fresh fake does not prove it works. ArchVerity reads the
@@ -73,7 +76,7 @@ python -B -X utf8 verification/verify_stale_mock.py --fixed
 The [fix](qa-support/apply_scenario.py) makes orders read both names
 (`@JsonAlias("invoiceId")` on `id`), and its fake answers with what billing sends now.
 Expected: `STALE_MOCK_FIXED`. The test is still green, and the real call now reads id `42`.
-After **Analyze**, `AFG-MOCK-001` is gone. Because ArchVerity 5.5 reads `@JsonAlias`, a later removal of the
+After **Analyze**, `AFG-MOCK-001` and the drift note are gone; only the timeout note remains. Because ArchVerity 5.5 reads `@JsonAlias`, a later removal of the
 alias shows up in review as a contract change.
 
 The helper refuses an original repository, an edited copy and a second
@@ -81,6 +84,8 @@ scenario in the same copy; prepare a new copy instead.
 
 ## Boundaries
 
+- Observed on 25 October 2026 in IntelliJ IDEA 2026.1.4 with ArchVerity 5.5.0 (Pro), on a prepared copy:
+  three findings on the baseline (the stale stub, the drift note, the timeout note) and one after the fix.
 - `verify_stale_mock.py` proves library behavior: the real test result and the real
   loopback call. It does not claim an ArchVerity scan, licence, GUI action or exported finding.
   Record those separately in the [run record](../../docs/RUN_RECORD.md).
