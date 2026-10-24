@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "source_product_version": "5.3.2",
-  "source_inventory_commit": "15ca7a22519abbf92d8a3d7f9f59f1f17adaa9a4",
+  "source_product_version": "5.5.0",
+  "source_inventory_commit": "f75340b9d346b22b30f28a0ee8cc56c85abf7420",
   "features": [
     {
       "id": "DEV-01",
@@ -16,7 +16,7 @@
         "projects/workspace/qa-support/generate_icon_pack.py"
       ],
       "purpose": "Проверить, что иконки помогают различать типы файлов и папок в настоящем Project View.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть Dev Icons → Preview и выбрать ArchVerity Studio; просмотреть Java/Kotlin, YAML, shell и folder glyphs.",
@@ -48,7 +48,7 @@
         "projects/workspace/qa-support/generate_icon_pack.py"
       ],
       "purpose": "Выбрать подходящий читаемый стиль, сохранив семантику типов файлов.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "По очереди выбрать Studio, Outline и Contrast в Dev Icons Preview.",
@@ -84,7 +84,7 @@
         "projects/workspace/QA_MATRIX_RU.md"
       ],
       "purpose": "Разделить личные настройки IDE и правила конкретного проекта.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Записать глобальное состояние; переключить project override INHERIT → DISABLED → ENABLED.",
@@ -118,7 +118,7 @@
         "docs/ICON_AND_KEYSTORE_INPUTS_RU.md"
       ],
       "purpose": "Предсказуемо разрешать пересекающиеся правила и находить ошибочные matchers.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В rules создать FILE/EXACT для PaymentController.java, FILE/GLOB для *.java и FOLDER/EXACT для payment-app; выбрать существующие icon IDs.",
@@ -150,7 +150,7 @@
         "projects/workspace/qa-support/generate_icon_pack.py"
       ],
       "purpose": "Добавить свой pack и проверить замену, экспорт и возвращение к fallback.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Импортировать archverity-qa.aficons, включить pack и экспортировать его в work/.",
@@ -229,7 +229,7 @@
         "projects/workspace/qa-truststore.p12"
       ],
       "purpose": "Сопоставить публичные криптографические артефакты и проверить их метаданные/подписи.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Inspect qa-cert.pem и qa-cert.der; сравнить fingerprint и validity. Затем Inspect qa-public-artifacts.pem.",
@@ -297,7 +297,7 @@
         "projects/workspace/qa-support/coverage.json"
       ],
       "purpose": "Повторно использовать окружения и передавать secrets через специальное хранилище.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Environments: создать demo-local, variable DEMO=local; Send /headers с X-Demo: {{DEMO}}.",
@@ -333,7 +333,7 @@
         "projects/api-lab/scenarios/unsupported-javascript.json"
       ],
       "purpose": "Проверять API цепочками с точными assertions и передавать значения между шагами.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В Scenarios вставить dsl-types.json и запустить.",
@@ -367,7 +367,7 @@
         "projects/api-lab/grpc_server.py"
       ],
       "purpose": "Исследовать сообщения WebSocket и schema-bound gRPC вызовы с контролем lifecycle.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Запустить все api-lab transports; WS Connect ws://127.0.0.1:18428 → Send ArchVerity → Close.",
@@ -400,7 +400,7 @@
         "projects/workspace/qa-curl.txt"
       ],
       "purpose": "Переносить запросы между форматами и управлять session cookies/history.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Через Import .http / Import cURL / Import OpenAPI/Postman импортировать четыре workspace inputs и отправить по одному запросу.",
@@ -437,7 +437,7 @@
         "projects/workspace/qa-support/extended_scenarios.py"
       ],
       "purpose": "Понять effective Spring configuration и найти её конкретный источник.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Spring → Inspect project; поиск payment и фильтр profile dev.",
@@ -471,7 +471,7 @@
         "projects/workspace/payment-app/src/main/resources/application-editor-demo.yml"
       ],
       "purpose": "Редактировать конфигурацию с completion/docs и переходами из кода.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В application-qa.properties и application.yml вызвать Ctrl+Space на ключе и Quick Documentation; использовать известный ключ payment из fixture.",
@@ -502,7 +502,7 @@
         "projects/workspace/payment-app/src/main/resources/application-qa.properties"
       ],
       "purpose": "Менять представление конфигурации, сохраняя ключи и значения.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Spring config action: конвертировать копию application.yml в properties и обратным действием в YAML.",
@@ -567,7 +567,7 @@
         "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt"
       ],
       "purpose": "Получать исполнимый SQL из Preparing/Parameters без ручного подставления literals.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Скопировать обе строки Preparing/Parameters из MyBatisConsoleFixture.java в MyBatis panel → Restore.",
@@ -599,7 +599,7 @@
         "projects/workspace/notification-app/src/main/kotlin/sample/notification/PaymentNotificationMapper.kt"
       ],
       "purpose": "Восстанавливать запросы непосредственно из реального запуска приложения.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Запустить main MyBatisConsoleFixture в Run configuration; открыть MyBatis live console.",
@@ -634,7 +634,7 @@
         "projects/workspace/notification-app/src/main/resources/mappers/PaymentNotificationMapper.xml"
       ],
       "purpose": "Переходить между mapper methods и XML statements, настроив поведение console.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Ctrl+B на PaymentMapper.findById и XML namespace/id/include refid; повторить PaymentNotificationMapper.kt ↔ PaymentNotificationMapper.xml.",
@@ -665,7 +665,7 @@
         "projects/workspace/ansible/vault-plain.yml"
       ],
       "purpose": "Ориентироваться в Ansible roles/inventory/variables без обязательного сетевого каталога.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Inspect ansible/professional: inventories, group_vars/host_vars, roles, collection acme.platform, Jinja template.",
@@ -727,7 +727,7 @@
         "projects/workspace/ansible/vault-plain.yml"
       ],
       "purpose": "Получать результат установленного syntax checker, а не только parse модели.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "С установленным ansible-playbook выполнить ANSIBLE_SYNTAX_CHECK для ansible/playbook.yml.",
@@ -759,7 +759,7 @@
         "projects/workspace/shell-professional/qa-debug.sh"
       ],
       "purpose": "Находить shell diagnostics и форматировать scripts по реальному diff.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "SHELLCHECK для shell-professional/lib/common.sh; SHFMT_DIFF для shell-tools/format.sh.",
@@ -791,7 +791,7 @@
         "projects/workspace/shell-professional/qa-debug.sh"
       ],
       "purpose": "Запускать Bats tests и отличать успешный process от пройденных assertions.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть shell-professional/test/deploy.bats; выполнить BATS_TEST с этим project-relative path.",
@@ -823,7 +823,7 @@
         "projects/workspace/shell-professional/qa-debug.sh"
       ],
       "purpose": "Исследовать shell execution и symbols локально или в явно выбранной remote среде.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Ctrl+Space/Quick Documentation/Ctrl+B на function, source и variable в shell-professional; запустить BASH_DEBUG qa-debug.sh.",
@@ -857,7 +857,7 @@
         "projects/mobile-lab/app.json"
       ],
       "purpose": "Находить настоящий RN/Expo project и выполнять выбранные package scripts.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "React Native → Detect projects в mobile-lab; выбрать найденное Expo/RN package.json.",
@@ -891,7 +891,7 @@
         "projects/mobile-lab/app.json"
       ],
       "purpose": "Запускать dev servers, получать JS bundles и работать с подготовленными native hosts.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "После npm ci по очереди RN_METRO и RN_EXPO; для каждого дождаться ready и нажать Stop.",
@@ -956,7 +956,7 @@
         "projects/workspace/archflow-live.ansi"
       ],
       "purpose": "Читать цветные logs и переходить из записей к исходникам.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть ansible/qa.ansi и archflow-live.ansi через зарегистрированный editor; переключить raw/rendered.",
@@ -988,7 +988,7 @@
         "suite-support/generate_large_ansi.py"
       ],
       "purpose": "Навигировать по большому log без загрузки всего текста в одну rendered страницу.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В отдельной workspace copy выполнить generate_large_ansi.py --output work/large.ansi; открыть файл.",
@@ -1021,7 +1021,7 @@
         "projects/workspace/qa-support/coverage.json"
       ],
       "purpose": "Управлять регистрацией log editor и его resource limits.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Записать ANSI Log Editor patterns/render limit; добавить demo extension/pattern и переоткрыть matching файл.",
@@ -1054,7 +1054,7 @@
         "projects/workspace/QA_MATRIX_RU.md"
       ],
       "purpose": "Получать свежий анализ текущего проекта и отличать complete от interrupted scan.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть чистый workspace → Analyze project; записать HEAD и состояние completeness.",
@@ -1086,7 +1086,7 @@
         "projects/workspace/payment-app/src/main/java/sample/payment/InheritedController.java"
       ],
       "purpose": "Видеть объявленные HTTP provider contracts и происхождение inherited mappings.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Inventory → HTTP → поиск demo; открыть DemoContractsController.java и DemoGet.java.",
@@ -1124,7 +1124,7 @@
         "projects/workspace/qa-support/extended_scenarios.py"
       ],
       "purpose": "Проверять согласованность client/provider routes и условия совместимости HTTP.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В first-result Analyze POST client vs PUT provider; открыть finding и обе стороны.",
@@ -1156,7 +1156,7 @@
         "projects/workspace/payment-app/src/main/java/sample/payment/KafkaAdvanced.java"
       ],
       "purpose": "Понимать Kafka producer/consumer declarations и изменения статических bindings.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Inventory/Topology → Kafka; открыть send/ProducerRecord и listener/group/partition declarations.",
@@ -1188,7 +1188,7 @@
         "projects/workspace/payment-app/src/main/java/sample/payment/KafkaAdvanced.java"
       ],
       "purpose": "Отличать retry/DLT/reply topology от обычного message flow.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть retry/DLT/reply declarations в PaymentListener/KafkaAdvanced и соответствующие edges.",
@@ -1220,7 +1220,7 @@
         "projects/workspace/notification-app/src/main/kotlin/sample/notification/AmqpListener.kt"
       ],
       "purpose": "Исследовать объявленную RabbitMQ маршрутизацию по exchange/binding/queue.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Inventory/Topology → AMQP; пройти AmqpPublisher → exchange → binding → queue → Java/Kotlin listener.",
@@ -1260,7 +1260,7 @@
         "projects/boot-upgrade/billing-service/src/main/java/demo/billing/InvoiceView.java"
       ],
       "purpose": "Выявлять изменения wire shape и видеть пределы статически известного DTO.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть DTO wire-shape в Java и Kotlin: nested object, List/Map, nullable, enum, inheritance, snake_case, JsonProperty/Ignore/access/discriminator.",
@@ -1295,7 +1295,7 @@
         "projects/workspace/qa-support/extended_scenarios.py"
       ],
       "purpose": "Принимать решение по finding с учётом severity, confidence и причины disposition.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В first-result выбрать реальный method mismatch; открыть severity, confidence, reason и evidence.",
@@ -1329,7 +1329,7 @@
         "projects/workspace/QA_MATRIX_RU.md"
       ],
       "purpose": "Найти каждый инструмент и выбрать удобное представление того же результата.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть Overview, Review, Architecture, Findings, Agents и Tools; затем views внутри Architecture и Tools.",
@@ -1363,7 +1363,7 @@
         "projects/workspace/.archflow.yml"
       ],
       "purpose": "Сузить результат до нужного контракта и открыть его конкретный исходник.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Inventory: filter HTTP, search payments, выбрать endpoint; затем Kafka/AMQP.",
@@ -1393,7 +1393,7 @@
         "projects/workspace/.archflow.yml"
       ],
       "purpose": "Исследовать graph через уровни детализации, focus и связи.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Topology: Services/Details level, HTTP/Kafka/AMQP filter; выбрать payment-service и relation.",
@@ -1424,7 +1424,7 @@
         "projects/workspace/qa-support/extended_scenarios.py"
       ],
       "purpose": "Понять причину неполного анализа и проверить восстановление после исправления input.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "На исправном workspace открыть Diagnostics и location каждого имеющегося сообщения.",
@@ -1459,7 +1459,7 @@
         "projects/workspace/payment-app/src/main/resources/application-dev.yml"
       ],
       "purpose": "Определить границы проекта и effective profiles до сравнения контрактов.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Открыть .archflow.yml: services/modulePaths/paths/profiles/aliases; сопоставить с effective config в scan.",
@@ -1499,7 +1499,7 @@
         "projects/workspace/.archflow.yml"
       ],
       "purpose": "Настраивать проверяемые правила и подавлять конкретные findings с объяснением.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Из реального finding открыть suggested alias/manifest action и проверить preview/copy.",
@@ -1534,7 +1534,7 @@
         "projects/workspace/qa-support/extended_scenarios.py"
       ],
       "purpose": "Контролировать разрешённые зависимости и прослеживать обнаруженные циклы.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Применить dependency-deny; открыть policy finding order→payment и его source.",
@@ -1567,7 +1567,7 @@
         "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
       ],
       "purpose": "Узнать impact текущих файлов и несохранённых document changes относительно Git base.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Создать чистую workspace copy, Analyze HEAD; применить combined-breaking и сравнить HEAD → WORKTREE.",
@@ -1597,7 +1597,7 @@
         "projects/workspace/.archflow.yml"
       ],
       "purpose": "Сохранить локальную точку сравнения и корректно управлять её жизненным циклом.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Analyze clean workspace → Save baseline; изменить один contract и повторить Analyze.",
@@ -1631,7 +1631,7 @@
         "projects/workspace/notification-app/src/main/java/sample/notification/PaymentClient.java"
       ],
       "purpose": "Различать прямую несовместимость, неизвестность и последующую область review.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "На разных чистых копиях request-required, response-optional-added и unknown shape; открыть reasons, consumers и paths.",
@@ -1670,7 +1670,7 @@
         "projects/ask-before-edit/qa-support/apply_scenario.py"
       ],
       "purpose": "Проверить изменение с двух сторон и подготовить понятный review для коллеги.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "В изменённой карточке открыть Было/Стало, field table, evidence и оба source links.",
@@ -1713,7 +1713,7 @@
         "projects/workspace/contracts/qa-backstage.archflow.json"
       ],
       "purpose": "Добавить известные контракты внешних репозиториев с явным file provenance.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Применить manifest-import на новой копии, Analyze и найти qa-loopback, qa-event-bus, qa-catalog-service.",
@@ -1745,7 +1745,7 @@
         "projects/runtime-evidence/capture.py"
       ],
       "purpose": "Дополнить static bindings настоящим сохранённым наблюдением Spring beans.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Подготовить чистую runtime-evidence copy и реальный current IDEA export; запустить run_local.py и capture.py по README.",
@@ -1777,7 +1777,7 @@
         "projects/runtime-evidence/contracts/payment-openapi.json"
       ],
       "purpose": "Связать выполненную проверку контракта с актуальным operation/spec/context.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "С реальным current export получить локальные Pact-shaped PASS, Pact-shaped FAIL и Drift-shaped PASS по runtime README.",
@@ -1812,7 +1812,7 @@
         "projects/workspace/.archflow.yml"
       ],
       "purpose": "Передать фактический analysis/comparison результат машинному consumer.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "На current scan Copy/Save analysis JSON; на реальном comparison Copy/Save Impact JSON в work/.",
@@ -1851,7 +1851,7 @@
         "projects/workspace/QA_MATRIX_RU.md"
       ],
       "purpose": "Поделиться graph и finding locations в пригодных для просмотра/интеграции форматах.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Из текущей topology экспортировать Mermaid/SVG/PNG; открыть каждый artifact и проверить service IDs/edges.",
@@ -1884,7 +1884,7 @@
         "projects/workspace/qa-support/extended_scenarios.py"
       ],
       "purpose": "Увидеть finding в редакторе и перейти к связанному Impact без поиска вручную.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "На Java mismatch открыть inspection ArchFlowContract; изменить контракт и открыть Impact marker на той же declaration.",
@@ -1955,7 +1955,7 @@
         "suite-support/project-policy.json"
       ],
       "purpose": "Сравнивать настоящие snapshots и объединять team/project policy.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Получить два настоящих same-scope exports из clean и mutated copy; выполнить diff и проверить Markdown; для git-diff использовать repository с реальными сохранёнными snapshot files.",
@@ -1989,7 +1989,7 @@
         "projects/workspace/qa-support/apply_impact.py"
       ],
       "purpose": "Сделать findings и completeness проверяемым условием CI.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Для настоящего export выполнить ci --threshold ERROR --sarif/--report; для comparison ci-impact --fail-on BREAKING --require-complete.",
@@ -2066,7 +2066,7 @@
         "suite-support/provider-invalid-context.json"
       ],
       "purpose": "Подключить свой manifest provider и преобразовать выполненные verification reports.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides.",
       "steps": [
         {
           "do": "Convert actual runtime reports с --format, --metadata, --spec по runtime guide; сравнить canonical outcome/hash/context.",
@@ -2099,7 +2099,7 @@
         "docs/MCP_TOUR_RU.md"
       ],
       "purpose": "Дать внешнему MCP consumer ограниченный read-only доступ к текущему результату.",
-      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.3.2, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides. Современная IDEA с JetBrains MCP Server, поддержанный клиент и собственный аккаунт; legacy 2024.3 исключён.",
+      "setup": "Открыть указанную лабораторию в IDEA с ArchVerity 5.5.0, JDK 21 для Gradle; дождаться import/index. Для полного показа использовать настоящий Trial/Pro. Требования отдельных инструментов перечислены ниже и в linked guides. Современная IDEA с JetBrains MCP Server, поддержанный клиент и собственный аккаунт; legacy 2024.3 исключён.",
       "steps": [
         {
           "do": "На same-project MCP Server выполнить before/after маршрут и все отдельные recipes (18 в 5.3.2; archverity_simulate_change с 5.5) из docs/MCP_TOUR_RU.md; начать с capabilities и file_contracts.",

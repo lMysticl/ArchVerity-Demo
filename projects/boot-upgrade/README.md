@@ -2,7 +2,7 @@
 
 Two services compile on Spring Boot **3.5.15**. `billing` writes an invoice;
 `orders` reads it into a different record. Changing the JSON defaults can break
-that boundary even when no controller signature changes. ArchVerity **5.3.2**
+that boundary even when no controller signature changes. ArchVerity **5.5.0**
 can inspect the supported upgrade risks before you change the dependencies.
 
 [Русский маршрут продукта](../../docs/PRODUCT_TOUR_RU.md#переход-на-spring-boot-4) ·

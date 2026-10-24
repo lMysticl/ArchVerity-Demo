@@ -1,9 +1,9 @@
 # Запуск демонстрации ArchVerity: пошаговая инструкция
 
-**Начните с [маршрута ArchVerity 5.3.2](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
+**Начните с [маршрута ArchVerity 5.5.0](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
 
 Этот маршрут предназначен для первого знакомства, показа плагина и повторяемого
-QA на открытых исходниках. Набор описывает функции ArchVerity **5.3.2**:
+QA на открытых исходниках. Набор описывает функции ArchVerity **5.5.0**:
 [62 функции](ALL_FUNCTIONS_RU.md), [114 точек входа](ENTRY_POINTS_RU.md),
 49 capability recipes (41 прежний сохранён) и 19 отдельных изменений для Impact.
 Выберите нужный этап; архитектурные примеры и сетевые лаборатории запускаются
@@ -16,7 +16,7 @@ QA на открытых исходниках. Набор описывает ф�
 | Git | Получение исходников и самостоятельный Git baseline | `git --version` |
 | Python 3.10+ | Проверки набора, подготовка копий, локальные API | `python --version`; hosted CI использует 3.12 |
 | JDK 21 | Gradle import/build пяти JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
-| Совместимая IDEA и установленный ArchVerity 5.3.2 | Действия плагина и все семь лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать совместимый legacy-пакет; MCP требует современную IDEA |
+| Совместимая IDEA и установленный ArchVerity 5.5.0 | Действия плагина и все семь лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать совместимый legacy-пакет; MCP требует современную IDEA |
 | Настоящий Trial/Pro для соответствующих операций | Impact, paid tools/export/MCP | Записать фактически видимое состояние лицензии |
 | Node 22 | Metro/Expo/JavaScript bundle | `node --version`, `npm --version`; native device пока не нужен |
 | Сеть для первого download | Gradle/npm/pinned Python packages | Установка завершается с exit code 0 |
@@ -202,7 +202,7 @@ Ctrl+C в launcher terminal останавливает его приложени
 
 ## 7. Kafka profiles и UNKNOWN
 
-Для текущего маршрута используйте **ArchVerity 5.3.2** и поддерживаемую им IDEA.
+Для текущего маршрута используйте **ArchVerity 5.5.0** и поддерживаемую им IDEA.
 Сценарии были впервые проверены в 3.0.4; старые exports и видео сохраняют
 [историческую запись выпуска](VERIFICATION_RU.md#выпуск-304--05102026).
 Подготовьте новую копию:

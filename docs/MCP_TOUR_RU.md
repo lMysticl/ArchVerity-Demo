@@ -1,9 +1,9 @@
-# ArchVerity 5.3.2: 18 MCP-инструментов на одном проекте
+# ArchVerity 5.5.0: 19 MCP-инструментов на одном проекте
 
 [Маршрут продукта](PRODUCT_TOUR_RU.md) · [Средовые проверки](ENVIRONMENT_CHECKS_RU.md) ·
 [Точки входа](ENTRY_POINTS_RU.md) · [Запись результата](RUN_RECORD.md)
 
-Нужны современная совместимая IDEA с JetBrains MCP Server, ArchVerity 5.3.2,
+Нужны современная совместимая IDEA с JetBrains MCP Server, ArchVerity 5.5.0,
 активный Trial/Pro и ваш агент. Legacy-пакет для IDEA 2024.3 не предоставляет
 этот MCP-маршрут. Подготовьте отдельную `workspace`-копию, импортируйте Gradle,
 отсканируйте чистый HEAD. В **Agents** настройте выбранного клиента и проверьте

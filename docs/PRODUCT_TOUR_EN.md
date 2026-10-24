@@ -1,4 +1,4 @@
-# Evaluate ArchVerity 5.3.2 on a change you can inspect
+# Evaluate ArchVerity 5.5.0 on a change you can inspect
 
 **Which other service breaks when I change this contract?** Start with a
 compiling example, find the mismatch, inspect both sides, then fix and recheck.
@@ -7,7 +7,7 @@ agent. [Русский подробный маршрут](PRODUCT_TOUR_RU.md) ·
 [All-lab runbook](DEMO_RUNBOOK_RU.md) · [Record observations](RUN_RECORD.md).
 
 Use JDK 21, Git, Python 3.10+, a supported IntelliJ IDEA and separately installed
-ArchVerity 5.3.2 with a legitimate Trial/Pro. The Marketplace offers a 14-day
+ArchVerity 5.5.0 with a legitimate Trial/Pro. The Marketplace offers a 14-day
 trial. First dependency downloads need a network; static contract examples need
 no broker, database or running services. MCP needs a supported modern IDE,
 JetBrains MCP Server and your own agent account.
@@ -86,7 +86,7 @@ it is neither a fresh source analysis nor a cryptographic signature.
 Open **Agents**, follow the selected client's connection steps and verify the
 connection. Ask it to call `archverity_file_contracts` before changing the
 controller, then `archverity_check_change` against HEAD afterward. Bind the
-project directory explicitly. [All 18 MCP tools and controls](MCP_TOUR_RU.md).
+project directory explicitly. [All 19 MCP tools and controls](MCP_TOUR_RU.md).
 A regression plan marked `NOT_EXECUTED` is a plan, not a test result; a model's
 review does not override deterministic contract evidence.
 
