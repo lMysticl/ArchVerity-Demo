@@ -1,0 +1,51 @@
+{
+  "kind": "REAL_JACKSON_WIRE_OBSERVATION",
+  "date": "2026-10-24",
+  "capturedAtUtc": "2026-10-24T20:42Z",
+  "java": "OpenJDK 21.0.12.1 (Ubuntu 24.04, Linux container)",
+  "gradle": "9.6.1 (lab wrapper)",
+  "inputs": {
+    ".archflow.yml": "ba203f517b6bd389b3d0f17b1102f3087f6af41ebd165cb2e3aa46acea739158",
+    ".gitignore": "bb5bd652be347b515b62697cc9da510a022a8091081908893a52f094b61bce78",
+    "billing-service/src/main/java/demo/billing/BillingApplication.java": "217ef204603f7c8f6046888115ccc3fec24ee5f08f1b8bda547d6f4b4b8c8804",
+    "billing-service/src/main/java/demo/billing/InvoiceController.java": "48c2395a099781258b873f1955ea93921702442e8d0b972fe1f768ff70047a88",
+    "billing-service/src/main/java/demo/billing/InvoiceStatus.java": "d06a3b8b84cdb53f8a9318e4c47156c299697e231daa502ba0086deb665ddd99",
+    "billing-service/src/main/java/demo/billing/InvoiceView.java": "feb72adecb7a0ec13987a656634e67a3daaa953b97c0050c0372959e67f24dce",
+    "billing-service/src/main/resources/application.yml": "c865ec3c8f215e4966659b0360461fde19e0dbe9df20be251b1ccb7917b96673",
+    "build.gradle.kts (with the appended block in README)": "773d5f7b93772817a267803a04e4a4b1304e815664fea0dcfc369d3926f3f7a7",
+    "gradle/wrapper/gradle-wrapper.jar": "497c8c2a7e5031f6aa847f88104aa80a93532ec32ee17bdb8d1d2f67a194a9c7",
+    "gradle/wrapper/gradle-wrapper.properties": "89f62533208a72b7a8cc2892b6b3540c445fa6175508297d932dae57d653591a",
+    "gradlew": "a5a5c199ba02189ae8c46a334223371a20599d9c298ef65e7540ede4a3f72d59",
+    "gradlew.bat": "d539676c48b596afda64c963ec8f7ee56c7b3fe7e3b81d1dbe2d1a1e3dd9e9f8",
+    "orders-service/src/main/java/demo/orders/BillingClient.java": "7f8e58b002d1110547cc83ba401dd57f1e32c6a5a310b558a3c09d10a2ddfb1e",
+    "orders-service/src/main/java/demo/orders/InvoiceStatus.java": "030cfa063736696c01da3d67d360e06933f7ec0c9edf604a7880dc58af067769",
+    "orders-service/src/main/java/demo/orders/InvoiceView.java": "39d3cfdcaff25655abf30338856d11b57cd5f77299f01f1105d094494bf0216f",
+    "orders-service/src/main/java/demo/orders/OrdersApplication.java": "af75c1f7359cf387b556972807595335bab16d8dca0f241cb5049b2748451b15",
+    "orders-service/src/main/resources/application.yml": "7b448fbc3413a00005323e4cd586e070991736d76c81be905bd4fb9a7a4c622c",
+    "qa-support/apply_scenario.py": "8ae2898d71a362774af4935bb32e166cea11c1638897242b36d973fbc82920e7",
+    "settings.gradle.kts": "119ccc4bbb1f6ae16b00637ec8abc1e82bcd21ec5e275ae32ec0c308844f4048",
+    "verification/src/demo/verification/WireProbe.java": "e38aed8945b6302d8be0df21751cd4eeffd5f3361552ab62a7183a0928470cc7",
+    "verification/verify_wire.py": "061cd5c7ca892a2ca1f54ea022721d1b0dbea4b4203f3d6db6d26568ca4a1201"
+  },
+  "observations": {
+    "boot-4.0.9.json": {
+      "sha256": "ff4d92030f86bb73c73ff66f2f48d1134958c18ee31878245eb0fa90c909ec98",
+      "bootVersion": "4.0.9"
+    },
+    "boot-4.1.1.json": {
+      "sha256": "0d8940024ef6892f0c4d9654ea2c8cedfddee387b10f1fe2b9dac100c69ad943",
+      "bootVersion": "4.1.1"
+    },
+    "boot-4.1.2.json": {
+      "sha256": "5624a7e9fc2bd63014149ac0200f2ef99ca4bf2b2020f0ab4c36217d24ce463e",
+      "bootVersion": "4.1.2"
+    },
+    "boot-4.2.0-RC1.json": {
+      "sha256": "0c0e53aceec8dfea804dd3951de4969f5c1279c7c4a635b58c19cea26cb21ab9",
+      "bootVersion": "4.2.0-RC1"
+    }
+  },
+  "result": "IDENTICAL_EXCEPT_BOOT_VERSION",
+  "boundary": "Auto-configured real libraries, not an installed ArchVerity result",
+  "input_scope": "Execution inputs; reader documentation is excluded"
+}
