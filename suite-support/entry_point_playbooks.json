@@ -2,8 +2,8 @@
   {
     "id": "surfaces:WORKSPACE",
     "feature_id": "UI-01",
-    "trigger": "Overview → Analyze project; открыть quick link и back.",
-    "expect": "Current project/scan state и заголовок соответствуют экрану; история возвращает Overview.",
+    "trigger": "Changes → Summary; открыть quick link и back. Полное сканирование выполнить через Map → Analyze Project.",
+    "expect": "Current project/scan state и заголовок соответствуют экрану; история возвращает Changes → Summary.",
     "inputs": [
       "projects/workspace/README_RU.md"
     ]
@@ -33,7 +33,7 @@
   {
     "id": "surfaces:TOPOLOGY",
     "feature_id": "UI-03",
-    "trigger": "Architecture → выбрать payment-service, Focus и Reset focus.",
+    "trigger": "Map → выбрать payment-service, Focus и Reset focus.",
     "expect": "Соседи и затем весь текущий graph отображаются согласованно.",
     "inputs": [
       "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java",
@@ -52,7 +52,7 @@
   {
     "id": "surfaces:DIAGNOSTICS",
     "feature_id": "UI-04",
-    "trigger": "Findings на clean и manifest-missing copy.",
+    "trigger": "Problems на clean и manifest-missing copy.",
     "expect": "Clean zero допустим; missing input имеет конкретную причину и location.",
     "inputs": [
       "projects/workspace/.archflow.yml",
@@ -173,7 +173,7 @@
   {
     "id": "surfaces:KAFKA_CONTRACTS",
     "feature_id": "UI-01",
-    "trigger": "Architecture → Kafka contracts; открыть orders.created и участников потока.",
+    "trigger": "Map → Kafka contracts; открыть orders.created и участников потока.",
     "expect": "Producer/consumer и uncertainty scope относятся к выбранному topic.",
     "inputs": [
       "projects/workspace/order-app/src/main/java/sample/order/OrderPublisher.java"
@@ -259,7 +259,7 @@
     "id": "actions:ArchVerity.FindSection",
     "feature_id": "UI-01",
     "trigger": "Find Action → Find ArchVerity Section…; найти Spring config и вернуться через историю.",
-    "expect": "Поиск открывает нужное представление внутри Architecture/Tools без потери проекта.",
+    "expect": "Поиск открывает нужное представление внутри Map/Tools без потери проекта.",
     "inputs": [
       "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
     ]
@@ -340,7 +340,7 @@
     "id": "mcp:archverity_check_change",
     "feature_id": "MCP-01",
     "trigger": "После http-method вызвать HEAD, from_merge_base=false, limit=10, настоящий project_root; повторить после исправления.",
-    "expect": "Свежий результат для текущего дерева; affected clients совпадают с Review; receipt не переносится на следующую правку.",
+    "expect": "Свежий результат для текущего дерева; affected clients совпадают с Changes → Details; receipt не переносится на следующую правку.",
     "inputs": [
       "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
     ]
@@ -379,6 +379,16 @@
     "expect": "Контракты и locations другой стороны; неверный project_root отклоняется, пустой ответ не доказывает безопасность.",
     "inputs": [
       "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java"
+    ]
+  },
+  {
+    "id": "mcp:archverity_simulate_change",
+    "feature_id": "MCP-01",
+    "trigger": "Вызвать archverity_file_contracts для payment-app/src/main/java/sample/payment/PaymentController.java. Передать archverity_simulate_change параметр edits_json — JSON-строку массива из одной замены path этого файла, old=@PostMapping(\"/{paymentId}\"), new=@PutMapping(\"/{paymentId}\"); project_root указывает текущую копию. Точный JSON пример — в MCP_TOUR_RU.md. После preview явно применить ту же правку и вызвать archverity_check_change.",
+    "expect": "Предварительный результат simulated=true относится к плану и current source, Git diff до применения пуст. Не более20 ordered edits/1MiB; old должен совпасть ровно раз после предыдущих edits. После ручной правки реальный результат проверяется отдельно; simulation не даёт commit trailer. Неизвестная module-wide configuration остаётся UNKNOWN.",
+    "inputs": [
+      "projects/workspace/payment-app/src/main/java/sample/payment/PaymentController.java",
+      "docs/MCP_TOUR_RU.md"
     ]
   },
   {
@@ -1147,7 +1157,7 @@
   {
     "id": "exports:MERMAID",
     "feature_id": "TEAM-02",
-    "trigger": "Architecture → Export Mermaid",
+    "trigger": "Map → Export Mermaid",
     "expect": "Текст graph содержит фактические service IDs/edges",
     "inputs": [
       "projects/workspace/.archflow.yml"
@@ -1156,7 +1166,7 @@
   {
     "id": "exports:SVG",
     "feature_id": "TEAM-02",
-    "trigger": "Architecture → Export SVG, открыть",
+    "trigger": "Map → Export SVG, открыть",
     "expect": "Видимый current graph и корректный XML/SVG",
     "inputs": [
       "projects/workspace/.archflow.yml"
@@ -1165,7 +1175,7 @@
   {
     "id": "exports:PNG",
     "feature_id": "TEAM-02",
-    "trigger": "Architecture → Export PNG, открыть",
+    "trigger": "Map → Export PNG, открыть",
     "expect": "Реальное изображение current graph",
     "inputs": [
       "projects/workspace/.archflow.yml"

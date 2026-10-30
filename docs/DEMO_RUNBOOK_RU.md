@@ -1,11 +1,12 @@
 # Запуск демонстрации ArchVerity: пошаговая инструкция
 
-**Начните с [маршрута ArchVerity 5.3.2](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
+**Начните с [маршрута ArchVerity 5.8.2](PRODUCT_TOUR_RU.md)**: первый finding, What-if, Apply fix, Boot upgrade, отчёт для команды и агент. [English tour](PRODUCT_TOUR_EN.md).
 
 Этот маршрут предназначен для первого знакомства, показа плагина и повторяемого
-QA на открытых исходниках. Набор описывает функции ArchVerity **5.3.2**:
-[62 функции](ALL_FUNCTIONS_RU.md), [114 точек входа](ENTRY_POINTS_RU.md),
-49 capability recipes (41 прежний сохранён) и 19 отдельных изменений для Impact.
+QA на открытых исходниках. Набор описывает функции ArchVerity **5.8.2**:
+[62 исторические группы функций](ALL_FUNCTIONS_RU.md),
+[текущие зарегистрированные точки входа](ENTRY_POINTS_RU.md),
+подготовленные capability recipes и 19 отдельных изменений для Changes.
 Выберите нужный этап; архитектурные примеры и сетевые лаборатории запускаются
 по своим инструкциям ниже. [Оглавление всей документации](README.md).
 
@@ -15,8 +16,8 @@ QA на открытых исходниках. Набор описывает ф�
 | --- | --- | --- |
 | Git | Получение исходников и самостоятельный Git baseline | `git --version` |
 | Python 3.10+ | Проверки набора, подготовка копий, локальные API | `python --version`; hosted CI использует 3.12 |
-| JDK 21 | Gradle import/build пяти JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
-| Совместимая IDEA и установленный ArchVerity 5.3.2 | Действия плагина и все семь лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать совместимый legacy-пакет; MCP требует современную IDEA |
+| JDK 21 | Gradle import/build JVM-проектов | `java -version`; в IDEA отдельно выбрать Gradle JVM 21 |
+| Совместимая IDEA и установленный ArchVerity 5.8.2 | Действия плагина и все восемь лабораторий | Settings → Plugins → ArchVerity; записать version/build; для IDEA 2024.3 выбрать совместимый legacy-пакет; MCP требует современную IDEA |
 | Настоящий Trial/Pro для соответствующих операций | Impact, paid tools/export/MCP | Записать фактически видимое состояние лицензии |
 | Node 22 | Metro/Expo/JavaScript bundle | `node --version`, `npm --version`; native device пока не нужен |
 | Сеть для первого download | Gradle/npm/pinned Python packages | Установка завершается с exit code 0 |
@@ -35,7 +36,8 @@ python -B -X utf8 suite-support/check_suite.py
 ```
 
 Если clone уже есть, откройте его корень и выполните только проверку набора.
-Проверка должна сообщить `INPUT_CONTRACT_PASS`, `functions=62`, `entry_points=114`.
+Проверка должна сообщить `INPUT_CONTRACT_PASS`; точные числа recipes и
+зарегистрированных controls берите из её вывода, а не из старой записи.
 Перед обновлением существующего clone просмотрите `git status`; локальные
 изменения сохраняйте своим обычным Git-процессом.
 
@@ -57,15 +59,16 @@ python -B -X utf8 suite-support/prepare_project.py --project first-result --outp
    Gradle JVM; дождитесь окончания import и indexing.
 2. В терминале созданной папки выполните `./gradlew classes`; на Windows —
    `.\gradlew.bat classes`. Оба модуля должны компилироваться.
-3. View → Tool Windows → ArchVerity → Analyze. В Findings найдите
+3. View → Tool Windows → ArchVerity → **Map → Analyze Project**.
+   В **Problems** найдите
    HTTP method mismatch, rule `AFG-HTTP-001`.
 4. Откройте обе стороны: `order-app/src/main/java/demo/orders/PaymentClient.java`
    и `payment-app/src/main/java/demo/payments/PaymentController.java`.
    Клиент объявляет POST, provider принимает PUT.
 5. В клиенте замените только `@PostMapping` на `@PutMapping`, сохраните файл и
-   повторите Analyze. Именно этот method mismatch должен исчезнуть.
+   повторите **Map → Analyze Project**. Именно этот method mismatch должен исчезнуть.
 
-Для обратной проверки верните `@PostMapping` и повторите Analyze: тот же finding
+Для обратной проверки верните `@PostMapping` и повторите **Map → Analyze Project**: тот же finding
 должен вернуться. Отдельно запишите build result и наблюдение анализатора.
 Если finding отсутствует изначально, проверьте import обоих модулей,
 полный scope, `.archflow.yml` и alias `payments.example.test`.
@@ -80,8 +83,8 @@ python -B -X utf8 suite-support/prepare_project.py --project workspace --output 
 ```
 
 Откройте этот output как Gradle project, выполните import/build с JDK 21 и
-Analyze на чистом HEAD. Убедитесь в complete scan; сохранённый полный HEAD
-snapshot нужен для сравнения. Findings исходного образца допустимы; чистое
+**Map → Analyze Project** на чистом HEAD. Убедитесь в complete scan; сохранённый полный HEAD
+snapshot нужен для сравнения. Проблемы исходного образца в **Problems** допустимы; чистое
 HEAD → WORKTREE сравнение должно показывать отсутствие изменений.
 
 Из **терминала созданной копии** выполните:
@@ -90,7 +93,8 @@ HEAD → WORKTREE сравнение должно показывать отсу�
 python -B -X utf8 qa-support/apply_impact.py --project . --scenario combined-breaking
 ```
 
-Повторите Analyze/Impact HEAD → WORKTREE. Проверьте изменение method,
+Откройте **Changes → Summary**, выберите **HEAD → Current files** и
+**Check Changes / Check Again**. В **Details** проверьте изменение method,
 обязательное поле запроса и удалённое поле ответа, Было/Стало, source links
 обеих сторон и downstream REVIEW. Если полного HEAD snapshot нет, helper
 откажется применять изменение: завершите исходный scan и повторите команду.
@@ -202,7 +206,7 @@ Ctrl+C в launcher terminal останавливает его приложени
 
 ## 7. Kafka profiles и UNKNOWN
 
-Для текущего маршрута используйте **ArchVerity 5.3.2** и поддерживаемую им IDEA.
+Для текущего маршрута используйте **ArchVerity 5.8.2** и поддерживаемую им IDEA.
 Сценарии были впервые проверены в 3.0.4; старые exports и видео сохраняют
 [историческую запись выпуска](VERIFICATION_RU.md#выпуск-304--05102026).
 Подготовьте новую копию:
@@ -212,7 +216,7 @@ python -B -X utf8 suite-support/prepare_kafka_case.py --case unknown-cluster-and
 ```
 
 Откройте output как Gradle project, выберите JDK 21, дождитесь двух modules и
-indexing, выполните Analyze. Одинаковые `orders.events` и bootstrap из blue/green
+indexing, выполните **Map → Analyze Project**. Одинаковые `orders.events` и bootstrap из blue/green
 profiles должны дать два отдельных scopes и `009/010 UNKNOWN`. Evidence содержит
 оба profile paths и missing `KAFKA_VALUE_SERIALIZER`, без доказанного контракта
 из совпадения имени. Сохраните current full JSON и проверьте его checker из
@@ -221,6 +225,25 @@ profiles должны дать два отдельных scopes и `009/010 UNKN
 Для каждого нужен новый output; source commit и SHA-256 ZIP записываются отдельно
 от номера версии. Брокер для static scan не нужен.
 
+## 7a. Обычный Boot Kafka: wire proof и исторический producer
+
+Для новой функциональности 5.8 используйте отдельный
+[kafka-boot-lab](../projects/kafka-boot-lab/README.md). Из корня набора:
+
+```powershell
+python -B -X utf8 suite-support/prepare_boot_kafka_case.py --boot-line 35 --case remove-required --output ../archverity-boot-kafka-demo
+```
+
+Boot 4 проверяется в другом свежем output с `--boot-line 40`. Импортируйте
+оба модуля, дождитесь indexing и выполните `.\gradlew.bat classes` / `./gradlew classes`.
+В **Changes → Summary** сравните HEAD этой копии с Current files. В **Details**
+проверьте удалённый producer `tenant`, обязательное поле reader и пути serde.
+Восстановите producer `Event.java` из HEAD, повторите compile и **Check Again**.
+Для `add-optional`, `customizer-control` и `historical-reader` создавайте свои
+копии и следуйте соответствующим наблюдениям/recovery в README лаборатории.
+Ни один source-level результат не доказывает retained records или delivery.
+K01–K12 остаются отдельными profile/scope-сценариями со своими exports и проверками.
+
 ## 8. Полный обход функций и запись результата
 
 Перед обходом откройте [функциональную проверку](FUNCTIONAL_AUDIT_RU.md): она
@@ -228,7 +251,7 @@ profiles должны дать два отдельных scopes и `009/010 UNKN
 
 1. Откройте [содержание 62 функций](ALL_FUNCTIONS_RU.md) и выберите ID.
 2. Подготовьте указанный input/среду. Для конкретного control используйте
-   [114 точек входа](ENTRY_POINTS_RU.md); выполните positive, counterexample,
+   [зарегистрированные точки входа](ENTRY_POINTS_RU.md); выполните positive, counterexample,
    recovery и зафиксируйте каждое наблюдение.
 3. Скопируйте [RUN_RECORD](RUN_RECORD.md) в `work/` своего проекта. Запишите
    demo commit, IDE/plugin version, project path/HEAD, license state,

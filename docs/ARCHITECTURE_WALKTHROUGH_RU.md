@@ -18,8 +18,8 @@ python -B -X utf8 suite-support/prepare_project.py --project workspace --output 
 Из полученной папки `gradlew.bat classes` компилирует Java и Kotlin. На
 Linux/macOS используйте `./gradlew classes`. В IDEA откройте именно эту папку
 как Gradle-проект; Gradle JVM — JDK 21. Дождитесь импорта/индексации, откройте
-View → Tool Windows → ArchVerity и нажмите Analyze. На неизменённом HEAD
-Impact должен сообщать отсутствие изменений. Обычные findings при этом
+View → Tool Windows → ArchVerity → **Map → Analyze Project**. На неизменённом
+HEAD **Changes → Summary** должен сообщать отсутствие изменений. В **Problems** при этом
 допустимы: набор намеренно содержит Kafka DTO mismatch и orphan topic.
 
 Снимок чистого HEAD нужен в `.idea/archflow/commits/<HEAD>.json`. Скрипт мутации
@@ -44,8 +44,8 @@ features. Он не создаёт выдуманный анализ и не м�
 | `OrderStatusController.java` / `OrderStatusClient.java` | Конкретная обратная payment→orders HTTP-зависимость для cycle exercise |
 | `application.yml`, `application-dev.yml`, `application-demo.properties` | Profiles, local group, локальный optional import и навигация к ключу |
 
-В Inventory смените protocol/service/search; в Topology выберите узел,
-включите one-hop focus и сбросьте его; в Relations откройте обе стороны.
+В **Map → Inventory** смените protocol/service/search; на карте выберите узел,
+включите one-hop focus и сбросьте его; в **Map → Relations** откройте обе стороны.
 Число узлов/находок сверяйте с реальным экспортом своей версии, не с
 историческим скриншотом. AMQP edges показывают декларации/статическое
 соответствие, а не факт доставки сообщения брокером.
@@ -58,8 +58,8 @@ features. Он не создаёт выдуманный анализ и не м�
 python -B -X utf8 qa-support/apply_impact.py --project . --scenario combined-breaking
 ```
 
-Синхронизируйте изменённые файлы в IDEA, повторите Analyze и сравните
-HEAD → WORKTREE. `--help` выводит все имена; ожидаемые наблюдения:
+Синхронизируйте изменённые файлы в IDEA. В **Changes → Summary** сравните
+**HEAD → Current files**, нажмите **Check Changes / Check Again** и откройте **Details**. `--help` выводит все имена; ожидаемые наблюдения:
 
 | Сценарий | Изменение | Наблюдение для приёмки |
 | --- | --- | --- |
@@ -89,16 +89,16 @@ location и reason. Generic/custom/dynamic случаи требуют чест�
 
 ## Review, редактор и экспорт
 
-На одном выбранном изменении переключите Editor Companion, Graphite Focus
-и Paper Review. Проверьте сохранение выбора и Git comparison. Откройте source
-inspector, обе стороны Evidence, affected-consumer и owner/repository.
-Impact → Review должен дать читаемый Markdown с comparison, consumers,
+На одном выбранном изменении откройте **Changes → Summary**, затем **Details**.
+Проверьте выбранный Git base и актуальность результата. Откройте source inspector,
+обе стороны Evidence, affected consumer и owner/repository.
+**Export review** должен дать читаемый Markdown с comparison, consumers,
 неизвестными фактами и пределами downstream review. Сохраните его в `work/`.
 Downstream REVIEW — ограниченная достижимость; она сама не доказывает передачу
 изменённого поля или поломку каждого косвенного потребителя.
 
-В отдельной чистой копии измените mapping **без сохранения** и вызовите Impact
-из Java gutter. Результат должен учитывать editor text. После сохранения
+В отдельной чистой копии измените mapping **без сохранения** и запустите
+**Changes → Check Again**. Результат должен учитывать editor text. После сохранения
 проверьте, что source/source inspector и выбранный change согласованы.
 Back/Forward, breadcrumb и Alt+Left/Alt+Right должны вернуться к правильному экрану.
 

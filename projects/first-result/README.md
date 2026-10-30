@@ -1,7 +1,7 @@
 # One contract mismatch, before you run an application
 
 Start with the [step-by-step demo instructions](../../docs/DEMO_RUNBOOK_RU.md#2-первый-finding-и-его-исправление)
-to prepare a disposable copy and follow the complete six-lab demonstration.
+to prepare a disposable copy and follow the current lab demonstration.
 The [practical article in Russian](../../docs/FIRST_RESULT_ARTICLE_RU.md) explains
 why the sample compiles, how the caller and provider are connected, and how to
 check the repair and recovery in ArchVerity 3.0.4.
@@ -12,7 +12,7 @@ provider accepts `PUT /payments/{paymentId}`. No server, database, Docker,
 credentials, or customer source code is needed.
 
 Prerequisites: an IntelliJ IDEA supported by your installed ArchVerity build,
-JDK 21, ArchVerity 3.0.4 or a newer compatible build, and an active Trial or subscription.
+JDK 21, ArchVerity 5.8.2 (or the compatible 5.8.2-2024.3 package), and an active Trial or subscription.
 An internet connection is needed for the first Gradle/dependency download.
 This is a compileable analysis sample, not a runnable Spring Boot application.
 
@@ -24,15 +24,15 @@ This is a compileable analysis sample, not a runnable Spring Boot application.
    and indexing to finish. Select JDK 21 or later if prompted.
 2. Build with `./gradlew classes` (Windows: `.\gradlew.bat classes`). A successful
    build is expected even while the mismatch exists.
-3. Open **View → Tool Windows → ArchVerity**. Run **Analyze** for the project.
+3. Open **View → Tool Windows → ArchVerity**. Open **Map → Analyze Project** for the project.
    This first scan does not require a Git repository or an edited file.
-4. Open **Findings**, select **HTTP method mismatch** (`AFG-HTTP-001`), and inspect
+4. Open **Problems**, select **HTTP method mismatch** (`AFG-HTTP-001`), and inspect
    the client and server evidence. Use **Open PaymentClient.java** in the finding
    for the caller, and **Navigate → File** to open `PaymentController.java`:
    - `order-app/src/main/java/demo/orders/PaymentClient.java`
    - `payment-app/src/main/java/demo/payments/PaymentController.java`
 5. In `PaymentClient.java`, change only `@PostMapping` to `@PutMapping`.
-   Save and run **Analyze** again. The HTTP method mismatch should disappear.
+   Save and run **Map → Analyze Project** again. The HTTP method mismatch should disappear.
    Both modules should still compile. Change it back to repeat the demo.
 
 Expected result: a resolved method mismatch before the edit and no

@@ -16,6 +16,9 @@ Run ID:
 Started at (UTC):
 Demo repository commit:
 Isolated project path and Git HEAD:
+Selected comparison base and resolved commit:
+Spring profiles and Boot line for Kafka:
+Simulation edits_json plan identity, if used:
 IDE product/version/build:
 Installed ArchVerity version and ZIP SHA-256:
 OS / local or Split Mode / frontend and backend identity:

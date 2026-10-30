@@ -1,4 +1,4 @@
-# ArchVerity 5.3.2: от проблемы до проверенного исправления
+# ArchVerity 5.8.2: от проблемы до проверенного исправления
 
 Цель демонстрации — ответить на вопрос: **какой соседний сервис перестанет
 работать после моего изменения и что проверить до merge?** Сборка отдельного
@@ -12,7 +12,7 @@
 ## Начните с одного результата
 
 Нужны Git, Python 3.10+, JDK 21, совместимая IDEA и отдельно установленный
-[ArchVerity](https://plugins.jetbrains.com/plugin/34234-archverity) **5.3.2**
+[ArchVerity](https://plugins.jetbrains.com/plugin/34234-archverity) **5.8.2**
 с активным Trial/Pro. В Marketplace доступен 14-дневный trial. Первое получение
 Gradle/Maven-зависимостей требует сети; HTTP/Kafka-примеры не требуют серверов.
 MCP-маршрут требует современную сборку с JetBrains MCP Server и вашего агента.
@@ -27,8 +27,8 @@ python -B -X utf8 suite-support/prepare_project.py --project first-result --outp
 Откройте **созданную папку**, импортируйте Gradle с JDK 21 и дождитесь индексации.
 В её терминале выполните `.\gradlew.bat classes` (Linux/macOS: `./gradlew classes`).
 
-1. **Увидеть проблему.** Overview → **Map this project** (после скана — обновление
-   анализа). В Findings найдите HTTP method mismatch `AFG-HTTP-001`: клиент
+1. **Увидеть проблему.** Откройте **Map → Analyze Project**, дождитесь анализа
+   и перейдите в **Problems**. Найдите HTTP method mismatch `AFG-HTTP-001`: клиент
    `PaymentClient.java` вызывает POST, а `PaymentController.java` принимает PUT.
 2. **Проверить основание.** Откройте обе стороны из результата или через Navigate
    → File. Сравните метод и `/payments/{paymentId}`. Сборка проходит, но это
@@ -50,8 +50,9 @@ python -B -X utf8 suite-support/prepare_project.py --project first-result --outp
 python -B -X utf8 suite-support/prepare_project.py --project workspace --output ../archverity-review-demo
 ```
 
-Импортируйте эту папку и отсканируйте чистый HEAD. В Overview посмотрите
-важные контракты, конкретные несовместимости и связи, где потребитель не найден.
+Импортируйте эту папку и отсканируйте чистый HEAD через **Map → Analyze Project**.
+В **Map** посмотрите контракты, а в **Problems** — существующие несовместимости
+и связи, где потребитель не найден.
 Откройте исходник каждой выбранной записи. Отсутствующий потребитель ограничивает
 вывод; его нельзя считать подтверждением совместимости.
 
@@ -60,8 +61,9 @@ python -B -X utf8 suite-support/prepare_project.py --project workspace --output 
 вызовите **ArchVerity: What Breaks If This Changes?**. Посмотрите предложенные
 варианты, затронутого потребителя, основание и рекомендуемый шаг. Затем выполните
 `git diff`: исходники должны оставаться неизменными. Повторите на Java Kafka
-`send` в `order-app/.../OrderPublisher.java`. Kotlin и произвольное редактирование
-текста не входят в этот Java What-if сценарий.
+`send` в `order-app/.../OrderPublisher.java`. Этот конкретный маршрут использует
+Java; в 5.8 поддержаны также ограниченные Kotlin-формы. Изменения конфигурации
+всего модуля и неподдержанные конструкции требуют фактической правки и новой проверки.
 
 ## Проверить реальное изменение и применить исправление
 
@@ -71,7 +73,8 @@ python -B -X utf8 suite-support/prepare_project.py --project workspace --output 
 python -B -X utf8 qa-support/apply_impact.py --project . --scenario http-method
 ```
 
-В Review выберите сравнение **HEAD → working tree** и запустите проверку.
+В **Changes → Summary** выберите **HEAD → Current files** и нажмите
+**Check Changes** или **Check Again**. В **Details** откройте обе стороны.
 POST провайдера стал PUT, а вызывающий контракт остался старым. Откройте
 затронутого клиента и провайдера, затем доступное **Apply fix** и его описание.
 Примените согласованное исправление в этой демо-копии и проверьте ещё раз:
@@ -92,8 +95,10 @@ POST провайдера стал PUT, а вызывающий контракт
 в [архитектурном walkthrough](ARCHITECTURE_WALKTHROUGH_RU.md).
 Downstream REVIEW — повод изучить последствие; он отличается от доказанного
 прямого BREAKING. Не обещайте автоматическое исправление каждого типа изменения.
-[Проверенный предел для retry listener](CURRENT_VERIFICATION_RU.md#точная-известная-граница-автоматического-исправления)
-описан отдельно; publisher-сценарий выше и plain listener проверяются раздельно.
+[Текущая проверка и сохранённая история](CURRENT_VERIFICATION_RU.md) различают
+прошедший workspace-корпус 5.8.2 и старое ограничение retry listener из 5.3.2.
+Исторический FAIL сохраняет свою версию. В своём прогоне проверьте конкретный
+finding и записанное исправление; результат корпуса не обещает auto-fix любого listener.
 
 ## Переход на Spring Boot 4
 
@@ -112,12 +117,41 @@ primitive-компонент record. Это риск обновления при
 необоснованную уверенность. Не выдавайте этот HTTP-сценарий за проверку всех
 Kafka-сериализаторов или всех изменений Spring Boot.
 
+## Проверить обычный Boot Kafka
+
+[Новая Kafka-лаборатория](../projects/kafka-boot-lab/README.md) показывает
+доказательство source/configuration для Boot 3.5 и 4.0. Из корня набора:
+
+```powershell
+python -B -X utf8 suite-support/prepare_boot_kafka_case.py --boot-line 35 --case remove-required --output ../archverity-boot-kafka-demo
+```
+
+Для Boot 4 создайте другой новый output с `--boot-line 40`. Импортируйте оба
+модуля с JDK 21, дождитесь индексации и выполните `.\gradlew.bat classes`
+(Linux/macOS: `./gradlew classes`). Брокер не запускается.
+
+В **Changes → Summary** сравните зафиксированный HEAD этой копии с текущими
+файлами. После **Check Changes** в **Details** проверьте producer/consumer DTO,
+типизированный template, listener и свойства JSON serializer/deserializer.
+В `remove-required` producer больше не передаёт обязательный для reader `tenant`.
+Восстановите точный producer `Event.java` из HEAD, повторите compile и
+**Check Again** с тем же base: именно этот разрыв должен исчезнуть.
+
+Для `add-optional`, `customizer-control` и `historical-reader` создавайте
+отдельные копии. Первый отделяет добавочное поле от разрыва, второй сохраняет
+**Needs review** с названной customization, третий показывает старую producer-форму
+из Git base при совпадающей текущей паре. Пути и восстановление даны в lab README.
+Git base не доказывает retained records, доставку или версию в production.
+Старые K01–K12 проверяют profiles/scopes отдельно; старый экспорт не является
+свежим подтверждением этого Boot-маршрута.
+
 ## Передать результат команде
 
-1. В Overview используйте **Copy for my team**. Прочитайте Markdown: сервисы,
+1. После полного скана в **Problems** используйте **Copy for my team**. Прочитайте Markdown: сервисы,
    зависимости, риски обновления, относительные пути и ограничения должны
    соответствовать открытому проекту. Это первый полезный артефакт trial.
-2. В Review скопируйте/сохраните Markdown и JSON выбранного сравнения.
+2. В **Changes → Export review** скопируйте/сохраните Markdown выбранного
+   сравнения; JSON доступен через **More actions → Copy or save JSON…**.
    Сверьте base revision и текущий diff. Старый экспорт не подтверждает новую правку.
 3. Если нужен общий реестр, подготовьте отдельный локальный Git-репозиторий
    реестра и используйте **Publish contracts to team registry…** из Export JSON.
@@ -134,12 +168,14 @@ Kafka-сериализаторов или всех изменений Spring Boo
 
 В **Agents** откройте подключение выбранного поддержанного клиента и выполните
 проверку соединения. Приложение агента, аккаунт и лимиты предоставляете вы.
-В [MCP-маршруте](MCP_TOUR_RU.md) приведены все 18 инструментов 5.3.2 и контроли.
+В [MCP-маршруте](MCP_TOUR_RU.md) приведены все 19 инструментов 5.8.2 и контроли.
 Начните с такого задания:
 
 > Перед изменением PaymentController.java вызови archverity_file_contracts для
-> этого файла. Назови затронутые сервисы и ограничения evidence. После моей
-> правки проверь HEAD через archverity_check_change для этой же папки проекта.
+> этого файла. Назови затронутые сервисы и ограничения evidence. Вызови
+> archverity_simulate_change с точными планируемыми правками до записи файлов.
+> После фактической правки и тестов проверь HEAD через archverity_check_change
+> для этой же папки проекта. Симуляция не является commit receipt.
 > Не считай UNKNOWN или NOT_EXECUTED подтверждением успешной проверки.
 
 Связка полезна, когда агент меняет один сервис, а контракт принадлежит двум.
@@ -149,6 +185,7 @@ Review от модели и детерминированный результа�
 
 | Ваша задача | Следующий конкретный вход |
 | --- | --- |
+| Обычный Boot 3.5/4 Kafka, required поле, исправление и старые producer-формы | [Boot Kafka lab](../projects/kafka-boot-lab/README.md) |
 | Kafka profiles, clusters, serializer uncertainty | [12 случаев и проверка настоящего export](../projects/kafka-profile-lab/README.md) |
 | API-запросы, cookies, captures, assertions, WebSocket/gRPC | [Локальные серверы API lab](../projects/api-lab/README.md) |
 | Runtime beans и результаты выполненной проверки | [Runtime evidence](../projects/runtime-evidence/README.md) |
@@ -164,15 +201,17 @@ Review от модели и детерминированный результа�
 ## Как читать старые записи
 
 Ролик Petclinic записан на 5.0, а первые HTTP/Kafka-статьи и видео — на 3.0.4.
-В 5.3.2 основные вкладки — Overview, Review, Architecture, Findings, Agents и
-Tools. Если в записи или старом руководстве другое название, используйте карту:
+В 5.8.2 основные вкладки — **Changes, Map, Problems, Agents и Tools**.
+В **Changes** есть **Summary** (ответ) и **Details** (контракты и обе исходные точки).
+Для названий в старой записи используйте карту:
 
-| Старое название | Где искать в 5.3.2 |
+| Старое название | Где искать в 5.8.2 |
 | --- | --- |
-| Impact | Review |
-| Diagnostics | Findings |
-| Topology | Architecture → Map |
-| Inventory / Relations | Architecture → Inventory / Relations |
+| Overview | Changes → Summary; существующие проблемы всего проекта — Problems |
+| Review / Impact | Changes → Summary / Details |
+| Diagnostics / Findings | Problems |
+| Architecture / Topology | Map |
+| Inventory / Relations | Map → Inventory / Relations |
 
 Вердикты тоже зависят от версии анализатора. Исторический `UNKNOWN` не задаёт
 ожидаемый ответ текущего прогона: перенос HTTP-маршрута при доказанном

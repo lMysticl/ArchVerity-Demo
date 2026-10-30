@@ -46,7 +46,8 @@
     "dto": "drift",
     "pattern": true,
     "expected": [
-      "AFG-KAFKA-009"
+      "AFG-KAFKA-009",
+      "AFG-KAFKA-010"
     ],
     "proven": false,
     "unresolved": false
@@ -58,7 +59,9 @@
     "serializer": "explicit",
     "dto": "drift",
     "pattern": true,
-    "expected": [],
+    "expected": [
+      "AFG-KAFKA-010"
+    ],
     "proven": false,
     "unresolved": false
   },

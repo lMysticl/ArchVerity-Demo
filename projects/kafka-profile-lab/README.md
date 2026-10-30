@@ -77,8 +77,8 @@ Checker проверяет actual export; IDE/build/project identity опера�
 | K01 | `unknown-cluster-and-override` | Два профиля и одинаковые topic/bootstrap: отдельные scopes, `009/010 UNKNOWN`, оба пути и missing override |
 | K02 | `shared-cluster-unresolved-serializer` | Общий declared scope; DTO drift даёт `005 UNKNOWN`, binding — `010 UNKNOWN` |
 | K03 | `separate-clusters-same-topic` | `east/west` и точные статические JSON bindings: два topic nodes, без cross-cluster `005/009/010` |
-| K04 | `unknown-cluster-pattern` | Regex consumer остаётся отдельным pattern node и не подхватывает producer topic другого unknown scope |
-| K05 | `separate-cluster-pattern` | Consumer regex из `west` не разрешается по producer topic из `east` |
+| K04 | `unknown-cluster-pattern` | Regex consumer остаётся отдельным pattern node в unknown scope: `009 UNKNOWN` и отдельный consumer `010 UNKNOWN`; factory/serde разрешены |
+| K05 | `separate-cluster-pattern` | Consumer regex из `west` не разрешается по producer topic из `east`; consumer `010 UNKNOWN` при разрешённых factory/serde |
 | K06 | `equal-dto-unresolved-serializer` | Одинаковые DTO не скрывают отсутствующее wire proof: `010 UNKNOWN` |
 | K07 | `nested-external-override` | `value-serializer → wire.serializer → KAFKA_VALUE_SERIALIZER`; вся цепочка, `005/010 UNKNOWN` |
 | K08 | `fallback-is-not-deployment-proof` | Default у `${KAFKA_VALUE_SERIALIZER:...}` не доказывает effective deployment value |
@@ -93,6 +93,16 @@ Checker проверяет actual export; IDE/build/project identity опера�
 Оно не заменяет наблюдение Kafka cluster ID и deployed configuration.
 K12 означает отсутствие этих статических findings; он не обещает успешную
 десериализацию, поддержку type headers, schema registration или delivery.
+
+В K04/K05 выпущенный анализатор 5.8.2 разрешает `listenerFactory → consumerFactory`
+и точные JSON serializer/deserializer, но `topicPattern` не задаёт один конкретный
+topic для wire-policy confidence. Поэтому только pattern consumer `receive`
+сохраняет `wireConfidence=INFERRED` и `010 UNKNOWN`; producer остаётся `RESOLVED`.
+Это ограничение статического доказательства pattern, а не отсутствующий serde.
+Checker требует разрешённые factory evidence, точные serde classes и полные
+settings у обеих сторон. Он отвергает producer `010`, потерянный binding и любое
+`010` в explicit non-pattern controls K03/K11/K12. Раздельные scopes и отсутствие
+cross-scope `005` сохраняются; regex не превращается в доказанное совпадение topic.
 
 Восстановление — новый output из исходного набора. Process environment ради
 положительного scan не изменяют: анализ читает выбранные source properties и

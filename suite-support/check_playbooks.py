@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,9 +75,9 @@ def guides(data, entry_points):
              f"Recipes: ArchVerity {data['source_product_version']}; сверка текущих registrations с commit `{data['source_inventory_commit']}`.",
              f"{len(data['features'])} исторические функциональные группы сохраняют stable IDs; {len(entry_points)} текущих registered entry points связаны с конкретными входами.",
              "Старые source_capability формулировки сохранены для сверки legacy inventory; актуальные действия и ограничения описаны ниже.",
-             "[Начните с маршрута 5.3.2](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [18 MCP tools](MCP_TOUR_RU.md).",
+             f"[Начните с маршрута {data['source_product_version']}](PRODUCT_TOUR_RU.md) · [English tour](PRODUCT_TOUR_EN.md) · [19 MCP tools](MCP_TOUR_RU.md).",
              "Статус ниже относится к подготовленным сценариям. Реальное выполнение отмечайте отдельно в [RUN_RECORD](RUN_RECORD.md).", "",
-             "[Пошаговый запуск всех семи лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
+             "[Пошаговый запуск всех восьми лабораторий](DEMO_RUNBOOK_RU.md) · [Оглавление документации](README.md)", "",
              "## Подготовка", "", "Для первого finding подготовьте отдельную first-result copy через `suite-support/prepare_project.py` и откройте её с JDK 21. Для архитектуры и Impact создайте новую workspace copy тем же helper и получите настоящий полный снимок чистого HEAD в IDEA.",
              "API запускается через `projects/api-lab/serve.py`. Mobile имеет свой lockfile/native prerequisites. Runtime evidence требует настоящего current IDEA export; producer smoke явно использует synthetic test context.",
              "При отсутствии SDK/device, SSH, real entitlement, PasswordSafe/Vault input или Tools distribution записывайте точную недоступную зависимость. Остальные независимые проверки продолжаются. Signing, credentials и device install/clear/uninstall требуют отдельного разрешения.", "",
@@ -120,6 +121,10 @@ def check(plugin_source=None, require_source=False, write_guides=False):
     entries = read(ROOT / "suite-support/entry_point_playbooks.json")
     result = validate(data, entries)
     if plugin_source:
+        properties = (plugin_source / "gradle.properties").read_text(encoding="utf-8")
+        version = re.search(r"(?m)^pluginVersion\s*=\s*(\S+)", properties)
+        if not version or data["source_product_version"] != version[1]:
+            raise ValueError("Current function playbook version drifted from plugin source")
         source = read(plugin_source / "marketplace/media/feature-coverage.json")
         actual = {f["id"]: f["source_capability"] for f in data["features"]}
         expected = {f["id"]: f["capability"] for f in source["features"]}

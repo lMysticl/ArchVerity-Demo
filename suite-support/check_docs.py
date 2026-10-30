@@ -13,7 +13,41 @@ NAVIGATION = ("README.md", "docs/README.md", "docs/ALL_FUNCTIONS_RU.md",
               "projects/api-lab/README.md", "projects/mobile-lab/README.md",
               "projects/runtime-evidence/README.md", "projects/kafka-profile-lab/README.md",
               "projects/workspace/QA_MATRIX_RU.md", "projects/boot-upgrade/README.md",
-              "docs/PRODUCT_TOUR_RU.md", "docs/PRODUCT_TOUR_EN.md")
+              "docs/PRODUCT_TOUR_RU.md", "docs/PRODUCT_TOUR_EN.md",
+              "projects/kafka-boot-lab/README.md")
+CURRENT_PRODUCT_VERSION = "5.8.2"
+PRIMARY_TABS = {"Changes", "Map", "Problems", "Agents", "Tools"}
+
+
+def check_current_product(root=ROOT):
+    """Reject a reachable guide that still describes the previous product/API."""
+    root = Path(root)
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    if CURRENT_PRODUCT_VERSION not in readme[:700]:
+        raise ValueError("README introduction must identify current ArchVerity 5.8.2")
+    paragraphs = re.split(r"\n\s*\n", readme)
+    tab_claims = [p for p in paragraphs if "primary tabs" in p.lower()]
+    if not any(PRIMARY_TABS.issubset(set(re.findall(r"\b[A-Za-z]+\b", p)))
+               and not re.search(r"\b(?:Overview|Review|Architecture|Findings)\b", p)
+               for p in tab_claims):
+        raise ValueError("Current primary tabs must name Changes, Map, Problems, Agents and Tools")
+    for name in ("PRODUCT_TOUR_EN.md", "PRODUCT_TOUR_RU.md", "MCP_TOUR_RU.md"):
+        text = (root / "docs" / name).read_text(encoding="utf-8")
+        if CURRENT_PRODUCT_VERSION not in text[:700]:
+            raise ValueError(f"Current product tour is stale: {name}")
+    mcp = (root / "docs/MCP_TOUR_RU.md").read_text(encoding="utf-8")
+    rows = re.findall(r"(?m)^\|\s*`(archverity_[a-z_]+)`\s*\|([^\n]+)", mcp)
+    tools = [name for name, _ in rows]
+    registered = json.loads((root / "projects/workspace/qa-support/coverage.json").read_text(encoding="utf-8"))["mcp"]
+    if len(tools) != 19 or len(set(tools)) != 19 or set(tools) != set(registered):
+        raise ValueError("MCP tour must retain exactly all 19 registered tool recipes")
+    simulation = next(text for name, text in rows if name == "archverity_simulate_change")
+    if "edits_json" not in simulation or "planned_changes_json" in mcp:
+        raise ValueError("Simulation recipe must use the released edits_json argument")
+    if not all(token in mcp for token in ("20", "old", "new", "path")):
+        raise ValueError("Simulation guide must retain the ordered bounded replacement contract")
+    return {"status": "CURRENT_PRODUCT_GUIDES_PASS", "version": CURRENT_PRODUCT_VERSION,
+            "primary_tabs": sorted(PRIMARY_TABS), "mcp_tools": len(tools)}
 
 
 def anchors(text):

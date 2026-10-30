@@ -3,6 +3,33 @@ on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
+  boot-kafka:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Compile all five Boot Kafka recipes on both real library lines
+        run: python -B -X utf8 suite-support/smoke_boot_kafka.py --output "${{ runner.temp }}/archverity-boot-kafka"
+      - name: Retain exact compilation logs and case identities
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: boot-kafka-${{ matrix.os }}
+          path: |
+            ${{ runner.temp }}/archverity-boot-kafka/*-compile.log
+            ${{ runner.temp }}/archverity-boot-kafka/result.json
+          retention-days: 7
   inputs-and-labs:
     strategy:
       fail-fast: false

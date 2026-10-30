@@ -5,6 +5,66 @@ from pathlib import Path
 from prepare_kafka_case import CASES
 from inspect_export import validate_analysis, unique_keys
 
+def _source_matches(source, path, symbol):
+    return (isinstance(source, dict)
+            and isinstance(source.get('path'), str)
+            and source.get('path', '').replace('\\', '/') == path
+            and source.get('symbol') == symbol)
+
+
+def _check_explicit_pattern(nodes, findings):
+    consumers = [node for node in nodes if node['kind'] == 'KAFKA_CONSUMER']
+    producers = [node for node in nodes if node['kind'] == 'KAFKA_PRODUCER']
+    if len(consumers) != 1 or len(producers) != 1:
+        raise ValueError('Pattern control needs exactly one producer and one consumer')
+    consumer, producer = consumers[0], producers[0]
+    consumer_id = consumer.get('id')
+    producer_id = producer.get('id')
+    if (not isinstance(consumer_id, str) or not consumer_id.strip()
+            or consumer.get('name') != 'receive' or producer.get('name') != 'publish'
+            or not isinstance(producer_id, str) or not producer_id.strip() or producer_id == consumer_id):
+        raise ValueError('Pattern control lost its receive/publish operation identity')
+    pattern = consumer['attributes'].get('topicPattern')
+    if (not isinstance(pattern, str) or not pattern.strip()
+            or consumer['attributes'].get('wireConfidence') != 'INFERRED'
+            or producer['attributes'].get('wireConfidence') != 'RESOLVED'):
+        raise ValueError('Only the pattern consumer may retain inferred wire confidence')
+    wire_findings = [finding for finding in findings if finding['ruleId'] == 'AFG-KAFKA-010']
+    if (len(wire_findings) != 1 or wire_findings[0].get('disposition') != 'UNKNOWN'
+            or wire_findings[0].get('subjectId') != consumer_id):
+        raise ValueError('Pattern control needs exactly one consumer 010 UNKNOWN and no producer 010')
+    listener_path = 'consumer/src/main/java/demo/consumer/Listener.java'
+    for entity in (consumer, wire_findings[0]):
+        sources = entity.get('sources', [])
+        if (not isinstance(sources, list)
+                or not any(_source_matches(source, listener_path, 'receive') for source in sources)):
+            raise ValueError('Pattern consumer/finding lost its Listener.java source')
+    for node, suffix in ((consumer, 'Deserializer'), (producer, 'Serializer')):
+        contract = node.get('kafkaWireContract')
+        if not isinstance(contract, dict) or contract.get('bindingConfidence') != 'RESOLVED':
+            raise ValueError('Pattern control must retain both resolved factory/serde bindings')
+        for key, expected in (('keySerde', 'org.apache.kafka.common.serialization.String' + suffix),
+                              ('valueSerde', 'org.springframework.kafka.support.serializer.Json' + suffix)):
+            serde = contract.get(key)
+            if (not isinstance(serde, dict) or serde.get('className') != expected
+                    or serde.get('settingsComplete') is not True):
+                raise ValueError('Pattern control lost its exact JSON/default-key serde or complete settings')
+    evidence = consumer.get('evidence', [])
+    bindings_path = 'consumer/src/main/java/demo/consumer/KafkaBindings.java'
+    for label, value, symbol in (
+            ('Kafka bean listener_factory', 'listenerFactory -> consumerFactory', 'listenerFactory'),
+            ('Kafka bean consumer_factory',
+             'consumerFactory -> org.springframework.kafka.support.serializer.JsonDeserializer', 'consumerFactory')):
+        if not any(item.get('label') == label and item.get('value') == value
+                   and item.get('confidence') == 'RESOLVED'
+                   and _source_matches(item.get('source'), bindings_path, symbol) for item in evidence):
+            raise ValueError('Pattern control lost resolved listener/consumer factory provenance')
+    if not any(item.get('label') == 'Consumer topic declaration' and item.get('value') == pattern
+               and item.get('confidence') == 'RESOLVED'
+               and _source_matches(item.get('source'), listener_path, 'receive') for item in evidence):
+        raise ValueError('Pattern control lost its resolved Listener.java pattern declaration')
+
+
 def check(snapshot, case, expected_project_id=None):
     validate_analysis(snapshot, require_complete=True, expected_project_id=expected_project_id)
     findings = snapshot.get('findings', [])
@@ -58,8 +118,11 @@ def check(snapshot, case, expected_project_id=None):
         raise ValueError('An unknown cluster was silently promoted')
     if case['cluster'] != 'unknown' and 'AFG-KAFKA-009' in rule_ids:
         raise ValueError('Declared logical cluster failed to resolve')
-    if case['serializer'] == 'explicit' and 'AFG-KAFKA-010' in rule_ids:
-        raise ValueError('Independently precise static wire binding was lost')
+    if case['serializer'] == 'explicit':
+        if case['pattern']:
+            _check_explicit_pattern(nodes, findings)
+        elif 'AFG-KAFKA-010' in rule_ids:
+            raise ValueError('Independently precise static wire binding was lost')
     return {'status':'KAFKA_EXPORT_CASE_PASS','case':case['id'],'findings':len(findings),
             'projectId':snapshot['projectId'],'analysisContext':snapshot['analysisContext']['fingerprint'],
             'boundary':'Complete export content; the operator must record IDE/build/project identity separately'}

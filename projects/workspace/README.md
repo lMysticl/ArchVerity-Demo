@@ -1,7 +1,7 @@
 # Workspace: архитектура, Impact и developer tools
 
 [Общая пошаговая инструкция](../../docs/DEMO_RUNBOOK_RU.md#3-архитектура-impact-и-инструменты-редактора)
-показывает подготовку этого проекта и переходы ко всем шести лабораториям.
+показывает подготовку этого проекта и переходы к остальным лабораториям.
 
 Это Java/Kotlin Gradle-проект для анализа исходников четырёх service IDs:
 order-service, payment-service, notification-service, analytics-service.
@@ -14,12 +14,12 @@ order-service, payment-service, notification-service, analytics-service.
 python -B -X utf8 suite-support/prepare_project.py --project workspace --output $env:TEMP\archverity-workspace-demo
 ```
 
-Откройте output как Gradle project, дождитесь import/index, выполните Analyze
+Откройте output как Gradle project, дождитесь import/index, выполните **Map → Analyze Project**
 на clean HEAD. Получите complete HEAD snapshot, затем применяйте одну мутацию
 из терминала этой копии. Для каждого другого сценария нужна новая copy/baseline.
 
 - [Архитектура и все 19 Impact-мутаций](../../docs/ARCHITECTURE_WALKTHROUGH_RU.md).
-- [Все 62 функции](../../docs/ALL_FUNCTIONS_RU.md) и [87 точек входа](../../docs/ENTRY_POINTS_RU.md).
+- [Все 62 функции](../../docs/ALL_FUNCTIONS_RU.md) и [зарегистрированные точки входа](../../docs/ENTRY_POINTS_RU.md).
 - [QA matrix workspace](QA_MATRIX_RU.md): исходные примеры и наблюдения для UI/editor/settings.
 - [Real submodule / public-only keystores](../../docs/ICON_AND_KEYSTORE_INPUTS_RU.md).
 - [Средовые команды](../../docs/ENVIRONMENT_CHECKS_RU.md) и [запись прогона](../../docs/RUN_RECORD.md).

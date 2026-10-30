@@ -1,9 +1,9 @@
-# ArchVerity 5.3.2: 18 MCP-инструментов на одном проекте
+# ArchVerity 5.8.2: 19 MCP-инструментов на одном проекте
 
 [Маршрут продукта](PRODUCT_TOUR_RU.md) · [Средовые проверки](ENVIRONMENT_CHECKS_RU.md) ·
 [Точки входа](ENTRY_POINTS_RU.md) · [Запись результата](RUN_RECORD.md)
 
-Нужны современная совместимая IDEA с JetBrains MCP Server, ArchVerity 5.3.2,
+Нужны современная совместимая IDEA с JetBrains MCP Server, ArchVerity 5.8.2,
 активный Trial/Pro и ваш агент. Legacy-пакет для IDEA 2024.3 не предоставляет
 этот MCP-маршрут. Подготовьте отдельную `workspace`-копию, импортируйте Gradle,
 отсканируйте чистый HEAD. В **Agents** настройте выбранного клиента и проверьте
@@ -17,14 +17,36 @@
    `archverity_file_contracts` с
    `{"path":"payment-app/src/main/java/sample/payment/PaymentController.java","limit":10,"project_root":"<полный путь подготовленного проекта>"}`.
    Подставьте реальный путь; placeholder не является аргументом для запуска.
-2. В свежей копии после полного HEAD scan примените `http-method` из
-   `qa-support/apply_impact.py`. Вызовите `archverity_check_change` с
+2. До записи файлов вызовите `archverity_simulate_change` с этим планом:
+
+```json
+{
+  "edits_json": "[{\"path\":\"payment-app/src/main/java/sample/payment/PaymentController.java\",\"old\":\"@PostMapping(\\\"/{paymentId}\\\")\",\"new\":\"@PutMapping(\\\"/{paymentId}\\\")\"}]",
+  "limit": 10,
+  "offset": 0,
+  "project_root": "<тот же полный путь>"
+}
+```
+
+   `edits_json` — строка со строгим JSON array объектов `{path,old,new}`. Допускается
+   до 20 замен Java/Kotlin, применяемых по порядку, и до 1 MiB JSON. На каждом
+   шаге `old` должен встретиться ровно один раз после предыдущих замен того же
+   файла. Путь относится к выбранному проекту. `limit` ограничивает вывод
+   breaking/unproven пунктов (1–100), а не количество запланированных замен.
+   Если ответ содержит `nextOffset`, продолжите чтение с этим `offset`, тем же
+   планом и `project_root`; ограниченный ответ не является полным результатом.
+   Изучите simulated-ответ, affected consumer и предложения; `git diff` исходников
+   должен оставаться пустым. Симуляция не пишет исходники и не выдаёт commit trailer.
+3. В этой же свежей копии после полного HEAD scan примените `http-method` из
+   `qa-support/apply_impact.py`. Выполните подходящие тесты, затем вызовите
+   `archverity_check_change` с
    `{"base_revision":"HEAD","from_merge_base":false,"limit":10,"project_root":"<тот же полный путь>"}`.
-   Сверьте affected consumers и source locations с Review в IDEA.
-3. Запросите `archverity_test_plan` для HEAD. Он должен объяснить контроли,
+   Сверьте affected consumers и source locations с **Changes → Details** в IDEA.
+   Фактический diff и intended plan должны описывать одну и ту же правку.
+4. Запросите `archverity_test_plan` для HEAD. Он должен объяснить контроли,
    но `NOT_EXECUTED` не означает, что тест уже запущен. Выполните подходящий
    тест отдельно, исправьте контракт, сохраните и снова вызовите check_change.
-4. Контроль маршрутизации: неверный `project_root` должен дать ошибку, а не
+5. Контроль маршрутизации: неверный `project_root` должен дать ошибку, а не
    результат соседнего проекта. После ещё одной правки старый commit receipt
    не подтверждает новое дерево. Пустой список контрактов не доказывает безопасность.
 
@@ -37,9 +59,10 @@
 | --- | --- | --- |
 | `archverity_capabilities` | `{}` | Реальные возможности и ограничения текущего bridge |
 | `archverity_file_contracts` | Путь PaymentController.java выше | Контракты файла, другая сторона, текущий pair verdict |
+| `archverity_simulate_change` | `edits_json` из примера выше, тот же `project_root` | До 20 ordered replacements в памяти; проверить источник break/Needs review, отсутствие исходного diff и commit trailer |
 | `archverity_check_change` | HEAD, `from_merge_base:false`, фактический `project_root` | Решение для текущего дерева; новый receipt только для допустимого сохранённого состояния |
 | `archverity_change_impact` | `{"base_revision":"HEAD","limit":10}` | Прямые HTTP/Kafka/AMQP/DTO последствия отдельно от downstream REVIEW |
-| `archverity_findings` | `{"severity":"ERROR","include_suppressed":false,"limit":10}` | Фильтр и source locations совпадают с Findings |
+| `archverity_findings` | `{"severity":"ERROR","include_suppressed":false,"limit":10}` | Фильтр и source locations совпадают с Problems |
 | `archverity_contract_evidence` | `{"query":"payments","limit":10}` | Источник доказанной связи и её ограничения |
 | `archverity_trace_flow` | `{"query":"payment-service","direction":"both","max_depth":3,"limit":10}` | Технический путь; повторить inbound/outbound, не придумывать бизнес-смысл |
 | `archverity_explain_flow` | Те же query/direction/depth + `base_revision:"HEAD"` | Текущая inputIdentity; повторить с previous_identity после изменения контракта |
@@ -56,6 +79,10 @@
 
 ## Контроль качества bridge
 
+- Для simulation проверьте отсутствующий/неоднозначный `old`, более 20 edits и
+  путь вне выбранного проекта: нужен явный отказ. Конфигурация всего модуля и
+  неподдержанные объявления дают Needs review; после реальной правки нужен
+  отдельный check_change.
 - Передавайте пустой обязательный query, неверный severity/direction и
   неподходящую Git revision: нужна явная ошибка, не правдоподобный чужой ответ.
 - Для preview_settings измените вход после preview: устаревшая identity должна

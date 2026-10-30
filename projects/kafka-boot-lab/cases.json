@@ -1,0 +1,7 @@
+[
+  {"id":"B01","name":"baseline","snapshot":"RESOLVED_NO_SEEDED_MISMATCH","impact":null,"purpose":"Matching independent producer and reader DTOs, with an explicit Boot JSON chain."},
+  {"id":"B02","name":"remove-required","snapshot":"PROVEN_MISMATCH","impact":"BREAKING","purpose":"Remove producer tenant while the reader still requires it; restore the producer file to recheck the correction."},
+  {"id":"B03","name":"add-optional","snapshot":"RESOLVED_NO_SEEDED_MISMATCH","impact":"SAFE","purpose":"Add producer note while the default Spring JSON reader ignores unknown properties."},
+  {"id":"B04","name":"customizer-control","snapshot":"UNKNOWN","impact":"UNKNOWN","purpose":"A producer factory customizer makes the otherwise ordinary Boot wire chain unproven."},
+  {"id":"B05","name":"historical-reader","snapshot":"RESOLVED_NO_SEEDED_MISMATCH","impact":"BREAKING","purpose":"Current producer and reader agree, but the producer at the Git base lacks tenant required by the current reader."}
+]

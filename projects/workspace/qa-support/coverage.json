@@ -43,6 +43,7 @@
     "archverity_context": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_explain_flow": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_file_contracts": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
+    "archverity_simulate_change": {"case":"QA-WHATIF","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_kafka_migration_plan": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_prepare_review": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},
     "archverity_preview_rule": {"case":"QA-MCP","fixtures":["payment-app/src/main/java/sample/payment/PaymentController.java"]},

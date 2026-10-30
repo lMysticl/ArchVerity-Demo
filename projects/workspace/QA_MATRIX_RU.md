@@ -5,22 +5,22 @@
 
 Подробные сценарии всех 62 пользовательских функций:
 [ALL_FUNCTIONS_RU.md](../../docs/ALL_FUNCTIONS_RU.md).
-Каждая из 114 зарегистрированных точек входа имеет отдельный trigger и oracle:
+Каждая из 115 зарегистрированных точек входа имеет отдельный trigger и oracle:
 [ENTRY_POINTS_RU.md](../../docs/ENTRY_POINTS_RU.md).
 
-Матрица привязана к зарегистрированным экранам, действиям, командам, экспортам, страницам настроек, editor extension и четырём MCP-инструментам текущего исходного плагина. `qa-support/verify_coverage.py` падает при появлении нового entry point без сценария. Для process-команд проверка различает шесть пригодных локальных входов и 16 команд с внешними предпосылками; `rn-qa/package.json` подходит для `RN_SCRIPT`, но не для сборки Android/iOS и не для ADB. Наличие входного файла и успешный preflight **не равны** успешному нажатию кнопки в IDEA. Для каждого прогона фиксируйте версию и SHA-256 установленного ZIP, версию IDEA, ОС, путь открытого проекта, Git `HEAD`, entitlement, время, статус `PASS / FAIL / BLOCKED` и наблюдаемый артефакт. Используйте новую копию для каждого изменения и каждого действия, меняющего файл.
+Матрица привязана к зарегистрированным экранам, действиям, командам, экспортам, страницам настроек, editor extension и 19 MCP-инструментам текущего исходного плагина. `qa-support/verify_coverage.py` падает при появлении нового entry point без сценария. Для process-команд проверка различает шесть пригодных локальных входов и 16 команд с внешними предпосылками; `rn-qa/package.json` подходит для `RN_SCRIPT`, но не для сборки Android/iOS и не для ADB. Наличие входного файла и успешный preflight **не равны** успешному нажатию кнопки в IDEA. Для каждого прогона фиксируйте версию и SHA-256 установленного ZIP, версию IDEA, ОС, путь открытого проекта, Git `HEAD`, entitlement, время, статус `PASS / FAIL / BLOCKED` и наблюдаемый артефакт. Используйте новую копию для каждого изменения и каждого действия, меняющего файл.
 
 ## Подготовка и архитектура
 
-1. Выполните команды из `README_RU.md`. Откройте подготовленную Git-копию, дождитесь индексации и выполните `Analyze`. В `Diagnostics` убедитесь, что снимок `COMPLETE`, `partial=false`, а сохранённый `.idea/archflow/commits/<HEAD>.json` относится именно к этому `HEAD`.
+1. Выполните команды из `README_RU.md`. Откройте подготовленную Git-копию, дождитесь индексации и выполните `Analyze`. В `Problems` убедитесь, что снимок `COMPLETE`, `partial=false`, а сохранённый `.idea/archflow/commits/<HEAD>.json` относится именно к этому `HEAD`.
 2. Для каждого сценария Impact сделайте **новую** копию через `prepare_impact.py`, отсканируйте чистый `HEAD`, затем запустите `apply_impact.py --project . --scenario <имя>` в её корне. Повторите анализ. Не переносите результат одного сценария на другой.
 3. Сохраняйте экспортные файлы в `work/` подготовленной копии. После последней записи проверьте содержимое, а не только сообщение UI.
 
 | ID | Действие в установленном плагине | Наблюдаемое условие приёмки |
 | --- | --- | --- |
-| QA-WORKSPACE | Открыть ArchVerity. Пройти все 15 пунктов меню, breadcrumbs, назад/вперёд, быстрые ссылки Workspace; свернуть и развернуть ширину панели. | Каждый пункт открывает свой экран; навигация и текущий заголовок совпадают; нет пустой или наложенной панели. |
+| QA-WORKSPACE | Открыть ArchVerity. Пройти пять основных вкладок и их вложенные views, breadcrumbs, назад/вперёд, быстрые ссылки Changes → Summary; свернуть и развернуть ширину панели. | Каждый пункт открывает свой экран; навигация и текущий заголовок совпадают; нет пустой или наложенной панели. |
 | QA-IMPACT | На чистом `HEAD` сравнить `HEAD → WORKTREE`. Затем отдельно применить `combined-breaking`, `http-method`, `request-required`, `response-removed`, `response-optional-added`, `kafka-topic`, `spring-profile`. На каждом открыть «Было/Стало», таблицу полей, карту потребителей, Evidence и ссылки в исходники. | Чистая копия не показывает изменений. После изменения виден именно изменённый исходный контракт и его потребители; `BREAKING/SAFE/UNKNOWN` подтверждать экспортом Change impact JSON, не назначать категорию только по имени сценария. Для `combined-breaking` прежний проверенный ориентир версии `2.0.6-ui.8`: 2 Breaking / 4 Safe / 3 Unknown; на иной сборке записать фактическое значение. Изменение `spring-profile` проверяет пересканирование конфигурации и может не породить контрактный Impact. |
-| QA-MANIFEST | На отдельной копии применить `manifest-import` и пересканировать. Открыть Inventory/Topology: внешний HTTP `qa-loopback`, Kafka `qa-event-bus` и каталоговый service `qa-catalog-service`; перейти к manifest evidence. Затем на новой копии применить `manifest-missing`. | Два внешних контракта и внутренний сервис из Backstage manifest видны как объявления из файлов manifest и не притворяются Java-исходниками; отсутствующий manifest даёт явную ошибку/partial. Исходная чистая копия сохраняет прежний scope. |
+| QA-MANIFEST | На отдельной копии применить `manifest-import` и пересканировать. Открыть Map → Inventory / Map: внешний HTTP `qa-loopback`, Kafka `qa-event-bus` и каталоговый service `qa-catalog-service`; перейти к manifest evidence. Затем на новой копии применить `manifest-missing`. | Два внешних контракта и внутренний сервис из Backstage manifest видны как объявления из файлов manifest и не притворяются Java-исходниками; отсутствующий manifest даёт явную ошибку/partial. Исходная чистая копия сохраняет прежний scope. |
 | QA-FINDING | На реальном finding открыть producer/consumer evidence; проверить переходы, Copy alias/manifest suggestion и suppression с причиной и датой expiry в копии проекта. | Переход ведёт к точной стороне контракта; suppression меняет только `.archflow.yml`, проходит валидацию и после нового анализа скрывает именно выбранное finding. Не подменять suppressed состоянием `resolved`. |
 | QA-EDITOR | На изменённом Java-контракте открыть инспекцию `ArchFlowContract` и gutter marker Impact; проверить переход из редактора в соответствующую карточку Impact. | Подсветка и marker относятся к той же строке/контракту, что снимок, и не оставляют устаревшее finding после восстановления исходника и перескана. |
 | QA-INVENTORY | Фильтр `HTTP`, поиск `payments`, выбор endpoint/Feign/Kafka и открытие исходника. | Список меняется по фильтру; выбранный элемент ведёт к точному файлу и строке. |
@@ -48,13 +48,13 @@
 
 | ID | Действие | Условие приёмки |
 | --- | --- | --- |
-| QA-MCP | На отсканированной копии с активным Trial/Pro и JetBrains MCP Server вызвать `archverity_change_impact`, `archverity_findings`, `archverity_contract_evidence`, `archverity_trace_flow` (inbound/outbound/both); проверить limit, пустой query, неверный severity/direction и отсутствие entitlement. | Ответы относятся к тому же `HEAD`/проекту, ограничены по размеру, содержат project-relative locations, без исходного текста и абсолютных путей; некорректный ввод и отсутствие права дают явную ошибку. Без MCP Server/лицензии — `BLOCKED`. |
+| QA-MCP | На отсканированной копии с активным Trial/Pro и JetBrains MCP Server пройти все 19 recipes MCP_TOUR_RU, включая `archverity_file_contracts` → `archverity_simulate_change(edits_json)` → явная правка → `archverity_check_change`. Проверить четыре foundational read-only calls, direction/limit, неправильные edits, stale identity и отсутствие entitlement. | Ответы относятся к тому же `HEAD`/проекту, ограничены по размеру, содержат project-relative source locations; project_root/projectRoot явно привязывает ответ к выбранному проекту, исходный текст не возвращается; некорректный ввод и отсутствие права дают явную ошибку. Без MCP Server/лицензии — `BLOCKED`. |
 | QA-RUNTIME | Пройти скан в обычной IDEA и Split Mode; JCEF/native fallback, light/dark, 200% scale, клавиатура и screen reader; проект закрыть/открыть для проверки persistence и unload. | Снимок и действия согласованы между режимами; нет ArchVerity-scoped ошибок; focus/labels доступны; после reopen состояние восстанавливается без удержанного проекта. Отдельно фиксировать каждый runtime и версию IDE. |
 | QA-LICENSE | На реальных Free/Trial/Pro/Expired/offline состояниях проверить видимость findings, baseline, exports, Dev Icons и MCP. | UI и backend дают одинаковое право, истечение Trial закрывает paid действия. Локальный dev override не доказывает Marketplace entitlement. Внешние состояния без выданной лицензии — `BLOCKED`. |
 
 `qa-support/preflight.py` проверяет только подготовку файлов, форматов, loopback HTTP, сертификата, pack и script. `qa-support/verify_coverage.py` сверяет набор entry points с исходниками, когда они доступны. `gradlew classes` доказывает компиляцию образца. Полный `PASS` по этой матрице возможен только после ручного/автоматизированного прогона в установленной IDEA и отдельных внешних средовых проверок; неотмеченные строки остаются `UNVERIFIED`.
 
-## Сценарии текущего продукта 5.3.2
+## Сценарии текущего продукта 5.8.2
 
 [Полный пользовательский маршрут](../../docs/PRODUCT_TOUR_RU.md) связывает эти
 проверки с решением разработчика. Датированные старые receipts не обновляются.
@@ -65,8 +65,13 @@
 | QA-SETTINGS | Settings Assistant → read → preview scope → cancel; отдельно Apply/Undo в демо-копии | Preview не редактирует файл; изменившиеся inputs не применяются как прежние |
 | QA-AIREVIEW | Подключённый агент prepare/submit review на Java/Kotlin; открыть finding и gutter, затем изменить источник | Реальные anchors и coverage; stale finding не становится текущим, PARTIAL остаётся PARTIAL |
 
-QA-MCP теперь включает все [18 отдельных инструментов](../../docs/MCP_TOUR_RU.md),
+QA-MCP теперь включает все [19 отдельных инструментов](../../docs/MCP_TOUR_RU.md),
 а не только четыре исторических read-only вызова. Запись analysis/review state
 и preview не означает автоматической правки исходников. Java/Kotlin contract
-inspection проверяется отдельно от model review. QA-NAV использует шесть вкладок:
-Overview, Review, Architecture, Findings, Agents, Tools и их 18 views.
+inspection проверяется отдельно от model review. QA-NAV использует пять основных вкладок:
+Changes, Map, Problems, Agents, Tools. В Changes доступны Summary и Details; прежние registered surface IDs остаются техническими идентификаторами views, а не названиями вкладок.
+
+
+## Обычный Spring Boot Kafka в 5.8.2
+
+[Публичный Boot Kafka lab](../kafka-boot-lab/README.md) содержит отдельные Boot35/40 copies: baseline, remove-required, add-optional, customizer-control и historical-reader. Проверяйте каждый сценарий по его source/export oracle; компиляция не заменяет plugin scan. Сохраняйте exact Git base и обе source locations; wire/source proof не доказывает broker delivery. Предварительная MCP simulation использует `edits_json` и не меняет файлы; фактический `archverity_check_change` выполняется после явной записи правки.

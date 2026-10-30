@@ -1,0 +1,12 @@
+schemaVersion: 1
+project:
+  id: kafka-boot-lab
+  displayName: Spring Boot Kafka source proof
+analysis:
+  profiles: [default]
+  includeModules: ["*"]
+services:
+  producer:
+    modules: [producer, archverity-kafka-boot-lab.producer.main]
+  consumer:
+    modules: [consumer, archverity-kafka-boot-lab.consumer.main]
