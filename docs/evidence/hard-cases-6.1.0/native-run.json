@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "classification": "INSTALLED_IDE_SYNTHETIC_DEMONSTRATION",
+  "captureDate": "2026-11-05",
+  "ide": "IntelliJ IDEA 2026.1.4",
+  "plugin": "ArchVerity 6.1.0",
+  "demoSourceCommit": "e22698cf9d78a4dbe588f4bb5ac21ef17a4651a6",
+  "compilation": "All three intentionally broken candidates compiled. Kafka optional-reader and HTTP expanded-provider controls also compiled. JBR 25.0.3, Java release 21 (class major 65).",
+  "cases": [
+    {
+      "id": "kafka-history",
+      "baseCommit": "38f0c1bcf03fbf596c6591fcbd632286ea0244d9",
+      "initial": "Current Problems (0); Changes has two breaking impacts: the Git-base writer lacks tenant required by the current reader",
+      "control": "Only consumer JsonProperty.required=false: No breaking changes found, two compatible contracts",
+      "restoration": "required=true restored identical prepared source hashes and two native breaking impacts",
+      "boundary": "Source history and supported JSON chain; no Kafka broker, retained records or runtime delivery observed"
+    },
+    {
+      "id": "rollout-cycle",
+      "baseCommit": "bf714706db6cc6589ce3afb56309bd5e327b4a9d",
+      "initial": "Two compatible current contracts; Details and copied rollout plan: As written, no deploy order is safe",
+      "control": "Provider maps old and new prefixes: two compatible contracts plus two review items; copied plan: Order not proven",
+      "restoration": "Original route-only candidate restored; copied rollout plan matches the original NO_ORDER text",
+      "prerequisite": "Analyze clean HEAD first. Feign changes require an exact saved base; the initial changed-only attempt returned BASE_UNAVAILABLE",
+      "boundary": "Method/path mixed versions; expanded-route control does not certify an automatic safe order or deployed versions"
+    },
+    {
+      "id": "migration-old-reader",
+      "baseCommit": "a55d3f32a04ee7ca49bca6306039ca8514169673",
+      "initial": "One breaking DROP impact and three review items; V2 removes orders.total still mapped by the previous OrderEntity",
+      "control": "Same new entity, V2 moved outside analyzed project: DROP break disappears; review remains",
+      "restoration": "Identical V2 bytes returned; original source hashes and one breaking DROP impact restored",
+      "boundary": "Selected Git-base JPA mapping, not deployed/rollback pod observation; no database or migration runner started"
+    }
+  ],
+  "images": [
+    {
+      "file": "../../media/hard-cases-6.1.0/kafka-history-breaking.jpg",
+      "sha256": "dd00b5bb659eafc80325a9c86b3e6fa746f52c26f8d8d564d2ce7473ffeccf64",
+      "width": 1386,
+      "height": 993,
+      "observation": "Kafka historical reader: restored required tenant, two breaking impacts, zero current Problems",
+      "transform": "NONE: unchanged native window capture"
+    },
+    {
+      "file": "../../media/hard-cases-6.1.0/kafka-history-compatible.jpg",
+      "sha256": "3e12b6dec2e3faeaa2235bbd33b78e5d6050119e40c1e703310f0c683c9759eb",
+      "width": 1386,
+      "height": 993,
+      "observation": "Kafka reader tenant optional: no breaking changes, two compatible contracts",
+      "transform": "NONE: unchanged native window capture"
+    },
+    {
+      "file": "../../media/hard-cases-6.1.0/rollout-no-order.jpg",
+      "sha256": "85a8d698baf451a64c14f10039e4392d5cb9afc4a026bc50a711e9056dcf2e69",
+      "width": 1386,
+      "height": 993,
+      "observation": "Current HTTP contracts compatible; Details warns no deploy order is safe",
+      "transform": "NONE: unchanged native window capture"
+    },
+    {
+      "file": "../../media/hard-cases-6.1.0/rollout-expanded-review.jpg",
+      "sha256": "d12042e23ebb6743ec684226974fc054e560a9eb608392890bfddec5fe06d5b3",
+      "width": 1386,
+      "height": 993,
+      "observation": "Expanded provider: two compatible contracts and two downstream services need review",
+      "transform": "NONE: unchanged native window capture"
+    },
+    {
+      "file": "../../media/hard-cases-6.1.0/migration-old-reader-breaking.jpg",
+      "sha256": "7c86c2edd7e9a4098780ec951396e88fe7aa6b30f3df5cff265dba4eab5a1440",
+      "width": 1386,
+      "height": 993,
+      "observation": "New entity has no total; DROP still breaks the previous entity version",
+      "transform": "NONE: unchanged native window capture"
+    },
+    {
+      "file": "../../media/hard-cases-6.1.0/migration-drop-deferred.jpg",
+      "sha256": "6d2e4809d7fd31c805e8f3d7709a0cc4351340cd4074c6abbeec855e5df0260e",
+      "width": 1386,
+      "height": 993,
+      "observation": "DROP deferred: its breaking result clears, review remains",
+      "transform": "NONE: unchanged native window capture"
+    }
+  ],
+  "nativeExports": [
+    {
+      "file": "rollout-no-order.md",
+      "sha256": "60db6452c66d3887cb7bae84a81bf65add14d0f5703c4ec95fcb8ee3b74dcb91",
+      "producer": "ArchVerity Export review -> Copy rollout plan; saved as UTF-8",
+      "savedSourceSha256": "ef45183ed14521df751f46a3c5bc9efddae1a897efc6d7ed91a648a9c306fd45",
+      "storageNormalization": "Single terminal newline; report text otherwise unchanged"
+    },
+    {
+      "file": "rollout-expanded-review.md",
+      "sha256": "330c954344c616703c24e7b740c8be6be4cc2c28b770e84f8409b69206ae593f",
+      "producer": "ArchVerity Export review -> Copy rollout plan; saved as UTF-8",
+      "savedSourceSha256": "3b14b6e0dd5306f2f647b73cfa41392ae6e303a803d1759d57aadfe905beb375",
+      "storageNormalization": "Single terminal newline; report text otherwise unchanged"
+    },
+    {
+      "file": "rollout-restored.md",
+      "sha256": "60db6452c66d3887cb7bae84a81bf65add14d0f5703c4ec95fcb8ee3b74dcb91",
+      "producer": "ArchVerity Export review -> Copy rollout plan; saved as UTF-8",
+      "savedSourceSha256": "ef45183ed14521df751f46a3c5bc9efddae1a897efc6d7ed91a648a9c306fd45",
+      "storageNormalization": "Single terminal newline; report text otherwise unchanged"
+    }
+  ],
+  "notRuntimeCaptureInput": true,
+  "boundary": "Observed native UI and actual copied exports. Synthetic fixtures, not customer incidents, benchmarks, runtime collector captures or production deployment approval."
+}

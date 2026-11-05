@@ -38,6 +38,12 @@ should disappear. Restore POST to confirm it returns.
 
 ## See what the current product adds
 
+For the harder cases, use the [three native 6.1.0 walkthroughs](projects/hard-cases/README.md):
+matching HTTP changes with no safe rollout order, a DROP that breaks an older JPA
+reader, and a Kafka reader that rejects the writer at the Git base. Each retains
+its actual result, repair control, screenshots and limits. The older catalog and
+tours below keep their original 5.8.2 scope.
+
 | Question you need answered | Demonstration |
 | --- | --- |
 | What would break before I edit this field, route or Kafka call? | [Java What-if, then an actual HEAD review](docs/PRODUCT_TOUR_EN.md#2-ask-before-editing-check-the-real-edit-afterward) |

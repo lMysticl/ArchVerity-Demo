@@ -8,6 +8,7 @@
 
 | Задача | Руководство |
 | --- | --- |
+| Воспроизвести сложные ошибки смешанных версий, старого JPA reader и Kafka history | [Три native-кейса ArchVerity 6.1.0: исходники, снимки и контроль исправления](../projects/hard-cases/README.md) |
 | Провести демонстрацию с нуля | [Запуск всех лабораторий](DEMO_RUNBOOK_RU.md) |
 | Проследить Kafka profiles, UNKNOWN → доказанное расхождение → исправление и разные cluster scopes | [Kafka: статья, видео и шесть native exports](KAFKA_PROFILES_ARTICLE_RU.md) |
 | Разобрать компилируемый POST/PUT пример и проверить исправление в 3.0.4 | [Практическая статья для Java/Spring-разработчиков](FIRST_RESULT_ARTICLE_RU.md) |
