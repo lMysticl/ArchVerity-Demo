@@ -60,6 +60,8 @@ and `boot4.json`. Expected: `WIRE_DIFFERENCES_CONFIRMED`.
 This independently demonstrates the library behavior. It does not impersonate
 an ArchVerity scan, licence, GUI action or exported finding.
 [Inspect the recorded before/after observations](../../docs/evidence/boot-upgrade-20261023/README.md).
+The Boot 4 side gives the same observations on 4.0.9, 4.1.2 and 4.2.0-RC1:
+[Boot 4 line rerun](../../docs/evidence/boot-upgrade-20261024-boot4-line/README.md).
 
 ## Make the wire contract explicit, then check again
 
