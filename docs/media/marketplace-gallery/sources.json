@@ -1,0 +1,20 @@
+{
+  "source": "ArchVerity JetBrains Marketplace gallery",
+  "transformation": "None; the PNG bytes are identical to the original gallery files.",
+  "images": [
+    {
+      "file": "demo-missing-priority.png",
+      "original": "https://plugins.jetbrains.com/files/34234/screenshot_a94f9d25-553d-4cf9-8ebe-5a98745b6524",
+      "sha256": "983e1cb73dc402698c695f06f5f39510d2aa95e9717395549a1c06412ce035b3",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "demo-priority-fixed.png",
+      "original": "https://plugins.jetbrains.com/files/34234/screenshot_c1fc6264-9b9a-4c63-9258-57e5e9c5783a",
+      "sha256": "4cd0d018e318b955df4904d565a053f68f87011dbf413766b0185b7a42a9349a",
+      "width": 1280,
+      "height": 800
+    }
+  ]
+}
