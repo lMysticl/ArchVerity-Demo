@@ -4,17 +4,19 @@
 
 **[ArchVerity in pictures · Наглядный гид на русском](docs/VISUAL_GUIDE_RU.md)** — see a real break, open both files, then check the repair. For a particular action, open the [feature and command index for 6.1.2](docs/FEATURE_CATALOG_RU.md). The native screens are labelled with their capture version.
 
-Find a contract break, inspect both sides, fix it and check again. These open
-examples let you evaluate **ArchVerity 5.8.2** on synthetic Java/Spring services
-before trying it on your own change. No broker or database is needed for the
-static contract scenarios.
+The original **ArchVerity 5.8.2** labs use synthetic Java/Spring services.
+The picture guide covers 6.1.2 and includes mixed-version examples captured
+with 6.1.0. You can try the static contract scenarios without starting a
+broker or a database.
 
 **[Start the guided tour →](docs/PRODUCT_TOUR_EN.md)** ·
 **[Пошаговый маршрут на русском →](docs/PRODUCT_TOUR_RU.md)** ·
 [Install / 14-day trial](https://plugins.jetbrains.com/plugin/34234-archverity)
 
-Released Stable packages: [5.8.2, modern](https://plugins.jetbrains.com/plugin/34234-archverity-ai/versions/stable/1206577)
-and [5.8.2-2024.3, IDEA 2024.3](https://plugins.jetbrains.com/plugin/34234-archverity-ai/versions/stable/1206580).
+For the picture guide, use [6.1.2, modern](https://plugins.jetbrains.com/plugin/34234-archverity--spring-microservice-contract-checker/versions/stable/1213309)
+or [6.1.2-2024.3, IDEA 2024.3](https://plugins.jetbrains.com/plugin/34234-archverity--spring-microservice-contract-checker/versions/stable/1213310).
+The original labs used [5.8.2, modern](https://plugins.jetbrains.com/plugin/34234-archverity-ai/versions/stable/1206577)
+and [5.8.2-2024.3](https://plugins.jetbrains.com/plugin/34234-archverity-ai/versions/stable/1206580).
 The legacy package has no ArchVerity MCP tools or modern IDE-assisted commit check.
 
 ## Start with a compiling contract mismatch
