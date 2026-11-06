@@ -2,10 +2,10 @@
 
 **Your service compiles. Does the service calling it still work?**
 
-**[ArchVerity in pictures · Наглядный гид на русском](docs/VISUAL_GUIDE_RU.md)** — see a real break, open both files, then check the repair. For a particular action, open the [feature and command index for 6.1.2](docs/FEATURE_CATALOG_RU.md). The native screens are labelled with their capture version.
+**[ArchVerity in pictures · Наглядный гид на русском](docs/VISUAL_GUIDE_RU.md)** — see a real break, open both files, then check the repair. For a particular action, open the [feature and command index for 6.1.3](docs/FEATURE_CATALOG_RU.md). The native screens are labelled with their capture version.
 
 The original **ArchVerity 5.8.2** labs use synthetic Java/Spring services.
-The picture guide covers 6.1.2 and includes mixed-version examples captured
+The picture guide covers 6.1.3 and includes examples captured
 with 6.1.0. You can try the static contract scenarios without starting a
 broker or a database.
 
@@ -13,8 +13,8 @@ broker or a database.
 **[Пошаговый маршрут на русском →](docs/PRODUCT_TOUR_RU.md)** ·
 [Install / 14-day trial](https://plugins.jetbrains.com/plugin/34234-archverity)
 
-For the picture guide, use [6.1.2, modern](https://plugins.jetbrains.com/plugin/34234-archverity--spring-microservice-contract-checker/versions/stable/1213309)
-or [6.1.2-2024.3, IDEA 2024.3](https://plugins.jetbrains.com/plugin/34234-archverity--spring-microservice-contract-checker/versions/stable/1213310).
+**Latest Stable · November 6, 2026.** [What changed in 6.1.3 (Russian)](docs/VISUAL_GUIDE_RU.md#whats-new). Download [6.1.3 for modern IDEA](https://plugins.jetbrains.com/plugin/34234-archverity--spring-microservice-contract-checker/versions/stable/1213640)
+or [6.1.3-2024.3, IDEA 2024.3](https://plugins.jetbrains.com/plugin/34234-archverity--spring-microservice-contract-checker/versions/stable/1213641).
 The original labs used [5.8.2, modern](https://plugins.jetbrains.com/plugin/34234-archverity-ai/versions/stable/1206577)
 and [5.8.2-2024.3](https://plugins.jetbrains.com/plugin/34234-archverity-ai/versions/stable/1206580).
 The legacy package has no ArchVerity MCP tools or modern IDE-assisted commit check.
