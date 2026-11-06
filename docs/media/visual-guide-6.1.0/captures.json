@@ -1,0 +1,668 @@
+{
+  "captureVersion": "6.1.0",
+  "ide": "IntelliJ IDEA 2026.1.4",
+  "currentGuideScope": "Marketplace Stable 6.1.2",
+  "method": "A rectangle copied from the decoded native capture, at the original pixel scale. No labels, highlighting, generated UI or resampling added.",
+  "sessions": {
+    "2026-11-06": {
+      "project": "archverity-first-result",
+      "fixture": "migration-old-reader",
+      "worktreeHead": "a55d3f32a04e",
+      "originalWindowSize": [
+        1386,
+        993
+      ]
+    },
+    "2026-11-05": {
+      "evidence": "../../evidence/hard-cases-6.1.0/native-run.json",
+      "demoCommit": "4d16f6dcf784f8be06000571475be96c4c423012"
+    }
+  },
+  "captures": [
+    {
+      "file": "agent-connect.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "e0f469e9d9243b7e12475e83dd4b8aa8e810dc05904ec7da01a1cb44911081e7",
+      "sourceSize": [
+        906,
+        797
+      ],
+      "crop": [
+        0,
+        0,
+        906,
+        700
+      ],
+      "sha256": "c13ebb1c1c69bee36c655d850feacafeb338db412bc64701931967e054afb04c"
+    },
+    {
+      "file": "agents-history.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "764c7cc28c49b60c94df34f99283282910ba71f622e5d8d3e9e3eb9799b67e1d",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        930
+      ],
+      "sha256": "afe3e3b910eb5ae83cb82432d913ee1d348d661666bc2a245265bc44e3b6c541"
+    },
+    {
+      "file": "agents-more.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "7c8d67fa479af75e7f36de6eaba03ee073bf1f5ea3e4e27ae31711dac31d7cde",
+      "sourceSize": [
+        237,
+        107
+      ],
+      "crop": [
+        0,
+        0,
+        237,
+        107
+      ],
+      "sha256": "fd65805bbe7f159995a97b6d9ddbb110ed7e4f31e38de0694545a3ad9ac8f112"
+    },
+    {
+      "file": "boot-upgrade.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "2895be7ce9a5666cdb37c196a17c45f5e6ca649391524a46da34e36275517e2a",
+      "sourceSize": [
+        706,
+        697
+      ],
+      "crop": [
+        0,
+        0,
+        706,
+        312
+      ],
+      "sha256": "87202428a72f2e45624e5632d146bec4dbd849588e6f9fb30d5aea89d5493e6e"
+    },
+    {
+      "file": "changes-more.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "ed19ac6ce58cd4fa4b9d15b5acaf4050c268be436cc403d33cdfb5fe5583538b",
+      "sourceSize": [
+        319,
+        160
+      ],
+      "crop": [
+        0,
+        0,
+        319,
+        160
+      ],
+      "sha256": "45848e23ec75afd7731e2dc2ca23fdc65e60a85054cd53702460a3bef9510e16"
+    },
+    {
+      "file": "changes-summary.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "5fbf35decb2f3b83f287a48530a1a92193907eab4766dcf3570bd206c7d6fdcd",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        833
+      ],
+      "sha256": "4dc7af3afba86ba5c6e214cd8f4d9c72714b05097014808999e5a969f154051b"
+    },
+    {
+      "file": "commit-guard.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "158fc4c56583f7e41c6dcca40223daa36a00fe25d22555b0434da2425c368e8e",
+      "sourceSize": [
+        906,
+        797
+      ],
+      "crop": [
+        19,
+        124,
+        872,
+        746
+      ],
+      "sha256": "38ce3049dd960ef5751bae0071b45b4a02a29385f9edf177456144bf5607adb9"
+    },
+    {
+      "file": "comparison-details.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "129926cd90183b11a3ad93c36871b7f9edd24ed381ebffa81a2a337b27aa228c",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        672
+      ],
+      "sha256": "4679ea50cfc56e23b44b9395e74e498f5e444d901b9c02a4516083669bb4b792"
+    },
+    {
+      "file": "details-evidence.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "808c712b5ff6d4e9cbd4687c6270a34972ae986a55fd84926fece602d8404b51",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        821
+      ],
+      "sha256": "54e1f053257dd8505c7c752e8142eb38c68d3869014e87cfda2f4d27a7c2b34b"
+    },
+    {
+      "file": "details-list.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "cd9da423bf1df15b63034aa0aceb6fa867c1be3b2923e714a4cda5fa1e82e345",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        921
+      ],
+      "sha256": "cba45aceb77918b4b6ac2b56209a1f6322594a063a988368bf56e11a353af795"
+    },
+    {
+      "file": "details-source.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "861961f67de838b5152f6df9977fec6d018fe0a80d55ce05cfb7ac22fdfcbaf8",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        930
+      ],
+      "sha256": "be7c716dc2d3a55d3b880e516803bba0f0dd8f500f8c7e37c39aa952da82344b"
+    },
+    {
+      "file": "editor-caller.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "5b41da7028c562864386e266909b9922db2f94c6b6c8d4f282104092d290198b",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        434,
+        77,
+        1274,
+        332
+      ],
+      "sha256": "e4b8936a28ecc0f4b4fdfe7780fbe94d8b2cbde79040702825eb5208eac222b9"
+    },
+    {
+      "file": "export-menu.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "1576819058abea9bad477c519ed9cf3b30162ea3050eae61ccef71795c03276d",
+      "sourceSize": [
+        341,
+        210
+      ],
+      "crop": [
+        0,
+        0,
+        341,
+        210
+      ],
+      "sha256": "9eef77396cb60fdc4df3005a5671dbc210ebedcff14dc3306b14282243e5b4ba"
+    },
+    {
+      "file": "jackson-replay.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "d24fac101977fa1214762782e648ab89e8ff5487a42228387e1489aa92c799c9",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        930
+      ],
+      "sha256": "b005689c41d553c96325310588cb89d3addaa3b13ce5cffe22f97345c57f4008"
+    },
+    {
+      "file": "kafka-history-breaking.png",
+      "captureDate": "2026-11-05",
+      "sourceSha256": "dd00b5bb659eafc80325a9c86b3e6fa746f52c26f8d8d564d2ce7473ffeccf64",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        850,
+        98,
+        1291,
+        855
+      ],
+      "sha256": "0ca4664962e543614d378e872e39684f009697aa2e51fbb732297ed152771879",
+      "original": "../hard-cases-6.1.0/kafka-history-breaking.jpg"
+    },
+    {
+      "file": "kafka-history-compatible.png",
+      "captureDate": "2026-11-05",
+      "sourceSha256": "3e12b6dec2e3faeaa2235bbd33b78e5d6050119e40c1e703310f0c683c9759eb",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        850,
+        98,
+        1291,
+        510
+      ],
+      "sha256": "253cf3b1dbb020d9fac800356e9b4194a5529af5477a13022a9e1e9c5b1453fb",
+      "original": "../hard-cases-6.1.0/kafka-history-compatible.jpg"
+    },
+    {
+      "file": "map-graph.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "16f0b7aee43c69b089e04817cc4a079324f361857562156b658b754679adc60c",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        937
+      ],
+      "sha256": "5cff6fddd73db83147ffc4c456364eab73c81150ef40465a0afdda0cf23d804d"
+    },
+    {
+      "file": "map-kafka.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "0ebce2df001f97fee098ef4e77471edd433509366e3226341681b6e0fb56233f",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        764
+      ],
+      "sha256": "334b28f27ed77fe7451f3f9dbecaaad65d4b7f52810c89898d69f2ceb6ee5c78"
+    },
+    {
+      "file": "map-links.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "b2510809d3f1cf30b3150820e9b519188f554290a1323a07e8bfd1b076cf5c0b",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        938
+      ],
+      "sha256": "9580c9a37bb5cff3babbd5c8ef03ae05b0a81df76963f3f22d666105d22ea761"
+    },
+    {
+      "file": "map-list.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "881d51a3b58937ba8ae429bf17b96458db093a05bdb9f3609fda309105c2cee5",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        934
+      ],
+      "sha256": "69942e842454336364e03274d61e8064c51424ac5fa0d4227a68759a0a19903b"
+    },
+    {
+      "file": "migration-drop-deferred.png",
+      "captureDate": "2026-11-05",
+      "sourceSha256": "6d2e4809d7fd31c805e8f3d7709a0cc4351340cd4074c6abbeec855e5df0260e",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        850,
+        98,
+        1291,
+        808
+      ],
+      "sha256": "0511c91a4bce0eece8d09957b1a8242628dfcdbafd9280bb12df72f7510e443c",
+      "original": "../hard-cases-6.1.0/migration-drop-deferred.jpg"
+    },
+    {
+      "file": "problems-timeout.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "1b56f5af283e454ab9bb18c5ac5f189b32046e97fb86858f4c9dbbc2b0a209d9",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        770
+      ],
+      "sha256": "0ead24408fd2784c8951564e4f5062cddfd341c0dc4f23a621dae2e0a5e8c686"
+    },
+    {
+      "file": "project-dependencies.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "fe7daa62ecf40e7b9c21ee1e3e6218fbe49330ba1e907be6076ecd52e5fac47d",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        870
+      ],
+      "sha256": "5baa5b87ea5555838956e027adae686134f499a8f48841a35f0631460ac9240b"
+    },
+    {
+      "file": "rollout-expanded-review.png",
+      "captureDate": "2026-11-05",
+      "sourceSha256": "d12042e23ebb6743ec684226974fc054e560a9eb608392890bfddec5fe06d5b3",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        850,
+        98,
+        1291,
+        904
+      ],
+      "sha256": "ef3e5486e7e073e5bc90b1c409420cedb8ac0ffc7c2857edb999be5b270f374a",
+      "original": "../hard-cases-6.1.0/rollout-expanded-review.jpg"
+    },
+    {
+      "file": "rollout-no-order.png",
+      "captureDate": "2026-11-05",
+      "sourceSha256": "85a8d698baf451a64c14f10039e4392d5cb9afc4a026bc50a711e9056dcf2e69",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        850,
+        98,
+        1291,
+        904
+      ],
+      "sha256": "f05c7149e7398ee982d3b91207fb0bdaa5855bea1852015506e578e99248f368",
+      "original": "../hard-cases-6.1.0/rollout-no-order.jpg"
+    },
+    {
+      "file": "settings-assistant.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "28b2c330bf4b7f3418eb0513081f56fbce0159e4236f6acfb605a3dbeaf479eb",
+      "sourceSize": [
+        666,
+        717
+      ],
+      "crop": [
+        0,
+        0,
+        666,
+        590
+      ],
+      "sha256": "8a045e4bdda42e24a7f9d7b703ba88853d1efd5b889db91ece68d3d49c77f8d1"
+    },
+    {
+      "file": "start-menu.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "a8341fd88d9d5fa51c45281fa66efc043667bc0de454e842c49997d758aa753a",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        235,
+        1316,
+        491
+      ],
+      "sha256": "f8a059eefe7e69ea4eab42d164e6e664fb57de3d126a77245a4d9c9bb73025e1"
+    },
+    {
+      "file": "tool-ansible.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "b064214a5170ac1b875cd7fa65ffd5f659966a873113fb1b22778843d0276b78",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        925
+      ],
+      "sha256": "a5550b841f27285e04804f08ac5a0b5c09886e410c157ff303d0058d3668f1ca"
+    },
+    {
+      "file": "tool-api.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "8ebbf7f0d0ceaa5e2daf5706c3d478b106a479e94007efe098368273117d52c7",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        914
+      ],
+      "sha256": "f9a57e076a5de82fc433ec0a5074353426d0cb05b612e679459ebd5fca34c4f3"
+    },
+    {
+      "file": "tool-api-protocol.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "acacfdadcc7bb614bd47970a9437b81bdc3b1c6578eb954d71749b72f44d8d26",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        840
+      ],
+      "sha256": "8649b94daf2b931f681442e692010b880b4c60cf56141b8e3d132a09069f705b"
+    },
+    {
+      "file": "tool-api-scenarios.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "bc39f8640f3456c1e4a840a8a70dc5e4bbff7df549357d72e950191d52ab670f",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        710
+      ],
+      "sha256": "0b54beaae4d7b10813e4231894915bf5aee42c25e1192e58a53d0a040ab3b13e"
+    },
+    {
+      "file": "tool-icons.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "a5e148de4054d2e66d16c44107fb25883780861256be0beaf20824c0b48003d5",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        875
+      ],
+      "sha256": "4b7101547803c7bfa902bf0b43e254cacc392efef4d86e36ab9aa88485df78be"
+    },
+    {
+      "file": "tool-keystore.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "17178bbb3213dd466f9ea0b541be2b86cf5850c3204ca8c0c7cd7b292d7255af",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        540
+      ],
+      "sha256": "83300bbdbd700a612ec22273976b5bdf3d51118134d040e842c605507ab29294"
+    },
+    {
+      "file": "tool-logs.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "9f8374d3aada5401520167a098621f643c408022ea8ecbe287a3d5a65fc98ee8",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        529
+      ],
+      "sha256": "5615c676b9097cc81cde6e3d75afefe7a486b4a34cb3b5480e10b7e09c28c9d5"
+    },
+    {
+      "file": "tool-mybatis.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "cd27f8497b8b68fc2afccbe644a76fe6fb171c622be60fdcd39d54668b224f05",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        923
+      ],
+      "sha256": "aba5ac0221cff83577bafc318319101941752464ee52aa8a7ffb4d8a9401d1f7"
+    },
+    {
+      "file": "tool-react.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "449c433b0b73ebf58f71d77cb82629fcb7ec5a21ac522e83807ef38b3a11d02b",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        780
+      ],
+      "sha256": "2df275da04712e2d93aa89bf8953afcd5c1c7bb7a38b4f0c6709d85352f35459"
+    },
+    {
+      "file": "tool-shell.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "0468660f679ec73de34cd3a7b7026550eb1152a545e2c2839db17905249536d7",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        790
+      ],
+      "sha256": "326c1c5dd9acf082a31fc67a2fc40b6b0f538a579902b3ed7dfde64c543c0681"
+    },
+    {
+      "file": "tool-spring.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "96489074e5320bc9d8b2024a6d16d4f4f8aa382bbff8569110d95a2a8b16e6e2",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        762
+      ],
+      "sha256": "bb84c9ad13d7288ea6b2aae967593a5481d43360a9de11438460154ca3f980ed"
+    },
+    {
+      "file": "tools-directory.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "181cd45b74138740c76e9e1b407e9a4079ccf7f7b55291aa38eb347f26b9f48d",
+      "sourceSize": [
+        1386,
+        993
+      ],
+      "crop": [
+        346,
+        237,
+        1278,
+        917
+      ],
+      "sha256": "b60ed15e058f75d8b38c7f71360f1f8329b5d4a23349d007cdd570b92ba7ff20"
+    },
+    {
+      "file": "what-if.png",
+      "captureDate": "2026-11-06",
+      "sourceSha256": "4f6d4609d20f3d8ada773b9c1e1068f0f6f1ed0141778b0263092ed6c6234a3a",
+      "sourceSize": [
+        560,
+        332
+      ],
+      "crop": [
+        0,
+        0,
+        560,
+        332
+      ],
+      "sha256": "af0acfda48e1ff2410c119c89e856303a372f673550848eb6aacabb897500988"
+    }
+  ]
+}

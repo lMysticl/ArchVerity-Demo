@@ -2,6 +2,8 @@
 
 **Your service compiles. Does the service calling it still work?**
 
+**[ArchVerity in pictures · Наглядный гид на русском](docs/VISUAL_GUIDE_RU.md)** — see a real break, open both files, then check the repair. For a particular action, open the [feature and command index for 6.1.2](docs/FEATURE_CATALOG_RU.md). The native screens are labelled with their capture version.
+
 Find a contract break, inspect both sides, fix it and check again. These open
 examples let you evaluate **ArchVerity 5.8.2** on synthetic Java/Spring services
 before trying it on your own change. No broker or database is needed for the
